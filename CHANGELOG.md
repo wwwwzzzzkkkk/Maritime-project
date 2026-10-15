@@ -1,5 +1,12 @@
 # Change log
 
+## Mobile live budget window · 2026-10-15
+
+- Show a compact glass budget window when original mobile budget cards leave view, including in other modules.
+- Reuse the existing calculated amounts; keep EUR and GBP separate and update with every input change.
+- Support touch dragging, keyboard movement, collapse/expand and position reset; hide when original cards return to view.
+- Keep desktop layout and existing visual effects intact. Add bilingual quick-start instructions.
+
 ## Mobile layout follow-up · 2026-10-15
 
 - Fit all five mobile tabs using short bilingual names while retaining full accessible names and the original sliding pill.

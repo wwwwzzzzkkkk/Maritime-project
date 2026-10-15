@@ -1,4 +1,5 @@
 import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs';
+import { createMobileBudget } from './mobile-budget.mjs';
 import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs';
 /* ==========================================================================
    MAREG — Core Deterministic Engine, Real GIS Maritime Map & Spatial 3D Tilt UI (v3.2)
@@ -48,6 +49,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   let deferredCamera = null;
   let originalE1Coordinates;
   let snapshot;
+  let mobileBudget;
 
   let leafletMap = null;
   let mapLayers = {};
@@ -861,6 +863,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     `).join(''));
 
     updateMapPopups();
+    mobileBudget.update(m,lang);
 
     requestAnimationFrame(() => {
       const activeNavBtn = document.querySelector('.nav-btn.active');
@@ -1016,6 +1019,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
             );
             const headerHeight=document.querySelector('.topbar').getBoundingClientRect().height;
             window.scrollTo({top:anchor.getBoundingClientRect().top+window.scrollY-headerHeight-20,behavior:'instant'});
+            mobileBudget.refresh();
           });
         }
       });
@@ -1188,6 +1192,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    mobileBudget=createMobileBudget();
     initRealMaritimeMap();
     updateVesselRoute();
     bindEvents();

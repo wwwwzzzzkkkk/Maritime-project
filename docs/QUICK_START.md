@@ -36,6 +36,8 @@ For the default light edition, documented on 15 October 2026. No installation or
 
 地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机导航显示“总览 / 推演 / 审计 / IMO / 商业”五个短名称，切换后直接定位到对应内容；费用卡只在总览显示，宽表格可横向滑动。
 
+手机上，原费用卡滚出视野或切换到其他模块时，会自动出现**实时预算浮窗**，随参数同步更新。拖动浮窗标题可移动位置；点“收起 / 展开”调整占用空间，点“归位”恢复默认位置。回到原费用卡区域，浮窗自动隐藏。欧元和英镑仍分开显示。
+
 ### 3. 到“数字孪生与租约”比较方案
 
 这里比较 **未调整基准、当前组合、假设组池** 三行。先看“总净支出”，再看费用构成。它只包含表内项目，不是完整航次总成本；UK 英镑费用另外查看。
@@ -97,6 +99,8 @@ Use the controls in **Overview & Route**:
 - **FuelEU target condition** compares the 2% target for 2025–2029 with 6% for 2030, holding other current activity and price inputs fixed. It is not an actual future-bill forecast.
 
 Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, the short tabs Home / Twin / Audit / IMO / AI open their content immediately. Budget cards appear in Home only; wide tables scroll horizontally.
+
+On mobile, a **live budget window** appears when the original cards leave view or you open another module. Values update as you change inputs. Drag its title to move it, use Collapse / Expand to save space, or Reset to restore its position. It hides when the original cards return to view. EUR and GBP remain separate.
 
 ### 3. Compare options in “Twin & Charter”
 
