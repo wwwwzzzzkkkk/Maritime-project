@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAREG — Maritime Compliance & Digital Twin Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles/tokens.css?v=3.4" />
+  <link rel="stylesheet" href="styles/main.css?v=3.4" />
+</head>
+<body>
+  <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="apple-liquid-refract" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="3.5" result="smoothNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="smoothNoise" scale="7" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Floating Apple macOS Tahoe / visionOS Liquid Glass Top Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-cluster">
+        <div class="brand-mark">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 20a2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 2-1 2.4 2.4 0 0 1 2 1 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1"/>
+              <path d="M4 18l-1-5h18l-1 5"/>
+              <path d="M12 4v9"/><path d="M7 8h10"/>
+            </svg>
+          </div>
+          <span>MAREG</span>
+        </div>
+        <div class="divider-v"></div>
+        <select id="vesselSelect" class="vessel-select" aria-label="Select Vessel"></select>
+      </div>
+
+      <!-- Minimalist 5-Module Navigation with Effect #1: Sliding Liquid Pill Indicator -->
+      <nav id="primaryNavTabs" class="nav-tabs" aria-label="Primary Views">
+        <span id="navPillIndicator" class="nav-pill-indicator" aria-hidden="true"></span>
+        <button type="button" class="nav-btn active" data-tab="tab-cockpit" data-tab-idx="0" data-zh="概览与航线" data-en="Overview & Route">概览与航线</button>
+        <button type="button" class="nav-btn" data-tab="tab-sandbox" data-tab-idx="1" data-zh="数字孪生与租约" data-en="Twin & Charter">数字孪生与租约</button>
+        <button type="button" class="nav-btn" data-tab="tab-audit" data-tab-idx="2" data-zh="白盒审计与反漂绿" data-en="Audit & ESG">白盒审计与反漂绿</button>
+        <button type="button" class="nav-btn" data-tab="tab-scenarios" data-tab-idx="3" data-zh="IMO 情景压力" data-en="IMO Scenarios">IMO 情景压力</button>
+        <button type="button" class="nav-btn" data-tab="tab-ai-esg" data-tab-idx="4" data-zh="AI 雷达与商业模型" data-en="AI & ROI Model">AI 雷达与商业模型</button>
+      </nav>
+
+      <!-- Right Actions: Switch to Pro Max Edition, Reset, Audit Log, Language Switch -->
+      <div class="topbar-right">
+        <a href="index-pro-max.html" class="ghost-btn" style="text-decoration:none; color:var(--accent);" data-zh="✨ Pro Max 工作台版" data-en="✨ Pro Max Workbench">✨ Pro Max 工作台版</a>
+        <button type="button" id="resetTwinBtn" class="ghost-btn" data-zh="重置基准" data-en="Reset">重置基准</button>
+        <button type="button" id="openAuditModalBtn" class="ghost-btn" data-zh="审计日志 (A3)" data-en="Audit Log (A3)">审计日志 (A3)</button>
+        <div class="lang-switch" role="group" aria-label="Language Switcher">
+          <button type="button" class="lang-btn active" data-lang="zh">中</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-Header Context Strip: Vessel Specs & IMO Scenario Switcher -->
+  <div class="context-bar">
+    <div class="context-bar-inner">
+      <div id="vesselMetaPills" class="vessel-meta-inline"></div>
+
+      <div class="scenario-bar" role="group" aria-label="IMO Regulatory Scenarios">
+        <span class="scenario-caption" data-i18n="scenarioLabel">IMO 压力情景:</span>
+        <button type="button" class="scenario-btn" data-scenario="as_is" data-i18n="scenAsIs">1. 原样通过</button>
+        <button type="button" class="scenario-btn" data-scenario="amended" data-i18n="scenAmended">2. 修订通过</button>
+        <button type="button" class="scenario-btn active" data-scenario="deadlock" data-i18n="scenDeadlock">3. 持续僵局</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Centered Workspace -->
+  <main class="page-container">
+    <!-- Top 4 KPI Cards — Unified Monochrome Typography -->
+    <section class="kpi-strip" aria-label="Compliance Summary Metrics">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label" data-i18n="kpi1Label">EU ETS 年度配额账单 (欧元单列)</span>
+          <span class="badge badge-in-force">In-Force · TtW</span>
+        </div>
+        <div id="kpiEuEtsVal" class="kpi-val nowrap">€88,000</div>
+        <div id="kpiEuEtsSub" class="kpi-sub"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label" data-i18n="kpi2Label">FuelEU 强度合规罚款 (欧元单列)</span>
+          <span class="badge badge-deficit">In-Force · WtW</span>
+        </div>
+        <div id="kpiFuelEuVal" class="kpi-val nowrap">€237,191.27</div>
+        <div id="kpiFuelEuSub" class="kpi-sub"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label" data-i18n="kpi3Label">UK ETS 国内海事账单 (英镑单列)</span>
+          <span class="badge badge-gbp">2026.07 · GBP £</span>
+        </div>
+        <div id="kpiUkEtsVal" class="kpi-val nowrap">£13,200</div>
+        <div id="kpiUkEtsSub" class="kpi-sub"></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label" data-i18n="kpi4Label">租约下船东净承担比例 (欧元部分)</span>
+          <span class="badge badge-assumption">Charter Split</span>
+        </div>
+        <div id="kpiCharterVal" class="kpi-val nowrap">€276,413</div>
+        <div id="kpiCharterSub" class="kpi-sub"></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VIEW 1: OVERVIEW & REAL GEOGRAPHIC ROUTE DIGITAL TWIN
+         ================================================================ -->
+    <section id="tab-cockpit" class="tab-panel active enter-right">
+      <div class="cockpit-grid">
+        <!-- Left: Clean Digital Twin Sliders -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-i18n="cockpitLeftTitle">数字孪生参数调节</h2>
+              <p class="panel-subtitle" data-i18n="cockpitLeftSub">实时重算多制度合规成本与物理排放</p>
+            </div>
+            <span class="badge badge-assumption">Twin v3.0</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="EU ETS 碳价假设 (EUA)" data-en="EU ETS Carbon Price (EUA)">EU ETS 碳价假设 (EUA)</span>
+              <span class="control-val readout-eua">€80 / tCO₂</span>
+            </div>
+            <input type="range" class="sync-eua" min="50" max="120" step="5" value="80" aria-label="EUA Carbon Price" />
+            <div class="control-hint">
+              <span data-zh="附录A3敏感性基准: €60 / €80 / €100" data-en="Appendix A3 Sensitivity: €60 / €80 / €100">附录A3敏感性基准: €60 / €80 / €100</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="JIT 准时到港降速 (立方定律)" data-en="JIT Speed Reduction (Cube Law)">JIT 准时到港降速 (立方定律)</span>
+              <span class="control-val readout-jit">0.0 kn (13.5 kn)</span>
+            </div>
+            <input type="range" class="sync-jit" min="-2.0" max="0.0" step="0.2" value="0.0" aria-label="JIT Speed Delta" />
+            <div class="control-hint">
+              <span data-zh="主机日油耗 ∝ 航速³ (Week 8)" data-en="Main Engine Burn ∝ Speed³ (Week 8)">主机日油耗 ∝ 航速³ (Week 8)</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="认证生物燃料 / 绿甲醇掺烧" data-en="Certified Biofuel / e-Methanol Blend">认证生物燃料 / 绿甲醇掺烧</span>
+              <span class="control-val readout-bio">0%</span>
+            </div>
+            <input type="range" class="sync-bio" min="0" max="50" step="5" value="0" aria-label="Biofuel Blend Percentage" />
+            <div class="control-hint">
+              <span data-zh="降低 WtW 生命周期强度 (基准 91.6)" data-en="Lowers WtW GHG Intensity (Base 91.6)">降低 WtW 生命周期强度 (基准 91.6)</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="FuelEU 年度强度目标档位" data-en="FuelEU Intensity Target Tier">FuelEU 年度强度目标档位</span>
+            </div>
+            <div class="seg-group" style="grid-template-columns: 1fr 1fr;">
+              <button type="button" class="seg-btn seg-target-btn active" data-target="2" data-zh="2025 (-2% · 89.34)" data-en="2025 (-2% · 89.34)">2025 (-2% · 89.34)</button>
+              <button type="button" class="seg-btn seg-target-btn" data-target="6" data-zh="2030 (-6% · 85.69)" data-en="2030 (-6% · 85.69)">2030 (-6% · 85.69)</button>
+            </div>
+          </div>
+
+          <div id="cockpitHygieneAlert" class="alert-banner amber"></div>
+          <div id="bunkerSupplyAlert" class="alert-banner rose" style="display:none;"></div>
+        </div>
+
+        <!-- Right: Real Interactive Geographic Map & Scoped Leg Ledger -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-i18n="cockpitMapTitle">亚欧—英国跨管辖区航线数字孪生拓扑图</h2>
+              <p class="panel-subtitle" data-zh="真实地理坐标海图（支持缩放、拖拽与港口点击）· 自动映射 EU 50% / 100% / UK ETS 及 300nm 转运防逃逸区" data-en="Interactive GIS maritime map (zoom, pan & click ports) · Maps EU 50%/100%, UK ETS & 300nm transshipment hubs">真实地理坐标海图（支持缩放、拖拽与港口点击）· 自动映射 EU 50% / 100% / UK ETS 及 300nm 转运防逃逸区</p>
+            </div>
+            <span class="badge badge-in-force">GIS Telemetry · UN/LOCODE</span>
+          </div>
+
+          <div class="map-stage">
+            <div class="map-toolbar">
+              <div class="leg-pills" role="group" aria-label="Map Camera View Presets">
+                <button type="button" class="leg-btn map-cam-btn active" data-cam="eurasia" data-zh="🌏 亚欧全航线 (CNSHA → NLRTM)" data-en="🌏 Full Eurasia Route">🌏 亚欧全航线 (CNSHA → NLRTM)</button>
+                <button type="button" class="leg-btn map-cam-btn" data-cam="europe" data-zh="🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)" data-en="🇪🇺 North Sea EU + UK Zoom">🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)</button>
+                <button type="button" class="leg-btn map-cam-btn" data-cam="chokepoints" data-zh="⚓ 苏伊士与直布罗陀 300nm 防规避区" data-en="⚓ Suez & Gibraltar 300nm Hubs">⚓ 苏伊士与直布罗陀 300nm 防规避区</button>
+              </div>
+              <span id="mapCursorCoords" class="mono" style="font-size:11px; color:var(--text-muted);">LAT 51.95°N · LON 4.14°E (NLRTM)</span>
+            </div>
+
+            <div id="realMaritimeMap" class="real-map-viewport" style="height:330px; min-height:330px; width:100%; display:block;" aria-label="Interactive Maritime GIS Map">
+              <div id="mapActiveLegOverlay" class="map-coord-overlay">
+                CNSHA → SGSIN → EGPSD → MAPTM → NLRTM → DEHAM → GBFXT/GBSOU
+              </div>
+            </div>
+
+            <div class="map-legend-bar">
+              <div class="leg-pills">
+                <button type="button" class="leg-btn leg-filter-btn active" data-leg-filter="all" data-zh="全部航段" data-en="All Legs">全部航段</button>
+                <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="E1">E1 · Extra-EU 50% (CNSHA→NLRTM)</button>
+                <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="E2">E2 · Intra-EU 100% (NLRTM→DEHAM)</button>
+                <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="E3">E3 · EU Berth 100%</button>
+                <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="U1">U1/U2 · UK ETS (£ · GBFXT→GBSOU)</button>
+              </div>
+              <span class="mono" style="font-size:11px; color:var(--text-muted);" data-zh="点击海图港口或航段线查看坐标与适用法规" data-en="Click map ports or sea lanes for legal scope">点击海图港口或航段线查看坐标与适用法规</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="telemetry-table">
+              <thead>
+                <tr>
+                  <th data-zh="代码" data-en="Leg">代码</th>
+                  <th data-zh="航段与活动边界" data-en="Voyage & Activity Scope">航段与活动边界</th>
+                  <th data-zh="制度" data-en="Regime">制度</th>
+                  <th data-zh="原始排放" data-en="Raw CO₂">原始排放</th>
+                  <th data-zh="覆盖比例" data-en="Scope">覆盖比例</th>
+                  <th data-zh="计入吨数" data-en="Covered">计入吨数</th>
+                  <th data-zh="分币种合规成本" data-en="Scoped Cost">分币种合规成本</th>
+                </tr>
+              </thead>
+              <tbody id="cockpitLegTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VIEW 2: DIGITAL TWIN & CHARTERPARTY SPLIT SANDBOX
+         ================================================================ -->
+    <section id="tab-sandbox" class="tab-panel">
+      <div class="split-grid-2">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="航次、燃料与组池数字孪生推演" data-en="Voyage, Fuel & Pooling Simulation">航次、燃料与组池数字孪生推演</h2>
+              <p class="panel-subtitle" data-zh="在现行法规基准上对比燃料掺烧、JIT 降速与授权 FuelEU 组池" data-en="Compare biofuel blending, JIT speed reduction, and authorized FuelEU pooling">在现行法规基准上对比燃料掺烧、JIT 降速与授权 FuelEU 组池</p>
+            </div>
+            <span class="badge badge-assumption">Simulation</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="1. 认证生物燃料 / 绿甲醇掺烧比例" data-en="1. Certified Biofuel / e-Methanol Blend">1. 认证生物燃料 / 绿甲醇掺烧比例</span>
+              <span class="control-val readout-bio">0%</span>
+            </div>
+            <input type="range" class="sync-bio" min="0" max="50" step="5" value="0" />
+            <div class="control-hint">
+              <span data-zh="0% (纯 VLSFO · 91.6 gCO₂e/MJ)" data-en="0% (VLSFO · 91.6 gCO₂e/MJ)">0% (纯 VLSFO · 91.6 gCO₂e/MJ)</span>
+              <span data-zh="50% (深度掺烧)" data-en="50% (High Blend)">50% (深度掺烧)</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="2. JIT 准时到港航速调整 (立方定律)" data-en="2. JIT Speed Adjustment (Cube Law)">2. JIT 准时到港航速调整 (立方定律)</span>
+              <span class="control-val readout-jit">0.0 kn</span>
+            </div>
+            <input type="range" class="sync-jit" min="-2.0" max="0.0" step="0.2" value="0.0" />
+            <div class="control-hint">
+              <span data-zh="-2.0 kn (慢航省油)" data-en="-2.0 kn (Slow Steam)">-2.0 kn (慢航省油)</span>
+              <span data-zh="0.0 kn (设计航速)" data-en="0.0 kn (Service Speed)">0.0 kn (设计航速)</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="3. 授权 FuelEU 组池（Pooling）合规盈余抵扣" data-en="3. Authorized FuelEU Pooling Surplus Offset">3. 授权 FuelEU 组池（Pooling）合规盈余抵扣</span>
+              <span class="control-val readout-pool">+0 tCO₂e</span>
+            </div>
+            <input type="range" class="sync-pool" min="0" max="400" step="25" value="0" />
+            <div class="control-hint">
+              <span data-zh="0 t (无外部组池)" data-en="0 t (Standalone)">0 t (无外部组池)</span>
+              <span data-zh="+371 t 可完全抵消 A3 2% 赤字" data-en="+371 t offsets A3 2% deficit">+371 t 可完全抵消 A3 2% 赤字</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="租约碳成本分摊与方案对比" data-en="Charterparty Cost Allocation & Option Comparison">租约碳成本分摊与方案对比</h2>
+              <p class="panel-subtitle" data-zh="区分法定履约主体（ISM/船东）与合同偿付方（租家），消除租约摩擦" data-en="Separates statutory surrender from contractual reimbursement under GENCON / NYPE">区分法定履约主体（ISM/船东）与合同偿付方（租家），消除租约摩擦</p>
+            </div>
+            <span class="badge badge-in-force">Charter Split</span>
+          </div>
+
+          <div class="seg-group">
+            <button type="button" class="seg-btn seg-charter-btn active" data-charter="voyage_gencon" data-zh="GENCON 航次租船" data-en="GENCON Voyage">GENCON 航次租船</button>
+            <button type="button" class="seg-btn seg-charter-btn" data-charter="time_nype_bimco" data-zh="NYPE 期租 + BIMCO" data-en="NYPE + BIMCO">NYPE 期租 + BIMCO</button>
+            <button type="button" class="seg-btn seg-charter-btn" data-charter="split_blue_ga" data-zh="Blue GA 50:50 共担" data-en="Blue GA 50:50">Blue GA 50:50 共担</button>
+          </div>
+
+          <div class="control-group">
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-primary); font-weight:500;">
+              <span id="ownerSplitLabel">船东承担: €276,413 (85%)</span>
+              <span id="chartererSplitLabel">租家偿付: €48,779 (15%)</span>
+            </div>
+            <div style="display:flex; height:8px; border-radius:999px; overflow:hidden; background:rgba(15,23,42,0.10);">
+              <div id="ownerSplitBar" style="width:85%; background:var(--text-primary); transition:width 640ms cubic-bezier(0.16, 1, 0.3, 1);"></div>
+              <div id="chartererSplitBar" style="width:15%; background:var(--accent); transition:width 640ms cubic-bezier(0.16, 1, 0.3, 1);"></div>
+            </div>
+            <p id="charterExplainBox" style="font-size:12px; color:var(--text-secondary);"></p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="telemetry-table">
+              <thead>
+                <tr>
+                  <th data-zh="方案" data-en="Option">方案</th>
+                  <th data-zh="EU ETS" data-en="EU ETS">EU ETS</th>
+                  <th data-zh="FuelEU 罚款" data-en="FuelEU">FuelEU 罚款</th>
+                  <th data-zh="溢价/组池/省油" data-en="Net Ops">溢价/组池/省油</th>
+                  <th data-zh="总净支出" data-en="Total Net">总净支出</th>
+                  <th data-zh="结论" data-en="Verdict">结论</th>
+                </tr>
+              </thead>
+              <tbody id="optionCompareBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VIEW 3: WHITE-BOX FORMULA AUDIT & ANTI-GREENWASHING
+         ================================================================ -->
+    <section id="tab-audit" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" data-zh="附录 A3 白盒版本化公式审计表（10,000 GT 货船基准）" data-en="Appendix A3 White-Box Formula Audit Table (10,000 GT Reference)">附录 A3 白盒版本化公式审计表（10,000 GT 货船基准）</h2>
+            <p class="panel-subtitle" data-zh="逐行记录输入、公式版本、法规条文与覆盖边界，确保每一笔合规预算可复算、可追溯" data-en="Line-by-line record of inputs, formula versions, legal citations, and coverage scope">逐行记录输入、公式版本、法规条文与覆盖边界，确保每一笔合规预算可复算、可追溯</p>
+          </div>
+          <span class="badge badge-in-force">Audit v2026.3</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="telemetry-table">
+            <thead>
+              <tr>
+                <th data-zh="代码" data-en="ID">代码</th>
+                <th data-zh="活动边界" data-en="Activity Scope">活动边界</th>
+                <th data-zh="版本化计算公式" data-en="Versioned Formula">版本化计算公式</th>
+                <th data-zh="代入参数与中间量" data-en="Parameters">代入参数与中间量</th>
+                <th data-zh="核算结果" data-en="Output">核算结果</th>
+                <th data-zh="法规状态" data-en="Status">法规状态</th>
+              </tr>
+            </thead>
+            <tbody id="a3AuditTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="split-grid-2">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="反身检验与防漂绿双轨监控（Section 4）" data-en="Reflexive Anti-Greenwashing Monitor (Section 4)">反身检验与防漂绿双轨监控（Section 4）</h2>
+              <p class="panel-subtitle" data-zh="财务合规账单降低 ≠ 物理全生命周期（WtW）排放下降" data-en="Financial bill reduction does not equal physical Well-to-Wake emissions abatement">财务合规账单降低 ≠ 物理全生命周期（WtW）排放下降</p>
+            </div>
+            <span class="badge badge-in-force">Dual-Track ESG</span>
+          </div>
+
+          <div class="dual-gauge-grid">
+            <div class="gauge-card">
+              <div class="ring-meter">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(15,23,42,0.10)" stroke-width="6"/>
+                  <circle id="ringArcFinancial" class="ring-arc" cx="50" cy="50" r="40" fill="none" stroke="#0f172a" stroke-width="6" stroke-dasharray="185 251" stroke-linecap="round"/>
+                </svg>
+                <span id="gaugeFinancialVal" class="ring-val">0.0%</span>
+              </div>
+              <strong style="font-size:12.5px;" data-zh="财务合规支出变动" data-en="Financial Cost Delta">财务合规支出变动</strong>
+              <span id="gaugeFinancialSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="ring-meter">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(15,23,42,0.10)" stroke-width="6"/>
+                  <circle id="ringArcPhysical" class="ring-arc" cx="50" cy="50" r="40" fill="none" stroke="#0284c7" stroke-width="6" stroke-dasharray="160 251" stroke-linecap="round"/>
+                </svg>
+                <span id="gaugePhysicalVal" class="ring-val">0.0%</span>
+              </div>
+              <strong style="font-size:12.5px;" data-zh="物理生命周期排放变动 (WtW)" data-en="Physical WtW Emissions Delta">物理生命周期排放变动 (WtW)</strong>
+              <span id="gaugePhysicalSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+            </div>
+          </div>
+
+          <div id="reflexiveStatusText" class="alert-banner cyan"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="技术边界与治理客观性保障" data-en="Technical Boundaries & Governance Independence">技术边界与治理客观性保障</h2>
+              <p class="panel-subtitle" data-zh="对应报告第 3 节与第 4 节治理要求" data-en="Aligned with Venture Report Sections 3 & 4">对应报告第 3 节与第 4 节治理要求</p>
+            </div>
+            <span class="badge badge-assumption">IACS & NIST</span>
+          </div>
+
+          <div class="control-group">
+            <strong style="color:var(--text-primary); font-size:12.5px;" data-zh="离线表格导入与 IACS E26/E27 边界" data-en="Spreadsheet Ingestion & IACS E26/E27 Scope">离线表格导入与 IACS E26/E27 边界</strong>
+            <p style="font-size:12px; color:var(--text-secondary);" data-zh="首版采用标准化表格导入导出，不直接访问船舶控制系统，搭配公开 THETIS-MRV 背景核对。避免将岸基预算工具包装成船载网络自动合规。" data-en="v1.0 uses standardized spreadsheet import/export without direct shipboard control connections, paired with public THETIS-MRV verification checks.">
+              首版采用标准化表格导入导出，不直接访问船舶控制系统，搭配公开 THETIS-MRV 背景核对。避免将岸基预算工具包装成船载网络自动合规。
+            </p>
+          </div>
+
+          <div class="control-group">
+            <strong style="color:var(--text-primary); font-size:12.5px;" data-zh="商业激励独立性（反漂绿治理）" data-en="Commercial Incentive Independence">商业激励独立性（反漂绿治理）</strong>
+            <p style="font-size:12px; color:var(--text-secondary);" data-zh="员工奖励不与估算罚款高低挂钩，也不与推荐特定燃料商、组池或金融服务挂钩；顾问转介须披露佣金并获客户同意。分析结论可以是“客户无需增加支出”。" data-en="Compensation is never tied to estimated penalty levels or fuel/pooling kickbacks. Conclusions can explicitly advise zero additional spend.">
+              员工奖励不与估算罚款高低挂钩，也不与推荐特定燃料商、组池或金融服务挂钩；顾问转介须披露佣金并获客户同意。分析结论可以是“客户无需增加支出”。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VIEW 4: IMO 3-SCENARIO STRESS-TEST MATRIX (Section 5)
+         ================================================================ -->
+    <section id="tab-scenarios" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" data-zh="IMO 净零框架三种监管情景压力测试（Section 5）" data-en="IMO Net-Zero Framework 3-Scenario Stress Test (Section 5)">IMO 净零框架三种监管情景压力测试（Section 5）</h2>
+            <p class="panel-subtitle" data-zh="同时评估客户合规需求、产品模块调整与平台自身盈亏平衡点" data-en="Simultaneously evaluates client compliance needs, product adaptation, and venture break-even">同时评估客户合规需求、产品模块调整与平台自身盈亏平衡点</p>
+          </div>
+          <span class="badge badge-pending">Stress Test</span>
+        </div>
+
+        <div id="activeScenarioDetailBox" class="control-group"></div>
+
+        <div class="bento-grid-3">
+          <div class="control-group" style="gap:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:var(--text-primary); font-size:13.5px;" data-zh="情景 1：原样通过" data-en="Scenario 1: Adopted As-Is">情景 1：原样通过</strong>
+              <span class="badge badge-pending">70 Clients B/E</span>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary);" data-zh="2028实施时间表公布触发；验证全球模块并转向实施预算，区域法规未废止前保留双轨。" data-en="Triggered by 2028 schedule; activates global module alongside regional rules.">
+              2028实施时间表公布触发；验证全球模块并转向实施预算，区域法规未废止前保留双轨。
+            </p>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="假设客户与单客贡献" data-en="Clients & Contribution">假设客户与单客贡献</span><span class="mono">60 × €3,000</span></div>
+              <div class="bar-track"><div class="bar-fill accent" data-target-width="86%" style="width:86%;"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="年度固定成本" data-en="Fixed Cost">年度固定成本</span><span class="mono">€210,000</span></div>
+              <div class="bar-track"><div class="bar-fill muted" data-target-width="100%" style="width:100%;"></div></div>
+            </div>
+            <div class="mono" style="font-size:11.5px; color:var(--text-secondary);" data-zh="预计经营亏损 €30,000 · 需 70 家盈亏平衡" data-en="Est. Loss -€30,000 · 70 clients to break even">预计经营亏损 €30,000 · 需 70 家盈亏平衡</div>
+          </div>
+
+          <div class="control-group" style="gap:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:var(--text-primary); font-size:13.5px;" data-zh="情景 2：修订后通过" data-en="Scenario 2: Amended">情景 2：修订后通过</strong>
+              <span class="badge badge-assumption">67 Clients B/E</span>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary);" data-zh="范围或方法重大变化触发调整；保留旧输出、解释差异并经批准重算。" data-en="Triggered by scope/method revisions; retains prior outputs and re-verifies formulas.">
+              范围或方法重大变化触发调整；保留旧输出、解释差异并经批准重算。
+            </p>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="假设客户与单客贡献" data-en="Clients & Contribution">假设客户与单客贡献</span><span class="mono">65 × €3,000</span></div>
+              <div class="bar-track"><div class="bar-fill accent" data-target-width="97%" style="width:97%;"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="年度固定成本" data-en="Fixed Cost">年度固定成本</span><span class="mono">€200,000</span></div>
+              <div class="bar-track"><div class="bar-fill muted" data-target-width="95%" style="width:95%;"></div></div>
+            </div>
+            <div class="mono" style="font-size:11.5px; color:var(--text-secondary);" data-zh="预计经营亏损 €5,000 · 需 67 家盈亏平衡" data-en="Est. Loss -€5,000 · 67 clients to break even">预计经营亏损 €5,000 · 需 67 家盈亏平衡</div>
+          </div>
+
+          <div class="control-group" style="gap:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:var(--text-primary); font-size:13.5px;" data-zh="情景 3：持续僵局" data-en="Scenario 3: Deadlock">情景 3：持续僵局</strong>
+              <span class="badge badge-in-force">57 Clients B/E</span>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary);" data-zh="聚焦现行 EU 及 UK 规则建立成本基准，减少无明确法律依据的全球模块开发。" data-en="Focuses on in-force EU & UK rules; cuts speculative global module spend.">
+              聚焦现行 EU 及 UK 规则建立成本基准，减少无明确法律依据的全球模块开发。
+            </p>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="假设客户与单客贡献" data-en="Clients & Contribution">假设客户与单客贡献</span><span class="mono">55 × €3,200</span></div>
+              <div class="bar-track"><div class="bar-fill accent" data-target-width="96%" style="width:96%;"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-row-head"><span data-zh="年度固定成本" data-en="Fixed Cost">年度固定成本</span><span class="mono">€180,000</span></div>
+              <div class="bar-track"><div class="bar-fill muted" data-target-width="85%" style="width:85%;"></div></div>
+            </div>
+            <div class="mono" style="font-size:11.5px; color:var(--text-secondary);" data-zh="预计经营亏损 €4,000 · 仅需 57 家盈亏平衡" data-en="Est. Loss -€4,000 · 57 clients to break even">预计经营亏损 €4,000 · 仅需 57 家盈亏平衡</div>
+          </div>
+        </div>
+
+        <div class="alert-banner cyan">
+          <div>
+            <strong data-zh="依赖项剥离与降级预案 (Name Your Dependency)" data-en="Dependency Isolation & Fallback Strategy">依赖项剥离与降级预案 (Name Your Dependency)</strong>
+            <span data-zh="平台无悔核心业务（现行 EU ETS / FuelEU / UK ETS 核算与租约分摊）不绑定远期 IMO 政策落地。若远期预测偏差，所有情景参数标注为行业公开提案假设，研发资源 100% 聚焦现行区域合规。" data-en="Our No-Regret Core (in-force EU/FuelEU/UK accounting & charterparty split) does not depend on IMO adoption. If forecasts diverge, scenario modules serve strictly as public-proposal stress tests.">
+              平台无悔核心业务（现行 EU ETS / FuelEU / UK ETS 核算与租约分摊）不绑定远期 IMO 政策落地。若远期预测偏差，所有情景参数标注为行业公开提案假设，研发资源 100% 聚焦现行区域合规。
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VIEW 5: GUARDRAILED AI RADAR, A1 ROI & A2 RISK REGISTER
+         ================================================================ -->
+    <section id="tab-ai-esg" class="tab-panel">
+      <div class="split-grid-2">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="受控 AI 政策雷达与问答助手" data-en="Guardrailed AI Policy Radar & Copilot">受控 AI 政策雷达与问答助手</h2>
+              <p class="panel-subtitle" data-zh="AI 负责规则整理与解释；财务数字 100% 由版本化公式生成" data-en="AI organizes rules and explanations; all financial math is 100% deterministic">AI 负责规则整理与解释；财务数字 100% 由版本化公式生成</p>
+            </div>
+            <span class="badge badge-in-force">Human-in-the-Loop</span>
+          </div>
+
+          <div class="ai-prompt-chips">
+            <button type="button" class="prompt-chip active" data-prompt="q1" data-zh="Q1: 2026 缺失 CH4/N2O 能否填零？" data-en="Q1: Can missing CH4/N2O be zeroed?">Q1: 2026 缺失 CH4/N2O 能否填零？</button>
+            <button type="button" class="prompt-chip" data-prompt="q2" data-zh="Q2: 政策预测不准会导致倒闭吗？" data-en="Q2: Does forecast miss break the venture?">Q2: 政策预测不准会导致倒闭吗？</button>
+            <button type="button" class="prompt-chip" data-prompt="q3" data-zh="Q3: FuelEU 2% vs 6% 策略对比" data-en="Q3: FuelEU 2% vs 6% Strategy">Q3: FuelEU 2% vs 6% 策略对比</button>
+          </div>
+
+          <div id="aiAnswerBox" class="ai-response-box"></div>
+          <div id="aiFeedContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="附录 A1 商业模型与客户净收益测算" data-en="Appendix A1 Unit Economics & Client ROI">附录 A1 商业模型与客户净收益测算</h2>
+              <p class="panel-subtitle" data-zh="基础年费 €4,800（≤5船）+ 首年接入 €600 · 毛利率 66.7%" data-en="Base €4,800/yr (≤5 ships) + €600 onboarding · 66.7% Gross Margin">基础年费 €4,800（≤5船）+ 首年接入 €600 · 毛利率 66.7%</p>
+            </div>
+            <span class="badge badge-in-force">Appendix A1</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="每年节省合规工时 (基准: 240h → 120h)" data-en="Annual Staff Hours Saved (Base: 240h → 120h)">每年节省合规工时 (基准: 240h → 120h)</span>
+              <span id="roiHoursReadout" class="control-val">120 h (€4,800)</span>
+            </div>
+            <input type="range" id="roiHoursSlider" min="60" max="180" step="15" value="120" />
+            <div class="control-hint">
+              <span data-zh="按 €40/h 折算 · 首年纯靠工时回本需 135h" data-en="Valued at €40/h · 135h needed for Y1 pure-labor breakeven">按 €40/h 折算 · 首年纯靠工时回本需 135h</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <span data-zh="可取消外部顾问费（不与工时重复计益）" data-en="Cancellable External Consultant Fee">可取消外部顾问费（不与工时重复计益）</span>
+            </div>
+            <div class="seg-group" style="grid-template-columns: 1fr 1fr;">
+              <button type="button" class="seg-btn roi-advisor-btn active" data-advisor="2000" data-zh="可取消顾问费 €2,000" data-en="Cancel €2,000 Advisor">可取消顾问费 €2,000</button>
+              <button type="button" class="seg-btn roi-advisor-btn" data-advisor="0" data-zh="无顾问费节省 (€0)" data-en="No Advisor Saving (€0)">无顾问费节省 (€0)</button>
+            </div>
+          </div>
+
+          <div class="bento-grid-3">
+            <div class="control-group" style="text-align:center;">
+              <span style="font-size:11px; color:var(--text-muted);" data-zh="年度总价值" data-en="Gross Value">年度总价值</span>
+              <strong id="roiGrossVal" class="mono" style="font-size:18px; color:var(--text-primary);">€6,800</strong>
+            </div>
+            <div class="control-group" style="text-align:center;">
+              <span style="font-size:11px; color:var(--text-muted);" data-zh="扣年费净益" data-en="Recurring Net">扣年费净益</span>
+              <strong id="roiRecurringNet" class="mono" style="font-size:18px; color:var(--text-primary);">€2,000</strong>
+            </div>
+            <div class="control-group" style="text-align:center;">
+              <span style="font-size:11px; color:var(--text-muted);" data-zh="首年净收益" data-en="Year-1 Net">首年净收益</span>
+              <strong id="roiYear1Net" class="mono" style="font-size:18px; color:var(--text-primary);">€1,400</strong>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="telemetry-table">
+              <thead>
+                <tr>
+                  <th data-zh="平台单位经济项目" data-en="Unit Economic Metric">平台单位经济项目</th>
+                  <th data-zh="基准数值" data-en="Baseline">基准数值</th>
+                  <th data-zh="敏感性与验证说明" data-en="Sensitivity & Notes">敏感性与验证说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-zh="单客收入 / 变动成本 / 贡献" data-en="Revenue / Var Cost / Margin">单客收入 / 变动成本 / 贡献</td>
+                  <td class="mono"><strong>€4,800 / €1,600 / €3,200</strong></td>
+                  <td data-zh="质控 16h×€60 + 支持 8h×€35 + 云与数据 €360" data-en="QC 16h×€60 + Support 8h×€35 + Cloud/Data €360">质控 16h×€60 + 支持 8h×€35 + 云与数据 €360</td>
+                </tr>
+                <tr>
+                  <td data-zh="固定成本与盈亏平衡点" data-en="Fixed Cost & Breakeven">固定成本与盈亏平衡点</td>
+                  <td class="mono"><strong>€180,000 → 57 家客户</strong></td>
+                  <td data-zh="含 15% 年流失率替换支出时约需 60 家" data-en="~60 clients including 15% annual churn replacement">含 15% 年流失率替换支出时约需 60 家</td>
+                </tr>
+                <tr>
+                  <td data-zh="人工质控增至 32h 敏感性" data-en="Workload Sensitivity (32h QC)">人工质控增至 32h 敏感性</td>
+                  <td class="mono"><strong>毛利 46.7% → 需 81 家</strong></td>
+                  <td data-zh="通过 12 家机构访谈 + 3 家付费试点实测验证" data-en="Validated via 12 interviews + 3 paid pilots">通过 12 家机构访谈 + 3 家付费试点实测验证</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel-card" style="grid-column: 1 / -1;">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" data-zh="附录 A2 一页风险登记册" data-en="Appendix A2 Risk Register">附录 A2 一页风险登记册</h2>
+              <p class="panel-subtitle" data-zh="涵盖规则、数据、AI、网络与商业风险的分工控制及残余风险" data-en="Covers regulatory, data, AI, cyber, and commercial controls and residual risks">涵盖规则、数据、AI、网络与商业风险的分工控制及残余风险</p>
+            </div>
+            <span class="badge badge-pending">Appendix A2</span>
+          </div>
+          <div class="table-wrap">
+            <table class="telemetry-table">
+              <thead>
+                <tr>
+                  <th data-zh="风险类别" data-en="Risk Item">风险类别</th>
+                  <th data-zh="等级" data-en="Level">等级</th>
+                  <th data-zh="负责人" data-en="Owner">负责人</th>
+                  <th data-zh="控制措施" data-en="Control Measures">控制措施</th>
+                  <th data-zh="残余风险" data-en="Residual Risk">残余风险</th>
+                </tr>
+              </thead>
+              <tbody id="a2RiskTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimalist Footer Disclaimer -->
+  <footer class="footer-bar">
+    <span data-i18n="boundaryDesc">本系统为概念决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>
+    <span class="mono">MT6503 Group Venture · Track B · maritime-compliance-gemini v3.0</span>
+  </footer>
+
+  <!-- Audit Log Modal -->
+  <div id="auditModalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+    <div class="modal-card">
+      <div class="panel-header">
+        <div>
+          <h2 id="auditModalTitle" class="panel-title" data-zh="附录 A3 审计链日志快照" data-en="Appendix A3 Audit Chain Log Snapshot">附录 A3 审计链日志快照</h2>
+          <p class="panel-subtitle" data-zh="记录原始文件、单位、时点、公式版本、边界与双重批准状态" data-en="Logs source files, units, timestamps, formula versions, boundaries, and dual sign-off">记录原始文件、单位、时点、公式版本、边界与双重批准状态</p>
+        </div>
+        <button type="button" id="closeAuditModalBtn" class="ghost-btn">✕</button>
+      </div>
+      <div class="control-group mono" style="font-size:12px; line-height:1.75; color:var(--text-secondary);">
+        <div>LOG_ID: MAREG-A3-20261014-V3.0 // VESSEL: IMO 9841023 (10,000 GT Cargo)</div>
+        <div>SOURCE: Authorized Voyage Ledger CSV + THETIS-MRV Public Cross-Check</div>
+        <div>FORMULAS: EU_ETS_2026_v3.2 (100%) | FUELEU_ANNEX_IV_v2.1 | UK_ETS_2026_JUL_v1.0</div>
+        <div>GAS_CHECK: CO2 = VERIFIED (1,100t EU covered) | CH4_N2O = MISSING (Zero-Default Blocked)</div>
+        <div>CURRENCIES: EUR (€88,000 ETS + €237,191.27 FuelEU) | GBP (£13,200 UK ETS)</div>
+        <div>GOVERNANCE: Dual Sign-Off (Regulatory Lead + Tech Lead)</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/data-and-i18n.js?v=3.4"></script>
+  <script src="js/app.js?v=3.4"></script>
+</body>
+</html>

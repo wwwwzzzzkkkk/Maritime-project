@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAREG Pro Max — Maritime Multi-Regime Compliance & Digital Twin Workbench</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles/pro-max.css?v=1.0" />
+</head>
+<body>
+  <div class="workbench-shell">
+    <!-- ================================================================
+         LEFT PERSISTENT COMMAND RAIL & LIVE DIGITAL TWIN TELEMETRY DOCK
+         (UI/UX Pro Max Split-Pane Workbench Architecture)
+         ================================================================ -->
+    <aside class="command-rail" aria-label="Primary Navigation and Live Digital Twin Controls">
+      <div class="rail-brand">
+        <div class="brand-identity">
+          <div class="brand-crest" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">MAREG STUDIO</div>
+            <div class="mono" style="font-size:10.5px; color:var(--text-muted);">MT6503 · TRACK B</div>
+          </div>
+        </div>
+        <span class="brand-edition-tag">PRO MAX</span>
+      </div>
+
+      <!-- 5 Core Analytical Views (100% Crisp SVG Icons — No Raw Emojis per Priority #4) -->
+      <div class="rail-section">
+        <div class="rail-section-label">
+          <span data-zh="核心分析工作台 (5 VIEWS)" data-en="ANALYTICAL VIEWS (5)">核心分析工作台 (5 VIEWS)</span>
+          <span>1–5</span>
+        </div>
+        <nav class="rail-nav" aria-label="Workbench Modules">
+          <button type="button" class="rail-nav-btn active" data-view="view-gis" data-idx="0">
+            <span class="rail-nav-btn-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span data-zh="1. 跨管辖区海图与台账" data-en="1. GIS Route & Scoped Ledger">1. 跨管辖区海图与台账</span>
+            </span>
+            <span class="nav-kbd">1</span>
+          </button>
+
+          <button type="button" class="rail-nav-btn" data-view="view-charter" data-idx="1">
+            <span class="rail-nav-btn-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              <span data-zh="2. 租约分摊与方案比选" data-en="2. Charter Split & Options">2. 租约分摊与方案比选</span>
+            </span>
+            <span class="nav-kbd">2</span>
+          </button>
+
+          <button type="button" class="rail-nav-btn" data-view="view-audit" data-idx="2">
+            <span class="rail-nav-btn-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span data-zh="3. A3白盒审计与反漂绿" data-en="3. White-Box Audit & ESG">3. A3白盒审计与反漂绿</span>
+            </span>
+            <span class="nav-kbd">3</span>
+          </button>
+
+          <button type="button" class="rail-nav-btn" data-view="view-scenarios" data-idx="3">
+            <span class="rail-nav-btn-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span data-zh="4. IMO 三情景压力矩阵" data-en="4. IMO 3-Scenario Matrix">4. IMO 三情景压力矩阵</span>
+            </span>
+            <span class="nav-kbd">4</span>
+          </button>
+
+          <button type="button" class="rail-nav-btn" data-view="view-ai-roi" data-idx="4">
+            <span class="rail-nav-btn-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              <span data-zh="5. 受控AI雷达与A1/A2模型" data-en="5. Guardrailed AI & A1/A2">5. 受控AI雷达与A1/A2模型</span>
+            </span>
+            <span class="nav-kbd">5</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Persistent Digital Twin Telemetry Dock (Always Accessible Across All Views!) -->
+      <div class="rail-twin-dock">
+        <div class="rail-section-label" style="padding:0 2px 2px;">
+          <span data-zh="数字孪生常驻推演台 (LIVE TWIN)" data-en="PERSISTENT DIGITAL TWIN">数字孪生常驻推演台 (LIVE TWIN)</span>
+          <span class="mono" style="color:var(--status-info);">REAL-TIME</span>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="EU ETS 碳价 (EUA)" data-en="EU ETS Price (EUA)">EU ETS 碳价 (EUA)</span>
+            <span class="telemetry-readout sync-readout-eua">€80 / tCO₂</span>
+          </div>
+          <input type="range" class="sync-eua" min="50" max="120" step="5" value="80" aria-label="EU ETS Carbon Price" />
+          <div class="dock-hint">
+            <span data-zh="A3 基准: €80" data-en="A3 Base: €80">A3 基准: €80</span>
+            <span data-zh="区间: €60–€100" data-en="Range: €60–€100">区间: €60–€100</span>
+          </div>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="JIT 降速 (立方定律)" data-en="JIT Speed (Cube Law)">JIT 降速 (立方定律)</span>
+            <span class="telemetry-readout sync-readout-jit">0.0 kn (13.5 kn)</span>
+          </div>
+          <input type="range" class="sync-jit" min="-2.0" max="0.0" step="0.2" value="0.0" aria-label="JIT Speed Reduction" />
+          <div class="dock-hint">
+            <span data-zh="慢航省油" data-en="Slow Steam">慢航省油</span>
+            <span data-zh="油耗 ∝ 航速³" data-en="Fuel ∝ Speed³">油耗 ∝ 航速³</span>
+          </div>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="生物燃料/绿甲醇掺烧" data-en="Biofuel / e-Methanol">生物燃料/绿甲醇掺烧</span>
+            <span class="telemetry-readout sync-readout-bio">0%</span>
+          </div>
+          <input type="range" class="sync-bio" min="0" max="50" step="5" value="0" aria-label="Biofuel Blend Ratio" />
+          <div class="dock-hint">
+            <span data-zh="0% 纯 VLSFO" data-en="0% VLSFO">0% 纯 VLSFO</span>
+            <span data-zh="降低 WtW 强度" data-en="Cuts WtW">降低 WtW 强度</span>
+          </div>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="授权 FuelEU 组池盈余" data-en="Verified Pooling Surplus">授权 FuelEU 组池盈余</span>
+            <span class="telemetry-readout sync-readout-pool">+0 tCO₂e</span>
+          </div>
+          <input type="range" class="sync-pool" min="0" max="400" step="25" value="0" aria-label="FuelEU Pooling Offset" />
+          <div class="dock-hint">
+            <span data-zh="0 t (独立履约)" data-en="0 t (Solo)">0 t (独立履约)</span>
+            <span data-zh="+371t 清零2%赤字" data-en="+371t clears 2%">+371t 清零2%赤字</span>
+          </div>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="FuelEU 年度强度目标" data-en="FuelEU Target Tier">FuelEU 年度强度目标</span>
+          </div>
+          <div class="seg-control">
+            <button type="button" class="seg-pill seg-target-btn active" data-target="2">2025 (-2% · 89.34)</button>
+            <button type="button" class="seg-pill seg-target-btn" data-target="6">2030 (-6% · 85.69)</button>
+          </div>
+        </div>
+
+        <div class="dock-pod">
+          <div class="dock-pod-head">
+            <span data-zh="租船合同条款 (Charter)" data-en="Charterparty Clause">租船合同条款 (Charter)</span>
+          </div>
+          <div class="seg-control cols-3">
+            <button type="button" class="seg-pill seg-charter-btn active" data-charter="voyage_gencon">GENCON</button>
+            <button type="button" class="seg-pill seg-charter-btn" data-charter="time_nype_bimco">NYPE</button>
+            <button type="button" class="seg-pill seg-charter-btn" data-charter="split_blue_ga">50:50</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================================================================
+         RIGHT MAIN ANALYTICAL WORKBENCH STAGE
+         ================================================================ -->
+    <div class="workbench-main">
+      <!-- Top Command Bar -->
+      <header class="workbench-header">
+        <div class="header-left">
+          <div class="breadcrumb">
+            <span>WORKBENCH</span>
+            <span>/</span>
+            <strong id="activeBreadcrumbTitle" data-zh="1. 跨管辖区海图与台账" data-en="1. GIS Route & Scoped Ledger">1. 跨管辖区海图与台账</strong>
+          </div>
+
+          <select id="vesselSelect" class="vessel-selector" aria-label="Select Active Vessel"></select>
+          <div id="vesselSpecsStrip" class="vessel-specs-strip"></div>
+        </div>
+
+        <div class="header-actions">
+          <!-- One-Click Switch Back to Liquid Glass 3D Edition -->
+          <a href="index.html" class="action-btn" title="Switch to Apple Liquid Glass 3D Edition">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span data-zh="切换至液态玻璃 3D 版" data-en="Liquid Glass 3D Edition">切换至液态玻璃 3D 版</span>
+          </a>
+
+          <button type="button" id="resetTwinBtn" class="action-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            <span data-zh="重置 A3 基准" data-en="Reset Baseline">重置 A3 基准</span>
+          </button>
+
+          <button type="button" id="openAuditDrawerBtn" class="action-btn primary-accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span data-zh="白盒公式追踪抽屉 (A3)" data-en="Formula Trace Drawer (A3)">白盒公式追踪抽屉 (A3)</span>
+          </button>
+
+          <div class="lang-toggle" role="group" aria-label="Language Switch">
+            <button type="button" class="lang-pill active" data-lang="zh">中</button>
+            <button type="button" class="lang-pill" data-lang="en">EN</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Sub-Header: IMO Regulatory Scenario Ribbon & Currency Separation Notice -->
+      <div class="scenario-ribbon">
+        <div class="scenario-group" role="group" aria-label="IMO Regulatory Stress Scenarios">
+          <span class="mono" style="font-size:11px; color:var(--text-muted);" data-zh="IMO 监管压力情景:" data-en="IMO STRESS SCENARIO:">IMO 监管压力情景:</span>
+          <button type="button" class="scenario-pill-btn" data-scenario="as_is" data-zh="1. 原样通过 (2028 双轨)" data-en="1. Adopted As-Is">1. 原样通过 (2028 双轨)</button>
+          <button type="button" class="scenario-pill-btn" data-scenario="amended" data-zh="2. 修订通过 (多版本过渡)" data-en="2. Amended">2. 修订通过 (多版本过渡)</button>
+          <button type="button" class="scenario-pill-btn active" data-scenario="deadlock" data-zh="3. 持续僵局 (聚焦欧英现行规则)" data-en="3. Continued Deadlock">3. 持续僵局 (聚焦欧英现行规则)</button>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-muted);" data-zh="币种隔离门禁：EUR (€) 与 GBP (£) 严格分列 · 严禁缺失气体默认归零" data-en="Currency Gate: EUR (€) & GBP (£) Strictly Separated · No Zero-Defaulting">
+          币种隔离门禁：EUR (€) 与 GBP (£) 严格分列 · 严禁缺失气体默认归零
+        </div>
+      </div>
+
+      <!-- Main Workspace Content -->
+      <main class="workspace-content">
+        <!-- Top 4 High-Density Telemetry KPI Cards with Micro Spark-Bars & Formula Trace Triggers -->
+        <section class="kpi-grid" aria-label="Primary Compliance Telemetry">
+          <div class="kpi-box">
+            <div class="kpi-head">
+              <span class="kpi-title" data-zh="EU ETS 年度配额账单 (欧元单列)" data-en="EU ETS Annual Allowance Bill (EUR)">EU ETS 年度配额账单 (欧元单列)</span>
+              <span class="status-badge status-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>In-Force · TtW</span>
+              </span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiEuEtsVal" class="kpi-value nowrap">€88,000</div>
+              <button type="button" class="kpi-trace-btn open-trace-trigger" title="Inspect Formula Trace">f(x) A3</button>
+            </div>
+            <div class="kpi-spark-track"><div id="sparkEuEts" class="kpi-spark-fill" style="width:68%;"></div></div>
+            <div id="kpiEuEtsSub" class="kpi-foot"></div>
+          </div>
+
+          <div class="kpi-box">
+            <div class="kpi-head">
+              <span class="kpi-title" data-zh="FuelEU 强度合规罚款 (欧元单列)" data-en="FuelEU Intensity Penalty (EUR)">FuelEU 强度合规罚款 (欧元单列)</span>
+              <span id="kpiFuelEuBadge" class="status-badge status-danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>Deficit · WtW</span>
+              </span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiFuelEuVal" class="kpi-value nowrap">€237,191.27</div>
+              <button type="button" class="kpi-trace-btn open-trace-trigger" title="Inspect Formula Trace">f(x) A3</button>
+            </div>
+            <div class="kpi-spark-track"><div id="sparkFuelEu" class="kpi-spark-fill danger" style="width:76%;"></div></div>
+            <div id="kpiFuelEuSub" class="kpi-foot"></div>
+          </div>
+
+          <div class="kpi-box">
+            <div class="kpi-head">
+              <span class="kpi-title" data-zh="UK ETS 国内海事账单 (英镑单列)" data-en="UK ETS Domestic Bill (GBP Separate)">UK ETS 国内海事账单 (英镑单列)</span>
+              <span class="status-badge status-info">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>2026.07 · GBP £</span>
+              </span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiUkEtsVal" class="kpi-value nowrap">£13,200</div>
+              <button type="button" class="kpi-trace-btn open-trace-trigger" title="Inspect Formula Trace">f(x) UK</button>
+            </div>
+            <div class="kpi-spark-track"><div class="kpi-spark-fill verified" style="width:52%;"></div></div>
+            <div id="kpiUkEtsSub" class="kpi-foot"></div>
+          </div>
+
+          <div class="kpi-box">
+            <div class="kpi-head">
+              <span class="kpi-title" data-zh="租约下船东净承担敞口 (欧元)" data-en="Owner Net Exposure under Charter (EUR)">租约下船东净承担敞口 (欧元)</span>
+              <span class="status-badge status-warning">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Charter Split</span>
+              </span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiCharterVal" class="kpi-value nowrap">€276,413</div>
+              <button type="button" class="kpi-trace-btn open-trace-trigger" title="Inspect Formula Trace">f(x) Split</button>
+            </div>
+            <div class="kpi-spark-track"><div id="sparkCharter" class="kpi-spark-fill warn" style="width:85%;"></div></div>
+            <div id="kpiCharterSub" class="kpi-foot"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             VIEW 1: GIS ROUTE TOPOLOGY & SCOPED VOYAGE LEDGER
+             ============================================================ -->
+        <section id="view-gis" class="view-section active">
+          <div class="bento-2col">
+            <!-- Left: Real Interactive Maritime GIS Map -->
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                    <span data-zh="亚欧—英国跨管辖区航线数字孪生海图" data-en="Asia–Europe–UK Multi-Jurisdiction GIS Route Twin">亚欧—英国跨管辖区航线数字孪生海图</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="支持缩放、拖拽与港口点击 · 实时标注 EU 50% / 100% / UK ETS 及 300nm 防规避转运港" data-en="Interactive GIS map · Maps EU 50%/100%, UK ETS & <300nm anti-evasion transshipment hubs">支持缩放、拖拽与港口点击 · 实时标注 EU 50% / 100% / UK ETS 及 300nm 防规避转运港</p>
+                </div>
+                <span class="status-badge status-verified">UN/LOCODE GIS</span>
+              </div>
+
+              <div class="gis-stage">
+                <div class="gis-toolbar">
+                  <div class="cam-btn-group" role="group" aria-label="GIS Camera Presets">
+                    <button type="button" class="cam-btn active" data-cam="eurasia">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                      <span data-zh="亚欧全航线 (CNSHA → NLRTM)" data-en="Full Eurasia Corridor">亚欧全航线 (CNSHA → NLRTM)</span>
+                    </button>
+                    <button type="button" class="cam-btn" data-cam="europe">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      <span data-zh="欧英北海核心合规区 (EU 100% + UK)" data-en="North Sea EU 100% + UK ETS">欧英北海核心合规区 (EU 100% + UK)</span>
+                    </button>
+                    <button type="button" class="cam-btn" data-cam="chokepoints">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                      <span data-zh="苏伊士与直布罗陀 300nm 防规避区" data-en="Suez & Gibraltar 300nm Hubs">苏伊士与直布罗陀 300nm 防规避区</span>
+                    </button>
+                  </div>
+                  <span id="mapCursorCoords" class="mono" style="font-size:11px; color:var(--text-muted);">LAT 28.00°N · LON 52.00°E</span>
+                </div>
+
+                <!-- Locked 350px Explicit Pixel Height -->
+                <div id="proMaxMaritimeMap" style="height:350px; min-height:350px; width:100%; display:block;" aria-label="Interactive Maritime GIS Map">
+                  <div id="mapActiveLegOverlay" class="gis-overlay-pill">
+                    CNSHA → SGSIN → EGPSD → MAPTM → NLRTM → DEHAM → GBFXT/GBSOU
+                  </div>
+                </div>
+
+                <div class="gis-toolbar">
+                  <div class="cam-btn-group">
+                    <button type="button" class="cam-btn leg-filter-btn active" data-leg-filter="all" data-zh="全部航段 (All)" data-en="All Legs">全部航段 (All)</button>
+                    <button type="button" class="cam-btn leg-filter-btn" data-leg-filter="E1">E1 · Extra-EU 50%</button>
+                    <button type="button" class="cam-btn leg-filter-btn" data-leg-filter="E2">E2 · Intra-EU 100%</button>
+                    <button type="button" class="cam-btn leg-filter-btn" data-leg-filter="E3">E3 · EU Berth 100%</button>
+                    <button type="button" class="cam-btn leg-filter-btn" data-leg-filter="U1">U1/U2 · UK ETS (£)</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Scoped Voyage Leg Ledger & Data Hygiene Gate -->
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span data-zh="分航段司法边界与分币种台账" data-en="Scoped Voyage Ledger & Multi-Currency Breakdown">分航段司法边界与分币种台账</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="左侧常驻推演台调节任一滑块时，本表实时同步更新" data-en="Updates live as you adjust any slider in the left Digital Twin dock">左侧常驻推演台调节任一滑块时，本表实时同步更新</p>
+                </div>
+                <span class="status-badge status-info">Appendix A3</span>
+              </div>
+
+              <div id="cockpitHygieneAlert" class="callout-box warn"></div>
+              <div id="bunkerSupplyAlert" class="callout-box danger" style="display:none;"></div>
+
+              <div class="table-scroll">
+                <table class="pro-table">
+                  <thead>
+                    <tr>
+                      <th data-zh="航段" data-en="Leg">航段</th>
+                      <th data-zh="司法管辖路线" data-en="Route Scope">司法管辖路线</th>
+                      <th data-zh="适用制度" data-en="Regime">适用制度</th>
+                      <th data-zh="原始排放" data-en="Raw CO₂">原始排放</th>
+                      <th data-zh="折算率" data-en="Scope">折算率</th>
+                      <th data-zh="计入吨数" data-en="Covered">计入吨数</th>
+                      <th data-zh="分币种成本" data-en="Cost">分币种成本</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cockpitLegTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             VIEW 2: CHARTERPARTY SPLIT & ABATEMENT OPTION COMPARISON
+             ============================================================ -->
+        <section id="view-charter" class="view-section">
+          <div class="bento-equal-2">
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span data-zh="GENCON / NYPE / Blue GA 租约碳成本分摊器" data-en="Charterparty Carbon Liability & Reimbursement Split">GENCON / NYPE / Blue GA 租约碳成本分摊器</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="区分法定清缴主体（ISM/船东）与商业合同偿付方（租家）" data-en="Distinguishes statutory surrender (Owner/ISM) from contractual reimbursement (Charterer)">区分法定清缴主体（ISM/船东）与商业合同偿付方（租家）</p>
+                </div>
+                <span class="status-badge status-warning">Week 8 Clause</span>
+              </div>
+
+              <div class="dock-pod" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:6px;">
+                  <span id="ownerSplitLabel">船东承担: €276,413 (85%)</span>
+                  <span id="chartererSplitLabel">租家偿付: €48,779 (15%)</span>
+                </div>
+                <div style="display:flex; height:10px; border-radius:999px; overflow:hidden; background:var(--bg-well); border:1px solid var(--border-subtle);">
+                  <div id="ownerSplitBar" style="width:85%; background:var(--text-primary); transition:width 500ms var(--ease-out);"></div>
+                  <div id="chartererSplitBar" style="width:15%; background:var(--status-info); transition:width 500ms var(--ease-out);"></div>
+                </div>
+                <p id="charterExplainBox" style="font-size:12.5px; color:var(--text-secondary); margin-top:8px;"></p>
+              </div>
+
+              <div class="bento-3col">
+                <div class="dock-pod">
+                  <span style="font-size:11.5px; color:var(--text-muted);" data-zh="JIT 慢航省油收益" data-en="JIT Fuel Savings">JIT 慢航省油收益</span>
+                  <strong id="jitSavingReadout" class="mono" style="font-size:18px; color:var(--status-verified);">+€0</strong>
+                </div>
+                <div class="dock-pod">
+                  <span style="font-size:11.5px; color:var(--text-muted);" data-zh="清洁燃料溢价支出" data-en="Biofuel Premium">清洁燃料溢价支出</span>
+                  <strong id="bioPremiumReadout" class="mono" style="font-size:18px; color:var(--status-warning);">-€0</strong>
+                </div>
+                <div class="dock-pod">
+                  <span style="font-size:11.5px; color:var(--text-muted);" data-zh="外部组池购买成本" data-en="Pooling Cost">外部组池购买成本</span>
+                  <strong id="poolCostReadout" class="mono" style="font-size:18px; color:var(--status-info);">-€0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span data-zh="三种合规路径总现金流对比矩阵" data-en="3-Pathway Compliance Cash Outflow Matrix">三种合规路径总现金流对比矩阵</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="对比直接交罚款、当前左侧孪生组合与授权 FuelEU 组池" data-en="Compares paying penalties as-is, active Digital Twin mix, and verified FuelEU pooling">对比直接交罚款、当前左侧孪生组合与授权 FuelEU 组池</p>
+                </div>
+                <span class="status-badge status-info">Cashflow Decision</span>
+              </div>
+
+              <div class="table-scroll">
+                <table class="pro-table">
+                  <thead>
+                    <tr>
+                      <th data-zh="合规执行路径" data-en="Compliance Pathway">合规执行路径</th>
+                      <th data-zh="EU ETS" data-en="EU ETS">EU ETS</th>
+                      <th data-zh="FuelEU 罚款" data-en="FuelEU">FuelEU 罚款</th>
+                      <th data-zh="燃料/组池/省油" data-en="Net Ops">燃料/组池/省油</th>
+                      <th data-zh="总净支出" data-en="Total Net">总净支出</th>
+                      <th data-zh="决策建议" data-en="Verdict">决策建议</th>
+                    </tr>
+                  </thead>
+                  <tbody id="optionCompareBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             VIEW 3: APPENDIX A3 WHITE-BOX AUDIT & ANTI-GREENWASHING
+             ============================================================ -->
+        <section id="view-audit" class="view-section">
+          <div class="bento-card">
+            <div class="bento-header">
+              <div>
+                <h2 class="bento-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span data-zh="附录 A3 白盒版本化公式审计台账" data-en="Appendix A3 Versioned White-Box Formula Ledger">附录 A3 白盒版本化公式审计台账</span>
+                </h2>
+                <p class="bento-sub" data-zh="逐项披露输入参数、版本化计算公式、中间量与法规状态标签" data-en="Line-by-line disclosure of inputs, versioned formulas, intermediate values & legal status">逐项披露输入参数、版本化计算公式、中间量与法规状态标签</p>
+              </div>
+              <span class="status-badge status-verified">Formula Engine v2026.3</span>
+            </div>
+
+            <div class="table-scroll">
+              <table class="pro-table">
+                <thead>
+                  <tr>
+                    <th data-zh="条目代码" data-en="Code">条目代码</th>
+                    <th data-zh="活动范围" data-en="Scope">活动范围</th>
+                    <th data-zh="白盒版本化公式" data-en="Versioned Formula">白盒版本化公式</th>
+                    <th data-zh="实时参数代入" data-en="Live Substitution">实时参数代入</th>
+                    <th data-zh="核算结果" data-en="Output">核算结果</th>
+                    <th data-zh="状态" data-en="Status">状态</th>
+                  </tr>
+                </thead>
+                <tbody id="a3AuditTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bento-equal-2">
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span data-zh="反身检验与防漂绿双轨监控 (Section 4)" data-en="Reflexive Anti-Greenwashing Dual-Track Monitor">反身检验与防漂绿双轨监控 (Section 4)</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="严禁将纯配额/组池财务套利包装为物理全生命周期 (WtW) 减排" data-en="Prevents conflating financial pooling/allowance arbitrage with physical WtW abatement">严禁将纯配额/组池财务套利包装为物理全生命周期 (WtW) 减排</p>
+                </div>
+                <span class="status-badge status-verified">Dual-Track ESG</span>
+              </div>
+
+              <div class="gauge-pair">
+                <div class="gauge-pod">
+                  <div class="ring-wrap">
+                    <svg viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(148,163,184,0.15)" stroke-width="7"/>
+                      <circle id="ringArcFinancial" cx="50" cy="50" r="40" fill="none" stroke="#f8fafc" stroke-width="7" stroke-dasharray="185 251" stroke-linecap="round"/>
+                    </svg>
+                    <span id="gaugeFinancialVal" class="ring-num">0.0%</span>
+                  </div>
+                  <strong style="font-size:12.5px;" data-zh="财务合规支出变动" data-en="Financial Cost Delta">财务合规支出变动</strong>
+                  <span id="gaugeFinancialSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+                </div>
+
+                <div class="gauge-pod">
+                  <div class="ring-wrap">
+                    <svg viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(148,163,184,0.15)" stroke-width="7"/>
+                      <circle id="ringArcPhysical" cx="50" cy="50" r="40" fill="none" stroke="#38bdf8" stroke-width="7" stroke-dasharray="160 251" stroke-linecap="round"/>
+                    </svg>
+                    <span id="gaugePhysicalVal" class="ring-num">0.0%</span>
+                  </div>
+                  <strong style="font-size:12.5px;" data-zh="物理生命周期排放变动 (WtW)" data-en="Physical WtW Emissions Delta">物理生命周期排放变动 (WtW)</strong>
+                  <span id="gaugePhysicalSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+                </div>
+              </div>
+
+              <div id="reflexiveStatusText" class="callout-box verified"></div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span data-zh="IACS E26/E27 网络边界与商业激励独立性" data-en="IACS E26/E27 Cyber Scope & Incentive Independence">IACS E26/E27 网络边界与商业激励独立性</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="对应报告第 3 节与第 4 节治理要求" data-en="Aligned with Venture Report Sections 3 & 4">对应报告第 3 节与第 4 节治理要求</p>
+                </div>
+                <span class="status-badge status-info">Governance</span>
+              </div>
+
+              <div class="dock-pod" style="padding:14px;">
+                <strong style="color:var(--text-primary); font-size:13px;" data-zh="岸基标准化表格导入（不直连船舶 OT 控制系统）" data-en="Standardized Spreadsheet Ingestion (No Direct Shipboard OT Link)">岸基标准化表格导入（不直连船舶 OT 控制系统）</strong>
+                <p style="font-size:12.5px; color:var(--text-secondary);" data-zh="首版采用离线表格导入导出，配合公开 THETIS-MRV 核对，严格遵守 IACS UR E26/E27 船载网络安全边界，不将岸基预算软件包装为船载自动控制系统。" data-en="v1.0 uses standardized spreadsheet ingestion with public THETIS-MRV verification checks, respecting IACS UR E26/E27 shipboard OT security boundaries.">
+                  首版采用离线表格导入导出，配合公开 THETIS-MRV 核对，严格遵守 IACS UR E26/E27 船载网络安全边界，不将岸基预算软件包装为船载自动控制系统。
+                </p>
+              </div>
+
+              <div class="dock-pod" style="padding:14px;">
+                <strong style="color:var(--text-primary); font-size:13px;" data-zh="零回扣与客观咨询治理（允许建议“零额外支出”）" data-en="Zero-Kickback & Objective Advisory Governance">零回扣与客观咨询治理（允许建议“零额外支出”）</strong>
+                <p style="font-size:12.5px; color:var(--text-secondary);" data-zh="薪酬与绩效绝不与估算罚款额、燃料商佣金或组池撮合费挂钩。系统结论可以明确建议客户“维持现状、无需新增资本开支”。" data-en="Staff incentives are never tied to estimated penalty size or fuel/pooling commissions. System outputs can explicitly recommend zero additional spend.">
+                  薪酬与绩效绝不与估算罚款额、燃料商佣金或组池撮合费挂钩。系统结论可以明确建议客户“维持现状、无需新增资本开支”。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             VIEW 4: IMO 3-SCENARIO STRESS-TEST MATRIX (Section 5)
+             ============================================================ -->
+        <section id="view-scenarios" class="view-section">
+          <div class="bento-card">
+            <div class="bento-header">
+              <div>
+                <h2 class="bento-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span data-zh="IMO 净零框架三情景压力测试与平台盈亏平衡表 (Section 5)" data-en="IMO Net-Zero Framework 3-Scenario Stress Test & Venture Break-Even (Section 5)">IMO 净零框架三情景压力测试与平台盈亏平衡表 (Section 5)</span>
+                </h2>
+                <p class="bento-sub" data-zh="评估外部政策不确定性对航运客户合规预算及本创业项目自身单元经济效益的双重影响" data-en="Evaluates how regulatory uncertainty impacts both shipping client budgets and venture break-even">评估外部政策不确定性对航运客户合规预算及本创业项目自身单元经济效益的双重影响</p>
+              </div>
+              <span class="status-badge status-warning">Name Your Dependency</span>
+            </div>
+
+            <div id="activeScenarioDetailBox" class="dock-pod" style="padding:16px;"></div>
+
+            <div class="bento-3col">
+              <div class="dock-pod" style="padding:16px; gap:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="font-size:14px; color:var(--text-primary);" data-zh="情景 1：原样通过" data-en="Scenario 1: Adopted As-Is">情景 1：原样通过</strong>
+                  <span class="status-badge status-warning">70 Clients B/E</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);" data-zh="2028实施时间表公布触发；验证全球模块并转向双轨实施预算。" data-en="Triggered by 2028 schedule; activates global module alongside regional rules.">2028实施时间表公布触发；验证全球模块并转向双轨实施预算。</p>
+                <div class="mono" style="font-size:12px; color:var(--text-primary);">60 Clients × €3,000 = €180,000</div>
+                <div class="mono" style="font-size:11.5px; color:var(--text-muted);" data-zh="固定成本 €210,000 · 经营结果 -€30,000" data-en="Fixed Cost €210,000 · Result -€30,000">固定成本 €210,000 · 经营结果 -€30,000</div>
+              </div>
+
+              <div class="dock-pod" style="padding:16px; gap:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="font-size:14px; color:var(--text-primary);" data-zh="情景 2：修订后通过" data-en="Scenario 2: Amended">情景 2：修订后通过</strong>
+                  <span class="status-badge status-info">67 Clients B/E</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);" data-zh="范围或方法重大变化触发调整；保留旧输出、解释差异并经批准重算。" data-en="Triggered by scope/method revisions; retains prior outputs and re-verifies formulas.">范围或方法重大变化触发调整；保留旧输出、解释差异并经批准重算。</p>
+                <div class="mono" style="font-size:12px; color:var(--text-primary);">65 Clients × €3,000 = €195,000</div>
+                <div class="mono" style="font-size:11.5px; color:var(--text-muted);" data-zh="固定成本 €200,000 · 经营结果 -€5,000" data-en="Fixed Cost €200,000 · Result -€5,000">固定成本 €200,000 · 经营结果 -€5,000</div>
+              </div>
+
+              <div class="dock-pod" style="padding:16px; gap:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="font-size:14px; color:var(--text-primary);" data-zh="情景 3：持续僵局" data-en="Scenario 3: Deadlock">情景 3：持续僵局</strong>
+                  <span class="status-badge status-verified">57 Clients B/E</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);" data-zh="聚焦现行 EU 及 UK 规则建立成本基准，砍掉无明确法律依据的远期开发。" data-en="Focuses on in-force EU & UK rules; cuts speculative global module spend.">聚焦现行 EU 及 UK 规则建立成本基准，砍掉无明确法律依据的远期开发。</p>
+                <div class="mono" style="font-size:12px; color:var(--text-primary);">55 Clients × €3,200 = €176,000</div>
+                <div class="mono" style="font-size:11.5px; color:var(--text-muted);" data-zh="固定成本 €180,000 · 仅需 57 家盈亏平衡" data-en="Fixed Cost €180,000 · 57 clients break-even">固定成本 €180,000 · 仅需 57 家盈亏平衡</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             VIEW 5: GUARDRAILED AI RADAR, A1 ROI & A2 RISK REGISTER
+             ============================================================ -->
+        <section id="view-ai-roi" class="view-section">
+          <div class="bento-equal-2">
+            <!-- Left: Guardrailed AI Policy Radar -->
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span data-zh="受控 AI 政策雷达与零幻觉问答助手" data-en="Guardrailed AI Policy Radar & Zero-Hallucination Q&A">受控 AI 政策雷达与零幻觉问答助手</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="AI 仅负责法规检索与解释，所有金额 100% 由版本化公式引擎输出" data-en="AI handles legal retrieval; all financial figures are 100% deterministic">AI 仅负责法规检索与解释，所有金额 100% 由版本化公式引擎输出</p>
+                </div>
+                <span class="status-badge status-verified">Human-in-the-Loop</span>
+              </div>
+
+              <div class="cam-btn-group">
+                <button type="button" class="cam-btn prompt-chip active" data-prompt="q1" data-zh="Q1: 2026 缺失 CH4/N2O 能否填零？" data-en="Q1: Can missing CH4/N2O be zeroed?">Q1: 2026 缺失 CH4/N2O 能否填零？</button>
+                <button type="button" class="cam-btn prompt-chip" data-prompt="q2" data-zh="Q2: IMO 僵局会导致平台倒闭吗？" data-en="Q2: Does IMO deadlock kill the venture?">Q2: IMO 僵局会导致平台倒闭吗？</button>
+                <button type="button" class="cam-btn prompt-chip" data-prompt="q3" data-zh="Q3: FuelEU 2% vs 6% 策略对比" data-en="Q3: FuelEU 2% vs 6% Strategy">Q3: FuelEU 2% vs 6% 策略对比</button>
+              </div>
+
+              <div id="aiAnswerBox" class="dock-pod" style="padding:14px;"></div>
+              <div id="aiFeedContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
+            </div>
+
+            <!-- Right: Appendix A1 Unit Economics & Appendix A2 Risk Register -->
+            <div class="bento-card">
+              <div class="bento-header">
+                <div>
+                  <h2 class="bento-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <span data-zh="附录 A1 客户净收益模型与 A2 风险登记册" data-en="Appendix A1 Client ROI & A2 Risk Register">附录 A1 客户净收益模型与 A2 风险登记册</span>
+                  </h2>
+                  <p class="bento-sub" data-zh="5 艘船中小船东基准：年费 €4,800 + 首年导入费 €600" data-en="5-Vessel SME Benchmark: €4,800/yr Subscription + €600 Year-1 Onboarding">5 艘船中小船东基准：年费 €4,800 + 首年导入费 €600</p>
+                </div>
+                <span class="status-badge status-info">Appendix A1 & A2</span>
+              </div>
+
+              <div class="dock-pod">
+                <div class="dock-pod-head">
+                  <span data-zh="年节省人工工时 (基准 240h → 120h @ €40/h)" data-en="Annual Hours Saved (240h → 120h @ €40/h)">年节省人工工时 (基准 240h → 120h @ €40/h)</span>
+                  <span id="roiHoursReadout" class="telemetry-readout">120 h (€4,800)</span>
+                </div>
+                <input type="range" id="roiHoursSlider" min="60" max="180" step="15" value="120" />
+              </div>
+
+              <div class="seg-control">
+                <button type="button" class="seg-pill roi-advisor-btn active" data-advisor="2000" data-zh="可取消外部顾问费 €2,000" data-en="Cancellable Advisor €2,000">可取消外部顾问费 €2,000</button>
+                <button type="button" class="seg-pill roi-advisor-btn" data-advisor="0" data-zh="无外部顾问费节省 (€0)" data-en="No Advisor Savings (€0)">无外部顾问费节省 (€0)</button>
+              </div>
+
+              <div class="bento-3col">
+                <div class="dock-pod">
+                  <span style="font-size:11px; color:var(--text-muted);" data-zh="客户年度总毛收益" data-en="Gross Client Value">客户年度总毛收益</span>
+                  <strong id="roiGrossVal" class="mono" style="font-size:18px; color:var(--text-primary);">€6,800</strong>
+                </div>
+                <div class="dock-pod">
+                  <span style="font-size:11px; color:var(--text-muted);" data-zh="经常性年度净收益" data-en="Recurring Net Benefit">经常性年度净收益</span>
+                  <strong id="roiRecurringNet" class="mono" style="font-size:18px; color:var(--status-verified);">€2,000</strong>
+                </div>
+                <div class="dock-pod">
+                  <span style="font-size:11px; color:var(--text-muted);" data-zh="首年净收益 (扣 €600)" data-en="Year-1 Net Benefit">首年净收益 (扣 €600)</span>
+                  <strong id="roiYear1Net" class="mono" style="font-size:18px; color:var(--status-info);">€1,400</strong>
+                </div>
+              </div>
+
+              <div class="table-scroll">
+                <table class="pro-table">
+                  <thead>
+                    <tr>
+                      <th data-zh="A2 核心风险项" data-en="A2 Risk Item">A2 核心风险项</th>
+                      <th data-zh="等级" data-en="Level">等级</th>
+                      <th data-zh="责任人" data-en="Owner">责任人</th>
+                      <th data-zh="关键内控机制" data-en="Control">关键内控机制</th>
+                      <th data-zh="残余风险" data-en="Residual">残余风险</th>
+                    </tr>
+                  </thead>
+                  <tbody id="a2RiskTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       UI/UX PRO MAX STEP 3 REQUIREMENT:
+       INSPECTABLE SLIDE-OVER WHITE-BOX FORMULA AUDIT DRAWER
+       ================================================================ -->
+  <div id="auditDrawerBackdrop" class="drawer-backdrop" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <aside class="audit-drawer">
+      <div class="bento-header">
+        <div>
+          <h2 id="drawerTitle" class="bento-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span data-zh="白盒公式实时验算抽屉 (Appendix A3 Trace)" data-en="White-Box Live Formula Trace Drawer (Appendix A3)">白盒公式实时验算抽屉 (Appendix A3 Trace)</span>
+          </h2>
+          <p class="bento-sub" data-zh="完全公开底层公式、法规条文与当前滑块代入过程" data-en="Inspect live variable substitution, legal citations, and deterministic outputs">完全公开底层公式、法规条文与当前滑块代入过程</p>
+        </div>
+        <button type="button" id="closeAuditDrawerBtn" class="action-btn">✕ ESC</button>
+      </div>
+
+      <div id="liveFormulaTraceSteps" style="display:flex; flex-direction:column; gap:12px;"></div>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/data-and-i18n.js?v=3.3"></script>
+  <script src="js/app-pro-max.js?v=1.0"></script>
+</body>
+</html>

@@ -1,33 +1,45 @@
-# MultiReg Compliance & Digital Twin Cockpit (`maritime-compliance-gemini`)
+# MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (`maritime-compliance-gemini`)
 
-> **MT6503 Group Venture Project — Track B: Compliance & RegTech**  
+> **NTU MSc Maritime Studies · MT6503 Group Venture Project — Track B: Compliance & RegTech**  
 > **Role:** Member 10 (APP & AI Prototype Developer — Interactive Web App, AI Copilot & Digital Twin Demo)  
 > **Repository Tag:** `maritime-compliance-gemini`
 
-## 1. Project Overview
-An interactive decision-support web prototype designed for SME shipowners and ship managers (5–20 vessels) navigating fragmented maritime carbon regulations (**EU ETS**, **FuelEU Maritime**, **UK ETS**, and pending **IMO Net-Zero Framework**).
+---
 
-### Core Design Principles (Aligned with MT6503 Rubric & Venture Report)
-1. **Deterministic Calculation Engine vs. Guardrailed AI Copilot:**
-   - All financial figures, allowances, and GHG intensity balances are computed via versioned deterministic formulas (zero LLM hallucination in financial outputs).
-   - AI is strictly scoped to regulatory intelligence tracking, evidence-backed rule explanation, and commercial option synthesis, with mandatory `[Expert Review Required / Human-in-the-Loop]` triggers for ambiguous scope or major CAPEX decisions.
-2. **Lightweight Voyage & Fleet Digital Twin (SME-Fit):**
-   - Spreadsheet/CSV ingestion + public THETIS-MRV background check (no intrusive onboard OT hardware hookup in v1.0, avoiding premature IACS UR E26/E27 vessel-side certification claims).
-   - Interactive What-If sandbox for **Speed/JIT Cube Law**, **Biofuel/Methanol Blending**, **FuelEU Pooling**, and **Charterparty Cost Allocation (GENCON / NYPE + BIMCO Clauses)**.
-3. **Anti-Greenwashing & Evidence Boundary Governance:**
-   - Explicit status badges on every regulatory rule: `[In-Force]`, `[Pending Proposal]`, and `[Client Planning Assumption]`.
-   - Separate tracking of **Financial Compliance Bill** vs. **Physical Well-to-Wake (WtW) Lifecycle Emissions**.
-   - Separate currency accounting (`EUR €` for EU ETS / FuelEU, `GBP £` for UK ETS) without hidden FX assumptions.
+## 1. Dual-Edition Architecture (One-Click Switchable)
+
+This repository includes two complete, interactive frontend editions sharing the same deterministic calculation engine (`js/data-and-i18n.js`):
+
+1. **[`index.html`](./index.html) — Apple Daylight Liquid Glass & Spatial 3D Tilt Edition (`v3.4`)**
+   - Cool architectural light-gray canvas (`#edf1f7`), translucent crystal-white liquid glass cards, SVG optical displacement refraction (`#apple-liquid-refract`), angle-sensitive masked specular rims (`--specular-angle`), and real-time 3D perspective pitch/roll tilt (`--rx`, `--ry`) with multi-plane Z-axis parallax depth.
+   - Paired with keyless Esri `World_Light_Gray_Base` maritime GIS tiles and high-contrast obsidian slate typography (`#0f172a` / `#334155`).
+2. **[`index-pro-max.html`](./index-pro-max.html) — UI/UX Pro Max Split-Pane Command Workbench Edition (`v1.0`)**
+   - Built strictly to the `ui-ux-pro-max` 10-priority design intelligence specification.
+   - Features a **320px Persistent Left Command Rail & Live Digital Twin Telemetry Dock** (adjusting any slider updates all 5 views in real time), an inspectable **Slide-Over White-Box Formula Trace Drawer (`f(x) A3`)**, keyboard navigation (`1–5` to switch views, `Esc` to close drawer), and 300nm anti-evasion transshipment radius rings around East Port Said (`EGPSD`) and Tanger Med (`MAPTM`).
 
 ---
 
-## 2. UI Layout Concepts (`v0.1.0`)
-Three sci-fi telemetry UI layout paradigms have been designed for team selection:
-- **Concept A (`Holographic Map-Centric Command Cockpit`):** Center interactive Asia–Europe–UK route topology map (`EU 50%`, `EU 100%`, `UK ETS`), flanked by the 10,000 GT Vessel Digital Twin controls on the left and multi-currency compliance cards + AI Copilot on the right.
-- **Concept B (`Modular Bento Grid & White-Box Audit Terminal`):** Precision FinTech/RegTech Bento grid highlighting side-by-side EU ETS / FuelEU / UK ETS telemetry, an expandable White-Box Formula Audit Trail (`CO2 Verified` vs. `CH4/N2O Missing` guardrails), and a dual-gauge Anti-Greenwashing monitor.
-- **Concept C (`Split-Screen Digital Twin Sandbox & 3-Scenario Stress-Test Studio`):** Left workbench dedicated to interactive vessel/charterparty simulation sliders and NYPE/GENCON cost splitting; right workbench dedicated to the IMO 3-Scenario Stress Test Matrix (`Adopted As-Is`, `Amended`, `Continued Deadlock`) and SME Client ROI (`120h Saved | Net Benefit €2,000/yr`).
+## 2. Quick Start
+
+Open either [`index.html`](./index.html) or [`index-pro-max.html`](./index-pro-max.html) directly in any modern browser (Safari, Chrome, Edge, Arc), or serve locally:
+
+```bash
+cd "/Users/geniues/Desktop/MT6503（2）/maritime-compliance-gemini"
+python3 -m http.server 8080
+```
 
 ---
 
-## 3. Version History
-- **`v0.1.0`** — Initialized `maritime-compliance-gemini` repository, documented 5-module software architecture, data pipeline, and 3 sci-fi UI layout concepts.
+## 3. Core Interactive Capabilities (MT6503 Venture Report Aligned)
+
+- **Instant Bilingual Toggle (`中 / EN`)**: Top-right switcher dynamically translates all 5 modules, tables, legal badges, map popups, and AI explanations.
+- **Deterministic Multi-Regime Calculation Engine (`Appendix A3`)**:
+  - **EU ETS**: `E1 (500t) + E2 (500t) + E3 (100t) = 1,100 tCO2 × 100% × €80 = €88,000` (with `€60 / €100` sensitivity `€66,000 / €110,000`), plus automatic **2026 `CH4/N2O` Missing Data Hygiene Gate** (never defaulted to zero).
+  - **UK ETS**: `U1 (200t) + U2 (20t) = 220 tCO2 × £60 = £13,200` (strictly isolated in `GBP £` without FX blending).
+  - **FuelEU Maritime**: `164,000,000 MJ` EU energy at `91.6 gCO2e/MJ` actual vs `89.3368` (`-2%` target) → `-371.165 t` compliance deficit → **`€237,191.27` penalty**; and `-6%` (`85.6904`) condition comparison → **`€619,346.72` penalty**.
+- **Interactive Digital Twin & Charterparty Split Sandbox**:
+  - **JIT Speed Cube Law Slider** ($P \propto v^3$), **Biofuel / e-Methanol Blend Slider** (triggers physical **Green Fuel Supply Bottleneck Alert** above 20%), **FuelEU Verified Pooling Slider**, and **Charterparty Cost Splitter** (`GENCON Voyage` vs `NYPE Time Charter + BIMCO Clauses` vs `Blue GA 50:50 Split`).
+- **Anti-Greenwashing Dual-Track Monitor (`Section 4`)**:
+  - Simultaneously reports **Financial Cost Delta** alongside **Physical Well-to-Wake (WtW) Lifecycle Emissions Delta**, flagging a warning whenever financial exposure drops via external pooling without physical shipboard emissions abatement.
+- **IMO 3-Scenario Stress-Test Matrix & Appendix A1/A2 Hub (`Section 5`)**:
+  - One-click switch across **Scenario 1 (`Adopted As-Is`, 70 clients B/E)**, **Scenario 2 (`Amended`, 67 clients B/E)**, and **Scenario 3 (`Continued Deadlock`, 57 clients B/E)**, plus an interactive **Appendix A1 5-Ship SME Client ROI Calculator** (`120h × €40 + €2,000 = €6,800 gross → €1,400 Year-1 net benefit`).

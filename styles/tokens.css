@@ -1,0 +1,125 @@
+/* ==========================================================================
+   MAREG — Apple Daylight Liquid Glass Design Tokens (v3.4 Light-Gray Edition)
+   Silver-Gray Architectural Canvas + Translucent Crystal Glass + Deep Slate Text
+   ========================================================================== */
+
+:root {
+  /* 1. Light Silver-Gray Canvas + Apple Daylight Liquid Glass Translucent Fills */
+  --bg-canvas: #edf1f7;
+
+  /* Daylight Liquid Glass: Translucent crystal white with subtle ice-blue refraction */
+  --bg-glass-card: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.56) 45%,
+    rgba(240, 247, 255, 0.62) 75%,
+    rgba(255, 255, 255, 0.74) 100%
+  );
+
+  --bg-glass-card-hover: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.90) 0%,
+    rgba(255, 255, 255, 0.70) 45%,
+    rgba(238, 246, 255, 0.76) 75%,
+    rgba(255, 255, 255, 0.86) 100%
+  );
+
+  /* Recessed Concave Lip Well (for Nav Track, Segmented Controls, Map Stage) */
+  --bg-glass-well: linear-gradient(
+    180deg,
+    rgba(218, 226, 238, 0.72) 0%,
+    rgba(233, 239, 247, 0.62) 100%
+  );
+
+  /* Convex Liquid Droplet Pill (Active Tab, Active Toggle, Slider Thumb) */
+  --bg-glass-pill: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 250, 252, 0.88) 55%,
+    rgba(235, 245, 255, 0.92) 100%
+  );
+
+  /* Floating Top Dock Glass */
+  --bg-glass-topbar: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(246, 249, 253, 0.72) 100%
+  );
+
+  /* 2. Optical Blur, Saturation & Brightness (Apple Daylight Vibrant Material) */
+  --glass-blur-heavy: blur(28px) saturate(190%) brightness(1.02);
+  --glass-blur-card: blur(22px) saturate(180%) brightness(1.02);
+  --glass-blur-subtle: blur(14px) saturate(160%);
+
+  /* 3. Daylight Convex Bezel Inner Volume & Soft Slate Shadows */
+  --border-glass: rgba(15, 23, 42, 0.09);
+  --border-glass-bright: rgba(255, 255, 255, 0.85);
+  --border-hairline: rgba(15, 23, 42, 0.08);
+
+  /* Multi-layer convex bezel on light gray: pure white top rim + soft slate ambient shadow */
+  --shadow-liquid-card:
+    0 20px 42px -12px rgba(15, 23, 42, 0.09),
+    0 4px 12px -2px rgba(15, 23, 42, 0.05),
+    inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.95),
+    inset 1.5px 0 1.5px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1.5px 2.5px 0 rgba(148, 163, 184, 0.22),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.45);
+
+  --shadow-liquid-card-hover:
+    0 26px 52px -10px rgba(15, 23, 42, 0.13),
+    0 8px 22px -4px rgba(2, 132, 199, 0.10),
+    inset 0 2px 2.5px 0 rgba(255, 255, 255, 1),
+    inset 1.5px 0 2px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1.5px 3px 0 rgba(148, 163, 184, 0.26),
+    inset 0 0 26px 0 rgba(255, 255, 255, 0.65);
+
+  /* Convex Lens Pill Shadow */
+  --shadow-liquid-pill:
+    0 4px 12px -2px rgba(15, 23, 42, 0.12),
+    0 1px 3px 0 rgba(15, 23, 42, 0.07),
+    inset 0 1.5px 1.5px 0 #ffffff,
+    inset 0 -1px 1.5px 0 rgba(148, 163, 184, 0.20);
+
+  /* Concave Lip Well Shadow */
+  --shadow-liquid-well:
+    inset 0 2px 4px rgba(15, 23, 42, 0.09),
+    inset 0 1px 1.5px rgba(15, 23, 42, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.85);
+
+  /* 4. High-Contrast Dark Slate Typography for Light-Gray Background */
+  --text-primary: #0f172a;      /* Deep Obsidian Slate (Contrast 14.8:1) */
+  --text-secondary: #334155;    /* Architectural Slate (Contrast 8.4:1) */
+  --text-muted: #64748b;        /* Muted Cool Slate (Contrast 4.6:1) */
+  --text-inverse: #ffffff;
+
+  /* 5. Maritime Azure Accent + Semantic Status Dots for Light Mode */
+  --accent: #0284c7;            /* Deep Maritime Azure */
+  --accent-soft: rgba(2, 132, 199, 0.12);
+  --accent-muted: rgba(2, 132, 199, 0.28);
+
+  --dot-ok: #059669;
+  --dot-warn: #d97706;
+  --dot-danger: #e11d48;
+
+  /* 6. Typography Stacks */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+
+  /* 7. Squircle-Inspired Apple Curvature Radii */
+  --radius-sm: 10px;
+  --radius-md: 15px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+
+  /* 8. Fluid Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
