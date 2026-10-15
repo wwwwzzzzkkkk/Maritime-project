@@ -1,37 +1,209 @@
-# MAREG — maritime compliance teaching prototype
+# MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-默认浅色版保留原有 UI 与动态效果，仅调整排版并修复计算与证据表达。
-The light edition retains the original glass UI and motion design, with layout, calculation and content corrections.
+[中文说明](#中文说明) · [English documentation](#english-documentation) · [独立中文文档](README.zh-CN.md) · [Standalone English](README.en.md)
 
-## This update
+> **NTU MSc Maritime Studies · MT6503 Group Venture Project — Track B: Compliance & RegTech**<br>
+> **🌐 网站运行地址 / Live website:** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)<br>
+> **历史 Pro Max 入口 / Historical Pro Max:** [https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html](https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html)<br>
+> **GitHub:** [wwwwzzzzkkkk/Maritime-project](https://github.com/wwwwzzzzkkkk/Maritime-project)
 
-- Preserve original colors, fonts, glass materials, 3D tilt, sliding navigation pill, panel transitions and chart replay effects.
-- Correct surplus penalties, baseline totals, supply-limited pooling and IMO/regional scenario separation.
-- Clearly label demo data, CO₂-only ETS subtotals, teaching assumptions and unverified capabilities.
-- Update active-vessel formula rows, official source links and current-state explanations/snapshots.
-- Keep EUR/GBP separate. Charter splits remain illustrative, not contract defaults.
-- Add market, human-workload and platform-ESG evidence plans using the original card/table styles.
-- Wrap the desktop header and stack mobile KPI cards without replacing the visual design.
+## 中文说明
 
-## Run
+### 1. 项目简介与版本
+
+**MAREG（Maritime-project）** 是南洋理工大学海事研究硕士课程 **MT6503 Group Venture Project，Track B：合规与监管科技（Compliance & RegTech）** 的交互式教学原型。项目以管理约 **5–20 艘船舶**的中小型船东及船舶管理公司为目标客户假设，用于解释多制度预算、航次情景、合同分摊与创业风险；客户需求和付费意愿仍需验证。
+
+| 入口 | 定位与当前状态 |
+| --- | --- |
+| [`index.html`](index.html) | 默认浅色版。保留原有浅灰液态玻璃、SVG 折射效果、鼠标高光、3D 卡片倾斜、导航滑块、切页及图表回放动效；本轮主要修正计算、内容与响应式排版。 |
+| [`index-pro-max.html`](index-pro-max.html) | 保留的 Pro Max 历史工作台版本。本次未修改或重新审查其计算及交互。 |
+
+默认页继续使用原双语基础数据，并在页面内接入独立的 [`js/compliance-engine.mjs`](js/compliance-engine.mjs) 和 [`js/light-data.mjs`](js/light-data.mjs)。两版不再被描述为使用同一套已验证的新计算逻辑。
+
+### 2. 在线访问与本地运行
+
+**默认浅色版运行网址：** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)
+
+**Pro Max 历史版本网址：** [https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html](https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html)
+
+直接访问上述网址即可使用，无需安装。GitHub Pages 根据 `main` 分支自动部署；合并或推送后的发布进度可在 [Actions](https://github.com/wwwwzzzzkkkk/Maritime-project/actions) 查看。
+
+如需本地运行，在仓库目录启动静态服务器：
 
 ```sh
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:48173/`. HTTP is required for ES modules; there is no build step. Leaflet is pinned locally; map tiles, geographic shading and original Google Fonts require network access.
+然后访问 [http://127.0.0.1:48173/](http://127.0.0.1:48173/)。默认页使用 ES modules，需要通过 HTTP 访问，不能直接双击文件运行。没有构建步骤或后台服务；Leaflet 1.9.4 已随仓库保存，Esri 底图、地理底色与原有 Google Fonts 仍需要网络。
 
-## Minimal checks
+### 3. 五个功能模块
+
+| 模块 | 功能及证据边界 |
+| --- | --- |
+| 概览与航线 | 当前船舶、分制度预算、示例地理航线与活动台账；范围为预设教学输入，不自动判断真实法律适用性。 |
+| 数字孪生与租约 | 比较未调整基准、当前组合与假设供给内的 FuelEU 组池；EUA、航速、燃料与合同分摊用于条件推演。 |
+| 白盒审计与反漂绿 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
+| IMO 情景压力 | 原样通过、修订通过、持续僵局三种创业压力测试；切换情景不再暗改区域法规目标与 EUA 价格。 |
+| 解释与商业模型 | 当前结果的预设解释、官方法规链接、A1 客户价值、A2 风险，以及市场、人的负担与平台自身 ESG 测量计划。 |
+
+顶栏支持 `中 / EN` 切换。原有视觉材质及动效保留；桌面顶栏换行、手机 KPI 单列和表格局部滚动用于解决裁切。当前计算快照可导出为 JSON，记录输入、来源、假设及输出。
+
+### 4. A3 基准算例与计算修复
+
+以下为 `MV A3-BENCHMARK` 的固定教学输入，未进行外部核验。金额不能作为真实船舶完整账单。
+
+| 算例 | 输入与结果 |
+| --- | --- |
+| EU ETS CO₂ 部分 | `(1,000 × 50% + 500 + 100) × €80 = €88,000`；EUA €60 / €100 时分别为 €66,000 / €110,000。 |
+| UK ETS CO₂ 部分 | `(200 + 20) × £60 = £13,200`；UK 示例活动为 2026 年 7–12 月，英镑独立列示。 |
+| FuelEU 2% 条件 | 范围内能源 164,000,000 MJ、强度 91.6 gCO₂e/MJ、目标 89.3368，余额 −371.1648 tCO₂e，单期基础金额 €237,191.27。 |
+| FuelEU 6% 条件 | 固定其他输入，目标改为 85.6904，余额 −969.1744 tCO₂e，单期基础金额 €619,346.72；不是实际 2030 年账单预测。 |
+
+本轮修复了正余额误计罚款、基准价格与总额不一致、组池缺口写死以及审计行未跟随船舶的问题。组池只使用缺口及假设供给内的数量，供给不足时保留剩余罚款。
+
+EU/UK ETS 当前只计算 **CO₂ 部分**。CH₄/N₂O 缺失不等于零，完整 ETS 总额不可用。FuelEU 能源和 ETS 活动台账分别给定，未完成同一燃料台账的物理对账。
+
+### 5. 模型假设、商业与课程内容
+
+- 航速按固定航程近似；未验证 JIT 到港窗口。燃料能源占比对应的 0.26 / 0.32 系数为教学假设，不是通用认证燃料因子。
+- FuelEU 盈余价格和可用量为商业情景，不代表取得真实组池资源。默认界面演示单期基础金额，完整灵活机制、认证与历史缺口仍需实际材料。
+- GENCON、NYPE 与 50:50 按钮为**演示分摊**；85/15、18/82、50/50 不是标准租约或 BIMCO 默认法律比例。
+- 客户价值基准：`120h × €40 + €2,000 − €4,800 − €600 = €1,400` 首年净收益。工时未必兑现为现金，不能重复计算顾问节省；无顾问节省时首年为 −€600。
+- 三情景经营结果示例为 −€30,000 / −€5,000 / −€4,000，经营平衡为 70 / 67 / 57 个全年等效客户，不保证经营存续。
+- 12 家访谈、3 家付费试点、平台自身 ESG 和人的工作量指标均是**验证计划**，不是已完成结果。课程映射依据取得的 Brief 缓存，最新课程通知仍需确认。
+
+解释为预设模板，未接入真实 AI、RAG、专家审批、真实数据导入、后台或自动申报。快照不代表授权台账、人工批准或鉴证。[完整方法及官方来源](docs/LIGHT_EDITION.md)
+
+### 6. 必要检查与版本回退
+
+本轮完成 9 项核心算式回归及一次页面操作检查，按要求未扩大为大范围审计。
 
 ```sh
 npm ci
 npm test
-# With the local server running and a browser installed:
+# 保持本地服务器运行；使用已安装的 macOS Chrome：
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm run test:browser
 ```
 
-The browser command is one bounded smoke check, not a broad audit. Outputs are ignored under `test-results/`. Alternatively install Playwright Chromium and omit `CHROME_PATH`.
+也可安装 Playwright Chromium 后省略 `CHROME_PATH`。检查输出保存在被 Git 忽略的 `test-results/`。
 
-[Model scope](docs/LIGHT_EDITION.md) · [Version / rollback](docs/ROLLBACK.md) · [Changes](CHANGELOG.md)
+- [修改前 v3.4 固定版本](https://github.com/wwwwzzzzkkkk/Maritime-project/tree/light-v3.4-baseline-2026-10-15)
+- [保留原 UI 的 v4.0 代码检查点](https://github.com/wwwwzzzzkkkk/Maritime-project/tree/light-v4.0-original-ui-2026-10-15)
+- [回退说明](docs/ROLLBACK.md) · [更新记录](CHANGELOG.md) · [本轮验证与截图](docs/QA.md)
 
-Changes live on `codex/light-audit-upgrade` until merged. GitHub Pages deploys `main`. The other edition and shared `js/data-and-i18n.js` remain unchanged.
+合并记录和标签保留历史；回退应新增恢复提交或回退 PR，不重写已发布历史。本站的固定网址显示 `main` 当前部署版本。
+
+---
+
+## English documentation
+
+### 1. Overview and editions
+
+**MAREG (`Maritime-project`)** is an interactive teaching prototype for the NTU MSc Maritime Studies **MT6503 Group Venture Project, Track B: Compliance & RegTech**. It explores multi-regime budgets, voyage scenarios, reimbursement and venture risk for a proposed customer segment of owners/managers operating **5–20 ships**. Demand and willingness to pay remain hypotheses requiring validation.
+
+| Entry point | Purpose and current status |
+| --- | --- |
+| [`index.html`](index.html) | Default light edition. Retains the original daylight glass, SVG refraction, pointer highlights, 3D card tilt, sliding navigation, panel transitions and chart replays. This update corrects calculations, content and responsive layout. |
+| [`index-pro-max.html`](index-pro-max.html) | Preserved historical Pro Max workbench. Its calculations and interactions were not changed or re-audited in this update. |
+
+The default page retains its bilingual base data while using the independent [`js/compliance-engine.mjs`](js/compliance-engine.mjs) and [`js/light-data.mjs`](js/light-data.mjs). The two editions should not be described as sharing the same newly verified calculation logic.
+
+### 2. Live website and local setup
+
+**Default light-edition URL:** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)
+
+**Historical Pro Max URL:** [https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html](https://wwwwzzzzkkkk.github.io/Maritime-project/index-pro-max.html)
+
+Use the live URLs without installing anything. GitHub Pages deploys `main` automatically; see [Actions](https://github.com/wwwwzzzzkkkk/Maritime-project/actions) for publication progress after a merge or push.
+
+For local use, start a static server in the repository:
+
+```sh
+python3 -m http.server 48173 --bind 127.0.0.1
+```
+
+Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required. Leaflet 1.9.4 is vendored locally; Esri tiles, geographic shading and the original Google Fonts still require network access.
+
+### 3. Five functional modules
+
+| Module | Capability and evidence boundary |
+| --- | --- |
+| Overview and route | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
+| Twin and charter | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
+| Formula audit and anti-greenwashing | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
+| IMO scenarios | Venture stress tests for adoption as agreed, adoption with amendments and continued deadlock. Scenario selection does not silently alter regional targets or EUA prices. |
+| Explanations and business model | Current-result explanation templates, official references, A1 customer value, A2 risks, market hypotheses, human workload and platform-ESG measurement plans. |
+
+The `中 / EN` control switches languages. Existing visual materials and effects are retained; header wrapping, stacked mobile metrics and local table scrolling address clipping. A working JSON snapshot records current inputs, sources, assumptions and outputs.
+
+### 4. A3 benchmarks and calculation fixes
+
+These are fixed teaching inputs for `MV A3-BENCHMARK`, without external verification. They are not complete real-vessel bills.
+
+| Example | Inputs and results |
+| --- | --- |
+| EU ETS CO₂ subtotal | `(1,000 × 50% + 500 + 100) × €80 = €88,000`; EUA sensitivity at €60 / €100 gives €66,000 / €110,000. |
+| UK ETS CO₂ subtotal | `(200 + 20) × £60 = £13,200`; the UK example covers July–December 2026 and remains in GBP. |
+| FuelEU 2% condition | 164,000,000 MJ, actual intensity 91.6 gCO₂e/MJ and target 89.3368 yield −371.1648 tCO₂e and a €237,191.27 single-period base amount. |
+| FuelEU 6% condition | Holding other inputs fixed, target 85.6904 yields −969.1744 tCO₂e and €619,346.72. This is not a forecast of an actual 2030 bill. |
+
+The update fixes penalties on positive balances, inconsistent baseline prices/totals, hard-coded pooling deficits and audit rows that failed to follow the active vessel. Pooling uses only the deficit and assumed available supply; insufficient supply leaves a residual penalty.
+
+EU/UK ETS currently calculate **CO₂ subtotals only**. Missing CH₄/N₂O is not zero, and complete ETS totals are unavailable. FuelEU energy and ETS activity inputs are independently specified and have not been reconciled to one actual fuel ledger.
+
+### 5. Assumptions, business model and coursework
+
+- Speed uses a fixed-distance approximation, without a verified JIT arrival window. Fuel energy-share reduction coefficients 0.26 / 0.32 are teaching assumptions, not universal certified-fuel factors.
+- FuelEU surplus prices and availability are commercial scenarios, not secured resources. The retained UI demonstrates a single-period base amount; full flexibility mechanisms, certification and deficit history need actual evidence.
+- GENCON, NYPE and 50:50 controls are **illustrative allocations**. The 85/15, 18/82 and 50/50 splits are not standard-charter or BIMCO legal defaults.
+- Customer value benchmark: `120h × €40 + €2,000 − €4,800 − €600 = €1,400` year-one net benefit. Time may not become cash and adviser work must not be double-counted. Without adviser savings, year one is −€600.
+- Illustrative scenario operating results are −€30,000 / −€5,000 / −€4,000, with break-even at 70 / 67 / 57 full-year equivalent clients; these do not guarantee survival.
+- Twelve interviews, three paid pilots, platform ESG and human-workload metrics are **validation plans**, not completed results. Coursework mapping uses the available cached Brief; current course notices still need confirmation.
+
+Explanations are templates. No live AI/RAG, expert-approval service, real-data import, backend or automated filing is implemented. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
+
+### 6. Minimal checks and rollback
+
+The delivery used nine core calculation regressions and one bounded page smoke check, without expanding to a broad audit.
+
+```sh
+npm ci
+npm test
+# Keep the local server running; use an installed macOS Chrome:
+CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm run test:browser
+```
+
+Alternatively install Playwright Chromium and omit `CHROME_PATH`. Outputs go to Git-ignored `test-results/`.
+
+- [Original v3.4 baseline](https://github.com/wwwwzzzzkkkk/Maritime-project/tree/light-v3.4-baseline-2026-10-15)
+- [v4.0 code checkpoint retaining the original UI](https://github.com/wwwwzzzzkkkk/Maritime-project/tree/light-v4.0-original-ui-2026-10-15)
+- [Rollback instructions](docs/ROLLBACK.md) · [Change log](CHANGELOG.md) · [Verification and screenshots](docs/QA.md)
+
+Merge history and tags preserve previous versions. Use a recovery commit or revert PR instead of rewriting published history. The fixed live URL shows the current deployment from `main`.
+
+---
+
+## Repository structure / 项目结构
+
+```text
+Maritime-project/
+├── index.html                 # Default light UI / 默认浅色版
+├── index-pro-max.html         # Historical other edition / 另一历史版本
+├── styles/
+│   ├── tokens.css             # Original light palette and materials
+│   ├── main.css               # Original effects + appended layout fixes
+│   └── pro-max.css            # Other edition, unchanged
+├── js/
+│   ├── app.js                 # Original UI interactions + corrected calculations
+│   ├── compliance-engine.mjs  # Deterministic light-edition engine
+│   ├── light-data.mjs         # Teaching inputs and official references
+│   ├── data-and-i18n.js       # Preserved bilingual base data
+│   └── app-pro-max.js         # Other edition, unchanged
+├── vendor/leaflet/            # Pinned Leaflet and license
+├── tests/                     # Core regressions and bounded smoke check
+├── docs/                      # Methods, verification and rollback
+├── CHANGELOG.md
+├── README.md                  # Complete bilingual documentation
+├── README.zh-CN.md            # Standalone Chinese documentation
+└── README.en.md               # Standalone English documentation
+```
