@@ -1,0 +1,16 @@
+# Delivery verification · original UI retained
+
+Final scope follows the user's request to retain the existing visual and motion design and avoid excessive checks.
+
+Completed:
+
+- 9 core calculation regression tests passed, covering A3 values, positive balances, baseline identity, pooling limits, repeated deficits and negative client economics.
+- One bounded Chrome page smoke check passed: baseline figures, surplus vessel, JSON snapshot, native Escape close, reset while the map was hidden, and desktop/mobile layout.
+- No page runtime errors in that smoke check.
+- Original `styles/tokens.css` is unchanged. The original `styles/main.css` content is retained with 48 appended layout/modal-sizing lines; original effect definitions and timing values were not replaced.
+
+No further full-site scan or broad compatibility audit was performed after the user's latest instruction. Real-vessel verification, Safari/Firefox and full WCAG certification remain outside this verification scope.
+
+![Preserved original desktop design](previews/original-ui-desktop.png)
+
+![Preserved original mobile design](previews/original-ui-mobile.png)
