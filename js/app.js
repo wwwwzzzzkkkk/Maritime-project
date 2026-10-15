@@ -921,8 +921,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           return;
         }
 
-        // Keep the map panel-card 100% flat so Leaflet tiles, markers & camera buttons never shift
-        if (card.querySelector('#realMaritimeMap') || overMapStage || isDraggingRange) {
+        // Keep the map and quick-adjuster controls flat while retaining pointer highlights.
+        if (card.closest('#quickAdjuster') || card.querySelector('#realMaritimeMap') || overMapStage || isDraggingRange) {
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
           card.style.setProperty('--mouse-x', `${x}px`);

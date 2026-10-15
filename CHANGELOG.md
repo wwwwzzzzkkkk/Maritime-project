@@ -1,5 +1,9 @@
 # Change log
 
+## Quick adjuster motion · 2026-10-15
+
+- Remove pointer tilt and spatial parallax from the overview quick adjuster and its nested controls, retaining glass styling and pointer highlights.
+
 ## Mobile live budget window · 2026-10-15
 
 - Show a compact glass budget window when original mobile budget cards leave view, including in other modules.
