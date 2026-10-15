@@ -1398,3 +1398,51 @@ input[type="range"]::-webkit-slider-thumb:hover {
     flex-wrap: wrap;
   }
 }
+
+/* Layout-only adjustments. Original materials, keyframes, durations and tilt transforms are retained. */
+.topbar-inner { height: auto; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; row-gap: 12px; }
+.brand-cluster { flex: 1 1 360px; min-width: 0; }
+.vessel-select { min-width: 0; max-width: 100%; flex: 1; }
+.topbar-right { flex-wrap: wrap; }
+.nav-tabs { order: 3; flex: 1 1 100%; min-width: 0; justify-content: space-between; }
+.nav-btn { flex: 1 0 auto; }
+.kpi-top { flex-wrap: wrap; }
+.kpi-label { flex: 1 1 130px; }
+.kpi-sub { flex-wrap: wrap; gap: 6px; }
+.telemetry-table { min-width: 660px; }
+.table-wrap { max-width: 100%; overflow-x: auto; }
+.model-note { margin-top: 12px; font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.modal-backdrop { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; border: 0; }
+.modal-backdrop::backdrop { background: transparent; }
+.modal-backdrop[open] { display: flex; }
+.modal-card { max-height: calc(100dvh - 40px); overflow-y: auto; }
+#auditSnapshotContent { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 680px) {
+  .topbar { padding-left: 12px; padding-right: 12px; }
+  .topbar-inner { padding: 12px; gap: 10px; }
+  .brand-cluster { flex-basis: 100%; gap: 8px; }
+  .brand-mark { flex-shrink: 0; }
+  .vessel-select { width: 0; }
+  .topbar-right { width: 100%; gap: 6px; }
+  .topbar-right .ghost-btn { font-size: 11.5px; padding-left: 8px; padding-right: 8px; }
+  .nav-tabs { justify-content: flex-start; overflow-x: auto; max-width: 100%; }
+  .nav-btn { flex: 0 0 auto; padding: 6px 12px; }
+  .context-bar-inner { flex-wrap: wrap; padding: 12px; gap: 12px; }
+  .vessel-meta-inline { flex-wrap: wrap; max-width: 100%; }
+  .scenario-bar { flex-wrap: wrap; max-width: 100%; }
+  .scenario-caption { flex-basis: 100%; }
+  .scenario-btn { flex: 1; min-width: 0; }
+  .page-container { padding: 16px 12px 32px; }
+  .kpi-strip { grid-template-columns: 1fr; gap: 12px; }
+  .kpi-top { flex-wrap: wrap; }
+  .kpi-label { flex-basis: 150px; }
+  .panel-card { padding: 18px 14px; min-width: 0; }
+  .panel-header { flex-wrap: wrap; gap: 10px; }
+  .map-stage { min-width: 0; }
+  .map-coord-overlay { white-space: normal; max-width: calc(100% - 20px); }
+  .leg-btn { max-width: 100%; white-space: normal; }
+  .control-header { flex-wrap: wrap; gap: 5px; }
+  .seg-group { min-width: 0; }
+  .seg-btn { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+  .footer-bar { padding-left: 12px; padding-right: 12px; }
+}
