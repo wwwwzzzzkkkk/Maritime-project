@@ -1,4 +1,4 @@
-# Design System Master Specification — MultiReg Maritime Compliance & Digital Twin Platform (`maritime-compliance-gemini`)
+# Design System Master Specification — MultiReg Maritime Compliance & Digital Twin Platform (`Maritime-project`)
 
 > **Generated via 6-Skill Pipeline:** `frontend-design` + `ui-ux-pro-max` + `design-tokens` (OKLCH) + `web-design-guidelines` + `motion` + `identity-skill`
 

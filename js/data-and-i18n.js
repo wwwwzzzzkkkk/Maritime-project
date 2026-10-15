@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MultiReg Maritime Compliance & Digital Twin Platform (maritime-compliance-gemini)
+   MultiReg Maritime Compliance & Digital Twin Platform (Maritime-project)
    Bilingual Data Store (CN / EN) & Deterministic Multi-Regime Calculation Engine
    Strictly aligned with MT6503 Venture Report (Appendices A1, A2, A3) & Course Slides
    ========================================================================== */
@@ -245,7 +245,7 @@ window.MAREG_DATA = {
   i18n: {
     zh: {
       appTitle: 'MAREG 智航合规驾驶舱',
-      appSub: 'GEMINI BUILD · v1.0',
+      appSub: 'MAREG STUDIO · v3.4',
       vesselLabel: '当前选中船舶 (SME 5船队)',
       navSectionCore: '核心功能模块 (5 MODULES)',
       navTab1: '1. 全息航线与合规驾驶舱',
@@ -274,7 +274,7 @@ window.MAREG_DATA = {
     },
     en: {
       appTitle: 'MAREG COMPLIANCE COCKPIT',
-      appSub: 'GEMINI BUILD · v1.0',
+      appSub: 'MAREG STUDIO · v3.4',
       vesselLabel: 'ACTIVE VESSEL (5-SHIP SME FLEET)',
       navSectionCore: 'CORE WORKBENCH (5 MODULES)',
       navTab1: '1. Holographic Cockpit & Route Twin',
