@@ -11,3 +11,7 @@ The hidden-map reset fix queues camera work until the original overview is visib
 Verification is limited to the core calculation regressions and one bounded desktop/mobile page smoke check, as requested.
 
 Mobile follow-up: five short labels retain the original sliding pill; the multi-row context uses the existing large corner radius rather than a full capsule. Shared KPIs stay on the overview and the selected module is positioned below the sticky header. These are mobile layout changes, not a change to materials or panel/chart animations.
+
+## v4.1.0 customer information layout
+
+Navigation now follows budgets, option comparison, calculation evidence, future scenarios and help. Existing glass cards and effects are reused. Formula/source disclosures and onboarding use native HTML and existing tokens. The quick adjuster remains flat, as explicitly requested; other card effects and the mobile budget window remain. The future selector lives inside its view. Course and venture plans move into public repository documents.

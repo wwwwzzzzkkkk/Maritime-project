@@ -4,15 +4,15 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.1.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.1.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
 ### 1. 打开网站，先用默认船舶
 
-打开上方网址，点击右上角 `中 / EN` 选择语言。第一次使用，保持 **MV A3-BENCHMARK**，或点击 **重置基准**。
+打开上方网址，点击右上角 `中 / EN` 选择语言。第一次使用，保持 **MV DEMO-01**，或点击 **重置基准**。
 
 默认应看到：
 
@@ -23,22 +23,22 @@ For the default light edition, documented on 15 October 2026. No installation or
 | UK ETS | £13,200 | 英国制度的 CO₂ 部分预算，英镑单列。 |
 | 船东承担 | 约 €276,413 | 欧元合规费用的示例分摊，**不是新增费用**，不要再加进前面的账单。 |
 
-这是教学示例。黄色“缺失 CH₄/N₂O”提示表示数据范围有限，不是你操作出错；当前没有完整 ETS 总额。
+这是演示示例。黄色“缺失 CH₄/N₂O”提示表示数据范围有限，不是你操作出错；当前没有完整 ETS 总额。
 
 ### 2. 一次改一个参数，看哪里发生变化
 
-在 **概览与航线** 左侧拖动滑块：
+在 **预算总览** 左侧拖动滑块：
 
 - **EUA 碳价**：改变 EU ETS 预算；不是实时市场报价。
 - **航速调整**：尝试较低航速，观察成本和排放模型变化；不代表已验证的准时到港方案。
 - **示例低碳燃料能源占比**：观察燃料情景，留意认证、供给与价格尚未核实的提示。
 - **FuelEU 目标条件**：比较 2025–2029 的 2% 与 2030 的 6% 目标；其他活动量与价格保持当前输入，不是实际未来账单预测。
 
-地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机导航显示“总览 / 推演 / 审计 / IMO / 商业”五个短名称，切换后直接定位到对应内容；费用卡只在总览显示，宽表格可横向滑动。
+地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机导航显示“总览 / 方案 / 依据 / 未来 / 帮助”五个短名称，切换后直接定位到对应内容；费用卡只在总览显示，宽表格可横向滑动。
 
 手机上，原费用卡滚出视野或切换到其他模块时，会自动出现**实时预算浮窗**，随参数同步更新。拖动浮窗标题可移动位置；点“收起 / 展开”调整占用空间，点“归位”恢复默认位置。回到原费用卡区域，浮窗自动隐藏。欧元和英镑仍分开显示。
 
-### 3. 到“数字孪生与租约”比较方案
+### 3. 到“方案比较”比较方案
 
 这里比较 **未调整基准、当前组合、假设组池** 三行。先看“总净支出”，再看费用构成。它只包含表内项目，不是完整航次总成本；UK 英镑费用另外查看。
 
@@ -46,9 +46,9 @@ For the default light edition, documented on 15 October 2026. No installation or
 
 GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合同默认条款。换一种分摊会改变谁承担费用，不会改变该船总排放。
 
-### 4. 到“白盒审计与反漂绿”看原因
+### 4. 到“计算依据”看原因
 
-上方表格展示当前船舶的输入、公式和结果。双环中心数字中，**负百分比表示相对基准下降，0 表示未变，正值表示上升**；圆弧是示意动效，以中心读数为准。
+展开“输入、公式与结果”，查看当前船舶的计算明细。官方来源在同页下方按需展开。双环中心数字中，**负百分比表示相对基准下降，0 表示未变，正值表示上升**；圆弧是示意动效，以中心读数为准。
 
 基准使用**同一船舶、同一价格、同一目标**，但不做航速、燃料或组池调整。所以只改碳价时，账单会变，而方案相对基准的变化百分比仍可能为 0。
 
@@ -56,9 +56,9 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 
 ### 5. 其他模块与保存结果
 
-- **IMO 情景压力**：看三种监管未来下的客户、成本与经营结果。它不自动修改区域账单，也不表示发生概率。
-- **AI 雷达与商业模型**：看预设解释、官方链接、客户收益、风险及 ESG 计划。解释会跟随当前计算值；访谈和试点仍为计划。
-- **当前计算快照 → 导出 JSON**：保存当前输入、假设、来源与结果；关掉弹窗可点 `✕` 或按 `Esc`。新手不必读 JSON，可留作核对或分享给老师、开发者。
+- **未来情景**：看三种监管路径下需要核对的事项。它不自动修改区域账单，不计算假设的全球收费，也不表示发生概率。
+- **帮助与说明**：看操作步骤、预设常见问题及产品能力范围。解释跟随当前计算值，未连接 AI 服务。课程与商业验证材料已移到仓库文档。
+- **当前计算快照 → 导出 JSON**：保存当前输入、假设、来源与结果；关掉弹窗可点 `✕` 或按 `Esc`。新手不必读 JSON，可留作核对或与团队讨论。
 
 **刷新或“重置基准”会回到默认教学情景。** 如需保留当前结果，请先导出；当前没有重新导入快照自动恢复情景的功能。
 
@@ -78,7 +78,7 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 
 ### 1. Open the site and start with the default vessel
 
-Open the link above and use `中 / EN` to select a language. For your first session, keep **MV A3-BENCHMARK**, or click **Reset**.
+Open the link above and use `中 / EN` to select a language. For your first session, keep **MV DEMO-01**, or click **Reset**.
 
 | Overview card | Default value | Meaning |
 | --- | --- | --- |
@@ -87,22 +87,22 @@ Open the link above and use `中 / EN` to select a language. For your first sess
 | UK ETS | £13,200 | UK CO₂ budget subtotal, kept in GBP. |
 | Owner allocation | About €276,413 | An illustrative share of EUR compliance costs, **not an additional charge**. Do not add it to those costs again. |
 
-These are teaching examples. The yellow missing-CH₄/N₂O notice describes the data limitation, not an operating mistake. Complete ETS totals are unavailable.
+These are demonstration examples. The yellow missing-CH₄/N₂O notice describes the data limitation, not an operating mistake. Complete ETS totals are unavailable.
 
 ### 2. Change one input at a time
 
-Use the controls in **Overview & Route**:
+Use the controls in **Budget Overview**:
 
 - **EUA price** changes the EU ETS budget; it is not a live market quotation.
 - **Speed change** explores lower-speed cost and emissions estimates; no verified JIT arrival plan is provided.
 - **Illustrative fuel energy share** explores fuel scenarios; certification, supply and prices remain unverified.
 - **FuelEU target condition** compares the 2% target for 2025–2029 with 6% for 2030, holding other current activity and price inputs fixed. It is not an actual future-bill forecast.
 
-Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, the short tabs Home / Twin / Audit / IMO / AI open their content immediately. Budget cards appear in Home only; wide tables scroll horizontally.
+Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, the short tabs Home / Compare / Basis / Future / Help open their content immediately. Budget cards appear in Home only; wide tables scroll horizontally.
 
 On mobile, a **live budget window** appears when the original cards leave view or you open another module. Values update as you change inputs. Drag its title to move it, use Collapse / Expand to save space, or Reset to restore its position. It hides when the original cards return to view. EUR and GBP remain separate.
 
-### 3. Compare options in “Twin & Charter”
+### 3. Compare options in “Compare Options”
 
 Compare **Unmodified baseline**, **Active option** and **Assumed pooling option**. Read total net expenditure, then its components. It includes the listed items only, not the full voyage cost; inspect UK GBP costs separately.
 
@@ -110,9 +110,9 @@ The pooling slider requests surplus allocation. The actual allocation is capped 
 
 GENCON, NYPE and 50:50 buttons select **illustrative reimbursement splits**, not standard-contract defaults. Changing the split changes who pays, not the vessel's total emissions.
 
-### 4. Inspect “Audit & ESG”
+### 4. Inspect “Calculation Basis”
 
-The table traces the active vessel's inputs, formulas and results. For the central gauge readings, **negative percentages mean a decrease from baseline, zero means unchanged, and positive means an increase**. Arcs are illustrative animation; read the central numbers.
+Expand the inputs/formulas/results disclosure to trace the active vessel's calculations. Official references are in a separate disclosure below. For the central gauge readings, **negative percentages mean a decrease from baseline, zero means unchanged, and positive means an increase**. Arcs are illustrative animation; read the central numbers.
 
 The baseline uses the **same vessel, prices and target**, but no speed/fuel/pooling adjustment. A price-only change therefore changes the bill while the active-option percentage difference can remain zero.
 
@@ -120,9 +120,9 @@ Lower expenditure is not automatically physical decarbonisation. Pooling alone m
 
 ### 5. Explore the other views and save
 
-- **IMO Scenarios** shows customers, costs and operating results under three possible futures. It does not change regional bills automatically or assign probabilities.
-- **AI & ROI Model** contains preset explanations, official links, customer value, risks and ESG plans. Explanations follow current results; interviews and pilots remain planned.
-- **Current Snapshot → Export JSON** saves current inputs, assumptions, sources and outputs. Close with `✕` or `Esc`. Beginners need not read JSON; keep it for reference or share it with your instructor/developer.
+- **Future Scenarios** explains what to review under three possible regulatory paths. It does not change regional bills, calculate hypothetical global charges or assign probabilities.
+- **Help & About** contains getting-started steps, preset FAQs and product scope. Explanations follow current calculations without an AI service. Course and venture plans are now in repository documents.
+- **Current Snapshot → Export JSON** saves current inputs, assumptions, sources and outputs. Close with `✕` or `Esc`. Beginners need not read JSON; keep it for reference or discuss it with your team.
 
 **Refreshing or selecting Reset returns to the default teaching scenario.** Export first if you need a record; automatic restoration by importing a snapshot is not implemented.
 
@@ -300,3 +300,6 @@ These values are project A1/scenario planning inputs stored in code, not market 
 **Keep the source types separate: rules provide methods; the project supplies demo inputs and business/technical assumptions. A formula-derived number does not mean its inputs were verified.**
 
 </details>
+
+
+项目团队资料 / For the project team: [课程映射 / Course map](COURSE_MAPPING.md) · [商业验证与治理计划 / Venture and governance plans](PROJECT_PLANNING.md)。这些是公开文档，不是客户操作步骤。These public documents are separate from the customer workflow.

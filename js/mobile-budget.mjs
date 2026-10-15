@@ -53,7 +53,7 @@ export function createMobileBudget() {
   function labels() {
     const zh=language==='zh';
     document.getElementById('mobileBudgetTitle').textContent=zh?'实时预算':'Budget';
-    document.getElementById('mobileBudgetNote').textContent=zh?'教学估算 · ETS 仅含 CO₂':'Model estimates · ETS covers CO₂ only';
+    document.getElementById('mobileBudgetNote').textContent=zh?'模型估算 · ETS 仅含 CO₂':'Model estimates · ETS covers CO₂ only';
     document.getElementById('mobileBudgetOwnerLabel').textContent=zh?'船东（欧元）':'Owner (EUR)';
     document.getElementById('mobileBudgetFuelLabel').textContent=zh?'FuelEU 估算':'FuelEU model';
     document.getElementById('mobileBudgetInstructions').textContent=zh?'拖动标题移动浮窗；也可用方向键移动。':'Drag the title to move the window, or use the arrow keys.';

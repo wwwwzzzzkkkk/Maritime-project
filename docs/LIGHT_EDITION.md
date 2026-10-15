@@ -46,3 +46,7 @@ Checked 2026-10-15; recheck applicability and amendments before real use.
 ## Final user constraints
 
 Original visual and motion design is retained. Layout fixes are appended without changing the original effect definitions or timings. FuelEU target selection is a condition comparison with fixed ETS activity inputs (2026; UK example July–December), not a forecast of a complete future-year bill. The preserved UI does not expose every engine setting. Core math regressions and one bounded page smoke check are sufficient for this delivery.
+
+## UI v4.1.0
+
+The calculation model remains v4.0; the customer interface is v4.1.0, recorded separately in exported snapshots. Budget inputs and formulas are unchanged. Business/ROI controls leave the customer UI; their assumptions are preserved in [project plans](PROJECT_PLANNING.md). Course mappings live in [course documents](COURSE_MAPPING.md). Calculation traces and all official source links remain available through disclosures. This content migration is not a fresh regulatory or course-brief audit.

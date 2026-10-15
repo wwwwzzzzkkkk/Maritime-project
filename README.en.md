@@ -1,5 +1,8 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
+> **Current website / 当前网页：v4.1.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+
 [Bilingual main documentation](README.md) · [中文文档](README.zh-CN.md)
 
 **🌐 Live website:** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)
@@ -12,7 +15,7 @@
 
 | Entry point | Purpose and current status |
 | --- | --- |
-| [`index.html`](index.html) | Default light edition. Retains the original daylight glass, SVG refraction, pointer highlights, 3D card tilt, sliding navigation, panel transitions and chart replays. This update corrects calculations, content and responsive layout. |
+| [`index.html`](index.html) | Default light edition. Customer-oriented modules with the original glass and motion design. Quick controls remain flat; mobile retains the draggable live budget window. |
 | [`index-pro-max.html`](index-pro-max.html) | Preserved historical Pro Max workbench. Its calculations and interactions were not changed or re-audited in this update. |
 
 The default page retains its bilingual base data while using the independent [`js/compliance-engine.mjs`](js/compliance-engine.mjs) and [`js/light-data.mjs`](js/light-data.mjs). The two editions should not be described as sharing the same newly verified calculation logic.
@@ -37,11 +40,11 @@ Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses E
 
 | Module | Capability and evidence boundary |
 | --- | --- |
-| Overview and route | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
-| Twin and charter | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
-| Formula audit and anti-greenwashing | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
-| IMO scenarios | Venture stress tests for adoption as agreed, adoption with amendments and continued deadlock. Scenario selection does not silently alter regional targets or EUA prices. |
-| Explanations and business model | Current-result explanation templates, official references, A1 customer value, A2 risks, market hypotheses, human workload and platform-ESG measurement plans. |
+| Budget Overview | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
+| Compare Options | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
+| Calculation Basis | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
+| Future Scenarios | Three possible regulatory paths and customer review steps; no automatic change to regional budgets or hypothetical global charges. |
+| Help & About | Quick-start steps, preset FAQs following current calculations, capability scope and a guide link. Course and business plans are in repository documents. |
 
 The `中 / EN` control switches languages. Existing visual materials and effects are retained; header wrapping, stacked mobile metrics and local table scrolling address clipping. A working JSON snapshot records current inputs, sources, assumptions and outputs.
 
@@ -73,7 +76,7 @@ Explanations are templates. No live AI/RAG, expert-approval service, real-data i
 
 ## 6. Minimal checks and rollback
 
-The delivery used nine core calculation regressions and one bounded page smoke check, without expanding to a broad audit.
+v4.0 used nine core calculation regressions and one bounded page smoke check. v4.1.0 uses a focused desktop/mobile check of the changed content, bilingual UI and layout, without expanding to a broad audit.
 
 ```sh
 npm ci

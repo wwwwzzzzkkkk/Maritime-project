@@ -1,5 +1,5 @@
 import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs';
-import { createMobileBudget } from './mobile-budget.mjs';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.1.0';
 import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs';
 /* ==========================================================================
    MAREG — Core Deterministic Engine, Real GIS Maritime Map & Spatial 3D Tilt UI (v3.2)
@@ -17,7 +17,6 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   for(const scenario of ventureScenarios) {
     Object.assign(state.scenarios[scenario.id],{
       triggerZh:scenario.triggerZh,triggerEn:scenario.triggerEn,
-      strategyZh:scenario.actionZh,strategyEn:scenario.actionEn,
       tagStatus:'assumption'
     });
   }
@@ -26,26 +25,32 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       kpi1Label:'EU ETS · CO₂ 部分预算（欧元）',kpi2Label:'FuelEU 简化罚款估算（欧元）',
       kpi3Label:'UK ETS · CO₂ 部分预算（英镑）',kpi4Label:'船东承担金额估算（欧元合规部分）',
       cockpitMapTitle:'亚欧—英国示例航线与预设活动范围',
-      cockpitLeftSub:'实时比较预算与范围内 WtW 模型估算；系数为教学假设'
+      cockpitLeftTitle:'船舶快速调节器',cockpitLeftSub:'调整参数，比较预算与范围内生命周期排放估算；系数为示例假设'
     }:{
       kpi1Label:'EU ETS CO₂ Subtotal (EUR)',kpi2Label:'FuelEU Model Penalty (EUR)',
       kpi3Label:'UK ETS CO₂ Subtotal (GBP)',kpi4Label:'Estimated Owner Allocation (EUR Compliance)',
       cockpitMapTitle:'Asia–Europe–UK Illustrative Route & Preset Activities',
-      cockpitLeftSub:'Compare budgets and in-scope WtW model estimates; teaching coefficients'
+      cockpitLeftTitle:'Vessel Quick Controls',cockpitLeftSub:'Adjust inputs to compare budgets and in-scope lifecycle estimates; illustrative coefficients'
     });
   }
-  state.aiFeed = officialSources.filter(s=>['eu','fuel','uk','imo'].includes(s.id)).map(s=>({
-    status:s.status==='proposal'?'pending':'in-force',badgeZh:s.status==='proposal'?'待采纳草案':'现行规则参考',
-    badgeEn:s.status==='proposal'?'DRAFT':'RULE REFERENCE',date:checkedAt,source:s.clause,url:s.url,
+  state.vessels[0].nameZh='MV DEMO-01（示例货船）';
+  state.vessels[0].nameEn='MV DEMO-01 (Demo cargo vessel)';
+  const customerQuestions={
+    q1:{zh:'为什么没有完整 ETS 总额？',en:'Why are ETS totals incomplete?'},
+    q2:{zh:'未来情景会改变当前预算吗？',en:'Do future scenarios change this budget?'},
+    q3:{zh:'如何比较燃料与组池方案？',en:'How can I compare fuel and pooling?'}
+  };
+  const customerScenarioActions={
+    as_is:{zh:'确认适用范围与实施日期，准备新增字段；在正式规则明确前不估算全球收费。',en:'Confirm applicability and implementation dates, and prepare new fields. Do not estimate global charges before official rules are confirmed.'},
+    amended:{zh:'保存当前结果，对照正式修订核对数据和方法，再更新预算。',en:'Save current results, review data and methods against adopted amendments, then update budgets.'},
+    deadlock:{zh:'优先补全区域制度所需数据，核对合同偿付条款，继续跟踪官方谈判。',en:'Prioritize regional data completeness and contract reimbursement terms, and follow official negotiations.'}
+  };
+  state.aiFeed = officialSources.map(s=>({
+    status:s.status==='proposal'?'pending':s.status==='contract'?'assumption':'in-force',
+    badgeZh:s.status==='proposal'?'待采纳草案':s.status==='contract'?'合同参考':'现行规则参考',
+    badgeEn:s.status==='proposal'?'DRAFT':s.status==='contract'?'CONTRACT REFERENCE':'RULE REFERENCE',date:checkedAt,source:s.clause,url:s.url,
     titleZh:s.zh,titleEn:s.en,summaryZh:s.summaryZh,summaryEn:s.summaryEn
   }));
-  state.riskRegister.push({riskZh:'获客、续订与交付工时',riskEn:'Acquisition, Renewal & Delivery Workload',level:'High / Med',ownerZh:'商业 / 运营负责人',ownerEn:'Commercial / Operations Lead',controlZh:'访谈及付费试点为计划；记录实际质控与支持工时，验证净价值和续订意愿。',controlEn:'Interviews and paid pilots are planned; measure actual QC/support effort, net value and renewal intent.',residualZh:'客户不足、成本超支与资金缺口',residualEn:'Too few customers, cost overruns and funding gaps'});
-  state.riskRegister[1].controlZh='缺失气体保留空值；当前仅计算 CO₂ 部分，未宣称完整 ETS 总额。';
-  state.riskRegister[1].controlEn='Keep missing gases null; calculate CO₂ subtotals without claiming complete ETS totals.';
-  state.riskRegister[2].controlZh='当前为预设解释模板，不连接 AI 或检索服务；重大建议仍需专业复核。';
-  state.riskRegister[2].controlEn='Preset explanations only, without AI or retrieval; material decisions still need professional review.';
-  state.riskRegister[3].controlZh='当前无后台和船载连接；正式服务的隔离、加密与恢复测试属于待验证计划。';
-  state.riskRegister[3].controlEn='No backend or shipboard connection; isolation, encryption and recovery tests are unverified plans.';
   let deferredCamera = null;
   let originalE1Coordinates;
   let snapshot;
@@ -98,7 +103,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const c=compareOptions(modelVessel,settings), a=c.active, b=c.baseline;
     const computedLegs=vessel.legs.map((leg,i)=>({...leg,adjRaw:a.legs[i].co2Tonnes,
       adjCovered:a.legs[i].coveredTonnes,unitPrice:a.legs[i].unitPrice,cost:a.legs[i].cost}));
-    const grossClientValueEur=twin.hoursSaved*40+twin.advisorSavingsEur;
+
     return {
       vessel,modelVessel,settings,comparison:c,scenario:state.scenarios[state.selectedScenario],computedLegs,
       euCoveredCo2:a.euCoveredCo2,ukCoveredCo2:a.ukCoveredCo2,euEtsBillEur:a.euEts,
@@ -112,8 +117,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       charterNoteEn:`Illustrative allocation: Owner ${(ownerSharePct*100).toFixed(0)}% / reimbursing party ${((1-ownerSharePct)*100).toFixed(0)}%. Not GENCON/NYPE/BIMCO defaults. EUR compliance only (including pool fees), excluding operating deltas and UK costs.`,
       baselinePhysicalWtWTonnes:b.physicalWtWTonnes,currentPhysicalWtWTonnes:a.physicalWtWTonnes,
       physicalReductionPct:-c.physicalDeltaPct,baselineFinancialEur:b.totalEur,currentFinancialEur:a.totalEur,
-      financialReductionPct:-c.costDeltaPct,laborSavingsEur:twin.hoursSaved*40,grossClientValueEur,
-      recurringNetBenefitEur:grossClientValueEur-4800,year1NetBenefitEur:grossClientValueEur-5400
+      financialReductionPct:-c.costDeltaPct
     };
   }
 
@@ -692,7 +696,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     const hygieneAlertEl=document.getElementById('cockpitHygieneAlert');
     hygieneAlertEl.className='alert-banner amber';
-    hygieneAlertEl.innerHTML=`<div><strong>${lang==='zh'?'教学数据：缺失 CH₄ / N₂O，完整 ETS 总额不可用':'Teaching Data: CH₄ / N₂O Missing; Complete ETS Total Unavailable'}</strong><span>${lang==='zh'?`当前 EU 仅单列 CO₂ ${fmtNum(m.euCoveredCo2,1)} 吨，UK ${fmtNum(m.ukCoveredCo2,1)} 吨；未经外部核验。FuelEU 能源独立给定，未与同一燃料台账物理对账。`:`Current CO₂ subtotals: EU ${fmtNum(m.euCoveredCo2,1)} t, UK ${fmtNum(m.ukCoveredCo2,1)} t; not externally verified. FuelEU energy is independently specified, not physically reconciled to a common ledger.`}</span></div>`;
+    hygieneAlertEl.innerHTML=`<div><strong>${lang==='zh'?'演示数据：缺失 CH₄ / N₂O，完整 ETS 总额不可用':'Demo Data: CH₄ / N₂O Missing; Complete ETS Total Unavailable'}</strong><span>${lang==='zh'?`当前 EU 仅单列 CO₂ ${fmtNum(m.euCoveredCo2,1)} 吨，UK ${fmtNum(m.ukCoveredCo2,1)} 吨；未经外部核验。FuelEU 能源独立给定，未与同一燃料台账物理对账。`:`Current CO₂ subtotals: EU ${fmtNum(m.euCoveredCo2,1)} t, UK ${fmtNum(m.ukCoveredCo2,1)} t; not externally verified. FuelEU energy is independently specified, not physically reconciled to a common ledger.`}</span></div>`;
 
     const supplyAlertEl = document.getElementById('bunkerSupplyAlert');
     if (supplyAlertEl) {
@@ -702,7 +706,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           <div>
             <strong>${lang === 'zh' ? '示例燃料系数与供给待核实' : 'Illustrative Fuel Coefficients & Unverified Supply'}</strong>
             <span>${lang === 'zh'
-              ? `当前设定掺烧 ${twin.biofuelBlendPct}%：公式上可降低罚款，但0.26/0.32 为教学系数；认证、发动机兼容性、港口供给及价格均待核实。`
+              ? `当前设定掺烧 ${twin.biofuelBlendPct}%：公式上可降低罚款，但0.26/0.32 为示例系数；认证、发动机兼容性、港口供给及价格均待核实。`
               : `At ${twin.biofuelBlendPct}% blend, penalties drop mathematically, but certification, engine compatibility, port supply and prices remain unverified; 0.26/0.32 are teaching coefficients.`}</span>
           </div>
         `;
@@ -745,9 +749,10 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     setText('charterExplainBox', lang === 'zh' ? m.charterNoteZh : m.charterNoteEn);
 
     const c=m.comparison;
+    setHTML('optionDeltaSummary', `<div><strong>${lang==='zh'?'当前方案与同条件基准':'Active Option vs. Same-Condition Baseline'}</strong><span>${lang==='zh'?'范围内欧元净支出变化':'Scoped EUR net expenditure change'}: ${fmtEur(c.costDelta,2)} · ${lang==='zh'?'负值表示节省；不含英国费用，也不是完整航次成本。':'Negative means savings; excludes UK costs and is not the full voyage cost.'}</span></div>`);
     setHTML('optionCompareBody',[
       [lang==='zh'?'1. 未调整基准':'1. Unmodified baseline',c.baseline,lang==='zh'?'同价格、同目标':'Same prices and target'],
-      [lang==='zh'?'2. 当前组合方案':'2. Active option',c.active,lang==='zh'?'教学情景，未验证可行性':'Teaching scenario, feasibility unverified'],
+      [lang==='zh'?'2. 当前组合方案':'2. Active option',c.active,lang==='zh'?'模拟情景，未验证可行性':'Model scenario, feasibility unverified'],
       [lang==='zh'?'3. 假设组池方案':'3. Assumed pooling option',c.pooling,c.pooling.fuelEu>.01?(lang==='zh'?'供给不足，仍有罚款':'Supply limited; residual penalty'):c.baseline.deficitTonnes===0?(lang==='zh'?'已有盈余，无需购买':'Already in surplus; no purchase needed'):(lang==='zh'?'供给与协议待确认':'Supply and agreement unverified')]
     ].map(([title,x,note])=>`<tr><td><strong>${title}</strong></td><td class="num">${fmtEur(x.euEts,2)}</td><td class="num">${fmtEur(x.fuelEu,2)}</td><td class="num">${fmtEur(x.operatingDelta+x.poolCost,2)}</td><td class="num"><strong>${fmtEur(x.totalEur,2)}</strong></td><td>${note}</td></tr>`).join(''));
 
@@ -783,8 +788,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           <div>
             <strong>${lang === 'zh' ? '反漂绿预警：纯财务池化抵扣（本船物理排放未降）' : 'Anti-Greenwashing Warning: Financial Pooling Only'}</strong>
             <span>${lang === 'zh'
-              ? `当前通过外部组池抵扣了 +${twin.poolingSurplusTonnes} tCO₂e，财务支出下降，但本船物理 WtW 排放仍为 ${fmtNum(m.currentPhysicalWtWTonnes, 0)} 吨（0.0% 物理减排），严禁对外宣传为“本船低碳航次”。`
-              : `Financial exposure dropped via +${twin.poolingSurplusTonnes} tCO₂e pooling, but physical shipboard WtW emissions remain unchanged (0.0% physical reduction).`}</span>
+              ? `当前模拟组池实际分配 ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB，财务支出下降，但本船物理 WtW 排放仍为 ${fmtNum(m.currentPhysicalWtWTonnes, 0)} 吨（0.0% 物理减排），严禁对外宣传为“本船低碳航次”。`
+              : `Financial exposure dropped via ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB of simulated pooling, but physical shipboard WtW emissions remain unchanged (0.0% physical reduction).`}</span>
           </div>
         `;
       } else {
@@ -805,29 +810,29 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     setHTML('activeScenarioDetailBox', `
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
         <strong style="color:var(--text-primary); font-size:14px;">${lang === 'zh' ? sc.titleZh : sc.titleEn}</strong>
-        <span class="badge badge-${sc.tagStatus}">${sc.breakEvenClients} Clients Break-Even</span>
+        <span class="badge badge-${sc.tagStatus}">${lang==='zh'?'假设情景 · 非生效规则':'Hypothetical · not in force'}</span>
       </div>
       <p style="font-size:12.5px; color:var(--text-secondary); margin-top:4px;">
         ${lang === 'zh' ? sc.triggerZh : sc.triggerEn}
       </p>
       <div style="font-size:12px; color:var(--text-muted); padding-top:6px; border-top:1px solid var(--border-hairline);">
-        <strong style="color:var(--text-primary);">${lang === 'zh' ? '平台应对策略：' : 'Venture Strategy: '}</strong>
-        ${lang === 'zh' ? sc.strategyZh : sc.strategyEn}
+        <strong style="color:var(--text-primary);">${lang === 'zh' ? '需要核对：' : 'Review next: '}</strong>
+        ${customerScenarioActions[state.selectedScenario][lang]}
       </div>
     `);
 
-    // Tab 5: Guardrailed AI Radar, A1 ROI & A2 Risk Register
+    // Customer help: preset explanations of current results.
     document.querySelectorAll('.prompt-chip').forEach(chip => {
       chip.classList.toggle('active', chip.getAttribute('data-prompt') === activePromptId);
     });
 
-    const promptObj=state.aiPrompts.find(p=>p.id===activePromptId);
+    const question=customerQuestions[activePromptId][lang];
     const answers={
       q1:lang==='zh'?`当前 EU ${fmtEur(m.euEtsBillEur)}、UK ${fmtGbp(m.ukEtsBillGbp)} 均仅为 CO₂ 部分预算。缺失 CH₄/N₂O 不等于零，也未发生外部核验。`:`EU ${fmtEur(m.euEtsBillEur)} and UK ${fmtGbp(m.ukEtsBillGbp)} are CO₂ subtotals only. Missing CH₄/N₂O is not zero; no external verification was performed.`,
-      q2:lang==='zh'?'不能保证经营存续。区域需求可能继续存在，但三种示例情景均亏损；57 家只是指定成本下的全年等效经营平衡客户数，获客、续订、人工和资金均待验证。':'Survival is not guaranteed. Regional demand may persist, but all three illustrative scenarios lose money. 57 clients is an operating break-even assumption; acquisition, renewals, labour and funding need validation.',
+      q2:lang==='zh'?'不会。未来情景只用于了解可能变化，不会自动改变 EU ETS、FuelEU 或 UK ETS 预算。全球收费不在当前计算中，实际使用须核对正式规则与生效日期。':'No. Future scenarios describe possible changes; they do not automatically change EU ETS, FuelEU or UK ETS budgets. Global charges are outside this calculation; confirm adopted rules and effective dates before real use.',
       q3:lang==='zh'?`当前强度 ${fmtNum(m.actualIntensity,4)}，目标 ${fmtNum(m.targetIntensity,4)}；分配 ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB 后罚款 ${fmtEur(m.fueleuPenaltyEur,2)}。供给、燃料认证与合同未验证，不能据此宣称最优或实际减排。`:`Current intensity ${fmtNum(m.actualIntensity,4)}, target ${fmtNum(m.targetIntensity,4)}; allocation ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB leaves ${fmtEur(m.fueleuPenaltyEur,2)} penalty. Supply, fuel certification and contracts are unverified; no optimum or realized reduction is claimed.`
     };
-    setHTML('aiAnswerBox',`<strong>${lang==='zh'?promptObj.qZh:promptObj.qEn}</strong><p style="margin-top:8px;">${answers[activePromptId]}</p><span class="badge badge-assumption">${lang==='zh'?'预设解释模板 · 非 RAG':'Preset template · not RAG'}</span>`);
+    setHTML('aiAnswerBox',`<strong>${question}</strong><p style="margin-top:8px;">${answers[activePromptId]}</p><span class="badge badge-assumption">${lang==='zh'?'预设解释 · 非 AI 服务':'Preset explanation · no AI service'}</span>`);
 
     setHTML('aiFeedContainer', state.aiFeed.map(item => `
       <div class="control-group" style="gap:4px; padding:11px 14px;">
@@ -838,28 +843,6 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         <p style="font-size:11.5px; color:var(--text-secondary);">${lang === 'zh' ? item.summaryZh : item.summaryEn}</p>
         <div class="mono" style="font-size:10.5px; color:var(--text-muted);">${item.date} · <a href="${item.url}" target="_blank" rel="noreferrer">${item.source}</a></div>
       </div>
-    `).join(''));
-
-    setText('roiHoursReadout', `${twin.hoursSaved} h (${fmtEur(m.laborSavingsEur, 0)})`);
-    const roiHoursSlider = document.getElementById('roiHoursSlider');
-    if (roiHoursSlider) roiHoursSlider.value = twin.hoursSaved;
-
-    document.querySelectorAll('.roi-advisor-btn').forEach(btn => {
-      btn.classList.toggle('active', Number(btn.getAttribute('data-advisor')) === twin.advisorSavingsEur);
-    });
-
-    setText('roiGrossVal', fmtEur(m.grossClientValueEur, 0));
-    setText('roiRecurringNet', fmtEur(m.recurringNetBenefitEur, 0));
-    setText('roiYear1Net', fmtEur(m.year1NetBenefitEur, 0));
-
-    setHTML('a2RiskTableBody', state.riskRegister.map(r => `
-      <tr>
-        <td><strong>${lang === 'zh' ? r.riskZh : r.riskEn}</strong></td>
-        <td class="mono">${r.level}</td>
-        <td>${lang === 'zh' ? r.ownerZh : r.ownerEn}</td>
-        <td>${lang === 'zh' ? r.controlZh : r.controlEn}</td>
-        <td>${lang === 'zh' ? r.residualZh : r.residualEn}</td>
-      </tr>
     `).join(''));
 
     updateMapPopups();
@@ -1015,7 +998,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         if(window.matchMedia('(max-width: 680px)').matches) {
           requestAnimationFrame(()=>{
             const anchor=document.querySelector(
-              target==='tab-cockpit'||target==='tab-scenarios'?'.context-bar':'.page-container'
+              target==='tab-cockpit'?'.context-bar':'.page-container'
             );
             const headerHeight=document.querySelector('.topbar').getBoundingClientRect().height;
             window.scrollTo({top:anchor.getBoundingClientRect().top+window.scrollY-headerHeight-20,behavior:'instant'});
@@ -1121,21 +1104,6 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       });
     });
 
-    const roiHoursSlider = document.getElementById('roiHoursSlider');
-    if (roiHoursSlider) {
-      roiHoursSlider.addEventListener('input', (e) => {
-        state.twinState.hoursSaved = Number(e.target.value);
-        renderApp();
-      });
-    }
-
-    document.querySelectorAll('.roi-advisor-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.twinState.advisorSavingsEur = Number(btn.getAttribute('data-advisor'));
-        renderApp();
-      });
-    });
-
     const resetBtn = document.getElementById('resetTwinBtn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
@@ -1162,14 +1130,14 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.1.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',
         sources:officialSources.map(({id,url,clause})=>({id,url,clause,checkedAt})),comparison:m.comparison};
       const lang=state.lang;
       document.getElementById('auditSnapshotContent').textContent=[
-        `${lang==='zh'?'演示数据，未经核验或人工批准':'Teaching data; no verification or human approval'} · ${MODEL_VERSION}`,
+        `${lang==='zh'?'演示数据，未经核验或人工批准':'Demo data; no verification or human approval'} · ${MODEL_VERSION}`,
         `${m.vessel.nameEn} · FuelEU target ${m.settings.year}`,
         `EU CO₂ subtotal: ${fmtEur(m.euEtsBillEur,2)} | UK CO₂ subtotal: ${fmtGbp(m.ukEtsBillGbp,2)}`,
         `FuelEU: ${fmtEur(m.fueleuPenaltyEur,2)} | Balance: ${fmtNum(m.netBalanceTonnes,6)} tCB`,

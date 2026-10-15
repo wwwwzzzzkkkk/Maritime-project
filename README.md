@@ -1,5 +1,8 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
+> **Current website / 当前网页：v4.1.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+
 [新手快速上手 / Quick start](docs/QUICK_START.md) · [中文说明](#中文说明) · [English documentation](#english-documentation) · [独立中文文档](README.zh-CN.md) · [Standalone English](README.en.md)
 
 > **NTU MSc Maritime Studies · MT6503 Group Venture Project — Track B: Compliance & RegTech**<br>
@@ -17,7 +20,7 @@
 
 | 入口 | 定位与当前状态 |
 | --- | --- |
-| [`index.html`](index.html) | 默认浅色版。保留原有浅灰液态玻璃、SVG 折射效果、鼠标高光、3D 卡片倾斜、导航滑块、切页及图表回放动效；本轮主要修正计算、内容与响应式排版。 |
+| [`index.html`](index.html) | 默认浅色版。面向客户整理五个模块，保留原有玻璃材质及动态效果；快速调节器保持平面，手机保留可拖动预算浮窗。 |
 | [`index-pro-max.html`](index-pro-max.html) | 保留的 Pro Max 历史工作台版本。本次未修改或重新审查其计算及交互。 |
 
 默认页继续使用原双语基础数据，并在页面内接入独立的 [`js/compliance-engine.mjs`](js/compliance-engine.mjs) 和 [`js/light-data.mjs`](js/light-data.mjs)。两版不再被描述为使用同一套已验证的新计算逻辑。
@@ -42,17 +45,17 @@ python3 -m http.server 48173 --bind 127.0.0.1
 
 | 模块 | 功能及证据边界 |
 | --- | --- |
-| 概览与航线 | 当前船舶、分制度预算、示例地理航线与活动台账；范围为预设教学输入，不自动判断真实法律适用性。 |
-| 数字孪生与租约 | 比较未调整基准、当前组合与假设供给内的 FuelEU 组池；EUA、航速、燃料与合同分摊用于条件推演。 |
-| 白盒审计与反漂绿 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
-| IMO 情景压力 | 原样通过、修订通过、持续僵局三种创业压力测试；切换情景不再暗改区域法规目标与 EUA 价格。 |
-| 解释与商业模型 | 当前结果的预设解释、官方法规链接、A1 客户价值、A2 风险，以及市场、人的负担与平台自身 ESG 测量计划。 |
+| 预算总览 | 当前船舶、分制度预算、示例航线与活动台账；首页明确演示模式与时间范围，不自动判断真实法律适用性。 |
+| 方案比较 | 比较未调整基准、当前组合与假设供给内的 FuelEU 组池；EUA、航速、燃料与合同分摊用于条件推演。 |
+| 计算依据 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
+| 未来情景 | 三种可能监管路径及客户需要核对的事项；不自动改变区域预算，也不计入假设全球收费。 |
+| 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；未连接 AI 服务。 |
 
 顶栏支持 `中 / EN` 切换。原有视觉材质及动效保留；桌面顶栏换行、手机 KPI 单列和表格局部滚动用于解决裁切。当前计算快照可导出为 JSON，记录输入、来源、假设及输出。
 
 ### 4. A3 基准算例与计算修复
 
-以下为 `MV A3-BENCHMARK` 的固定教学输入，未进行外部核验。金额不能作为真实船舶完整账单。
+以下为界面中的 `MV DEMO-01`（内部数据名 `MV A3-BENCHMARK`）的固定示例输入，未进行外部核验。金额不能作为真实船舶完整账单。
 
 | 算例 | 输入与结果 |
 | --- | --- |
@@ -78,7 +81,7 @@ EU/UK ETS 当前只计算 **CO₂ 部分**。CH₄/N₂O 缺失不等于零，�
 
 ### 6. 必要检查与版本回退
 
-本轮完成 9 项核心算式回归及一次页面操作检查，按要求未扩大为大范围审计。
+v4.0 完成 9 项核心算式回归及一次页面操作检查。v4.1.0 只做与本次内容、双语和布局改动有关的桌面/手机检查，未扩大测试范围。
 
 ```sh
 npm ci
@@ -107,7 +110,7 @@ CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm r
 
 | Entry point | Purpose and current status |
 | --- | --- |
-| [`index.html`](index.html) | Default light edition. Retains the original daylight glass, SVG refraction, pointer highlights, 3D card tilt, sliding navigation, panel transitions and chart replays. This update corrects calculations, content and responsive layout. |
+| [`index.html`](index.html) | Default light edition. Customer-oriented modules with the original glass and motion design. Quick controls remain flat; mobile retains the draggable live budget window. |
 | [`index-pro-max.html`](index-pro-max.html) | Preserved historical Pro Max workbench. Its calculations and interactions were not changed or re-audited in this update. |
 
 The default page retains its bilingual base data while using the independent [`js/compliance-engine.mjs`](js/compliance-engine.mjs) and [`js/light-data.mjs`](js/light-data.mjs). The two editions should not be described as sharing the same newly verified calculation logic.
@@ -132,11 +135,11 @@ Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses E
 
 | Module | Capability and evidence boundary |
 | --- | --- |
-| Overview and route | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
-| Twin and charter | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
-| Formula audit and anti-greenwashing | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
-| IMO scenarios | Venture stress tests for adoption as agreed, adoption with amendments and continued deadlock. Scenario selection does not silently alter regional targets or EUA prices. |
-| Explanations and business model | Current-result explanation templates, official references, A1 customer value, A2 risks, market hypotheses, human workload and platform-ESG measurement plans. |
+| Budget Overview | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
+| Compare Options | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
+| Calculation Basis | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
+| Future Scenarios | Three possible regulatory paths and customer review steps; no automatic change to regional budgets or hypothetical global charges. |
+| Help & About | Quick-start steps, preset FAQs following current calculations, capability scope and a guide link. Course and business plans are in repository documents. |
 
 The `中 / EN` control switches languages. Existing visual materials and effects are retained; header wrapping, stacked mobile metrics and local table scrolling address clipping. A working JSON snapshot records current inputs, sources, assumptions and outputs.
 
@@ -168,7 +171,7 @@ Explanations are templates. No live AI/RAG, expert-approval service, real-data i
 
 ### 6. Minimal checks and rollback
 
-The delivery used nine core calculation regressions and one bounded page smoke check, without expanding to a broad audit.
+v4.0 used nine core calculation regressions and one bounded page smoke check. v4.1.0 uses a focused desktop/mobile check of the changed content, bilingual UI and layout, without expanding to a broad audit.
 
 ```sh
 npm ci

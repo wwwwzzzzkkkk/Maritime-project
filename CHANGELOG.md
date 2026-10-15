@@ -1,5 +1,15 @@
 # Change log
 
+## v4.1.0 · 2026-10-15
+
+- Reorganize the customer workflow around budgets, comparisons, calculation evidence, future scenarios and help.
+- Show demo/data-period/CO₂ limitations prominently; retain formula/source disclosures and live mobile budgets.
+- Move course, unit-economics, venture-risk and validation/ESG plans into public repository documents with an original-content archive.
+- Preserve bilingual READMEs/guides, original glass/motion design and the flat quick adjuster; leave calculation engine and Pro Max unchanged.
+- 客户页面改为预算、方案、依据、未来与帮助；课程及商业材料移入公开项目文档，保留全部版本记录。
+- [完整中英文更新说明 / Full bilingual notes](docs/releases/v4.1.0.md) · [GitHub Release](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0)
+
+
 ## Quick adjuster motion · 2026-10-15
 
 - Remove pointer tilt and spatial parallax from the overview quick adjuster and its nested controls, retaining glass styling and pointer highlights.

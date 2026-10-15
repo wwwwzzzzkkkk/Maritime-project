@@ -1483,3 +1483,35 @@ input[type="range"]::-webkit-slider-thumb:hover {
   body:not([data-active-tab="tab-cockpit"]):not([data-active-tab="tab-scenarios"]) .context-bar { display: none; }
   body[data-active-tab="tab-scenarios"] .vessel-meta-inline { display: none; }
 }
+
+/* v4.1 customer content hierarchy; original glass and motion definitions remain intact. */
+.customer-notice {
+  max-width: 1292px; margin: 12px auto 0; padding: 0 24px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
+  font-size: 12px; line-height: 1.6; color: var(--text-secondary);
+}
+.customer-notice > span:last-child { flex-basis: 100%; color: var(--text-muted); }
+body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
+.customer-details { min-width: 0; }
+.customer-details > summary {
+  padding: 10px 0; min-height: 44px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--accent);
+}
+.customer-details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.customer-details[open] > summary { margin-bottom: 12px; }
+.reference-list { display: grid; gap: 10px; margin: 14px 0; }
+.reference-list .mono { overflow-wrap: anywhere; }
+.help-steps { padding-left: 22px; margin: 0; display: grid; gap: 14px; }
+.help-steps li, #tab-ai-esg .control-group p, #tab-audit .control-group p,
+#tab-scenarios .control-group p { font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+#tab-scenarios .scenario-bar { flex-wrap: wrap; padding: 8px 0; }
+#tab-scenarios .scenario-btn { min-height: 44px; }
+#tab-scenarios > .panel-card, #tab-ai-esg > .panel-card { margin-top: 0; }
+#tab-ai-esg > .panel-card, #tab-audit > .panel-card:last-child { margin-top: 20px; }
+#tab-ai-esg .ghost-btn, .customer-details .ghost-btn { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; }
+.footer-bar a { color: inherit; text-underline-offset: 3px; }
+@media (max-width: 680px) {
+  .customer-notice { margin-top: 8px; padding: 0 16px; }
+  body[data-active-tab="tab-scenarios"] .context-bar { display: none; }
+  #tab-ai-esg .prompt-chip { min-height: 44px; white-space: normal; text-align: left; }
+}
