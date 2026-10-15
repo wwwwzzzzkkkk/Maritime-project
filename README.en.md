@@ -4,6 +4,8 @@
 
 **🌐 Live website:** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)
 
+**New users:** [Quick-start guide (bilingual, with formulas and sources)](docs/QUICK_START.md#english-quick-start)
+
 ## 1. Overview and editions
 
 **MAREG (`Maritime-project`)** is an interactive teaching prototype for the NTU MSc Maritime Studies **MT6503 Group Venture Project, Track B: Compliance & RegTech**. It explores multi-regime budgets, voyage scenarios, reimbursement and venture risk for a proposed customer segment of owners/managers operating **5–20 ships**. Demand and willingness to pay remain hypotheses requiring validation.

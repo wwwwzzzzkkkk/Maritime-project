@@ -4,6 +4,8 @@
 
 **🌐 在线运行网址：** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)
 
+**新手入口：** [快速上手指南（中英文，附计算公式与来源）](docs/QUICK_START.md#中文快速上手)
+
 ## 1. 项目简介与版本
 
 **MAREG（Maritime-project）** 是南洋理工大学海事研究硕士课程 **MT6503 Group Venture Project，Track B：合规与监管科技（Compliance & RegTech）** 的交互式教学原型。项目以管理约 **5–20 艘船舶**的中小型船东及船舶管理公司为目标客户假设，用于解释多制度预算、航次情景、合同分摊与创业风险；客户需求和付费意愿仍需验证。

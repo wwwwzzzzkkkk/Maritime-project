@@ -1,6 +1,6 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-[中文说明](#中文说明) · [English documentation](#english-documentation) · [独立中文文档](README.zh-CN.md) · [Standalone English](README.en.md)
+[新手快速上手 / Quick start](docs/QUICK_START.md) · [中文说明](#中文说明) · [English documentation](#english-documentation) · [独立中文文档](README.zh-CN.md) · [Standalone English](README.en.md)
 
 > **NTU MSc Maritime Studies · MT6503 Group Venture Project — Track B: Compliance & RegTech**<br>
 > **🌐 网站运行地址 / Live website:** [https://wwwwzzzzkkkk.github.io/Maritime-project/](https://wwwwzzzzkkkk.github.io/Maritime-project/)<br>
@@ -8,6 +8,8 @@
 > **GitHub:** [wwwwzzzzkkkk/Maritime-project](https://github.com/wwwwzzzzkkkk/Maritime-project)
 
 ## 中文说明
+
+**第一次使用？** 从 [中英文快速上手指南](docs/QUICK_START.md#中文快速上手) 开始：5 分钟操作步骤、三个练习，以及附录中的公式、算例与来源。
 
 ### 1. 项目简介与版本
 
@@ -96,6 +98,8 @@ CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm r
 ---
 
 ## English documentation
+
+**First visit?** Read the [bilingual quick-start guide](docs/QUICK_START.md#english-quick-start) for five-minute instructions, three exercises, and formulas/examples/sources in the appendices.
 
 ### 1. Overview and editions
 
