@@ -1,4 +1,4 @@
-# Light edition v4.0: methods and evidence
+# Light edition v4.2: methods and evidence
 
 ## Architecture and scope
 
@@ -13,7 +13,7 @@ The original light UI uses its original per-page state with an independent calcu
 - EU/UK currencies remain separate. The UK 2026 example covers July–December activity. Special UK routes/exemptions and full legal-scope determination are outside the model.
 - FuelEU: target is 91.16×0.98 through 2029, 91.16×0.94 from 2030. CB=(target−actual)×scoped energy. Only a negative residual balance produces a penalty. The engine supports Art. 23 escalation; the preserved UI currently demonstrates n=1 only, not verified history.
 - Pool allocation is the minimum of requested tonnes, declared available tonnes and the ship's deficit. The pooling-only comparison derives demand dynamically. Actual participants, positive aggregate pool balance, verifier approvals and database registration are not implemented.
-- The fixed-distance model uses squared speed ratio for sailing energy. Sailing is assumed to be 88% of EU energy, stationary activity 12%. Port CO₂ is unchanged by speed. Additional sailing time and auxiliary loads are outside this approximation; no verified JIT window is promised.
+- The fixed-distance model uses squared speed ratio for sailing energy. Sailing is assumed to be 88% of EU energy, stationary activity 12%. Port CO₂ is unchanged by speed. v4.2 adds scoped extra sailing hours, daily non-fuel time cost and user-assumed additional auxiliary fuel. It does not establish a verified JIT window.
 - The illustrative fuel energy fraction b reduces CO₂ by 0.26b and WtW intensity by 0.32b. These are not universal fuel/engine factors or certified biofuel treatment. Prices per VLSFO-equivalent tonne are cost assumptions.
 - ETS records and annual FuelEU energy are independently specified. They have not been reconciled to one actual vessel-year fuel ledger.
 - Physical figures are in-scope WtW model estimates, not entire-vessel annual emissions or observed reductions. Financial comparisons use the same year/prices; price-only effects are shown separately.
@@ -49,4 +49,17 @@ Original visual and motion design is retained. Layout fixes are appended without
 
 ## UI v4.1.0
 
-The calculation model remains v4.0; the customer interface is v4.1.0, recorded separately in exported snapshots. Budget inputs and formulas are unchanged. Business/ROI controls leave the customer UI; their assumptions are preserved in [project plans](PROJECT_PLANNING.md). Course mappings live in [course documents](COURSE_MAPPING.md). Calculation traces and all official source links remain available through disclosures. This content migration is not a fresh regulatory or course-brief audit.
+At the v4.1.0 checkpoint the calculation model remained v4.0 and the interface was v4.1.0, recorded separately in exported snapshots. Budget inputs and formulas are unchanged. Business/ROI controls leave the customer UI; their assumptions are preserved in [project plans](PROJECT_PLANNING.md). Course mappings live in [course documents](COURSE_MAPPING.md). Calculation traces and all official source links remain available through disclosures. This content migration is not a fresh regulatory or course-brief audit.
+
+
+## UI/model v4.2.0
+
+Both UI and calculation model are now versioned 4.2.0. `option-planner.mjs` performs a finite search and `planning-ui.mjs` handles native bounded user input and the comparison view. Default zero-adjustment benchmark values are unchanged. Scope/price defaults are editable and user confirmations start false and reset on vessel changes. Draft inputs are marked unapplied and cannot silently replace calculation inputs.
+
+The declared distance represents cumulative sailing in the same scope/period as compared energy and records, not map distance. Added hours = distance/new speed − distance/base speed. Extra auxiliary fuel = added days × user-assumed tonnes/day. Its energy is added using 41,000 MJ/t VLSFO-eq; its CO₂ uses an editable assumed factor and ETS coverage. It shares the simplified fuel blend treatment. No claim is made that these assumptions constitute certified-fuel factors or reconciled actual records. Price/time/auxiliary defaults are demonstration inputs, not newly sourced regulatory facts.
+
+Table totals contain EUR compliance, net fuel delta and non-fuel time cost. They exclude UK GBP and baseline costs common to compared options; they are not full voyage costs. Table party amounts apply the selected illustrative split to operating deltas as well; the existing headline owner KPI remains compliance-only. Both identities are explicit. Candidate ranking minimizes the scoped EUR total rather than owner-specific cost or whole-vessel multi-currency cost.
+
+Search: speed step 0.2 kn across −2..0, fuel step 5 percentage points plus the exact entered cap, and zero/capped pooling endpoints. Include a valid current option. Pool costs and residual penalties are linear at fixed speed/fuel. Numeric infeasibility and unconfirmed resource/operating conditions are separate. A user-confirmed candidate is preferred when available; otherwise the cheapest pending model candidate is displayed. It does not certify an executable strategy or guarantee global optimality. Snapshots include applied input values, model vessel inputs, search scope, recommendation and evaluated rows.
+
+The budget float now works on desktop and mobile when original KPIs are out of view; materials and drag/collapse/reset behavior are retained. No backend, procurement, forecasting or filing was added.

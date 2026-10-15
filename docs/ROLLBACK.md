@@ -27,3 +27,8 @@ The baseline tag remains a reference even after later versions are added. Keep t
 The live site now follows published semantic versions. `light-v4.0-pre-customer-2026-10-15` pins `b4db904`, including the mobile float and flat quick adjuster immediately before customer-content migration. `v4.1.0` pins the completed customer update. Each GitHub Release has bilingual change notes and links back to the matching version.
 
 For a simple immediately-following rollback of this update, create a new revert commit for the v4.1.0 implementation commit, review it, and push through the authorized workflow. If later changes exist, restore only the intended files from the saved checkpoint. Keep the version/CHANGELOG consistent with the new restoration release; do not delete or move older tags. README and project documents are retained separately from the customer UI, not made private.
+
+
+## v4.2.0
+
+`light-v4.1.0-pre-planner-2026-10-15` preserves `d8133c8` before the planner/accounting changes. `v4.2.0` identifies the new model and UI. Keep tags/releases, use a new revert or targeted restoration commit, and give a restoration its own version. Do not rewrite published history.

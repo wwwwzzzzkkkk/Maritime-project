@@ -1,6 +1,11 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台（中文文档）
 
-> **Current website / 当前网页：v4.1.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.2.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+
+> **v4.2.0:** “方案比较”新增可编辑能源/强度、价格、航时与供给限制，六类方案及有条件的最低成本候选；双方金额明确包含营运增量。电脑与手机均支持可拖动玻璃预算浮窗。预算仍为声明范围内的示例估算，非完整航次成本或法定核验。
+>
+> Compare six option families using editable energy/intensity, prices, time and supply limits. Conditional candidates and party amounts include operating deltas. The draggable glass budget now works on desktop and mobile. Results remain scoped demo estimates, not full-voyage costs or statutory verification.
 
 
 [中英双语主文档](README.md) · [English documentation](README.en.md)
@@ -41,7 +46,7 @@ python3 -m http.server 48173 --bind 127.0.0.1
 | 模块 | 功能及证据边界 |
 | --- | --- |
 | 预算总览 | 当前船舶、分制度预算、示例航线与活动台账；首页明确演示模式与时间范围，不自动判断真实法律适用性。 |
-| 方案比较 | 比较未调整基准、当前组合与假设供给内的 FuelEU 组池；EUA、航速、燃料与合同分摊用于条件推演。 |
+| 方案比较 | 比较基准、当前、航速、燃料、组池和组合搜索；计入新增航时与辅助燃油，明确限制、候选状态及双方承担。 |
 | 计算依据 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
 | 未来情景 | 三种可能监管路径及客户需要核对的事项；不自动改变区域预算，也不计入假设全球收费。 |
 | 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；未连接 AI 服务。 |
@@ -76,7 +81,7 @@ EU/UK ETS 当前只计算 **CO₂ 部分**。CH₄/N₂O 缺失不等于零，�
 
 ## 6. 必要检查与版本回退
 
-v4.0 完成 9 项核心算式回归及一次页面操作检查。v4.1.0 只做与本次内容、双语和布局改动有关的桌面/手机检查，未扩大测试范围。
+v4.0 完成 9 项核心算式回归及一次页面操作检查。v4.1.0 检查内容和布局。v4.2.0 完成原有 9 项与新增 5 项计算/约束检查，以及一次针对性的桌面/手机操作检查。
 
 ```sh
 npm ci

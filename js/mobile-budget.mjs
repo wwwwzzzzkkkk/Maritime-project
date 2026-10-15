@@ -1,4 +1,4 @@
-// Mobile presentation only; values are supplied by the existing calculation/render pipeline.
+// Floating presentation only; values are supplied by the existing calculation/render pipeline.
 export function createMobileBudget() {
   const windowEl=document.getElementById('mobileBudget');
   const content=document.getElementById('mobileBudgetContent');
@@ -7,7 +7,6 @@ export function createMobileBudget() {
   const reset=document.getElementById('mobileBudgetReset');
   const summary=document.querySelector('.kpi-strip');
   const header=document.querySelector('.topbar');
-  const mobile=window.matchMedia('(max-width: 680px)');
   const viewport=window.visualViewport;
   const position={x:0,y:0,custom:false};
   let language='zh';
@@ -33,7 +32,7 @@ export function createMobileBudget() {
     const originalVisible=summary.getClientRects().length>0
       && rect.bottom>Math.max(viewport.offsetTop,header.getBoundingClientRect().bottom)
       && rect.top<viewport.offsetTop+viewport.height;
-    const show=mobile.matches&&!originalVisible;
+    const show=!originalVisible;
     const wasHidden=windowEl.hidden;
     windowEl.hidden=!show;
     if(show&&wasHidden)reposition();
@@ -102,7 +101,6 @@ export function createMobileBudget() {
   window.addEventListener('resize',resize);
   viewport.addEventListener('resize',resize);
   viewport.addEventListener('scroll',schedule,{passive:true});
-  mobile.addEventListener('change',schedule);
 
   return {
     refresh,

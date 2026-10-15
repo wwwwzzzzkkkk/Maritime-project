@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.1.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.2.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.1.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.2.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -36,21 +36,27 @@ For the default light edition v4.1.0, documented on 15 October 2026. No installa
 
 地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机导航显示“总览 / 方案 / 依据 / 未来 / 帮助”五个短名称，切换后直接定位到对应内容；费用卡只在总览显示，宽表格可横向滑动。
 
-手机上，原费用卡滚出视野或切换到其他模块时，会自动出现**实时预算浮窗**，随参数同步更新。拖动浮窗标题可移动位置；点“收起 / 展开”调整占用空间，点“归位”恢复默认位置。回到原费用卡区域，浮窗自动隐藏。欧元和英镑仍分开显示。
+电脑或手机上，原费用卡滚出视野或切换到其他模块时，会自动出现**实时预算浮窗**，随参数同步更新。拖动浮窗标题可移动位置；点“收起 / 展开”调整占用空间，点“归位”恢复默认位置。回到原费用卡区域，浮窗自动隐藏。欧元和英镑仍分开显示。
 
 ### 3. 到“方案比较”比较方案
 
-这里比较 **未调整基准、当前组合、假设组池** 三行。先看“总净支出”，再看费用构成。它只包含表内项目，不是完整航次总成本；UK 英镑费用另外查看。
+先查看上方的基准强度、范围内能源与基准航速，再展开“编辑能源、价格及运营限制”。预填值是示例；修改后点击“应用输入并比较”，否则结果仍使用上次已应用的输入。
+
+距离、能源、排放台账和新增航时必须属于同一声明范围与比较期间；地图不提供自动测距。每日时间成本填写非燃油增量，避免重复计费。燃料兼容性、认证与供给、组池参与条件及运营输入需自行核对；勾选确认不等于外部核验。
+
+表格比较 **保持现状、当前方案、仅航速、仅燃料、仅组池、组合搜索** 六类结果。先看范围内欧元支出及相对基准差额，再看新增航时和条件状态。超出时间或燃料限制的当前方案会明确标出；未知条件只显示待确认候选。UK 英镑费用独立查看，当前搜索只最小化表列欧元成本，不是完整航次成本。
+
+候选结果显示合规费用、燃料净增量和时间成本；点击“载入候选参数”只更新滑块，不执行采购或申报。电脑与手机在原费用卡离开视野时都会显示可拖动的玻璃预算浮窗。
 
 拖动 **组池** 滑块，可申请用假设盈余补缺口。申请量不一定等于实际分配量：系统最多使用本船缺口和假设供给内的数量。供给不足时仍有罚款。
 
-GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合同默认条款。换一种分摊会改变谁承担费用，不会改变该船总排放。
+GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合同默认条款。换一种分摊会改变谁承担费用，不会改变该船总排放或整船支出。首页船东卡只分摊合规部分；方案表还将营运增量按同一示例比例分给双方，英国费用不包含其中。
 
 ### 4. 到“计算依据”看原因
 
 展开“输入、公式与结果”，查看当前船舶的计算明细。官方来源在同页下方按需展开。双环中心数字中，**负百分比表示相对基准下降，0 表示未变，正值表示上升**；圆弧是示意动效，以中心读数为准。
 
-基准使用**同一船舶、同一价格、同一目标**，但不做航速、燃料或组池调整。所以只改碳价时，账单会变，而方案相对基准的变化百分比仍可能为 0。
+基准使用**同一船舶输入、同一价格、同一目标**，但不做航速、燃料或组池调整。所以只改碳价时，账单会变，而方案相对基准的变化百分比仍可能为 0。
 
 费用下降不等于实际减排。特别是只使用组池时，财务结果可以改善，但本船 WtW 模型值不变。
 
@@ -100,15 +106,21 @@ Use the controls in **Budget Overview**:
 
 Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, the short tabs Home / Compare / Basis / Future / Help open their content immediately. Budget cards appear in Home only; wide tables scroll horizontally.
 
-On mobile, a **live budget window** appears when the original cards leave view or you open another module. Values update as you change inputs. Drag its title to move it, use Collapse / Expand to save space, or Reset to restore its position. It hides when the original cards return to view. EUR and GBP remain separate.
+On desktop and mobile, a **live budget window** appears when the original cards leave view or you open another module. Values update as you change inputs. Drag its title to move it, use Collapse / Expand to save space, or Reset to restore its position. It hides when the original cards return to view. EUR and GBP remain separate.
 
 ### 3. Compare options in “Compare Options”
 
-Compare **Unmodified baseline**, **Active option** and **Assumed pooling option**. Read total net expenditure, then its components. It includes the listed items only, not the full voyage cost; inspect UK GBP costs separately.
+Review the base intensity, scoped energy and service speed, then expand Edit Energy, Prices and Operating Limits. Select Apply Inputs & Compare after editing; drafts do not change the applied calculation.
+
+Distance, energy, emissions records and extra time must refer to the same declared scope and comparison period. The map does not measure this distance. Daily time cost excludes separately counted fuel costs. Confirm operating inputs, fuel compatibility/certification/supply and pool participation conditions; a check mark is not external verification.
+
+Six rows compare baseline, current, speed-only, fuel-only, pooling-only and combined search. Read scoped EUR expenditure/delta, extra hours and condition status. The current option is flagged if outside numerical limits; unknown conditions remain pending. UK GBP is separate and excluded from the EUR objective. Results are not full-voyage costs.
+
+Load Candidate Inputs only updates controls, without purchasing or filing. The same draggable glass budget appears on desktop and mobile when the original cards leave view.
 
 The pooling slider requests surplus allocation. The actual allocation is capped by the ship's deficit and assumed available supply. Insufficient supply leaves a remaining penalty.
 
-GENCON, NYPE and 50:50 buttons select **illustrative reimbursement splits**, not standard-contract defaults. Changing the split changes who pays, not the vessel's total emissions.
+GENCON, NYPE and 50:50 buttons select **illustrative reimbursement splits**, not standard-contract defaults. Changing the split changes who pays, not vessel emissions or overall cost. Table party amounts include operating deltas; the headline owner KPI covers compliance only.
 
 ### 4. Inspect “Calculation Basis”
 
@@ -196,13 +208,13 @@ Sources: coverage in C1/C2; tonnes/prices are the A1 demo inputs/assumptions. ET
 ```text
 目标 / Target = 91.16 × (1 − target reduction)
 CBg = (Target − I) × E
-实际组池分配 / Allocated pool = min(requested, 400, max(−CBg, 0) / 1,000,000)
+实际组池分配 / Allocated pool = min(requested, applied available supply, max(−CBg, 0) / 1,000,000)
 组池后余额 / Net CBg = CBg + allocated pool × 1,000,000
 基础罚款 EUR / Base penalty = max(−Net CBg, 0) / (I × 41,000) × 2,400
 组池费用 EUR / Pool fee = allocated pool × 180
 ```
 
-正余额不计罚。400 tCB 是本项目假设供给上限，€180 是报价假设；真实组池还需满足参与、分配与核验条件。
+正余额不计罚。400 tCB 是可编辑的初始示例供给上限，€180 是报价假设；真实组池还需满足参与、分配与核验条件。
 
 A positive balance has no penalty. The 400 tCB cap and €180 price are project assumptions; real pooling also requires eligible participants, allocation and verification.
 
@@ -225,30 +237,33 @@ Sources: targets/base penalty in C3, pooling in C4. The UI uses a single-period 
 ```text
 r = (v₀ + speed change) / v₀
 F = 0.88 × r² + 0.12
-E = E₀ × F
+extraHours = distanceNm / newSpeed − distanceNm / baseSpeed
+extraAuxFuel = extraHours / 24 × auxFuelPerDay
+E = E₀ × F + extraAuxFuel × 41,000
 I = I₀ × (1 − 0.32 × b)
+新增辅助 CO₂ / Extra auxiliary CO₂ = extraAuxFuel × auxCo2Factor × (1 − 0.26 × b)
 航行 CO₂ / Sailing CO₂ = original CO₂ × r² × (1 − 0.26 × b)
 港内 CO₂ / Port CO₂ = original CO₂ × (1 − 0.26 × b)
 ```
 
-这是固定航程近似，港内 CO₂ 不随降速变化。88/12 和 0.26/0.32 来自项目模型假设，不是法规规定、燃料证书或已验证 JIT 效果。来源：计算引擎的 `ASSUMPTIONS` 与 `computeScenario()`。
+这是同一声明范围的固定航程近似，原港内 CO₂ 不随降速变化；新增航时辅助燃油单独计入能源和 EU ETS（AUX 行），其覆盖比例由输入确定。88/12 和 0.26/0.32 来自项目模型假设，不是法规规定、燃料证书或已验证 JIT 效果。来源：计算引擎的 `ASSUMPTIONS` 与 `computeScenario()`。
 
-This is a fixed-distance approximation; port CO₂ does not change with speed. The 88/12 and 0.26/0.32 coefficients are project assumptions, not legal requirements, fuel certificates or verified JIT savings. Source: `ASSUMPTIONS` and `computeScenario()` in the engine.
+This is a fixed-distance approximation within the declared scope; original port CO₂ does not change with speed. Extra-time auxiliary fuel is added to energy and the EU ETS AUX row at the entered coverage. The 88/12 and 0.26/0.32 coefficients are project assumptions, not legal requirements, fuel certificates or verified JIT savings. Source: `ASSUMPTIONS` and `computeScenario()` in the engine.
 
 ### B4. 方案总额与船东分摊 / Option totals and owner allocation
 
 ```text
 Q₀ = E₀ / 41,000                       (t VLSFO-equivalent)
-省油金额 / Fuel savings = Q₀ × (1 − F) × 550
-燃料溢价 / Fuel premium = Q₀ × F × b × 260
-欧元总净支出 / Total EUR = EU ETS + FuelEU penalty + pool fee + fuel premium − fuel savings
+省油金额 / Fuel savings = (E₀ − E) / 41,000 × applied bunker price
+燃料溢价 / Fuel premium = E / 41,000 × b × applied fuel premium
+欧元总净支出 / Total EUR = EU ETS + FuelEU penalty + pool fee + fuel premium − fuel savings + time cost
 船东承担 / Owner = (EU ETS + FuelEU penalty + pool fee) × owner share
 合同偿付方 / Reimbursing party = same compliance sum × (1 − owner share)
 ```
 
-550、260 和分摊比例为项目假设。营运增量只按本模型的范围内能源估算；表内总额不包含完整基准燃油账单、全部航次成本、改造或延误成本。UK 英镑不参与欧元合计；船东分摊不包含营运增量或 UK 费用。来源：引擎 `computeScenario()` 和页面 `computeComplianceMetrics()`；合同参考见 C5。
+550、260 和分摊比例为项目假设。营运增量只按本模型的范围内能源估算；表内总额不包含完整基准燃油账单、全部航次成本或改造成本，新增航时费仅采用输入的日费率。UK 英镑不参与欧元合计；首页船东卡不包含营运增量，下表双方金额包含按同一示例比例分摊的营运增量。来源：引擎 `computeScenario()` 和页面 `computeComplianceMetrics()`；合同参考见 C5。
 
-The 550/260 prices and allocation shares are assumptions. Operating deltas use the model's in-scope energy; the table does not include the full baseline fuel bill, all voyage costs, retrofits or delay costs. UK GBP is excluded from EUR totals. Owner allocation excludes operating deltas and UK costs. Sources: engine `computeScenario()`, UI `computeComplianceMetrics()`; contractual reference in C5.
+The 550/260 prices and allocation shares are assumptions. Operating deltas use the model's in-scope energy; the table excludes the full baseline fuel bill, all voyage costs and retrofits, while extra time uses the entered daily rate. UK GBP is excluded. The headline owner KPI excludes operating deltas; table party amounts include those deltas at the same illustrative share. Sources: engine `computeScenario()`, UI `computeComplianceMetrics()`; contractual reference in C5.
 
 ### B5. 双环百分比 / Gauge percentages
 
@@ -275,9 +290,9 @@ Financial comparison uses the B4 EUR total; physical comparison uses the in-scop
 
 僵局情景例 / Deadlock example: `55×€3,200 − €180,000 = −€4,000`；`180,000/3,200` 向上取整 / rounded up = **57** 个全年等效客户 / full-year equivalent clients。
 
-这些数值来自项目 A1/情景规划输入，保存在代码中；不是市场研究成果。额外内部成本、获客和投资回收需另计，工时估值未必成为现金。来源：页面 `computeComplianceMetrics()`、[情景数据](../js/light-data.mjs) 与原有双语数据中的 A1/A2 示例。
+这些数值来自项目 A1/情景规划输入，保存在代码中；不是市场研究成果。额外内部成本、获客和投资回收需另计，工时估值未必成为现金。来源：引擎 `clientValue()`、[情景数据](../js/light-data.mjs) 与原有双语数据中的 A1/A2 示例。
 
-These values are project A1/scenario planning inputs stored in code, not market research findings. Additional internal costs, acquisition and investment recovery need separate treatment; time value may not become cash. Sources: UI `computeComplianceMetrics()`, linked scenario data and the original bilingual A1/A2 examples.
+These values are project A1/scenario planning inputs stored in code, not market research findings. Additional internal costs, acquisition and investment recovery need separate treatment; time value may not become cash. Sources: engine `clientValue()`, linked scenario data and the original bilingual A1/A2 examples.
 
 </details>
 
@@ -303,3 +318,26 @@ These values are project A1/scenario planning inputs stored in code, not market 
 
 
 项目团队资料 / For the project team: [课程映射 / Course map](COURSE_MAPPING.md) · [商业验证与治理计划 / Venture and governance plans](PROJECT_PLANNING.md)。这些是公开文档，不是客户操作步骤。These public documents are separate from the customer workflow.
+
+
+## v4.2.0：新增成本与搜索口径 / Added costs and search scope
+
+```text
+新增时间成本 / Time cost = extraHours / 24 × dailyTimeCost
+燃料节省金额（可为负）/ Fuel savings (may be negative) = (E₀ − E) / 41,000 × bunkerPrice
+燃料溢价 / Fuel premium = E / 41,000 × blendShare × blendPremium
+范围内欧元支出 / Scoped EUR = EU ETS + FuelEU penalty + pool fee + fuel premium − fuel savings + time cost
+表内船东 / Table owner = compliance owner + operating delta × illustrative owner share
+表内租家 / Table charterer = scoped EUR − table owner
+```
+
+新增示例输入：同范围距离 6,000 海里、允许新增 24 小时、非燃油时间成本 €5,000/天、辅助燃油 2 t VLSFO-eq/天、CO₂ 因子 3.114 t/t、辅助 ETS 覆盖 100%、燃料占比上限 30%。均可编辑，均不是适用于所有船舶的官方参数。原 ETS 台账和 FuelEU 能源仍独立给定；编辑能源/强度不自动重建原 ETS 吨数，必须另行对账。
+
+New demo inputs: 6,000 nm within scope, 24 extra hours allowed, €5,000/day non-fuel time cost, 2 t VLSFO-eq/day auxiliary fuel, 3.114 t/t CO₂ factor, 100% auxiliary ETS coverage and 30% fuel-share limit. Editable assumptions, not universal regulatory parameters. Original ETS and FuelEU records remain independently specified; editing energy/intensity does not rebuild the original ETS tonnages.
+
+搜索航速 0 至 −2 kn，步长 0.2；燃料步长 5 个百分点并包含输入上限；组池比较 0 与供给/缺口上限两端，并纳入当前满足限制的方案。组池成本在固定燃料/航速下呈线性，故比较两个端点。优先在用户确认条件的组合中选最低欧元成本者；若均未确认，只展示最低模型成本待确认候选。不是连续全局最优、完整成本预测或执行承诺。
+
+Search speed from 0 to −2 kn in 0.2 steps, fuel share in 5-point steps plus the exact cap, and pooling at zero or capped supply/deficit; include the valid current option. Pool costs are linear for fixed speed/fuel, so compare endpoints. Prefer the cheapest user-confirmed candidate; otherwise show a pending model candidate. This is not continuous global optimization, full-cost forecasting or execution assurance.
+
+比较表和候选金额采用“合规费用＋营运增量”的费用比较口径，没有加回各方案共有的基准燃油账单，因此数值可能为负；不是负的应付账单、现金退款或利润。首页合规卡仍为对应费用预算。
+Comparison values combine compliance costs with operating deltas, excluding common baseline fuel costs. They can be negative; they are not negative payable bills, cash refunds or profit. Headline compliance cards retain their separate budget meaning.

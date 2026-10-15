@@ -15,3 +15,8 @@ Mobile follow-up: five short labels retain the original sliding pill; the multi-
 ## v4.1.0 customer information layout
 
 Navigation now follows budgets, option comparison, calculation evidence, future scenarios and help. Existing glass cards and effects are reused. Formula/source disclosures and onboarding use native HTML and existing tokens. The quick adjuster remains flat, as explicitly requested; other card effects and the mobile budget window remain. The future selector lives inside its view. Course and venture plans move into public repository documents.
+
+
+## v4.2.0 operating-input layout
+
+Use the same glass cards, typography and materials for the added input disclosure, six-family comparison and conditional candidate. Original motion definitions are retained. Keep the new form flat for editing, matching the existing flat quick adjuster. The budget utility is now available on desktop and mobile with the same materials and direct drag. Dense comparison columns scroll within their container; mobile input fields stack.

@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
   <link rel="stylesheet" href="styles/tokens.css?v=4.0" />
-  <link rel="stylesheet" href="styles/main.css?v=4.1.0" />
+  <link rel="stylesheet" href="styles/main.css?v=4.2.0" />
 </head>
 <body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
@@ -149,7 +149,7 @@
             </div>
             <input aria-label="Speed adjustment" type="range" class="sync-jit" min="-2.0" max="0.0" step="0.2" value="0.0" />
             <div class="control-hint">
-              <span data-zh="固定航程近似；航时与辅助机未完整建模" data-en="Fixed-distance approximation; time and auxiliaries not fully modelled">固定航程近似；航时与辅助机未完整建模</span>
+              <span data-zh="范围内简化模型；新增航时与辅助燃油见方案比较" data-en="Scoped approximation; extra time and auxiliary fuel are in Compare Options">范围内简化模型；新增航时与辅助燃油见方案比较</span>
             </div>
           </div>
 
@@ -240,12 +240,95 @@
          VIEW 2: DIGITAL TWIN & CHARTERPARTY SPLIT SANDBOX
          ================================================================ -->
     <section id="tab-sandbox" class="tab-panel">
+<div class="panel-card" id="planningInputsPanel">
+        <div class="panel-header">
+        <div>
+        <h2 data-zh="基础输入与运营条件" data-en="Base Inputs and Operating Conditions" class="panel-title">基础输入与运营条件</h2>
+        <p data-zh="先核对输入，再比较方案；预填值是演示假设，不是市场报价或已核验数据。" data-en="Review inputs before comparing. Prefilled values are demo assumptions, not market quotes or verified records." class="panel-subtitle">先核对输入，再比较方案；预填值是演示假设，不是市场报价或已核验数据。</p>
+        </div>
+        </div>
+        <p id="planningBaseInputs" class="model-note">
+        </p>
+        <p id="planningCurrentInputs" class="model-note">
+        </p>
+        <details class="customer-details">
+        <summary><span data-zh="编辑能源、价格及运营限制" data-en="Edit Energy, Prices and Operating Limits">编辑能源、价格及运营限制</span>
+        </summary>
+        <form id="planningForm">
+        <div class="planning-fields">
+        <label class="planning-field"><span data-zh="基准范围内能源（MJ）" data-en="Base scoped energy (MJ)">基准范围内能源（MJ）</span>
+        <input type="number" inputmode="decimal" name="euEnergyMJ" value="164000000" min="1000" max="1000000000000.0" step="1" required />
+        <small data-zh="FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。" data-en="FuelEU demo input; match the comparison distance scope and period, not all vessel energy.">FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。</small>
+        </label>
+        <label class="planning-field"><span data-zh="船舶基准强度（gCO₂e/MJ）" data-en="Vessel base intensity (gCO₂e/MJ)">船舶基准强度（gCO₂e/MJ）</span>
+        <input type="number" inputmode="decimal" name="actualWtWIntensity" value="91.6" min="1" max="200" step="0.0001" required />
+        <small data-zh="这是船舶输入；法规参考值为 91.16，不能混用。" data-en="Vessel input; distinct from the regulatory reference of 91.16.">这是船舶输入；法规参考值为 91.16，不能混用。</small>
+        </label>
+        <label class="planning-field"><span data-zh="基准燃油价（€/t VLSFO-eq）" data-en="Base fuel price (€/t VLSFO-eq)">基准燃油价（€/t VLSFO-eq）</span>
+        <input type="number" inputmode="decimal" name="bunkerPrice" value="550" min="0" max="10000" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="低碳燃料溢价（€/t VLSFO-eq）" data-en="Fuel premium (€/t VLSFO-eq)">低碳燃料溢价（€/t VLSFO-eq）</span>
+        <input type="number" inputmode="decimal" name="blendPremium" value="260" min="0" max="10000" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="UKA 假设价格（£/t）" data-en="Assumed UKA price (£/t)">UKA 假设价格（£/t）</span>
+        <input type="number" inputmode="decimal" name="ukPrice" value="60" min="0" max="1000" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="组池假设报价（€/tCB）" data-en="Assumed pool quote (€/tCB)">组池假设报价（€/tCB）</span>
+        <input type="number" inputmode="decimal" name="poolPrice" value="180" min="0" max="10000" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="组池可用量（tCB）" data-en="Available pool (tCB)">组池可用量（tCB）</span>
+        <input type="number" inputmode="decimal" name="poolAvailable" value="400" min="0" max="10000" step="25" required />
+        </label>
+        <label class="planning-field"><span data-zh="可用燃料能源占比上限（%）" data-en="Available fuel-share limit (%)">可用燃料能源占比上限（%）</span>
+        <input type="number" inputmode="decimal" name="maxBlendPct" value="30" min="0" max="50" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="比较范围内航行总距离（海里）" data-en="Scoped total sailing distance (nm)">比较范围内航行总距离（海里）</span>
+        <input type="number" inputmode="decimal" name="distanceNm" value="6000" min="1" max="1000000" step="1" required />
+        <small data-zh="同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。" data-en="Cumulative distance in the same model period, not map measurement; extra time covers this scope only.">同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。</small>
+        </label>
+        <label class="planning-field"><span data-zh="允许增加的航时（小时）" data-en="Allowed extra sailing time (h)">允许增加的航时（小时）</span>
+        <input type="number" inputmode="decimal" name="maxExtraHours" value="24" min="0" max="100000" step="1" required />
+        </label>
+        <label class="planning-field"><span data-zh="新增航时成本（€/天）" data-en="Extra-time cost (€/day)">新增航时成本（€/天）</span>
+        <input type="number" inputmode="decimal" name="dailyTimeCost" value="5000" min="0" max="1000000" step="1" required />
+        <small data-zh="填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。" data-en="Additional non-fuel daily cost in this scope; avoid duplicating fuel or charter costs.">填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。</small>
+        </label>
+        <label class="planning-field"><span data-zh="新增航时辅助耗油（t VLSFO-eq/天）" data-en="Extra-time auxiliary fuel (t VLSFO-eq/day)">新增航时辅助耗油（t VLSFO-eq/天）</span>
+        <input type="number" inputmode="decimal" name="auxFuelPerDay" value="2" min="0" max="1000" step="0.01" required />
+        </label>
+        <label class="planning-field"><span data-zh="辅助燃油 CO₂ 因子（tCO₂/t）" data-en="Auxiliary fuel CO₂ factor (tCO₂/t)">辅助燃油 CO₂ 因子（tCO₂/t）</span>
+        <input type="number" inputmode="decimal" name="auxCo2Factor" value="3.114" min="0.01" max="10" step="0.001" required />
+        <small data-zh="3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。" data-en="3.114 is a demo assumption, not universal; the fuel-share model still uses simplified adjustments.">3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。</small>
+        </label>
+        <label class="planning-field"><span data-zh="辅助排放 EU ETS 覆盖比例（%）" data-en="Auxiliary EU ETS coverage (%)">辅助排放 EU ETS 覆盖比例（%）</span>
+        <input type="number" inputmode="decimal" name="auxCoveragePct" value="100" min="0" max="100" step="1" required />
+        <small data-zh="须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。" data-en="Check the activity scope; auxiliary energy is assumed fully inside the declared FuelEU scope.">须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。</small>
+        </label>
+        </div>
+        <div class="planning-confirmations">
+        <label class="planning-check">
+        <input type="checkbox" name="operationsConfirmed" /><span data-zh="我已核对比较范围、距离、时间成本及辅助燃油假设" data-en="I have checked the scope, distance, time costs and auxiliary-fuel assumptions">我已核对比较范围、距离、时间成本及辅助燃油假设</span>
+        </label>
+        <label class="planning-check">
+        <input type="checkbox" name="fuelConfirmed" /><span data-zh="我已核对燃料兼容性、供给、认证与报价" data-en="I have checked fuel compatibility, supply, certification and quote">我已核对燃料兼容性、供给、认证与报价</span>
+        </label>
+        <label class="planning-check">
+        <input type="checkbox" name="poolConfirmed" /><span data-zh="我已核对组池供给、报价及参与条件" data-en="I have checked pool supply, quote and participation conditions">我已核对组池供给、报价及参与条件</span>
+        </label>
+        </div>
+        <button type="submit" class="ghost-btn"><span data-zh="应用输入并比较" data-en="Apply Inputs &amp; Compare">应用输入并比较</span>
+        </button>
+        </form>
+        </details>
+        <p id="planningDraftNote" class="model-note" role="status">
+        </p>
+        </div>
       <div class="split-grid-2">
         <div class="panel-card">
           <div class="panel-header">
             <div>
               <h2 class="panel-title" data-zh="航次、燃料与组池数字孪生推演" data-en="Voyage, Fuel & Pooling Simulation">航次、燃料与组池数字孪生推演</h2>
-              <p class="panel-subtitle" data-zh="在现行法规基准上对比燃料掺烧、JIT 降速与假设 FuelEU 组池" data-en="Compare biofuel blending, JIT speed reduction, and authorized FuelEU pooling">在现行法规基准上对比燃料掺烧、JIT 降速与假设 FuelEU 组池</p>
+              <p class="panel-subtitle" data-zh="在同一声明范围内比较燃料、航速与假设组池；同时计入新增航时" data-en="Compare fuel, speed and assumed pooling with explicit operating constraints">在同一声明范围内比较燃料、航速与假设组池；同时计入新增航时</p>
             </div>
             <span class="badge badge-assumption">Simulation</span>
           </div>
@@ -282,7 +365,7 @@
             <input aria-label="Requested pool allocation" type="range" class="sync-pool" min="0" max="400" step="25" value="0" />
             <div class="control-hint">
               <span data-zh="0 t (无外部组池)" data-en="0 t (Standalone)">0 t (无外部组池)</span>
-              <span data-zh="+371.1648 tCB 可补足 A3 2% 缺口（供给待核实）" data-en="+371.1648 tCB covers A3 2% deficit (supply unverified)">+371.1648 tCB 可补足 A3 2% 缺口（供给待核实）</span>
+              <span data-zh="实际分配以缺口与已应用供给上限为准" data-en="Allocation is capped by deficit and applied supply limit">实际分配以缺口与已应用供给上限为准</span>
             </div>
           </div>
         </div>
@@ -315,18 +398,13 @@
           </div>
 
           <div id="optionDeltaSummary" class="alert-banner cyan"></div>
+          <div id="planningRecommendation" class="alert-banner cyan"></div>
+          <button type="button" id="applyRecommendedOption" class="ghost-btn"><span data-zh="载入候选参数（不会执行采购）" data-en="Load Candidate Inputs (No Purchase)">载入候选参数（不会执行采购）</span></button>
+          <details class="customer-details"><summary><span data-zh="查看比较范围与条件" data-en="Comparison Scope and Conditions">查看比较范围与条件</span></summary><p id="planningSearchScope" class="model-note"></p></details>
+          <p data-zh="表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。" data-en="Party amounts include operating deltas allocated at the selected illustrative share; the headline owner card covers compliance only. UK costs remain separate; common baseline fuel costs are excluded, so comparison values can be negative and are not payable bills or profit." class="model-note">表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。</p>
           <div class="table-wrap">
             <table class="telemetry-table">
-              <thead>
-                <tr>
-                  <th data-zh="方案" data-en="Option">方案</th>
-                  <th data-zh="EU ETS" data-en="EU ETS">EU ETS</th>
-                  <th data-zh="FuelEU 罚款" data-en="FuelEU">FuelEU 罚款</th>
-                  <th data-zh="溢价/组池/省油" data-en="Net Ops">溢价/组池/省油</th>
-                  <th data-zh="总净支出" data-en="Total Net">总净支出</th>
-                  <th data-zh="结论" data-en="Verdict">结论</th>
-                </tr>
-              </thead>
+              <thead><tr><th data-zh="方案／参数" data-en="Option / inputs">方案／参数</th><th data-zh="欧元费用比较值／差额" data-en="EUR comparison / delta">欧元费用比较值／差额</th><th data-zh="船东（含增量）" data-en="Owner incl. deltas">船东（含增量）</th><th data-zh="租家（含增量）" data-en="Charterer incl. deltas">租家（含增量）</th><th data-zh="新增航时" data-en="Extra time">新增航时</th><th data-zh="条件状态" data-en="Conditions">条件状态</th><th data-zh="EU ETS" data-en="EU ETS">EU ETS</th><th data-zh="FuelEU 罚款" data-en="FuelEU penalty">FuelEU 罚款</th><th data-zh="组池费" data-en="Pool fee">组池费</th><th data-zh="燃料净增量" data-en="Net fuel delta">燃料净增量</th><th data-zh="航时费" data-en="Time cost">航时费</th></tr></thead>
               <tbody id="optionCompareBody"></tbody>
             </table>
           </div>
@@ -550,7 +628,7 @@
   <!-- Minimalist Footer Disclaimer -->
   <footer class="footer-bar">
     <span data-i18n="boundaryDesc">本系统为概念决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>
-    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0" data-zh="MAREG v4.1.0 · 更新记录" data-en="MAREG v4.1.0 · Release Notes">MAREG v4.1.0 · 更新记录</a>
+    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0" data-zh="MAREG v4.2.0 · 更新记录" data-en="MAREG v4.2.0 · Release Notes">MAREG v4.2.0 · 更新记录</a>
   </footer>
 
   <!-- Audit Log Modal -->
@@ -569,6 +647,6 @@
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
   <script src="js/data-and-i18n.js?v=4.0"></script>
-  <script type="module" src="js/app.js?v=4.1.0"></script>
+  <script type="module" src="js/app.js?v=4.2.0"></script>
 </body>
 </html>

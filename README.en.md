@@ -1,6 +1,11 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.1.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.1.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.2.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+
+> **v4.2.0:** “方案比较”新增可编辑能源/强度、价格、航时与供给限制，六类方案及有条件的最低成本候选；双方金额明确包含营运增量。电脑与手机均支持可拖动玻璃预算浮窗。预算仍为声明范围内的示例估算，非完整航次成本或法定核验。
+>
+> Compare six option families using editable energy/intensity, prices, time and supply limits. Conditional candidates and party amounts include operating deltas. The draggable glass budget now works on desktop and mobile. Results remain scoped demo estimates, not full-voyage costs or statutory verification.
 
 
 [Bilingual main documentation](README.md) · [中文文档](README.zh-CN.md)
@@ -41,7 +46,7 @@ Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses E
 | Module | Capability and evidence boundary |
 | --- | --- |
 | Budget Overview | Active vessel, separate regime budgets, illustrative geography and activity ledger. Coverage is preset teaching input, not automatic real-world legal-scope determination. |
-| Compare Options | Compare an unmodified baseline, the active mix and supply-limited pooling. EUA prices, speed, fuel and reimbursement are conditional inputs. |
+| Compare Options | Compare baseline, current, speed, fuel, pooling and combined search with time/auxiliary costs, constraints, candidate status and party allocations. |
 | Calculation Basis | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
 | Future Scenarios | Three possible regulatory paths and customer review steps; no automatic change to regional budgets or hypothetical global charges. |
 | Help & About | Quick-start steps, preset FAQs following current calculations, capability scope and a guide link. Course and business plans are in repository documents. |
@@ -76,7 +81,7 @@ Explanations are templates. No live AI/RAG, expert-approval service, real-data i
 
 ## 6. Minimal checks and rollback
 
-v4.0 used nine core calculation regressions and one bounded page smoke check. v4.1.0 uses a focused desktop/mobile check of the changed content, bilingual UI and layout, without expanding to a broad audit.
+v4.0 used nine core calculation regressions and one bounded page smoke check. v4.1.0 checked content/layout. v4.2.0 passed the existing nine plus five targeted calculation/constraint checks and one focused desktop/mobile interaction check.
 
 ```sh
 npm ci

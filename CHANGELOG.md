@@ -1,5 +1,15 @@
 # Change log
 
+## v4.2.0 · 2026-10-15
+
+- Expose editable base inputs, prices and operating/supply limits; keep draft/applied states explicit.
+- Add extra-time and auxiliary-fuel accounting, six option families and conditional finite-search candidates with party allocations.
+- Extend the draggable glass budget to desktop when original KPIs leave view.
+- 新增基础输入、运营约束、航时与辅助燃油成本、六类方案和有条件的候选建议；电脑端支持同款玻璃预算浮窗。
+- Preserve original effects, flat quick controls and unchanged default benchmarks; update complete bilingual documentation.
+- [中英文详细说明 / Full bilingual notes](docs/releases/v4.2.0.md) · [GitHub Release](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0)
+
+
 ## v4.1.0 · 2026-10-15
 
 - Reorganize the customer workflow around budgets, comparisons, calculation evidence, future scenarios and help.
