@@ -1,3 +1,7 @@
-node_modules/
-test-results/
 .DS_Store
+Thumbs.db
+*.log
+node_modules/
+.vscode/
+.idea/
+test-results/
