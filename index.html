@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
   <link rel="stylesheet" href="styles/tokens.css?v=4.0" />
-  <link rel="stylesheet" href="styles/main.css?v=4.0" />
+  <link rel="stylesheet" href="styles/main.css?v=4.0-mobile1" />
 </head>
-<body>
+<body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
   <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
     <defs>
@@ -44,11 +44,11 @@
       <!-- Minimalist 5-Module Navigation with Effect #1: Sliding Liquid Pill Indicator -->
       <nav id="primaryNavTabs" class="nav-tabs" aria-label="Primary Views">
         <span id="navPillIndicator" class="nav-pill-indicator" aria-hidden="true"></span>
-        <button type="button" class="nav-btn active" data-tab="tab-cockpit" data-tab-idx="0" data-zh="概览与航线" data-en="Overview & Route">概览与航线</button>
-        <button type="button" class="nav-btn" data-tab="tab-sandbox" data-tab-idx="1" data-zh="数字孪生与租约" data-en="Twin & Charter">数字孪生与租约</button>
-        <button type="button" class="nav-btn" data-tab="tab-audit" data-tab-idx="2" data-zh="白盒审计与反漂绿" data-en="Audit & ESG">白盒审计与反漂绿</button>
-        <button type="button" class="nav-btn" data-tab="tab-scenarios" data-tab-idx="3" data-zh="IMO 情景压力" data-en="IMO Scenarios">IMO 情景压力</button>
-        <button type="button" class="nav-btn" data-tab="tab-ai-esg" data-tab-idx="4" data-zh="AI 雷达与商业模型" data-en="AI & ROI Model">AI 雷达与商业模型</button>
+        <button type="button" class="nav-btn active" data-tab="tab-cockpit" data-tab-idx="0" data-zh="概览与航线" data-en="Overview & Route" data-mobile-zh="总览" data-mobile-en="Home">概览与航线</button>
+        <button type="button" class="nav-btn" data-tab="tab-sandbox" data-tab-idx="1" data-zh="数字孪生与租约" data-en="Twin & Charter" data-mobile-zh="推演" data-mobile-en="Twin">数字孪生与租约</button>
+        <button type="button" class="nav-btn" data-tab="tab-audit" data-tab-idx="2" data-zh="白盒审计与反漂绿" data-en="Audit & ESG" data-mobile-zh="审计" data-mobile-en="Audit">白盒审计与反漂绿</button>
+        <button type="button" class="nav-btn" data-tab="tab-scenarios" data-tab-idx="3" data-zh="IMO 情景压力" data-en="IMO Scenarios" data-mobile-zh="IMO" data-mobile-en="IMO">IMO 情景压力</button>
+        <button type="button" class="nav-btn" data-tab="tab-ai-esg" data-tab-idx="4" data-zh="AI 雷达与商业模型" data-en="AI & ROI Model" data-mobile-zh="商业" data-mobile-en="AI">AI 雷达与商业模型</button>
       </nav>
 
       <!-- Right Actions: Switch to Pro Max Edition, Reset, Audit Log, Language Switch -->
@@ -666,6 +666,6 @@
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
   <script src="js/data-and-i18n.js?v=4.0"></script>
-  <script type="module" src="js/app.js?v=4.0"></script>
+  <script type="module" src="js/app.js?v=4.0-mobile1"></script>
 </body>
 </html>

@@ -1,5 +1,13 @@
 # Change log
 
+## Mobile layout follow-up · 2026-10-15
+
+- Fit all five mobile tabs using short bilingual names while retaining full accessible names and the original sliding pill.
+- Keep multi-row vessel/context content inside a padded rounded glass container.
+- Show shared budget cards on mobile overview only; keep scenario controls available in the IMO view.
+- Position selected module content below the sticky header immediately, retaining the original panel effects.
+- Desktop layout, calculations and original materials/effect definitions are unchanged.
+
 ## Light update · 2026-10-15
 
 - Retain the original glass UI, colors, fonts, 3D pointer tilt, sliding navigation, transitions, stagger and chart replays, as requested.

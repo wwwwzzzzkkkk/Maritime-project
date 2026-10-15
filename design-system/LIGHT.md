@@ -9,3 +9,5 @@ The original five views and card layouts are retained. Content changes correct m
 The hidden-map reset fix queues camera work until the original overview is visible, without changing the visible `flyTo` animation. The snapshot uses native dialog behavior while retaining the original full-screen backdrop and glass modal card styling.
 
 Verification is limited to the core calculation regressions and one bounded desktop/mobile page smoke check, as requested.
+
+Mobile follow-up: five short labels retain the original sliding pill; the multi-row context uses the existing large corner radius rather than a full capsule. Shared KPIs stay on the overview and the selected module is positioned below the sticky header. These are mobile layout changes, not a change to materials or panel/chart animations.

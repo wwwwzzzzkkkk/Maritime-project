@@ -34,7 +34,7 @@ For the default light edition, documented on 15 October 2026. No installation or
 - **示例低碳燃料能源占比**：观察燃料情景，留意认证、供给与价格尚未核实的提示。
 - **FuelEU 目标条件**：比较 2025–2029 的 2% 与 2030 的 6% 目标；其他活动量与价格保持当前输入，不是实际未来账单预测。
 
-地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机上可横向滑动顶部导航和宽表格。
+地图可缩放、拖动和点击港口。航段按钮可筛选下方台账；筛选不会改变整船示例预算。手机导航显示“总览 / 推演 / 审计 / IMO / 商业”五个短名称，切换后直接定位到对应内容；费用卡只在总览显示，宽表格可横向滑动。
 
 ### 3. 到“数字孪生与租约”比较方案
 
@@ -96,7 +96,7 @@ Use the controls in **Overview & Route**:
 - **Illustrative fuel energy share** explores fuel scenarios; certification, supply and prices remain unverified.
 - **FuelEU target condition** compares the 2% target for 2025–2029 with 6% for 2030, holding other current activity and price inputs fixed. It is not an actual future-bill forecast.
 
-Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, scroll the top navigation and wide tables horizontally.
+Zoom/pan the map or click ports. Activity buttons filter the ledger without changing the overall illustrative budget. On mobile, the short tabs Home / Twin / Audit / IMO / AI open their content immediately. Budget cards appear in Home only; wide tables scroll horizontally.
 
 ### 3. Compare options in “Twin & Charter”
 

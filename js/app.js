@@ -586,6 +586,16 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     document.querySelector('[data-leg-filter="E1"]').textContent=`E1 · Extra-EU 50% (${id==='v3'?'MAPTM':'CNSHA'}→NLRTM)`;
   }
 
+  function updateResponsiveNavigation() {
+    const mobile=window.matchMedia('(max-width: 680px)').matches;
+    document.querySelectorAll('.nav-btn').forEach(button=>{
+      const fullName=state.lang==='zh'?button.dataset.zh:button.dataset.en;
+      button.textContent=mobile?(state.lang==='zh'?button.dataset.mobileZh:button.dataset.mobileEn):fullName;
+      button.setAttribute('aria-label',fullName);
+      button.title=fullName;
+    });
+  }
+
   function renderApp() {
     const lang = state.lang;
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';
@@ -601,6 +611,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     document.querySelectorAll('[data-zh][data-en]').forEach(el => {
       el.textContent = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
     });
+    updateResponsiveNavigation();
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -977,6 +988,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
         const directionClass = newIndex >= currentTabIndex ? 'enter-right' : 'enter-left';
         currentTabIndex = newIndex;
+        document.body.dataset.activeTab=target;
 
         tabButtons.forEach(b => b.classList.toggle('active', b === btn));
         updateSlidingPill(btn, true);
@@ -997,6 +1009,15 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           setTimeout(() => leafletMap.invalidateSize(), 60);
           setTimeout(() => { leafletMap.invalidateSize(); if(deferredCamera!==null)switchMapCamera(deferredCamera); }, 420);
         }
+        if(window.matchMedia('(max-width: 680px)').matches) {
+          requestAnimationFrame(()=>{
+            const anchor=document.querySelector(
+              target==='tab-cockpit'||target==='tab-scenarios'?'.context-bar':'.page-container'
+            );
+            const headerHeight=document.querySelector('.topbar').getBoundingClientRect().height;
+            window.scrollTo({top:anchor.getBoundingClientRect().top+window.scrollY-headerHeight-20,behavior:'instant'});
+          });
+        }
       });
     });
 
@@ -1011,6 +1032,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     });
 
     window.addEventListener('resize', () => {
+      updateResponsiveNavigation();
       const activeNavBtn = document.querySelector('.nav-btn.active');
       if (activeNavBtn) updateSlidingPill(activeNavBtn, false);
       if (leafletMap) leafletMap.invalidateSize();
