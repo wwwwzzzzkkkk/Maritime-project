@@ -1,0 +1,12 @@
+{
+  "name": "mareg-light-edition",
+  "private": true,
+  "version": "4.0.0",
+  "scripts": {
+    "test": "node --test tests/engine.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
