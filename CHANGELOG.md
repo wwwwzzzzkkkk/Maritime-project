@@ -1,5 +1,17 @@
 # Change log
 
+## v4.3.0 · 2026-10-16
+
+- Baseline: `light-v4.2.1-baseline-2026-10-16` (`cdec884`). CSS-only consolidation is an independent commit `86d3f20`; controlled three-width screenshots are pixel-identical.
+- Raise copy contrast via text-only tokens; minimum CSS text size 12px, body 15px, KPI values 30px. Preserve decorative colors/materials.
+- Keep original glows/refraction. Pointer delegation/rAF and input scheduleRender coalesce work; no performance comparison/budget or speed-up claim. Popup binding is no longer repeated per render.
+- Intentional local reading-region exception: flatten only while the pointer is in .table-wrap or .reference-list (baseline sticky drift ~2px); retain title/display-card tilt and hover highlights. Reduced motion disables tilt; quick adjuster remains flat.
+- Move inline presentation to classes and dynamic widths to --w; remove permanent will-change and non-Leaflet !important. Keep a small unsupported-blur opaque-background fallback.
+- 纠正初始评审：缓存原本已为 4.2.1；徽章正文用 secondary；当前 Chrome 顶栏是普通 blur，导航/KPI 使用折射。保留默认光斑与折射。
+- 本阶段评估过清爽模式，按用户决定取消；未提供开关、存储或高对比度自动模式。性能对比与 GPU 成本评估也取消。
+- Engine/shared data/Pro Max sources and all benchmark amounts remain unchanged. [Evidence](docs/verification/v4.3.0/README.md) · [Release notes](docs/releases/v4.3.0.md)
+
+
 ## v4.2.1 · 2026-10-16
 
 - 基线 / Baseline: `light-v4.2.0-baseline-2026-10-16` (`05cd7de`).

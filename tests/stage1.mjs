@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {defaultSettings,computeScenario} from '../js/compliance-engine.mjs';
-import {planOptions} from '../js/option-planner.mjs?v=4.2.1';
+import {planOptions} from '../js/option-planner.mjs?v=4.3.0';
 import {vessels} from '../js/light-data.mjs';
 
 const baseURL=process.env.BASE_URL||'http://127.0.0.1:48179';

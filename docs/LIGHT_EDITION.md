@@ -70,3 +70,8 @@ The budget float now works on desktop and mobile when original KPIs are out of v
 The calculation engine stays `light-4.2.0` with byte-identical functions and outputs; the UI is 4.2.1. Table visibility changes do not recalculate values. Map height is CSS-responsive, full-route bounds come from actual E1/E2/U1 coordinates, and local Natural Earth 50m geometry uses ADM0_A3 for EU27 and GBR. Shading is not legal scope.
 
 Change rings map absolute signed changes to a ±30% full scale, with saturation at a full ring and a disclosed 3% minimum for non-zero values. Zero arcs are hidden, including their round end cap. Centre percentages remain the real model deltas. Decrease uses accent and increase uses warn; the same mapping serves rendering and replay. External navigation does not replace the current page. Neither course data shared with Pro Max nor Pro Max source files are changed.
+
+
+## UI v4.3.0
+
+The light-4.2.0 calculation engine is unchanged. This stage changes text readability, CSS organization and interaction scheduling only. New text-specific colors preserve the original decorative accent. Pointer work uses the actual target/ancestor chain and one animation frame; input events use scheduleRender. Reading-region flattening is local, not a whole-card or global tilt removal. Popup content is bound lazily and refreshed while open. No clean mode, localStorage style setting, high-contrast automatic mode, performance budget or performance comparison is supplied. User cancellation decisions and actual Chrome-only evidence are documented in QA and verification.

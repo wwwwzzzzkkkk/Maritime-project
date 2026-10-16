@@ -89,8 +89,12 @@
   /* 4. High-Contrast Dark Slate Typography for Light-Gray Background */
   --text-primary: #0f172a;      /* Deep Obsidian Slate (Contrast 14.8:1) */
   --text-secondary: #334155;    /* Architectural Slate (Contrast 8.4:1) */
-  --text-muted: #64748b;        /* Muted Cool Slate (Contrast 4.6:1) */
+  --text-muted: #64748b;        /* Decorative muted; small copy uses --text-muted-copy. */
   --text-inverse: #ffffff;
+  --text-muted-copy: #475569; /* Small/body copy; decorative muted stays unchanged. */
+  --accent-text: #0369a1;     /* Text only; maps/rings keep --accent. */
+  --font-body-size: 15px;
+  --font-small-size: 12px;
 
   /* 5. Maritime Azure Accent + Semantic Status Dots for Light Mode */
   --accent: #0284c7;            /* Deep Maritime Azure */
@@ -118,8 +122,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  :root body, :root body::before, :root body::after,
+  :root body [class], :root body [class]::before, :root body [class]::after {
+    animation: none;
+    transition: none;
   }
 }

@@ -1,0 +1,4885 @@
+{
+  "phase": "baseline",
+  "browser": "155.0.8059.80",
+  "axe": {
+    "tool": "axe-core 4.10.3",
+    "officialScore": null,
+    "violations": [],
+    "passes": 28,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure ARIA attributes are not prohibited for an element's role",
+        "help": "Elements must only use permitted ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr?application=axeAPI",
+        "nodes": [
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute is not well supported on a div with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div id=\"realMaritimeMap\" class=\"real-map-viewport leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom\" aria-label=\"Interactive Maritime GIS Map\" tabindex=\"0\">",
+            "target": [
+              "#realMaritimeMap"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on a div with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "10.9pt (14.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"topbar-inner\">",
+                    "target": [
+                      ".topbar-inner"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>MAREG</span>",
+            "target": [
+              ".brand-mark > span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<select id=\"vesselSelect\" class=\"vessel-select\" aria-label=\"Select Vessel\">",
+                    "target": [
+                      "#vesselSelect"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"topbar-inner\">",
+                    "target": [
+                      ".topbar-inner"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<select id=\"vesselSelect\" class=\"vessel-select\" aria-label=\"Select Vessel\">",
+            "target": [
+              "#vesselSelect"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span id=\"navPillIndicator\" class=\"nav-pill-indicator\" aria-hidden=\"true\" style=\"width: 254px; transform: translate3d(4px, 0px, 0px);\"></span>",
+                    "target": [
+                      "#navPillIndicator"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"nav-btn active\" data-tab=\"tab-cockpit\" data-tab-idx=\"0\" data-zh=\"预算总览\" data-en=\"Budget Overview\" data-mobile-zh=\"总览\" data-mobile-en=\"Home\" aria-label=\"预算总览\" title=\"预算总览\">预算总览</button>",
+            "target": [
+              "button[data-tab=\"tab-cockpit\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav id=\"primaryNavTabs\" class=\"nav-tabs pill-ready\" aria-label=\"Primary Views\">",
+                    "target": [
+                      "#primaryNavTabs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"nav-btn\" data-tab=\"tab-sandbox\" data-tab-idx=\"1\" data-zh=\"方案比较\" data-en=\"Compare Options\" data-mobile-zh=\"方案\" data-mobile-en=\"Compare\" aria-label=\"方案比较\" title=\"方案比较\">方案比较</button>",
+            "target": [
+              "button[data-tab=\"tab-sandbox\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav id=\"primaryNavTabs\" class=\"nav-tabs pill-ready\" aria-label=\"Primary Views\">",
+                    "target": [
+                      "#primaryNavTabs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"nav-btn\" data-tab=\"tab-audit\" data-tab-idx=\"2\" data-zh=\"计算依据\" data-en=\"Calculation Basis\" data-mobile-zh=\"依据\" data-mobile-en=\"Basis\" aria-label=\"计算依据\" title=\"计算依据\">计算依据</button>",
+            "target": [
+              "button[data-tab=\"tab-audit\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav id=\"primaryNavTabs\" class=\"nav-tabs pill-ready\" aria-label=\"Primary Views\">",
+                    "target": [
+                      "#primaryNavTabs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"nav-btn\" data-tab=\"tab-scenarios\" data-tab-idx=\"3\" data-zh=\"未来情景\" data-en=\"Future Scenarios\" data-mobile-zh=\"未来\" data-mobile-en=\"Future\" aria-label=\"未来情景\" title=\"未来情景\">未来情景</button>",
+            "target": [
+              "button[data-tab=\"tab-scenarios\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav id=\"primaryNavTabs\" class=\"nav-tabs pill-ready\" aria-label=\"Primary Views\">",
+                    "target": [
+                      "#primaryNavTabs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"nav-btn\" data-tab=\"tab-ai-esg\" data-tab-idx=\"4\" data-zh=\"帮助与说明\" data-en=\"Help &amp; About\" data-mobile-zh=\"帮助\" data-mobile-en=\"Help\" aria-label=\"帮助与说明\" title=\"帮助与说明\">帮助与说明</button>",
+            "target": [
+              "button[data-tab=\"tab-ai-esg\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<a href=\"https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md\" class=\"ghost-btn\" data-zh=\"使用指南\" data-en=\"User Guide\" target=\"_blank\" rel=\"noopener noreferrer\">使用指南</a>",
+                    "target": [
+                      "a[data-zh=\"使用指南\"]"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"topbar-inner\">",
+                    "target": [
+                      ".topbar-inner"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md\" class=\"ghost-btn\" data-zh=\"使用指南\" data-en=\"User Guide\" target=\"_blank\" rel=\"noopener noreferrer\">使用指南</a>",
+            "target": [
+              "a[data-zh=\"使用指南\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"button\" id=\"openAuditModalBtn\" class=\"ghost-btn\" data-zh=\"当前计算快照\" data-en=\"Current Snapshot\">当前计算快照</button>",
+                    "target": [
+                      "#openAuditModalBtn"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"topbar-inner\">",
+                    "target": [
+                      ".topbar-inner"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" id=\"openAuditModalBtn\" class=\"ghost-btn\" data-zh=\"当前计算快照\" data-en=\"Current Snapshot\">当前计算快照</button>",
+            "target": [
+              "#openAuditModalBtn"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"button\" class=\"lang-btn active\" data-lang=\"zh\">中</button>",
+                    "target": [
+                      "button[data-lang=\"zh\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element content is too short to determine if it is actual text content"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"lang-btn active\" data-lang=\"zh\">中</button>",
+            "target": [
+              "button[data-lang=\"zh\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"lang-switch\" role=\"group\" aria-label=\"Language Switcher\">\n          <button type=\"button\" class=\"lang-btn active\" data-lang=\"zh\">中</button>\n          <button type=\"button\" class=\"lang-btn\" data-lang=\"en\">EN</button>\n        </div>",
+                    "target": [
+                      ".lang-switch"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"lang-btn\" data-lang=\"en\">EN</button>",
+            "target": [
+              "button[data-lang=\"en\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"badge badge-assumption\"><span data-zh=\"演示模式\" data-en=\"Demo mode\">演示模式</span></span>",
+                    "target": [
+                      ".customer-notice > .badge-assumption.badge"
+                    ]
+                  },
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"演示模式\" data-en=\"Demo mode\">演示模式</span>",
+            "target": [
+              "span[data-zh=\"演示模式\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"使用预设示例船舶与价格，尚未接入真实营运数据。\" data-en=\"Preset vessels and prices; no live operational data is connected.\">使用预设示例船舶与价格，尚未接入真实营运数据。</span>",
+            "target": [
+              "span[data-zh=\"使用预设示例船舶与价格，尚未接入真实营运数据。\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。FuelEU 可比较不同目标条件。\" data-en=\"ETS covers CO₂ only: 2026 activity, July–December for UK. FuelEU target conditions can be compared.\">ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。FuelEU 可比较不同目标条件。</span>",
+            "target": [
+              ".customer-notice > span:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"meta-pill\">DEMO-V1</span>",
+                    "target": [
+                      ".meta-pill:nth-child(1)"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"context-bar-inner\">",
+                    "target": [
+                      ".context-bar-inner"
+                    ]
+                  },
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"meta-pill\">DEMO-V1</span>",
+            "target": [
+              ".meta-pill:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"meta-pill\">10,000 GT</span>",
+                    "target": [
+                      ".meta-pill:nth-child(2)"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"context-bar-inner\">",
+                    "target": [
+                      ".context-bar-inner"
+                    ]
+                  },
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"meta-pill\">10,000 GT</span>",
+            "target": [
+              ".meta-pill:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"meta-pill\">VLSFO</span>",
+                    "target": [
+                      ".meta-pill:nth-child(3)"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"context-bar-inner\">",
+                    "target": [
+                      ".context-bar-inner"
+                    ]
+                  },
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"meta-pill\">VLSFO</span>",
+            "target": [
+              ".meta-pill:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"badge badge-pending\">\n        2026 CH4/N2O 缺失 · 仅单列 CO2\n      </span>",
+                    "target": [
+                      "#vesselMetaPills > .badge-pending.badge"
+                    ]
+                  },
+                  {
+                    "html": "<div class=\"context-bar-inner\">",
+                    "target": [
+                      ".context-bar-inner"
+                    ]
+                  },
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-pending\">\n        2026 CH4/N2O 缺失 · 仅单列 CO2\n      </span>",
+            "target": [
+              "#vesselMetaPills > .badge-pending.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"kpi-label\" data-i18n=\"kpi1Label\">EU ETS · CO₂ 部分预算（欧元）</span>",
+            "target": [
+              "span[data-i18n=\"kpi1Label\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-in-force\">CO₂ Only · TtW</span>",
+            "target": [
+              ".kpi-top > .badge-in-force.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "19.5pt (26px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"kpiEuEtsVal\" class=\"kpi-val nowrap\">€88,000</div>",
+            "target": [
+              "#kpiEuEtsVal"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>1,100 tCO₂ × €80</span>",
+            "target": [
+              "#kpiEuEtsSub > span:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"mono\">60/100: €66,000 / €110,000</span>",
+            "target": [
+              "#kpiEuEtsSub > .mono"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"kpi-label\" data-i18n=\"kpi2Label\">FuelEU 简化罚款估算（欧元）</span>",
+            "target": [
+              "span[data-i18n=\"kpi2Label\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-deficit\">Model · WtW</span>",
+            "target": [
+              ".badge-deficit"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "19.5pt (26px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"kpiFuelEuVal\" class=\"kpi-val nowrap\">€237,191.27</div>",
+            "target": [
+              "#kpiFuelEuVal"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>余额 -371.165 t</span>",
+            "target": [
+              "#kpiFuelEuSub > span:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"mono\">-2% (89.3368)</span>",
+            "target": [
+              "#kpiFuelEuSub > .mono"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"kpi-label\" data-i18n=\"kpi3Label\">UK ETS · CO₂ 部分预算（英镑）</span>",
+            "target": [
+              "span[data-i18n=\"kpi3Label\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-gbp\">2026.07 · GBP £</span>",
+            "target": [
+              ".kpi-top > .badge-gbp.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "19.5pt (26px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"kpiUkEtsVal\" class=\"kpi-val nowrap\">£13,200</div>",
+            "target": [
+              "#kpiUkEtsVal"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>220 tCO₂ × £60</span>",
+            "target": [
+              "#kpiUkEtsSub > span:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"mono\">英镑单列</span>",
+            "target": [
+              "#kpiUkEtsSub > .mono"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"kpi-label\" data-i18n=\"kpi4Label\">船东承担金额估算（欧元合规部分）</span>",
+            "target": [
+              "span[data-i18n=\"kpi4Label\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-assumption\">Charter Split</span>",
+            "target": [
+              ".kpi-top > .badge-assumption.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "19.5pt (26px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"kpiCharterVal\" class=\"kpi-val nowrap\">€276,413</div>",
+            "target": [
+              "#kpiCharterVal"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>船东 85% · 租家 15%</span>",
+            "target": [
+              "#kpiCharterSub > span:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"kpi-card\">",
+                    "target": [
+                      ".kpi-card:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"mono\">€48,779</span>",
+            "target": [
+              "#kpiCharterSub > .mono"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.9pt (14.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card stagger-item\" id=\"quickAdjuster\" style=\"--stagger-i: 0;\">",
+                    "target": [
+                      "#quickAdjuster"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"panel-title\" data-i18n=\"cockpitLeftTitle\">船舶快速调节器</h2>",
+            "target": [
+              "h2[data-i18n=\"cockpitLeftTitle\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card stagger-item\" id=\"quickAdjuster\" style=\"--stagger-i: 0;\">",
+                    "target": [
+                      "#quickAdjuster"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"panel-subtitle\" data-i18n=\"cockpitLeftSub\">调整参数，比较预算与范围内生命周期排放估算；系数为示例假设</p>",
+            "target": [
+              "p[data-i18n=\"cockpitLeftSub\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card stagger-item\" id=\"quickAdjuster\" style=\"--stagger-i: 0;\">",
+                    "target": [
+                      "#quickAdjuster"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"参数模拟\" data-en=\"Simulation\">参数模拟</span>",
+            "target": [
+              "span[data-zh=\"参数模拟\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 1;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"EU ETS 碳价假设 (EUA)\" data-en=\"EU ETS Carbon Price (EUA)\">EU ETS 碳价假设 (EUA)</span>",
+            "target": [
+              "span[data-zh=\"EU ETS 碳价假设 (EUA)\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 1;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"control-val readout-eua\">€80 / tCO₂</span>",
+            "target": [
+              ".readout-eua"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 1;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"碳价比较参考：€60 / €80 / €100\" data-en=\"Price comparison: €60 / €80 / €100\">碳价比较参考：€60 / €80 / €100</span>",
+            "target": [
+              "span[data-zh=\"碳价比较参考：€60 / €80 / €100\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 2;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"固定航程航速调整 (JIT 条件待验证)\" data-en=\"Fixed-Distance Speed Change (JIT Unverified)\">固定航程航速调整 (JIT 条件待验证)</span>",
+            "target": [
+              "span[data-zh=\"固定航程航速调整 (JIT 条件待验证)\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 2;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"control-val readout-jit\">0.0 kn (13.5 kn)</span>",
+            "target": [
+              ".stagger-item.control-group:nth-child(3) > .control-header > .readout-jit.control-val"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 2;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"范围内简化模型；新增航时与辅助燃油见方案比较\" data-en=\"Scoped approximation; extra time and auxiliary fuel are in Compare Options\">范围内简化模型；新增航时与辅助燃油见方案比较</span>",
+            "target": [
+              "span[data-zh=\"范围内简化模型；新增航时与辅助燃油见方案比较\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 3;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"示例低碳燃料能源占比\" data-en=\"Illustrative Low-Carbon Fuel Energy Share\">示例低碳燃料能源占比</span>",
+            "target": [
+              "span[data-zh=\"示例低碳燃料能源占比\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 3;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"control-val readout-bio\">0%</span>",
+            "target": [
+              ".stagger-item.control-group:nth-child(4) > .control-header > .readout-bio.control-val"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 3;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"降低 WtW 生命周期强度 (基准 91.6)\" data-en=\"Lowers WtW GHG Intensity (Base 91.6)\">降低 WtW 生命周期强度 (基准 91.6)</span>",
+            "target": [
+              "span[data-zh=\"降低 WtW 生命周期强度 (基准 91.6)\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 4;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(5)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-zh=\"FuelEU 目标条件（其他活动量与价格固定）\" data-en=\"FuelEU Target Condition (Fixed Activities and Prices)\">FuelEU 目标条件（其他活动量与价格固定）</span>",
+            "target": [
+              "span[data-zh=\"FuelEU 目标条件（其他活动量与价格固定）\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 4;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(5)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"seg-btn seg-target-btn active\" data-target=\"2\" data-zh=\"2025–2029 (-2% · 89.34)\" data-en=\"2025–2029 (-2% · 89.34)\">2025–2029 (-2% · 89.34)</button>",
+            "target": [
+              "button[data-target=\"2\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"control-group stagger-item\" style=\"--stagger-i: 4;\">",
+                    "target": [
+                      ".stagger-item.control-group:nth-child(5)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"seg-btn seg-target-btn\" data-target=\"6\" data-zh=\"2030 (-6% · 85.69)\" data-en=\"2030 (-6% · 85.69)\">2030 (-6% · 85.69)</button>",
+            "target": [
+              "button[data-target=\"6\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card stagger-item\" id=\"quickAdjuster\" style=\"--stagger-i: 0;\">",
+                    "target": [
+                      "#quickAdjuster"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>演示数据：缺失 CH₄ / N₂O，完整 ETS 总额不可用</strong>",
+            "target": [
+              "#cockpitHygieneAlert > div > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card stagger-item\" id=\"quickAdjuster\" style=\"--stagger-i: 0;\">",
+                    "target": [
+                      "#quickAdjuster"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>当前 EU 仅单列 CO₂ 1,100.0 吨，UK 220.0 吨；未经外部核验。FuelEU 能源独立给定，未与同一燃料台账物理对账。</span>",
+            "target": [
+              "#cockpitHygieneAlert > div > span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.9pt (14.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"panel-title\" data-i18n=\"cockpitMapTitle\">亚欧—英国示例航线与预设活动范围</h2>",
+            "target": [
+              "h2[data-i18n=\"cockpitMapTitle\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"panel-subtitle\" data-zh=\"真实地理坐标海图（支持缩放、拖拽与港口点击）· 预设范围示意；阴影与圈线不是法定管辖或征税边界\" data-en=\"Interactive GIS maritime map (zoom, pan &amp; click ports) · Preset scope illustration; shading and rings are not legal or tax boundaries\">真实地理坐标海图（支持缩放、拖拽与港口点击）· 预设范围示意；阴影与圈线不是法定管辖或征税边界</p>",
+            "target": [
+              ".cockpit-grid > .panel-card:nth-child(2) > .panel-header > div > .panel-subtitle"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-in-force\">Illustrative GIS · UN/LOCODE</span>",
+            "target": [
+              ".cockpit-grid > .panel-card:nth-child(2) > .panel-header > .badge-in-force.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn map-cam-btn active\" data-cam=\"eurasia\" data-zh=\"🌏 亚欧全航线 (CNSHA → NLRTM)\" data-en=\"🌏 Full Eurasia Route\">🌏 亚欧全航线 (CNSHA → NLRTM)</button>",
+            "target": [
+              "button[data-cam=\"eurasia\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn map-cam-btn\" data-cam=\"europe\" data-zh=\"🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)\" data-en=\"🇪🇺 North Sea EU + UK Zoom\">🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)</button>",
+            "target": [
+              "button[data-cam=\"europe\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn map-cam-btn\" data-cam=\"chokepoints\" data-zh=\"⚓ 苏伊士与直布罗陀 300nm 防规避区\" data-en=\"⚓ Suez &amp; Gibraltar 300nm Hubs\">⚓ 苏伊士与直布罗陀 300nm 防规避区</button>",
+            "target": [
+              "button[data-cam=\"chokepoints\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span id=\"mapCursorCoords\" class=\"mono\" style=\"font-size:11px; color:var(--text-muted);\">LAT 31.00°N · LON 48.00°E (EURASIA)</span>",
+            "target": [
+              "#mapCursorCoords"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"mapActiveLegOverlay\" class=\"map-coord-overlay\">🌏 亚欧全航线：上海 (CNSHA) → 新加坡 (SGSIN) → 苏伊士 (EGPSD) → 鹿特丹 (NLRTM)</div>",
+            "target": [
+              "#mapActiveLegOverlay"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-88\" style=\"opacity: 0.9; transform: translate3d(778px, 182px, 0px);\">CNSHA</div>",
+            "target": [
+              "#leaflet-tooltip-88"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-91\" style=\"opacity: 0.9; transform: translate3d(678px, 362px, 0px);\">SGSIN</div>",
+            "target": [
+              "#leaflet-tooltip-91"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-94\" style=\"opacity: 0.9; transform: translate3d(271px, 182px, 0px);\">EGPSD</div>",
+            "target": [
+              "#leaflet-tooltip-94"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-97\" style=\"opacity: 0.9; transform: translate3d(56px, 150px, 0px);\">MAPTM</div>",
+            "target": [
+              "#leaflet-tooltip-97"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-100\" style=\"opacity: 0.9; transform: translate3d(111px, 22px, 0px);\">NLRTM</div>",
+            "target": [
+              "#leaflet-tooltip-100"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-103\" style=\"opacity: 0.9; transform: translate3d(144px, 7px, 0px);\">DEHAM</div>",
+            "target": [
+              "#leaflet-tooltip-103"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-106\" style=\"opacity: 0.9; transform: translate3d(95px, 22px, 0px);\">GBFXT</div>",
+            "target": [
+              "#leaflet-tooltip-106"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-tooltip port-label-tooltip leaflet-zoom-animated leaflet-tooltip-top\" role=\"tooltip\" id=\"leaflet-tooltip-109\" style=\"opacity: 0.9; transform: translate3d(79px, 32px, 0px);\">GBSOU</div>",
+            "target": [
+              "#leaflet-tooltip-109"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "messageKey": "nonBmp"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element content contains only non-text characters"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span aria-hidden=\"true\">−</span>",
+            "target": [
+              ".leaflet-control-zoom-out > span[aria-hidden=\"true\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.1pt (9.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"leaflet-control-attribution leaflet-control\">",
+            "target": [
+              ".leaflet-control-attribution"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.1pt (9.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"https://leafletjs.com\" title=\"A JavaScript library for interactive maps\" target=\"_blank\" rel=\"noopener noreferrer\">",
+            "target": [
+              "a[href$=\"leafletjs.com\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn leg-filter-btn active\" data-leg-filter=\"all\" data-zh=\"全部航段\" data-en=\"All Legs\">全部航段</button>",
+            "target": [
+              "button[data-leg-filter=\"all\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn leg-filter-btn\" data-leg-filter=\"E1\">E1 · 欧盟外航段 50% (CNSHA→NLRTM)</button>",
+            "target": [
+              "button[data-leg-filter=\"E1\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn leg-filter-btn\" data-leg-filter=\"E2\">E2 · 欧盟内航段 100% (NLRTM→DEHAM)</button>",
+            "target": [
+              "button[data-leg-filter=\"E2\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn leg-filter-btn\" data-leg-filter=\"E3\">E3 · 欧盟港内 100%</button>",
+            "target": [
+              "button[data-leg-filter=\"E3\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" class=\"leg-btn leg-filter-btn\" data-leg-filter=\"U1\">U1/U2 · 英国 ETS（£ · GBFXT→GBSOU）</button>",
+            "target": [
+              "button[data-leg-filter=\"U1\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.3pt (11px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"mono\" style=\"font-size:11px; color:var(--text-muted);\" data-zh=\"点击海图港口或航段线查看坐标与适用法规\" data-en=\"Click map ports or sea lanes for legal scope\">点击海图港口或航段线查看坐标与适用法规</span>",
+            "target": [
+              "span[data-zh=\"点击海图港口或航段线查看坐标与适用法规\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"代码\" data-en=\"Leg\">代码</th>",
+            "target": [
+              "th[data-en=\"Leg\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"航段与活动边界\" data-en=\"Voyage &amp; Activity Scope\">航段与活动边界</th>",
+            "target": [
+              "th[data-zh=\"航段与活动边界\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"制度\" data-en=\"Regime\">制度</th>",
+            "target": [
+              "th[data-zh=\"制度\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"原始排放\" data-en=\"Raw CO₂\">原始排放</th>",
+            "target": [
+              "th[data-zh=\"原始排放\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"覆盖比例\" data-en=\"Scope\">覆盖比例</th>",
+            "target": [
+              "th[data-zh=\"覆盖比例\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"计入吨数\" data-en=\"Covered\">计入吨数</th>",
+            "target": [
+              "th[data-zh=\"计入吨数\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-zh=\"分币种合规成本\" data-en=\"Scoped Cost\">分币种合规成本</th>",
+            "target": [
+              "th[data-zh=\"分币种合规成本\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>EU-E1</strong>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(1) > .mono > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td>非欧盟 ↔ 鹿特丹 (Extra-EU)</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(1) > td:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-in-force\">EU ETS</span>",
+            "target": [
+              "tr:nth-child(1) > td:nth-child(3) > .badge-in-force.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">1,000.0 t</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(1) > .num:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">50%</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(1) > .num:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>500.0 t</strong>",
+            "target": [
+              "tr:nth-child(1) > .num:nth-child(6) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>€40,000</strong>",
+            "target": [
+              "tr:nth-child(1) > .num:nth-child(7) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>EU-E2</strong>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(2) > .mono > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td>鹿特丹 → 汉堡 (Intra-EU)</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(2) > td:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-in-force\">EU ETS</span>",
+            "target": [
+              "tr:nth-child(2) > td:nth-child(3) > .badge-in-force.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">500.0 t</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(2) > .num:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">100%</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(2) > .num:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>500.0 t</strong>",
+            "target": [
+              "tr:nth-child(2) > .num:nth-child(6) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>€40,000</strong>",
+            "target": [
+              "tr:nth-child(2) > .num:nth-child(7) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>EU-E3</strong>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(3) > .mono > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td>欧盟港内停泊 (EU Berth)</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(3) > td:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-in-force\">EU ETS</span>",
+            "target": [
+              "tr:nth-child(3) > td:nth-child(3) > .badge-in-force.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">100.0 t</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(3) > .num:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">100%</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(3) > .num:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>100.0 t</strong>",
+            "target": [
+              "tr:nth-child(3) > .num:nth-child(6) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>€8,000</strong>",
+            "target": [
+              "tr:nth-child(3) > .num:nth-child(7) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>UK-U1</strong>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(4) > .mono > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td>英国国内航段 (UK Domestic)</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(4) > td:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-gbp\">UK ETS</span>",
+            "target": [
+              "tr:nth-child(4) > td:nth-child(3) > .badge-gbp.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">200.0 t</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(4) > .num:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">100%</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(4) > .num:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>200.0 t</strong>",
+            "target": [
+              "tr:nth-child(4) > .num:nth-child(6) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>£12,000</strong>",
+            "target": [
+              "tr:nth-child(4) > .num:nth-child(7) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>UK-U2</strong>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(5) > .mono > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td>英国港内停泊 (UK Berth)</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(5) > td:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "7.9pt (10.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"badge badge-gbp\">UK ETS</span>",
+            "target": [
+              "tr:nth-child(5) > td:nth-child(3) > .badge-gbp.badge"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">20.0 t</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(5) > .num:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<td class=\"num\">100%</td>",
+            "target": [
+              "#cockpitLegTableBody > tr:nth-child(5) > .num:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>20.0 t</strong>",
+            "target": [
+              "tr:nth-child(5) > .num:nth-child(6) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.4pt (12.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"panel-card\">",
+                    "target": [
+                      ".cockpit-grid > .panel-card:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>£1,200</strong>",
+            "target": [
+              "tr:nth-child(5) > .num:nth-child(7) > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span data-i18n=\"boundaryDesc\">本系统为决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>",
+            "target": [
+              "span[data-i18n=\"boundaryDesc\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "8.6pt (11.5px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body data-active-tab=\"tab-cockpit\">",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a background gradient"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a class=\"mono\" href=\"https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.1\" data-zh=\"MAREG v4.2.1 · 更新记录\" data-en=\"MAREG v4.2.1 · Release Notes\" target=\"_blank\" rel=\"noopener noreferrer\">MAREG v4.2.1 · 更新记录</a>",
+            "target": [
+              "a[data-zh=\"MAREG v4.2.1 · 更新记录\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+          }
+        ]
+      },
+      {
+        "id": "link-in-text-block",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2a",
+          "wcag141",
+          "TTv5",
+          "TT13.a",
+          "EN-301-549",
+          "EN-9.1.4.1"
+        ],
+        "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+        "help": "Links must be distinguishable without relying on color",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "imgNode"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"leaflet-control-attribution leaflet-control\">",
+                    "target": [
+                      ".leaflet-control-attribution"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's contrast ratio could not be determined because element contains an image node"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"https://leafletjs.com\" title=\"A JavaScript library for interactive maps\" target=\"_blank\" rel=\"noopener noreferrer\">",
+            "target": [
+              "a[href$=\"leafletjs.com\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's contrast ratio could not be determined because element contains an image node"
+          }
+        ]
+      }
+    ]
+  },
+  "computed": {
+    "375": {
+      "body": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "3210.16px",
+        "width": "375px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "hidden auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".topbar-inner": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "152px",
+        "width": "351px",
+        "padding": "12px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "10px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "22px",
+        "backdropFilter": "blur(28px) saturate(1.9) brightness(1.02)"
+      },
+      ".brand-cluster": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30px",
+        "width": "325px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "1 1 100%",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".vessel-select": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "29px",
+        "width": "217.625px",
+        "padding": "5px 14px",
+        "display": "block",
+        "flex": "1 1 0%",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "clip",
+        "borderRadius": "9999px",
+        "backdropFilter": "blur(14px) saturate(1.6)"
+      },
+      ".topbar-right": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30px",
+        "width": "325px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "6px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".nav-tabs": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "46px",
+        "width": "325px",
+        "padding": "4px",
+        "display": "flex",
+        "flex": "1 1 100%",
+        "flexWrap": "nowrap",
+        "gap": "2px",
+        "maxHeight": "none",
+        "overflow": "auto",
+        "borderRadius": "9999px",
+        "backdropFilter": "url(\"#apple-liquid-refract\") blur(22px) saturate(1.85) brightness(1.02)"
+      },
+      ".nav-btn": {
+        "fontSize": "12px",
+        "color": "rgb(15, 23, 42)",
+        "height": "36px",
+        "width": "61.3906px",
+        "padding": "7px 4px",
+        "display": "block",
+        "flex": "1 1 0px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "none"
+      },
+      ".kpi-top": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "22.2656px",
+        "width": "309px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-label": {
+        "fontSize": "12px",
+        "color": "rgb(51, 65, 85)",
+        "height": "18.5938px",
+        "width": "180.484px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "1 1 150px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-sub": {
+        "fontSize": "11.5px",
+        "color": "rgb(100, 116, 139)",
+        "height": "26.8125px",
+        "width": "309px",
+        "padding": "8px 0px 0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "6px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".telemetry-table": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "344.562px",
+        "width": "660px",
+        "padding": "0px",
+        "display": "table",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".table-wrap": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "344.562px",
+        "width": "321px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".modal-backdrop": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "1000px",
+        "width": "375px",
+        "padding": "20px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "blur(18px) saturate(1.6)"
+      },
+      ".modal-card": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "auto",
+        "width": "100%",
+        "padding": "24px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "maxHeight": "960px",
+        "overflow": "hidden auto",
+        "borderRadius": "22px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      },
+      ".mobile-budget": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "auto",
+        "width": "248px",
+        "padding": "8px 10px 10px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "976px",
+        "overflow": "auto",
+        "borderRadius": "15px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      }
+    },
+    "768": {
+      "body": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "2547.53px",
+        "width": "768px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "hidden auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".topbar-inner": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "149.594px",
+        "width": "720px",
+        "padding": "12px 20px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "12px 16px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "22px",
+        "backdropFilter": "blur(28px) saturate(1.9) brightness(1.02)"
+      },
+      ".brand-cluster": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30px",
+        "width": "678px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "1 1 360px",
+        "flexWrap": "nowrap",
+        "gap": "12px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".vessel-select": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "29px",
+        "width": "562.625px",
+        "padding": "5px 14px",
+        "display": "block",
+        "flex": "1 1 0%",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "clip",
+        "borderRadius": "9999px",
+        "backdropFilter": "blur(14px) saturate(1.6)"
+      },
+      ".topbar-right": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30.5938px",
+        "width": "352.047px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".nav-tabs": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "39px",
+        "width": "678px",
+        "padding": "4px",
+        "display": "flex",
+        "flex": "1 1 100%",
+        "flexWrap": "nowrap",
+        "gap": "2px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "url(\"#apple-liquid-refract\") blur(22px) saturate(1.85) brightness(1.02)"
+      },
+      ".nav-btn": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "29px",
+        "width": "129.438px",
+        "padding": "5px 14px",
+        "display": "block",
+        "flex": "1 0 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "none"
+      },
+      ".kpi-top": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "22.2656px",
+        "width": "310px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-label": {
+        "fontSize": "12px",
+        "color": "rgb(51, 65, 85)",
+        "height": "18.5938px",
+        "width": "181.484px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "1 1 130px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-sub": {
+        "fontSize": "11.5px",
+        "color": "rgb(100, 116, 139)",
+        "height": "26.8125px",
+        "width": "310px",
+        "padding": "8px 0px 0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "6px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".telemetry-table": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "344.562px",
+        "width": "674px",
+        "padding": "0px",
+        "display": "table",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".table-wrap": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "344.562px",
+        "width": "674px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".modal-backdrop": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "1000px",
+        "width": "768px",
+        "padding": "20px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "blur(18px) saturate(1.6)"
+      },
+      ".modal-card": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "auto",
+        "width": "100%",
+        "padding": "24px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "maxHeight": "960px",
+        "overflow": "hidden auto",
+        "borderRadius": "22px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      },
+      ".mobile-budget": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "auto",
+        "width": "248px",
+        "padding": "8px 10px 10px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "976px",
+        "overflow": "auto",
+        "borderRadius": "15px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      }
+    },
+    "1440": {
+      "body": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "1579.14px",
+        "width": "1440px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "hidden auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".topbar-inner": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "107.594px",
+        "width": "1340px",
+        "padding": "12px 18px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "12px 16px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "blur(28px) saturate(1.9) brightness(1.02)"
+      },
+      ".brand-cluster": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30px",
+        "width": "933.953px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "1 1 360px",
+        "flexWrap": "nowrap",
+        "gap": "12px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".vessel-select": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "29px",
+        "width": "818.578px",
+        "padding": "5px 14px",
+        "display": "block",
+        "flex": "1 1 0%",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "clip",
+        "borderRadius": "9999px",
+        "backdropFilter": "blur(14px) saturate(1.6)"
+      },
+      ".topbar-right": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "30.5938px",
+        "width": "352.047px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".nav-tabs": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "39px",
+        "width": "1302px",
+        "padding": "4px",
+        "display": "flex",
+        "flex": "1 1 100%",
+        "flexWrap": "nowrap",
+        "gap": "2px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "url(\"#apple-liquid-refract\") blur(22px) saturate(1.85) brightness(1.02)"
+      },
+      ".nav-btn": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "29px",
+        "width": "254.234px",
+        "padding": "5px 14px",
+        "display": "block",
+        "flex": "1 0 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "9999px",
+        "backdropFilter": "none"
+      },
+      ".kpi-top": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "37.1875px",
+        "width": "269px",
+        "padding": "0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-label": {
+        "fontSize": "12px",
+        "color": "rgb(51, 65, 85)",
+        "height": "37.1875px",
+        "width": "140.484px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "1 1 130px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".kpi-sub": {
+        "fontSize": "11.5px",
+        "color": "rgb(100, 116, 139)",
+        "height": "50.625px",
+        "width": "269px",
+        "padding": "8px 0px 0px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "wrap",
+        "gap": "6px",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".telemetry-table": {
+        "fontSize": "12.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "262.141px",
+        "width": "886px",
+        "padding": "0px",
+        "display": "table",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".table-wrap": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "262.141px",
+        "width": "886px",
+        "padding": "0px",
+        "display": "block",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "auto",
+        "borderRadius": "0px",
+        "backdropFilter": "none"
+      },
+      ".modal-backdrop": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "1000px",
+        "width": "1440px",
+        "padding": "20px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "none",
+        "overflow": "visible",
+        "borderRadius": "0px",
+        "backdropFilter": "blur(18px) saturate(1.6)"
+      },
+      ".modal-card": {
+        "fontSize": "13.5px",
+        "color": "rgb(0, 0, 0)",
+        "height": "auto",
+        "width": "100%",
+        "padding": "24px",
+        "display": "flex",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "maxHeight": "960px",
+        "overflow": "hidden auto",
+        "borderRadius": "22px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      },
+      ".mobile-budget": {
+        "fontSize": "13.5px",
+        "color": "rgb(15, 23, 42)",
+        "height": "auto",
+        "width": "248px",
+        "padding": "8px 10px 10px",
+        "display": "none",
+        "flex": "0 1 auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "maxHeight": "976px",
+        "overflow": "auto",
+        "borderRadius": "15px",
+        "backdropFilter": "blur(22px) saturate(1.8) brightness(1.02)"
+      }
+    }
+  },
+  "contrastSamples": [
+    {
+      "selector": "",
+      "foreground": "rgb(100, 116, 139)",
+      "fontSize": "11.5px",
+      "text": "1,100 tCO₂ × €80",
+      "viewport": {
+        "x": 141.1875,
+        "y": 370.90625
+      },
+      "local": {
+        "x": 46.1875,
+        "y": 8.5
+      },
+      "box": {
+        "x": 95,
+        "y": 362.40625,
+        "width": 92.375,
+        "height": 17.8125
+      },
+      "sourceSelector": ".kpi-sub span:first-child",
+      "file": "sample-0-background.png"
+    },
+    {
+      "selector": "badge badge-in-force",
+      "foreground": "rgb(51, 65, 85)",
+      "fontSize": "10.5px",
+      "text": "CO₂ Only · TtW",
+      "viewport": {
+        "x": 309.7421875,
+        "y": 286.078125
+      },
+      "local": {
+        "x": 66.2578125,
+        "y": 11
+      },
+      "box": {
+        "x": 243.484375,
+        "y": 275.078125,
+        "width": 120.515625,
+        "height": 22.265625
+      },
+      "sourceSelector": ".kpi-card .badge",
+      "file": "sample-1-background.png"
+    },
+    {
+      "selector": "",
+      "foreground": "rgb(100, 116, 139)",
+      "fontSize": "11px",
+      "text": "碳价比较参考：€60 / €80 / €100",
+      "viewport": {
+        "x": 197.21875,
+        "y": 624.5625
+      },
+      "local": {
+        "x": 83.21875,
+        "y": 8.5
+      },
+      "box": {
+        "x": 114,
+        "y": 616.0625,
+        "width": 166.4375,
+        "height": 17.046875
+      },
+      "sourceSelector": ".control-hint span",
+      "file": "sample-2-background.png"
+    },
+    {
+      "selector": "cockpitLegTableBody",
+      "foreground": "rgb(15, 23, 42)",
+      "fontSize": "12.5px",
+      "text": "EU-E1",
+      "viewport": {
+        "x": 487.1953125,
+        "y": 650.9375
+      },
+      "local": {
+        "x": 30.1953125,
+        "y": 22.4375
+      },
+      "box": {
+        "x": 457,
+        "y": 628.5,
+        "width": 886,
+        "height": 225.828125
+      },
+      "sourceSelector": "#cockpitLegTableBody",
+      "file": "sample-3-background.png"
+    },
+    {
+      "selector": "formula-code",
+      "foreground": "rgb(2, 132, 199)",
+      "fontSize": "11px",
+      "text": "CO₂ × 50% × EUA",
+      "viewport": {
+        "x": 499.890625,
+        "y": 604.359375
+      },
+      "local": {
+        "x": 58.671875,
+        "y": 12.5
+      },
+      "box": {
+        "x": 441.21875,
+        "y": 591.859375,
+        "width": 117.34375,
+        "height": 25.046875
+      },
+      "sourceSelector": ".formula-code",
+      "file": "sample-4-background.png"
+    },
+    {
+      "selector": "",
+      "foreground": "rgb(2, 132, 199)",
+      "fontSize": "13px",
+      "text": "展开输入、公式与结果",
+      "viewport": {
+        "x": 177.0703125,
+        "y": 508.046875
+      },
+      "local": {
+        "x": 80.0703125,
+        "y": 20
+      },
+      "box": {
+        "x": 97,
+        "y": 488.046875,
+        "width": 1246,
+        "height": 44
+      },
+      "sourceSelector": "#tab-audit .customer-details > summary",
+      "file": "sample-5-background.png"
+    },
+    {
+      "selector": "",
+      "foreground": "rgb(100, 116, 139)",
+      "fontSize": "11.5px",
+      "text": "本系统为决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。",
+      "viewport": {
+        "x": 380.1953125,
+        "y": 958.4375
+      },
+      "local": {
+        "x": 306.1953125,
+        "y": 8.5
+      },
+      "box": {
+        "x": 74,
+        "y": 949.9375,
+        "width": 612.390625,
+        "height": 17.8125
+      },
+      "sourceSelector": ".footer-bar > span",
+      "file": "sample-6-background.png"
+    }
+  ],
+  "scope": "Readability baseline only. Performance comparison and clean mode cancelled by user."
+}

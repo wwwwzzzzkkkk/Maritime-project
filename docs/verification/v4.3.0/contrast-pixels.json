@@ -1,0 +1,285 @@
+{
+  "method": "Playwright element screenshots with only text ink hidden; layout, material, blur and underlying content retained. 3x3 pixels sampled at first text-line centre; median RGB used; sRGB WCAG relative luminance formula. Temporary hiding is test instrumentation only. Positions are viewport CSS pixels at DPR1. Limited points, not a universal guarantee.",
+  "samples": [
+    {
+      "phase": "baseline",
+      "selector": ".kpi-sub span:first-child",
+      "text": "1,100 tCO₂ × €80",
+      "fontSize": "11.5px",
+      "foreground": "#64748b",
+      "sampledBackground": "#f8fbff",
+      "contrast": 4.585,
+      "min3x3Contrast": 4.546,
+      "viewportPoint": {
+        "x": 141.1875,
+        "y": 370.90625
+      },
+      "localPixel": {
+        "x": 46,
+        "y": 8
+      },
+      "backgroundScreenshot": "baseline/sample-0-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "baseline",
+      "selector": ".kpi-card .badge",
+      "text": "CO₂ Only · TtW",
+      "fontSize": "10.5px",
+      "foreground": "#334155",
+      "sampledBackground": "#fefeff",
+      "contrast": 10.273,
+      "min3x3Contrast": 10.192,
+      "viewportPoint": {
+        "x": 309.7421875,
+        "y": 286.078125
+      },
+      "localPixel": {
+        "x": 66,
+        "y": 11
+      },
+      "backgroundScreenshot": "baseline/sample-1-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "baseline",
+      "selector": ".control-hint span",
+      "text": "碳价比较参考：€60 / €80 / €100",
+      "fontSize": "11px",
+      "foreground": "#64748b",
+      "sampledBackground": "#f9fdfe",
+      "contrast": 4.648,
+      "min3x3Contrast": 4.619,
+      "viewportPoint": {
+        "x": 197.21875,
+        "y": 624.5625
+      },
+      "localPixel": {
+        "x": 83,
+        "y": 8
+      },
+      "backgroundScreenshot": "baseline/sample-2-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "baseline",
+      "selector": "#cockpitLegTableBody",
+      "text": "EU-E1",
+      "fontSize": "12.5px",
+      "foreground": "#0f172a",
+      "sampledBackground": "#eff9ff",
+      "contrast": 16.717,
+      "min3x3Contrast": 16.688,
+      "viewportPoint": {
+        "x": 487.1953125,
+        "y": 650.9375
+      },
+      "localPixel": {
+        "x": 30,
+        "y": 22
+      },
+      "backgroundScreenshot": "baseline/sample-3-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "baseline",
+      "selector": ".formula-code",
+      "text": "CO₂ × 50% × EUA",
+      "fontSize": "11px",
+      "foreground": "#0284c7",
+      "sampledBackground": "#fdfeff",
+      "contrast": 4.056,
+      "min3x3Contrast": 4.021,
+      "viewportPoint": {
+        "x": 499.890625,
+        "y": 604.359375
+      },
+      "localPixel": {
+        "x": 59,
+        "y": 12
+      },
+      "backgroundScreenshot": "baseline/sample-4-background.png",
+      "pass4_5": false
+    },
+    {
+      "phase": "baseline",
+      "selector": "#tab-audit .customer-details > summary",
+      "text": "展开输入、公式与结果",
+      "fontSize": "13px",
+      "foreground": "#0284c7",
+      "sampledBackground": "#f7fcff",
+      "contrast": 3.963,
+      "min3x3Contrast": 3.929,
+      "viewportPoint": {
+        "x": 177.0703125,
+        "y": 508.046875
+      },
+      "localPixel": {
+        "x": 80,
+        "y": 20
+      },
+      "backgroundScreenshot": "baseline/sample-5-background.png",
+      "pass4_5": false
+    },
+    {
+      "phase": "baseline",
+      "selector": ".footer-bar > span",
+      "text": "本系统为决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。",
+      "fontSize": "11.5px",
+      "foreground": "#64748b",
+      "sampledBackground": "#e5eef6",
+      "contrast": 4.055,
+      "min3x3Contrast": 4.047,
+      "viewportPoint": {
+        "x": 380.1953125,
+        "y": 958.4375
+      },
+      "localPixel": {
+        "x": 306,
+        "y": 8
+      },
+      "backgroundScreenshot": "baseline/sample-6-background.png",
+      "pass4_5": false
+    },
+    {
+      "phase": "after",
+      "selector": ".kpi-sub span:first-child",
+      "text": "1,100 tCO₂ × €80",
+      "fontSize": "12px",
+      "foreground": "#475569",
+      "sampledBackground": "#f8fbff",
+      "contrast": 7.301,
+      "min3x3Contrast": 7.239,
+      "viewportPoint": {
+        "x": 142.9140625,
+        "y": 393.65625
+      },
+      "localPixel": {
+        "x": 48,
+        "y": 8
+      },
+      "backgroundScreenshot": "after/sample-0-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": ".kpi-card .badge",
+      "text": "CO₂ Only · TtW",
+      "fontSize": "12px",
+      "foreground": "#334155",
+      "sampledBackground": "#fefeff",
+      "contrast": 10.273,
+      "min3x3Contrast": 10.273,
+      "viewportPoint": {
+        "x": 167.578125,
+        "y": 310.5625
+      },
+      "localPixel": {
+        "x": 73,
+        "y": 12
+      },
+      "backgroundScreenshot": "after/sample-1-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": ".control-hint span",
+      "text": "碳价比较参考：€60 / €80 / €100",
+      "fontSize": "12px",
+      "foreground": "#475569",
+      "sampledBackground": "#f8fcfe",
+      "contrast": 7.342,
+      "min3x3Contrast": 7.324,
+      "viewportPoint": {
+        "x": 204.1796875,
+        "y": 651.203125
+      },
+      "localPixel": {
+        "x": 90,
+        "y": 8
+      },
+      "backgroundScreenshot": "after/sample-2-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": "#cockpitLegTableBody",
+      "text": "EU-E1",
+      "fontSize": "12.5px",
+      "foreground": "#0f172a",
+      "sampledBackground": "#eff9ff",
+      "contrast": 16.717,
+      "min3x3Contrast": 16.717,
+      "viewportPoint": {
+        "x": 487.1953125,
+        "y": 639.625
+      },
+      "localPixel": {
+        "x": 30,
+        "y": 24
+      },
+      "backgroundScreenshot": "after/sample-3-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": ".formula-code",
+      "text": "CO₂ × 50% × EUA",
+      "fontSize": "12px",
+      "foreground": "#0369a1",
+      "sampledBackground": "#fdfeff",
+      "contrast": 5.876,
+      "min3x3Contrast": 5.826,
+      "viewportPoint": {
+        "x": 504.40625,
+        "y": 630.734375
+      },
+      "localPixel": {
+        "x": 63,
+        "y": 13
+      },
+      "backgroundScreenshot": "after/sample-4-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": "#tab-audit .customer-details > summary",
+      "text": "展开输入、公式与结果",
+      "fontSize": "13px",
+      "foreground": "#0369a1",
+      "sampledBackground": "#f7fcff",
+      "contrast": 5.742,
+      "min3x3Contrast": 5.693,
+      "viewportPoint": {
+        "x": 177.0703125,
+        "y": 533.140625
+      },
+      "localPixel": {
+        "x": 80,
+        "y": 20
+      },
+      "backgroundScreenshot": "after/sample-5-background.png",
+      "pass4_5": true
+    },
+    {
+      "phase": "after",
+      "selector": ".footer-bar > span",
+      "text": "本系统为决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。",
+      "fontSize": "12px",
+      "foreground": "#475569",
+      "sampledBackground": "#e5eef6",
+      "contrast": 6.456,
+      "min3x3Contrast": 6.444,
+      "viewportPoint": {
+        "x": 393.078125,
+        "y": 957.65625
+      },
+      "localPixel": {
+        "x": 319,
+        "y": 8
+      },
+      "backgroundScreenshot": "after/sample-6-background.png",
+      "pass4_5": true
+    }
+  ]
+}

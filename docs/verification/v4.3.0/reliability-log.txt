@@ -1,0 +1,1 @@
+PASS: protected diff; unchanged baselines; continuous input; bilingual layouts; local reading-region exception; default tilt/reduced motion; popup updates; Pro Max smoke.

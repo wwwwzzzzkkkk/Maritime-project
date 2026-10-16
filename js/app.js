@@ -1,8 +1,8 @@
-import { createPlanningUi } from './planning-ui.mjs?v=4.2.1';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.2.1';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.2.1';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.2.1';
-/* MAREG light UI v4.2.1 — presentation fixes; calculation engine outputs remain frozen. */
+import { createPlanningUi } from './planning-ui.mjs?v=4.3.0';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.3.0';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.3.0';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.3.0';
+/* MAREG light UI v4.3.0 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -54,6 +54,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   let planningSettings=defaultSettings();
   const vesselInputs={};
   let currentPlan;
+  let renderFrame=0;
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 
   let leafletMap = null;
   let mapLayers = {};
@@ -135,10 +137,11 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const offsetLeft = activeBtn.offsetLeft;
     const width = activeBtn.offsetWidth;
 
-    indicator.style.width = `${width}px`;
-    indicator.style.transform = `translate3d(${offsetLeft}px, 0, 0)`;
+    indicator.style.setProperty('--w', `${width}px`);
+    indicator.style.setProperty('--nav-x', `${offsetLeft}px`);
 
-    if (animateStretch) {
+    if (animateStretch && !reducedMotion.matches) {
+      indicator.classList.add('is-moving');
       indicator.classList.remove('stretching');
       void indicator.offsetWidth;
       indicator.classList.add('stretching');
@@ -150,7 +153,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
    * Skips the panel-card containing #realMaritimeMap so Leaflet never experiences parent transform shifts
    */
   function applyStaggeredCascade(panelEl) {
-    if (!panelEl) return;
+    if (!panelEl || reducedMotion.matches) return;
     const items = panelEl.querySelectorAll('.panel-card, .control-group, .gauge-card');
     items.forEach((item, idx) => {
       if (item.querySelector('#realMaritimeMap')) {
@@ -179,10 +182,10 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       ring.classList.toggle('is-increase',pct>0);
       ring.closest('svg').setAttribute('aria-label',`${lang==='zh'?zh:en}: ${pct.toFixed(4)}%. ${scale}`);
       const draw=()=>ring.setAttribute('stroke-dasharray',`${length} 251`);
-      if(replay) {
-        ring.style.transition='none';ring.setAttribute('stroke-dasharray','0 251');
+      if(replay && !reducedMotion.matches) {
+        ring.classList.add('is-resetting');ring.setAttribute('stroke-dasharray','0 251');
         requestAnimationFrame(()=>requestAnimationFrame(()=>{
-          ring.style.transition='stroke-dasharray 760ms cubic-bezier(0.16, 1, 0.3, 1)';draw();
+          ring.classList.remove('is-resetting');ring.classList.add('is-live-replay');draw();
         }));
       } else draw();
     }
@@ -195,7 +198,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   function fitFullRoute(animate=false) {
     leafletMap.invalidateSize();
     const options={padding:[24,24]};
-    if(animate)leafletMap.flyToBounds(fullRouteBounds(),{...options,duration:.85});
+    if(animate && !reducedMotion.matches)leafletMap.flyToBounds(fullRouteBounds(),{...options,duration:.85});
     else leafletMap.fitBounds(fullRouteBounds(),options);
   }
 
@@ -211,20 +214,21 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   function triggerLiveChartReplay(panelId) {
     const m = computeComplianceMetrics();
 
+    if(reducedMotion.matches)return;
     if (panelId === 'tab-sandbox') {
       const ownerBar = document.getElementById('ownerSplitBar');
       const chartBar = document.getElementById('chartererSplitBar');
       if (ownerBar && chartBar) {
-        ownerBar.style.transition = 'none';
-        chartBar.style.transition = 'none';
-        ownerBar.style.width = '0%';
-        chartBar.style.width = '0%';
+        ownerBar.classList.add('is-resetting');
+        chartBar.classList.add('is-resetting');
+        ownerBar.style.setProperty('--w','0%');
+        chartBar.style.setProperty('--w','0%');
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            ownerBar.style.transition = 'width 680ms cubic-bezier(0.16, 1, 0.3, 1)';
-            chartBar.style.transition = 'width 680ms cubic-bezier(0.16, 1, 0.3, 1)';
-            ownerBar.style.width = `${(m.ownerSharePct * 100).toFixed(0)}%`;
-            chartBar.style.width = `${(m.chartererSharePct * 100).toFixed(0)}%`;
+            ownerBar.classList.remove('is-resetting');ownerBar.classList.add('is-live-replay');
+            chartBar.classList.remove('is-resetting');chartBar.classList.add('is-live-replay');
+            ownerBar.style.setProperty('--w', `${(m.ownerSharePct * 100).toFixed(0)}%`);
+            chartBar.style.setProperty('--w', `${(m.chartererSharePct * 100).toFixed(0)}%`);
           });
         });
       }
@@ -234,11 +238,11 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       const bars = document.querySelectorAll('#tab-scenarios .bar-fill');
       bars.forEach((bar, i) => {
         const targetW = bar.getAttribute('data-target-width') || '85%';
-        bar.style.transition = 'none';
-        bar.style.width = '0%';
+        bar.classList.add('is-resetting');
+        bar.style.setProperty('--w','0%');
         setTimeout(() => {
-          bar.style.transition = 'width 720ms cubic-bezier(0.16, 1, 0.3, 1)';
-          bar.style.width = targetW;
+          bar.classList.remove('is-resetting');bar.classList.add('is-scenario-replay');
+          bar.style.setProperty('--w',targetW);
         }, 60 + i * 55);
       });
     }
@@ -280,7 +284,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       );
       if (leafletMap) {
         leafletMap.invalidateSize();
-        leafletMap.flyTo([52.2, 3.8], 5, { duration: 0.85 });
+        leafletMap.flyTo([52.2, 3.8], 5, { duration: 0.85, animate:!reducedMotion.matches });
       }
     } else if (camKey === 'chokepoints') {
       setText('mapCursorCoords', 'LAT 34.00°N · LON 14.00°E (<300nm ANTI-EVASION)');
@@ -292,7 +296,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       );
       if (leafletMap) {
         leafletMap.invalidateSize();
-        leafletMap.flyTo([34.5, 13.5], 4, { duration: 0.85 });
+        leafletMap.flyTo([34.5, 13.5], 4, { duration: 0.85, animate:!reducedMotion.matches });
       }
     }
   }
@@ -541,6 +545,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         });
 
         marker.portMeta = p;
+        marker.bindPopup(()=>buildMapPopup(marker));
         return marker;
       });
 
@@ -567,35 +572,32 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     renderApp();
   }
 
-  function updateMapPopups() {
-    if (!leafletMap || !mapLayers.portMarkers) return;
-    const lang = state.lang;
-    const m = computeComplianceMetrics();
-
-    mapLayers.portMarkers.forEach(marker => {
-      const p = marker.portMeta;
-      const legObj = m.computedLegs.find(l => l.id === p.legId) || m.computedLegs[0];
-      const costStr = legObj.currency === 'EUR' ? fmtEur(legObj.cost, 0) : fmtGbp(legObj.cost, 0);
-
-      marker.bindPopup(`
-        <div style="min-width:210px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <strong style="color:#0f172a; font-size:12.5px;">${lang === 'zh' ? p.nameZh : p.nameEn}</strong>
-            <span class="mono" style="font-size:10.5px; color:#0284c7; font-weight:600;">${p.code}</span>
+  function buildMapPopup(marker) {
+    const lang=state.lang,m=computeComplianceMetrics(),p=marker.portMeta;
+    const legObj=m.computedLegs.find(l=>l.id===p.legId)||m.computedLegs[0];
+    const costStr=legObj.currency==='EUR'?fmtEur(legObj.cost,0):fmtGbp(legObj.cost,0);
+    return `
+        <div class="port-popup">
+          <div class="port-popup-heading">
+            <strong class="port-popup-title">${lang === 'zh' ? p.nameZh : p.nameEn}</strong>
+            <span class="mono port-popup-code">${p.code}</span>
           </div>
-          <div class="mono" style="font-size:10.5px; color:#64748b; margin-bottom:6px;">
+          <div class="mono port-popup-coordinates">
             LAT ${p.coords[0].toFixed(2)}° · LON ${p.coords[1].toFixed(2)}°
           </div>
-          <div style="color:#334155; font-size:11.5px; margin-bottom:6px;">
+          <div class="port-popup-description">
             ${lang === 'zh' ? p.roleZh : p.roleEn}
           </div>
-          <div style="padding-top:6px; border-top:1px solid rgba(15,23,42,0.10); display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px;">
-            <span style="color:#475569;">${legObj.code} (${(legObj.coveragePct * 100).toFixed(0)}%)</span>
-            <strong style="color:#0f172a;">${costStr}</strong>
+          <div class="port-popup-cost">
+            <span class="text-muted-copy">${legObj.code} (${(legObj.coveragePct * 100).toFixed(0)}%)</span>
+            <strong class="text-primary">${costStr}</strong>
           </div>
         </div>
-      `);
-    });
+      `;
+  }
+
+  function updateMapPopups() {
+    mapLayers.portMarkers.forEach(marker=>{if(marker.isPopupOpen())marker.getPopup().update();});
   }
 
   function updateVesselRoute() {
@@ -621,7 +623,13 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     });
   }
 
+  function scheduleRender() {
+    if(renderFrame)return;
+    renderFrame=requestAnimationFrame(()=>{renderFrame=0;renderApp();});
+  }
+
   function renderApp() {
+    if(renderFrame){cancelAnimationFrame(renderFrame);renderFrame=0;}
     const lang = state.lang;
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';
     const dict = state.i18n[lang];
@@ -725,7 +733,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const supplyAlertEl = document.getElementById('bunkerSupplyAlert');
     if (supplyAlertEl) {
       if (twin.biofuelBlendPct > 0) {
-        supplyAlertEl.style.display = 'flex';
+        supplyAlertEl.hidden=false;
         supplyAlertEl.innerHTML = `
           <div>
             <strong>${lang === 'zh' ? '示例燃料系数与供给待核实' : 'Illustrative Fuel Coefficients & Unverified Supply'}</strong>
@@ -735,7 +743,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           </div>
         `;
       } else {
-        supplyAlertEl.style.display = 'none';
+        supplyAlertEl.hidden=true;
       }
     }
 
@@ -767,8 +775,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const ownerSplitBar = document.getElementById('ownerSplitBar');
     const chartererSplitBar = document.getElementById('chartererSplitBar');
     if (ownerSplitBar && chartererSplitBar) {
-      ownerSplitBar.style.width = `${(m.ownerSharePct * 100).toFixed(0)}%`;
-      chartererSplitBar.style.width = `${(m.chartererSharePct * 100).toFixed(0)}%`;
+      ownerSplitBar.style.setProperty('--w', `${(m.ownerSharePct * 100).toFixed(0)}%`);
+      chartererSplitBar.style.setProperty('--w', `${(m.chartererSharePct * 100).toFixed(0)}%`);
     }
     setText('charterExplainBox', lang === 'zh' ? m.charterNoteZh : m.charterNoteEn);
 
@@ -822,15 +830,15 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     // Tab 4: Active IMO Scenario Detail Box
     const sc = m.scenario;
     setHTML('activeScenarioDetailBox', `
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <strong style="color:var(--text-primary); font-size:14px;">${lang === 'zh' ? sc.titleZh : sc.titleEn}</strong>
+      <div class="row-between-wrap">
+        <strong class="scenario-heading">${lang === 'zh' ? sc.titleZh : sc.titleEn}</strong>
         <span class="badge badge-${sc.tagStatus}">${lang==='zh'?'假设情景 · 非生效规则':'Hypothetical · not in force'}</span>
       </div>
-      <p style="font-size:12.5px; color:var(--text-secondary); margin-top:4px;">
+      <p class="scenario-description">
         ${lang === 'zh' ? sc.triggerZh : sc.triggerEn}
       </p>
-      <div style="font-size:12px; color:var(--text-muted); padding-top:6px; border-top:1px solid var(--border-hairline);">
-        <strong style="color:var(--text-primary);">${lang === 'zh' ? '需要核对：' : 'Review next: '}</strong>
+      <div class="scenario-review">
+        <strong class="text-primary">${lang === 'zh' ? '需要核对：' : 'Review next: '}</strong>
         ${customerScenarioActions[state.selectedScenario][lang]}
       </div>
     `);
@@ -846,16 +854,16 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       q2:lang==='zh'?'不会。未来情景只用于了解可能变化，不会自动改变 EU ETS、FuelEU 或 UK ETS 预算。全球收费不在当前计算中，实际使用须核对正式规则与生效日期。':'No. Future scenarios describe possible changes; they do not automatically change EU ETS, FuelEU or UK ETS budgets. Global charges are outside this calculation; confirm adopted rules and effective dates before real use.',
       q3:lang==='zh'?`当前强度 ${fmtNum(m.actualIntensity,4)}，目标 ${fmtNum(m.targetIntensity,4)}；分配 ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB 后罚款 ${fmtEur(m.fueleuPenaltyEur,2)}。供给、燃料认证与合同未验证，不能据此宣称最优或实际减排。`:`Current intensity ${fmtNum(m.actualIntensity,4)}, target ${fmtNum(m.targetIntensity,4)}; allocation ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB leaves ${fmtEur(m.fueleuPenaltyEur,2)} penalty. Supply, fuel certification and contracts are unverified; no optimum or realized reduction is claimed.`
     };
-    setHTML('aiAnswerBox',`<strong>${question}</strong><p style="margin-top:8px;">${answers[activePromptId]}</p><span class="badge badge-assumption">${lang==='zh'?'预设解释 · 非 AI 服务':'Preset explanation · no AI service'}</span>`);
+    setHTML('aiAnswerBox',`<strong>${question}</strong><p class="answer-copy">${answers[activePromptId]}</p><span class="badge badge-assumption">${lang==='zh'?'预设解释 · 非 AI 服务':'Preset explanation · no AI service'}</span>`);
 
     setHTML('aiFeedContainer', state.aiFeed.map(item => `
-      <div class="control-group" style="gap:4px; padding:11px 14px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
-          <strong style="color:var(--text-primary); font-size:12.5px;">${lang === 'zh' ? item.titleZh : item.titleEn}</strong>
+      <div class="control-group reference-entry">
+        <div class="row-between">
+          <strong class="strong-caption">${lang === 'zh' ? item.titleZh : item.titleEn}</strong>
           <span class="badge badge-${item.status}">${lang === 'zh' ? item.badgeZh : item.badgeEn}</span>
         </div>
-        <p style="font-size:11.5px; color:var(--text-secondary);">${lang === 'zh' ? item.summaryZh : item.summaryEn}</p>
-        <div class="mono" style="font-size:10.5px; color:var(--text-muted);">${item.date} · <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.source}</a></div>
+        <p class="reference-summary">${lang === 'zh' ? item.summaryZh : item.summaryEn}</p>
+        <div class="mono reference-citation">${item.date} · <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.source}</a></div>
       </div>
     `).join(''));
 
@@ -870,116 +878,50 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   /**
-   * Spatial 3D Tilt & Multi-Plane Parallax Engine (v3.2)
+   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.3.0)
    * - Never tilts the panel-card containing the interactive GIS map when hovering inside .map-stage
    */
   function initSpatial3DTiltEngine() {
-    const selector = '.kpi-card, .panel-card, .gauge-card, .control-group, .modal-card';
-    let isDraggingRange = false;
-
-    document.addEventListener('mousedown', (e) => {
-      if (e.target && e.target.matches('input[type="range"]')) {
-        isDraggingRange = true;
-      }
-    });
-    document.addEventListener('mouseup', () => {
-      isDraggingRange = false;
-    });
-
-    function resetCard3D(card) {
+    const selector='.kpi-card, .panel-card, .gauge-card, .control-group, .modal-card';
+    let active=new Set(),frame=0,pending=null,dragging=false;
+    function reset(card) {
       card.classList.remove('is-tilting');
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-      card.style.setProperty('--tz', '0px');
-      card.style.setProperty('--lift-y', '0px');
-      card.style.setProperty('--px', '0px');
-      card.style.setProperty('--py', '0px');
-      card.style.setProperty('--sx', '0px');
-      card.style.setProperty('--sy', '0px');
+      for(const [key,value] of Object.entries({'--rx':'0deg','--ry':'0deg','--tz':'0px','--lift-y':'0px','--px':'0px','--py':'0px','--sx':'0px','--sy':'0px'}))card.style.setProperty(key,value);
     }
-
-    document.addEventListener('mousemove', (e) => {
-      const overMapStage = e.target && e.target.closest('.map-stage');
-      const cards = document.querySelectorAll(selector);
-
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) return;
-
-        const inside =
-          e.clientX >= rect.left &&
-          e.clientX <= rect.right &&
-          e.clientY >= rect.top &&
-          e.clientY <= rect.bottom;
-
-        if (!inside) {
-          if (card.classList.contains('is-tilting')) {
-            resetCard3D(card);
-          }
-          return;
-        }
-
-        // Keep the map and quick-adjuster controls flat while retaining pointer highlights.
-        if (card.closest('#quickAdjuster, #planningInputsPanel') || card.querySelector('#realMaritimeMap') || overMapStage || isDraggingRange) {
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
-          resetCard3D(card);
-          return;
-        }
-
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-
-        const nx = (x / rect.width) - 0.5;
-        const ny = (y / rect.height) - 0.5;
-
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const angleDeg = Math.round(Math.atan2(y - cy, x - cx) * (180 / Math.PI) + 90);
-        card.style.setProperty('--specular-angle', `${angleDeg}deg`);
-
-        let maxTiltDeg = 7.5;
-        let liftZ = 10;
-        let liftY = -4;
-        let maxParallaxPx = 7.5;
-
-        if (card.classList.contains('panel-card') || card.classList.contains('modal-card')) {
-          maxTiltDeg = 2.2;
-          liftZ = 4;
-          liftY = -2;
-          maxParallaxPx = 4.0;
-        } else if (card.classList.contains('control-group')) {
-          maxTiltDeg = 4.5;
-          liftZ = 6;
-          liftY = -2;
-          maxParallaxPx = 4.0;
-        }
-
-        const rx = (-ny * maxTiltDeg * 2).toFixed(2);
-        const ry = (nx * maxTiltDeg * 2).toFixed(2);
-        const px = (nx * maxParallaxPx * 2).toFixed(2);
-        const py = (ny * maxParallaxPx * 2).toFixed(2);
-        const sx = (-nx * 18).toFixed(1);
-        const sy = (-ny * 14).toFixed(1);
-
-        card.classList.add('is-tilting');
-        card.style.setProperty('--rx', `${rx}deg`);
-        card.style.setProperty('--ry', `${ry}deg`);
-        card.style.setProperty('--tz', `${liftZ}px`);
-        card.style.setProperty('--lift-y', `${liftY}px`);
-        card.style.setProperty('--px', `${px}px`);
-        card.style.setProperty('--py', `${py}px`);
-        card.style.setProperty('--sx', `${sx}px`);
-        card.style.setProperty('--sy', `${sy}px`);
+    function clear() {active.forEach(reset);active.clear();if(frame)cancelAnimationFrame(frame);frame=0;pending=null;}
+    document.addEventListener('mousedown',e=>{if(e.target.matches('input[type="range"]'))dragging=true;});
+    document.addEventListener('mouseup',()=>{dragging=false;});
+    document.addEventListener('mouseleave',clear);window.addEventListener('blur',clear);
+    reducedMotion.addEventListener('change',clear);
+    document.addEventListener('mousemove',event=>{
+      if(reducedMotion.matches){clear();return;}
+      pending={target:event.target,x:event.clientX,y:event.clientY};
+      if(frame)return;
+      frame=requestAnimationFrame(()=>{
+        frame=0;const e=pending,next=new Set();
+        for(let c=e.target.closest(selector);c;c=c.parentElement.closest(selector))next.add(c);
+        active.forEach(card=>{if(!next.has(card))reset(card);});
+        const reading=e.target.closest('.table-wrap, .reference-list');
+        next.forEach(card=>{
+          const rect=card.getBoundingClientRect(),x=e.x-rect.left,y=e.y-rect.top;
+          card.style.setProperty('--mouse-x',`${x}px`);card.style.setProperty('--mouse-y',`${y}px`);
+          // Intentional local exception: only the reading region is flat (sticky drift was ~2px).
+          // Titles/other regions retain tilt. Never restore tilt on the already-flat quick adjuster.
+          if(dragging||card.closest('#quickAdjuster, #planningInputsPanel')||card.querySelector('#realMaritimeMap')||(reading&&(card.contains(reading)||reading.contains(card)))){reset(card);return;}
+          const nx=x/rect.width-.5,ny=y/rect.height-.5;
+          card.style.setProperty('--specular-angle',`${Math.round(Math.atan2(y-rect.height/2,x-rect.width/2)*180/Math.PI+90)}deg`);
+          const panel=card.matches('.panel-card,.modal-card'),control=card.matches('.control-group');
+          const tilt=panel?2.2:control?4.5:7.5,parallax=panel||control?4:7.5;
+          card.classList.add('is-tilting');
+          for(const [key,value] of Object.entries({'--rx':`${(-ny*tilt*2).toFixed(2)}deg`,'--ry':`${(nx*tilt*2).toFixed(2)}deg`,'--tz':`${panel?4:control?6:10}px`,'--lift-y':`${panel||control?-2:-4}px`,'--px':`${(nx*parallax*2).toFixed(2)}px`,'--py':`${(ny*parallax*2).toFixed(2)}px`,'--sx':`${(-nx*18).toFixed(1)}px`,'--sy':`${(-ny*14).toFixed(1)}px`}))card.style.setProperty(key,value);
+        });active=next;
       });
-    }, { passive: true });
+    },{passive:true});
   }
 
   function bindEvents() {
+    const indicator=document.getElementById('navPillIndicator');
+    indicator.addEventListener('transitionend',e=>{if(e.propertyName==='transform')indicator.classList.remove('is-moving');});
     const tabButtons = Array.from(document.querySelectorAll('.nav-btn'));
 
     tabButtons.forEach((btn, newIndex) => {
@@ -1078,28 +1020,28 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     document.querySelectorAll('.sync-eua').forEach(slider => {
       slider.addEventListener('input', (e) => {
         state.twinState.euaPrice = Number(e.target.value);
-        renderApp();
+        scheduleRender();
       });
     });
 
     document.querySelectorAll('.sync-jit').forEach(slider => {
       slider.addEventListener('input', (e) => {
         state.twinState.jitSpeedDeltaKn = Number(e.target.value);
-        renderApp();
+        scheduleRender();
       });
     });
 
     document.querySelectorAll('.sync-bio').forEach(slider => {
       slider.addEventListener('input', (e) => {
         state.twinState.biofuelBlendPct = Number(e.target.value);
-        renderApp();
+        scheduleRender();
       });
     });
 
     document.querySelectorAll('.sync-pool').forEach(slider => {
       slider.addEventListener('input', (e) => {
         state.twinState.poolingSurplusTonnes = Number(e.target.value);
-        renderApp();
+        scheduleRender();
       });
     });
 
@@ -1152,7 +1094,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.2.1',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.3.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',

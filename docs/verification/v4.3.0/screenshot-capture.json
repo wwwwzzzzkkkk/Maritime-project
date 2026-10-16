@@ -1,0 +1,35 @@
+{
+  "reason": "Final screenshot-only recapture after allowing the existing 850ms Leaflet flight to finish; earlier 500ms captures could catch mid-flight. No test-suite rerun or production-code change.",
+  "cases": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "waitForMapAnimationMs": 1100
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "waitForMapAnimationMs": 1100
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "waitForMapAnimationMs": 1100
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "waitForMapAnimationMs": 1100
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "waitForMapAnimationMs": 1100
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "waitForMapAnimationMs": 1100
+    }
+  ]
+}

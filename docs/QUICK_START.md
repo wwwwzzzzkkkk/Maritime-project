@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.2.1，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.3.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.2.1, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.3.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -352,3 +352,13 @@ The comparison is below the sliders and allocation/recommendation columns. Five 
 地图“全航线”和重置基准按当前航段坐标适配；阴影使用本地 Natural Earth 50m 数据，仍不是法律覆盖范围。外网字体/底图不可用时，已加载页面或本地 HTTP 运行仍可使用本地航线、阴影、金额与台账。验证通过请求拦截模拟，不是真实离线，也不保证未缓存时首次打开。
 
 Full Route and Reset fit current route coordinates. Local Natural Earth 50m shading remains geographical illustration, not legal scope. Loaded pages/local HTTP operation can retain local route, shading and calculations when external fonts/tiles are unavailable. Verification uses request interception, not real offline, and does not guarantee uncached first load.
+
+
+## v4.3.0：阅读与操作 / Reading and interaction
+
+保持原来的玻璃外观。辅助文字更清晰、字号更大；将指针放入表格或来源列表正文后，相关卡片平滑恢复平面，方便横滚和阅读；标题区域和展示卡仍保留原倾斜。系统设置“减少动态效果”时不再倾斜，概览快速调节器继续保持平面。滑块输入按帧合并，金额仍按同一模型更新，弹窗打开时显示当前数据。
+
+The original glass appearance remains. Text is larger/more legible. Hovering inside a table or reference list settles its card flat for reading; titles and display cards keep their tilt. Reduced-motion preference disables tilt, and overview quick controls remain flat. Slider inputs are batched by frame using the same model; open map popups stay current.
+
+宽表仍可在自身区域横向滚动，EUR/GBP 与演示/未核验/CO₂ 范围说明不变。
+Wide tables still scroll locally; currencies and demo/verification/CO₂ boundaries are unchanged.

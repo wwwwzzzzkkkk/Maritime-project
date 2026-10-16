@@ -24,3 +24,8 @@ Use the same glass cards, typography and materials for the added input disclosur
 ## v4.2.1 explicitly approved presentation corrections
 
 The user's stage-1 approval supersedes the historical fixed-height/illustrative-ring notes: map height is now responsive and camera bounds follow route coordinates; change rings use the disclosed ±30% scale with a 3% minimum non-zero arc, accent decreases and warn increases. The comparison occupies its own full-width glass card with five core columns and optional detail. These are the specifically approved changes; original glass tokens, remaining pointer tilt and replay timing are retained. Shared and Pro Max files are unchanged.
+
+
+## v4.3.0 approved scope
+
+Default glass, ambient glows and optical refraction remain. Text-only tokens deepen small copy while decorative accent remains unchanged. Body 15px, minimum CSS labels 12px and KPI figures 30px are intentional readability changes. CSS consolidation precedes those changes in an independent commit with pixel-identical three-width captures. Only pointer-inside table/reference reading regions settle flat; titles and display cards retain the original strengths. Clean mode, automatic high-contrast mode and GPU/performance evaluation were cancelled. Unsupported-blur fallback is a small opaque-background @supports block, not a user-selectable style.

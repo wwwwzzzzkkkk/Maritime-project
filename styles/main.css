@@ -27,7 +27,7 @@ html, body {
   background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: var(--font-body-size);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -128,9 +128,11 @@ button:focus-visible, select:focus-visible, input:focus-visible {
     rotateX(var(--rx, 0deg))
     rotateY(var(--ry, 0deg))
     translate3d(0, var(--lift-y, 0px), var(--tz, 0px));
-  will-change: transform, box-shadow;
 }
 
+/* Pointer-inside .table-wrap/.reference-list settles this card flat via JS;
+   titles retain tilt. Existing base transition provides the smooth return.
+   This local exception addresses the measured ~2px sticky drift. */
 .panel-card.is-tilting {
   transform:
     perspective(1200px)
@@ -242,7 +244,6 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 .kpi-val {
   transform: translate3d(calc(var(--px, 0px) * 1.15), calc(var(--py, 0px) * 1.15), 0);
   transition: transform 260ms var(--ease-out), text-shadow 260ms var(--ease-out);
-  will-change: transform;
 }
 
 .kpi-card.is-tilting .kpi-val {
@@ -416,7 +417,8 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   top: 4px;
   bottom: 4px;
   left: 0;
-  width: 96px;
+  width: var(--w,96px);
+  transform: translate3d(var(--nav-x,0px),0,0);
   border-radius: var(--radius-pill);
   background: var(--bg-glass-pill);
   border: 1px solid rgba(15, 23, 42, 0.08);
@@ -426,7 +428,6 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   transition:
     transform 400ms cubic-bezier(0.22, 1.18, 0.36, 1),
     width 340ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, width;
 }
 
 .nav-pill-indicator.stretching {
@@ -517,9 +518,9 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   border-radius: var(--radius-pill);
   border: none;
   background: transparent;
-  color: var(--text-muted);
+  color: var(--text-muted-copy);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--duration) var(--ease-out);
@@ -564,7 +565,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 
 .meta-pill {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(15, 23, 42, 0.09);
@@ -580,8 +581,8 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 }
 
 .scenario-caption {
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-muted-copy);
   margin-right: 4px;
 }
 
@@ -591,7 +592,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.55);
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--duration) var(--ease-out);
@@ -653,7 +654,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 }
 
 .kpi-val {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.1;
@@ -661,8 +662,8 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 }
 
 .kpi-sub {
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-muted-copy);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -676,7 +677,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 600;
   padding: 2px 9px;
   border-radius: var(--radius-pill);
@@ -802,7 +803,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 }
 
 .panel-title {
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
@@ -810,7 +811,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 
 .panel-subtitle {
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-muted-copy);
   margin-top: 3px;
 }
 
@@ -884,13 +885,13 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 
 .leaflet-control-attribution {
   background: rgba(255, 255, 255, 0.78) !important;
-  color: var(--text-muted) !important;
-  font-size: 9.5px !important;
+  color: var(--text-muted-copy) !important;
+  font-size: 12px !important;
   backdrop-filter: blur(6px);
 }
 
 .leaflet-control-attribution a {
-  color: var(--accent) !important;
+  color: var(--accent-text) !important;
 }
 
 .leaflet-bar a {
@@ -913,7 +914,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   color: #0f172a !important;
   font-family: var(--font-mono) !important;
   font-weight: 600 !important;
-  font-size: 10px !important;
+  font-size: 12px !important;
   padding: 2px 7px !important;
 }
 
@@ -934,7 +935,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   border-radius: var(--radius-pill);
   padding: 5px 12px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   color: var(--text-secondary);
   pointer-events: none;
 }
@@ -964,7 +965,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   box-shadow: inset 0 1px 0 #ffffff;
   color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   transition: all var(--duration) var(--ease-out);
   position: relative;
@@ -1016,7 +1017,6 @@ button:focus-visible, select:focus-visible, input:focus-visible {
     box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color var(--duration) var(--ease-out),
     background var(--duration) var(--ease-out);
-  will-change: transform;
 }
 
 .control-group > * {
@@ -1093,8 +1093,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .control-hint {
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-muted-copy);
   display: flex;
   justify-content: space-between;
 }
@@ -1154,9 +1154,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .telemetry-table th {
   text-align: left;
   padding: 9px 12px;
-  color: var(--text-muted);
+  color: var(--text-muted-copy);
   font-weight: 600;
-  font-size: 11.5px;
+  font-size: 12px;
   border-bottom: 1px solid rgba(15, 23, 42, 0.12);
   white-space: nowrap;
 }
@@ -1184,13 +1184,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .formula-code {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: inset 0 1px 0.5px #ffffff;
   padding: 3px 8px;
   border-radius: 7px;
   border: 1px solid rgba(15, 23, 42, 0.12);
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 500;
   display: inline-block;
 }
@@ -1226,7 +1226,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color var(--duration);
-  will-change: transform;
 }
 
 .gauge-card > * {
@@ -1384,8 +1383,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-muted-copy);
 }
 
 /* Modal Backdrop */
@@ -1462,13 +1461,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .mobile-budget-action {
   min-height: 32px; padding: 4px 6px; border: 1px solid var(--border-hairline);
   border-radius: var(--radius-sm); background: var(--bg-glass-pill);
-  color: var(--text-secondary); font-size: 11px; cursor: pointer; touch-action: manipulation;
+  color: var(--text-secondary); font-size: 12px; cursor: pointer; touch-action: manipulation;
 }
 .mobile-budget-content dl { margin: 3px 0 0; }
 .mobile-budget-content dl>div { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 5px 0; }
-.mobile-budget-content dt { font-size: 11px; color: var(--text-secondary); }
+.mobile-budget-content dt { font-size: 12px; color: var(--text-secondary); }
 .mobile-budget-content dd { margin: 0; font-family: var(--font-mono); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.mobile-budget-content p { margin-top: 5px; padding-top: 6px; border-top: 1px solid var(--border-hairline); font-size: 10px; color: var(--text-muted); }
+.mobile-budget-content p { margin-top: 5px; padding-top: 6px; border-top: 1px solid var(--border-hairline); font-size: 12px; color: var(--text-muted-copy); }
 
 
 /* Responsive layout overrides; component defaults are consolidated above. */
@@ -1482,7 +1481,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .brand-mark { flex-shrink: 0; }
   .vessel-select { width: 0; }
   .topbar-right { width: 100%; gap: 6px; }
-  .topbar-right .ghost-btn { font-size: 11.5px; padding-left: 8px; padding-right: 8px; }
+  .topbar-right .ghost-btn { font-size: 12px; padding-left: 8px; padding-right: 8px; }
   .nav-tabs { justify-content: space-between; overflow-x: auto; max-width: 100%; }
   .nav-btn { flex: 1 1 0; min-width: 0; min-height: 36px; padding: 7px 4px; font-size: 12px; }
   .context-bar { padding-left: 12px; padding-right: 12px; }
@@ -1516,12 +1515,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
   display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
   font-size: 12px; line-height: 1.6; color: var(--text-secondary);
 }
-.customer-notice > span:last-child { flex-basis: 100%; color: var(--text-muted); }
+.customer-notice > span:last-child { flex-basis: 100%; color: var(--text-muted-copy); }
 body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 .customer-details { min-width: 0; }
 .customer-details > summary {
   padding: 10px 0; min-height: 44px; cursor: pointer;
-  font-size: 13px; font-weight: 500; color: var(--accent);
+  font-size: 13px; font-weight: 500; color: var(--accent-text);
 }
 .customer-details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .customer-details[open] > summary { margin-bottom: 12px; }
@@ -1579,3 +1578,53 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 .ring-arc { stroke: var(--accent); }
 .ring-arc.is-increase { stroke: var(--dot-warn); }
 .ring-arc.is-zero { visibility: hidden; }
+
+/* Readable text/inline-style migration. Decorative accent, glows and refraction are retained. */
+.svg-filter-defs { position:absolute;pointer-events:none; }
+.muted-label { font-size:12px;color:var(--text-muted-copy); }
+.segments-two { grid-template-columns:1fr 1fr; }
+.allocation-labels { display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--text-primary);font-weight:500; }
+.allocation-track { display:flex;height:8px;border-radius:999px;overflow:hidden;background:rgba(15,23,42,.10); }
+.body-note { font-size:14.5px;color:var(--text-secondary); }
+.metric-caption { font-size:13px; }
+.strong-caption { color:var(--text-primary);font-size:13px; }
+.snapshot-copy { font-size:13px;line-height:1.75; }
+.port-popup { min-width:210px; }
+.port-popup-heading { display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;gap:8px; }
+.port-popup-title { color:var(--text-primary);font-size:13px; }
+.port-popup-code { font-size:12px;color:var(--accent-text);font-weight:600; }
+.port-popup-coordinates { font-size:12px;color:var(--text-muted-copy);margin-bottom:6px; }
+.port-popup-description { color:var(--text-secondary);font-size:12px;margin-bottom:6px; }
+.port-popup-cost { padding-top:6px;border-top:1px solid var(--border-hairline);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;gap:8px; }
+.text-muted-copy { color:var(--text-muted-copy); }
+.text-primary { color:var(--text-primary); }
+.row-between-wrap { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px; }
+.scenario-heading { color:var(--text-primary);font-size:15px; }
+.scenario-description { font-size:14.5px;color:var(--text-secondary);margin-top:4px; }
+.scenario-review { font-size:13px;color:var(--text-muted-copy);padding-top:6px;border-top:1px solid var(--border-hairline); }
+.answer-copy { margin-top:8px; }
+.reference-entry { gap:4px;padding:11px 14px; }
+.row-between { display:flex;justify-content:space-between;align-items:center;gap:8px; }
+.reference-summary { font-size:14.5px;color:var(--text-secondary); }
+.reference-citation { font-size:12px;color:var(--text-muted-copy); }
+
+.allocation-bar { width:var(--w); transition:width 640ms cubic-bezier(.16,1,.3,1); }
+.allocation-owner { --w:85%; background:var(--text-primary); }
+.allocation-charterer { --w:15%; background:var(--accent); }
+.allocation-bar.is-live-replay { transition-duration:680ms; }
+.ring-arc.is-live-replay { transition-duration:760ms; }
+.allocation-bar.is-resetting, .ring-arc.is-resetting { transition:none; }
+.alert-banner[hidden] { display:none; }
+.is-tilting, .is-tilting > .kpi-val, .nav-pill-indicator.is-moving { will-change:transform; }
+#tab-ai-esg .control-group p, .help-steps li { font-size:14.5px; }
+@supports not (backdrop-filter:blur(1px)) {
+  .topbar-inner,.nav-tabs,.vessel-select,.kpi-card,.panel-card,.control-group,.gauge-card,.mobile-budget,.modal-card { background:#fff; }
+  .context-bar-inner,.map-coord-overlay { background:#f8fafc; }
+}
+@media (prefers-reduced-motion:reduce) {
+  :root body .kpi-card,:root body .panel-card,:root body .control-group,:root body .gauge-card,:root body .modal-card { transform:none; }
+}
+
+.bar-fill { width:var(--w,0%); }
+.bar-fill.is-scenario-replay { transition:width 720ms cubic-bezier(.16,1,.3,1); }
+.bar-fill.is-resetting { transition:none; }

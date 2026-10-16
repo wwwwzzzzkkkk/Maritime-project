@@ -72,3 +72,39 @@ git diff --exit-code light-v4.2.0-baseline-2026-10-16 -- js/compliance-engine.mj
 - 成功运行未出现 pageerror；前后截图已查看。仅 Chrome，未扩大为跨浏览器或真实离线审计。
 
 [原始数据、日志与基准对照](verification/v4.2.1/README.md) · [三种宽度的前后截图](previews/v4.2.1/README.md) · [评审核实及不准确之处](REVIEW_STAGE1.md)
+
+
+## v4.3.0 · Readability · 2026-10-16
+
+Baseline: `light-v4.2.1-baseline-2026-10-16` (`cdec884`). Only Chrome. 本阶段评估过清爽模式，按用户决定取消；不提供该功能。性能对比、中位数、GPU 评估和性能预算按后续指示取消，不给性能结论。原先异常数据仅保留在本地 test-results。
+
+实际命令与结果：
+
+```sh
+node tests/stage2-lab.mjs baseline
+node tests/stage2-lab.mjs baseline --resume
+node tests/stage2-lab.mjs consolidated
+node test-results/stage2/compare-css.cjs
+python3 test-results/stage2/implement.py
+node tests/stage2-lab.mjs after
+python3 test-results/stage2/pixels.py
+npm test
+node tests/stage2.mjs
+node test-results/stage2/final-screens.cjs
+node --input-type=module --check < js/app.js
+git diff --check
+```
+
+初始采样脚本在选择隐藏模块 summary 时失败；已完成的性能样本没有重跑，后续只恢复采样。一次恢复脚本出现重复声明语法错误，修复后采样完成。随后按用户取消决定移除了该脚本的性能部分，因此历史 --resume 命令只是执行记录，不是当前脚本的推荐复现方式。取样点、截图和 axe 结果均为真实运行所得。
+
+纯 CSS 整理首批截图存在指针/地图动画时刻差异；以新页面、固定动画时刻、等待地图原有动画结束做成对比较后，1440/768/375 的不同像素数均为 0，组件计算样式一致。仅 CSS 提交为 `86d3f20`，文字/交互修改在独立提交。未为截图差异删除原有动效。
+
+`npm test` 仅运行一次，14 pass / 0 fail，真实完整输出保存在 [npm-test.txt](verification/v4.3.0/npm-test.txt)。`tests/stage2.mjs` 内实际执行受保护五文件 `git diff --exit-code` 一次，exit 0、输出为空；默认六项金额旧/新一致。180 帧连续 input 最终 €132,000，通过；中英文×三宽布局通过；sticky 阅读区偏移 0，标题仍倾斜，KPI 原强度与减少动态行为通过；弹窗更新而不重复绑定；Pro Max 冒烟通过。外网请求在测试中阻断，Pro Max 的 Leaflet CDN 请求用未修改的本地同版本文件替代，未验证 CDN 可达性。主动阻断产生的资源加载错误不作为应用错误。
+
+最终六张截图第一次可能捕捉到尚未结束的 850ms 地图飞行动画，因此只重拍截图并等待 1100ms；没有重跑 npm、受保护 diff 或整套可靠性检查。截图中的无限光斑在固定动画时刻暂停，仅用于可比截图，不是默认产品行为。发布链接在 Release 创建后再启用，预发布截图页脚仍指向旧 Release。
+
+像素取样不只用令牌：隐藏文字墨迹而不改布局/材质，在第一行文字中心取 3×3 实际背景中位色，记录视口点与 PNG。7 组改前/改后样本的改后对比度均 ≥4.5:1；不覆盖页面所有可能背景。axe-core 4.10.3 检测确定违规均为 0，passes 均 28；仍有 aria-prohibited-attr、color-contrast、link-in-text-block 三类 incomplete（颜色节点改前124/改后125）。axe 无官方百分制评分，未虚构分数，也不声称认证通过。
+
+纠正过的评审判断：缓存已在阶段1统一为4.2.1；徽章正文实际是 secondary；Chrome 顶栏最终为普通 blur、导航与 KPI 才使用折射。保留默认光斑与折射的决定不变。无高对比度自动模式；不支持 blur 的回退只有一小段 @supports not，本机 Chrome 支持 blur，未实测不支持 blur 的浏览器。
+
+[完整证据、基准表、含像素坐标的对比度表、缓存位置及人工项](verification/v4.3.0/README.md) · [中英文三宽截图](previews/v4.3.0/README.md)

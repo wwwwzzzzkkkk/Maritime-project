@@ -41,3 +41,8 @@ Baseline tag: **`light-v4.2.0-baseline-2026-10-16` → `05cd7de`**. This is the 
 Publication order follows the user's request: commit tested code while retaining the existing footer Release URL, push the immutable v4.2.1 tag and create its GitHub Release, then add a separate footer-link activation commit and push main. The tag is not moved. That final commit only activates the existing Release link; it is part of the same v4.2.1 publication, not another feature stage.
 
 回退应新增恢复提交，不移动或删除旧标签，不强推 main。可用基线恢复本阶段文件，并保留后续无关改动。国家轮廓是 public-domain 静态资源；回退时按目标版本一并处理引用与资源。
+
+
+## v4.3.0 · 2026-10-16
+
+Baseline `light-v4.2.1-baseline-2026-10-16` pins `cdec884`. Pure CSS consolidation is isolated in `86d3f20`, before the independent readability/interaction commit. Release tag v4.3.0 is immutable; activate its footer URL only after its GitHub Release exists, in a separate final commit. Restore with new commits, never rewrite public history. Engine/shared-data/Pro Max bytes remain unchanged. No clean mode or performance-budget feature was introduced.

@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="styles/tokens.css?v=4.2.1" />
-  <link rel="stylesheet" href="styles/main.css?v=4.2.1" />
+  <link rel="stylesheet" href="styles/tokens.css?v=4.3.0" />
+  <link rel="stylesheet" href="styles/main.css?v=4.3.0" />
 </head>
 <body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
-  <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+  <svg width="0" height="0" class="svg-filter-defs" aria-hidden="true">
     <defs>
       <filter id="apple-liquid-refract" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
         <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise" />
@@ -168,14 +168,14 @@
             <div class="control-header">
               <span data-zh="FuelEU 目标条件（其他活动量与价格固定）" data-en="FuelEU Target Condition (Fixed Activities and Prices)">FuelEU 目标条件（其他活动量与价格固定）</span>
             </div>
-            <div class="seg-group" style="grid-template-columns: 1fr 1fr;">
+            <div class="seg-group segments-two">
               <button type="button" class="seg-btn seg-target-btn active" data-target="2" data-zh="2025–2029 (-2% · 89.34)" data-en="2025–2029 (-2% · 89.34)">2025–2029 (-2% · 89.34)</button>
               <button type="button" class="seg-btn seg-target-btn" data-target="6" data-zh="2030 (-6% · 85.69)" data-en="2030 (-6% · 85.69)">2030 (-6% · 85.69)</button>
             </div>
           </div>
 
           <div id="cockpitHygieneAlert" class="alert-banner amber"></div>
-          <div id="bunkerSupplyAlert" class="alert-banner rose" style="display:none;"></div>
+          <div id="bunkerSupplyAlert" class="alert-banner rose" hidden></div>
         </div>
 
         <!-- Right: Real Interactive Geographic Map & Scoped Leg Ledger -->
@@ -195,7 +195,7 @@
                 <button type="button" class="leg-btn map-cam-btn" data-cam="europe" data-zh="🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)" data-en="🇪🇺 North Sea EU + UK Zoom">🇪🇺 欧英北海核心合规区 (EU 100% + UK ETS)</button>
                 <button type="button" class="leg-btn map-cam-btn" data-cam="chokepoints" data-zh="⚓ 苏伊士与直布罗陀 300nm 防规避区" data-en="⚓ Suez & Gibraltar 300nm Hubs">⚓ 苏伊士与直布罗陀 300nm 防规避区</button>
               </div>
-              <span id="mapCursorCoords" class="mono" style="font-size:11px; color:var(--text-muted);">LAT 51.95°N · LON 4.14°E (NLRTM)</span>
+              <span id="mapCursorCoords" class="mono muted-label">LAT 51.95°N · LON 4.14°E (NLRTM)</span>
             </div>
 
             <div id="realMaritimeMap" class="real-map-viewport" aria-label="Interactive Maritime GIS Map">
@@ -212,7 +212,7 @@
                 <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="E3">E3 · EU Berth 100%</button>
                 <button type="button" class="leg-btn leg-filter-btn" data-leg-filter="U1">U1/U2 · UK ETS (£ · GBFXT→GBSOU)</button>
               </div>
-              <span class="mono" style="font-size:11px; color:var(--text-muted);" data-zh="点击海图港口或航段线查看坐标与适用法规" data-en="Click map ports or sea lanes for legal scope">点击海图港口或航段线查看坐标与适用法规</span>
+              <span class="mono muted-label" data-zh="点击海图港口或航段线查看坐标与适用法规" data-en="Click map ports or sea lanes for legal scope">点击海图港口或航段线查看坐标与适用法规</span>
             </div>
           </div>
 
@@ -386,15 +386,15 @@
           </div>
 
           <div class="control-group">
-            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-primary); font-weight:500;">
+            <div class="allocation-labels">
               <span id="ownerSplitLabel">船东承担: €276,413 (85%)</span>
               <span id="chartererSplitLabel">租家偿付: €48,779 (15%)</span>
             </div>
-            <div style="display:flex; height:8px; border-radius:999px; overflow:hidden; background:rgba(15,23,42,0.10);">
-              <div id="ownerSplitBar" style="width:85%; background:var(--text-primary); transition:width 640ms cubic-bezier(0.16, 1, 0.3, 1);"></div>
-              <div id="chartererSplitBar" style="width:15%; background:var(--accent); transition:width 640ms cubic-bezier(0.16, 1, 0.3, 1);"></div>
+            <div class="allocation-track">
+              <div id="ownerSplitBar" class="allocation-bar allocation-owner"></div>
+              <div id="chartererSplitBar" class="allocation-bar allocation-charterer"></div>
             </div>
-            <p id="charterExplainBox" style="font-size:12px; color:var(--text-secondary);"></p>
+            <p id="charterExplainBox" class="body-note"></p>
           </div>
 
           <div id="optionDeltaSummary" class="alert-banner cyan"></div>
@@ -470,8 +470,8 @@
                 </svg>
                 <span id="gaugeFinancialVal" class="ring-val">0.0%</span>
               </div>
-              <strong style="font-size:12.5px;" data-zh="欧元范围内支出变动" data-en="Scoped EUR Cost Delta">欧元范围内支出变动</strong>
-              <span id="gaugeFinancialSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+              <strong class="metric-caption" data-zh="欧元范围内支出变动" data-en="Scoped EUR Cost Delta">欧元范围内支出变动</strong>
+              <span id="gaugeFinancialSub" class="mono muted-label"></span>
             </div>
 
             <div class="gauge-card">
@@ -482,8 +482,8 @@
                 </svg>
                 <span id="gaugePhysicalVal" class="ring-val">0.0%</span>
               </div>
-              <strong style="font-size:12.5px;" data-zh="范围内生命周期模型变化 (WtW)" data-en="In-Scope WtW Model Delta">范围内生命周期模型变化 (WtW)</strong>
-              <span id="gaugePhysicalSub" class="mono" style="font-size:11px; color:var(--text-muted);"></span>
+              <strong class="metric-caption" data-zh="范围内生命周期模型变化 (WtW)" data-en="In-Scope WtW Model Delta">范围内生命周期模型变化 (WtW)</strong>
+              <span id="gaugePhysicalSub" class="mono muted-label"></span>
             </div>
           </div>
 
@@ -501,8 +501,8 @@
           </div>
 
           <div class="control-group">
-            <strong style="color:var(--text-primary); font-size:12.5px;" data-zh="当前功能与数据边界" data-en="Current Features and Data Scope">当前功能与数据边界</strong>
-            <p style="font-size:12px; color:var(--text-secondary);" data-zh="本页只使用演示数据，不连接船载控制系统，也未完成真实表格导入或 THETIS-MRV 核验。可通过顶栏导出当前计算快照；正式导入、后台隔离与审批属于规划能力。" data-en="This page uses demo data only, without shipboard connections, real-data import or THETIS-MRV verification. Current snapshots can be exported; ingestion, backend isolation and approval remain planned.">
+            <strong class="strong-caption" data-zh="当前功能与数据边界" data-en="Current Features and Data Scope">当前功能与数据边界</strong>
+            <p class="body-note" data-zh="本页只使用演示数据，不连接船载控制系统，也未完成真实表格导入或 THETIS-MRV 核验。可通过顶栏导出当前计算快照；正式导入、后台隔离与审批属于规划能力。" data-en="This page uses demo data only, without shipboard connections, real-data import or THETIS-MRV verification. Current snapshots can be exported; ingestion, backend isolation and approval remain planned.">
               本页只使用演示数据，不连接船载控制系统，也未完成真实表格导入或 THETIS-MRV 核验。可通过顶栏导出当前计算快照；正式导入、后台隔离与审批属于规划能力。
             </p>
           </div>
@@ -648,12 +648,12 @@
         </div>
         <button type="button" id="downloadSnapshotBtn" class="ghost-btn"><span data-zh="导出 JSON" data-en="Export JSON">导出 JSON</span></button><button type="button" id="closeAuditModalBtn" class="ghost-btn" aria-label="Close" autofocus>✕</button>
       </div>
-      <div id="auditSnapshotContent" class="control-group mono" style="font-size:12px;line-height:1.75;"></div>
+      <div id="auditSnapshotContent" class="control-group mono snapshot-copy"></div>
     </div>
   </dialog>
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
-  <script src="js/data-and-i18n.js?v=4.2.1"></script>
-  <script type="module" src="js/app.js?v=4.2.1"></script>
+  <script src="js/data-and-i18n.js?v=4.3.0"></script>
+  <script type="module" src="js/app.js?v=4.3.0"></script>
 </body>
 </html>

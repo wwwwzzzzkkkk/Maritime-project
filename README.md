@@ -1,6 +1,10 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.2.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.3.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.3.0 · 可读性 / Readability:** 小字与文字对比度提升，保留默认玻璃、光斑、折射和展示卡倾斜；表格/来源正文内局部归零，标题仍可倾斜。
+> Larger/more legible text with the existing glass design. Tilt settles only inside reading regions, remains on titles/display cards, and respects reduced motion. [验收材料 / Evidence](docs/verification/v4.3.0/README.md)
+
 
 > **v4.2.1 · 首屏与演示修正 / Presentation and demo fixes:** 比较表独占整行，默认五列、可展开全部列；地图按航线适配并使用本地 50m 国家轮廓；变化环按 ±30% 满环并明确最小弧长；公式明细默认展开、外部链接新窗口打开。计算引擎输出与基准金额不变。
 >

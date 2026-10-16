@@ -1,0 +1,35 @@
+{
+  "1440": {
+    "beforeSize": [
+      1440,
+      1579
+    ],
+    "afterSize": [
+      1440,
+      1579
+    ],
+    "differentPixels": 0
+  },
+  "768": {
+    "beforeSize": [
+      768,
+      2548
+    ],
+    "afterSize": [
+      768,
+      2548
+    ],
+    "differentPixels": 0
+  },
+  "375": {
+    "beforeSize": [
+      375,
+      3210
+    ],
+    "afterSize": [
+      375,
+      3210
+    ],
+    "differentPixels": 0
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "baseline": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "protectedDiff": {
+    "command": "git diff --exit-code light-v4.2.1-baseline-2026-10-16 -- js/compliance-engine.mjs js/data-and-i18n.js js/app-pro-max.js index-pro-max.html styles/pro-max.css",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "screens": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "pass": true
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "pass": true
+    }
+  ],
+  "scope": "Chrome only; external requests blocked; no performance comparison, no clean mode",
+  "continuousInput": {
+    "frames": 180,
+    "finalAmount": "€132,000",
+    "pass": true,
+    "popupBindCountUnchanged": true
+  },
+  "readingRegion": {
+    "sticky": {
+      "delta": 0,
+      "transform": "none",
+      "tilting": false
+    },
+    "titleStillTilts": true
+  },
+  "referenceReadingRegionFlat": true,
+  "defaultKpiTilt": {
+    "ry": 3.74,
+    "expected": 3.75
+  },
+  "reducedMotionDisablesTilt": true,
+  "quickAdjusterStillFlat": true,
+  "popupUpdatesWithoutRebinding": true,
+  "proMax": {
+    "pass": true,
+    "consoleErrors": [],
+    "cdn": "test uses unchanged local Leaflet 1.9.4 bytes; remote CDN availability not assessed"
+  },
+  "pageErrors": []
+}

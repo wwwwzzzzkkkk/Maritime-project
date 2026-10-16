@@ -1,4 +1,4 @@
-import { planOptions } from './option-planner.mjs?v=4.2.1';
+import { planOptions } from './option-planner.mjs?v=4.3.0';
 
 export function createPlanningUi({onApplyInputs,onApplyOption}) {
   const form=document.getElementById('planningForm');
