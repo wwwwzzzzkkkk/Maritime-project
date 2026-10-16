@@ -1,4 +1,4 @@
-import { computeScenario } from './compliance-engine.mjs?v=4.2.0';
+import { computeScenario } from './compliance-engine.mjs?v=4.2.1';
 
 // Deterministic finite search. Pooling costs are linear, so evaluate zero and capped supply.
 export function assessOption(result, settings) {

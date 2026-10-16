@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultSettings, computeScenario } from '../js/compliance-engine.mjs';
-import { planOptions } from '../js/option-planner.mjs';
+import { planOptions } from '../js/option-planner.mjs?v=4.2.1';
 import { vessels } from '../js/light-data.mjs';
 const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-7,`${actual} != ${expected}`);
 

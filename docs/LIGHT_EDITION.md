@@ -63,3 +63,10 @@ Table totals contain EUR compliance, net fuel delta and non-fuel time cost. They
 Search: speed step 0.2 kn across −2..0, fuel step 5 percentage points plus the exact entered cap, and zero/capped pooling endpoints. Include a valid current option. Pool costs and residual penalties are linear at fixed speed/fuel. Numeric infeasibility and unconfirmed resource/operating conditions are separate. A user-confirmed candidate is preferred when available; otherwise the cheapest pending model candidate is displayed. It does not certify an executable strategy or guarantee global optimality. Snapshots include applied input values, model vessel inputs, search scope, recommendation and evaluated rows.
 
 The budget float now works on desktop and mobile when original KPIs are out of view; materials and drag/collapse/reset behavior are retained. No backend, procurement, forecasting or filing was added.
+
+
+## UI v4.2.1 presentation corrections
+
+The calculation engine stays `light-4.2.0` with byte-identical functions and outputs; the UI is 4.2.1. Table visibility changes do not recalculate values. Map height is CSS-responsive, full-route bounds come from actual E1/E2/U1 coordinates, and local Natural Earth 50m geometry uses ADM0_A3 for EU27 and GBR. Shading is not legal scope.
+
+Change rings map absolute signed changes to a ±30% full scale, with saturation at a full ring and a disclosed 3% minimum for non-zero values. Zero arcs are hidden, including their round end cap. Centre percentages remain the real model deltas. Decrease uses accent and increase uses warn; the same mapping serves rendering and replay. External navigation does not replace the current page. Neither course data shared with Pro Max nor Pro Max source files are changed.

@@ -32,3 +32,12 @@ For a simple immediately-following rollback of this update, create a new revert 
 ## v4.2.0
 
 `light-v4.1.0-pre-planner-2026-10-15` preserves `d8133c8` before the planner/accounting changes. `v4.2.0` identifies the new model and UI. Keep tags/releases, use a new revert or targeted restoration commit, and give a restoration its own version. Do not rewrite published history.
+
+
+## v4.2.1 / Stage 1 · 2026-10-16
+
+Baseline tag: **`light-v4.2.0-baseline-2026-10-16` → `05cd7de`**. This is the exact pre-stage state, including the constrained planner and desktop float. `v4.2.1` identifies the tested presentation corrections; calculation-engine bytes and outputs remain unchanged. The v4.0 branch/PR notes above are historical context, not the current main-branch state.
+
+Publication order follows the user's request: commit tested code while retaining the existing footer Release URL, push the immutable v4.2.1 tag and create its GitHub Release, then add a separate footer-link activation commit and push main. The tag is not moved. That final commit only activates the existing Release link; it is part of the same v4.2.1 publication, not another feature stage.
+
+回退应新增恢复提交，不移动或删除旧标签，不强推 main。可用基线恢复本阶段文件，并保留后续无关改动。国家轮廓是 public-domain 静态资源；回退时按目标版本一并处理引用与资源。

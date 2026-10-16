@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="styles/tokens.css?v=4.0" />
-  <link rel="stylesheet" href="styles/main.css?v=4.2.0" />
+  <link rel="stylesheet" href="styles/tokens.css?v=4.2.1" />
+  <link rel="stylesheet" href="styles/main.css?v=4.2.1" />
 </head>
 <body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
@@ -53,7 +53,7 @@
 
       <!-- Customer actions: guide, reset, snapshot and language -->
       <div class="topbar-right">
-        <a href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md" class="ghost-btn" data-zh="使用指南" data-en="User Guide">使用指南</a>
+        <a href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md" class="ghost-btn" data-zh="使用指南" data-en="User Guide" target="_blank" rel="noopener noreferrer">使用指南</a>
         <button type="button" id="resetTwinBtn" class="ghost-btn" data-zh="重置基准" data-en="Reset">重置基准</button>
         <button type="button" id="openAuditModalBtn" class="ghost-btn" data-zh="当前计算快照" data-en="Current Snapshot">当前计算快照</button>
         <div class="lang-switch" role="group" aria-label="Language Switcher">
@@ -198,7 +198,7 @@
               <span id="mapCursorCoords" class="mono" style="font-size:11px; color:var(--text-muted);">LAT 51.95°N · LON 4.14°E (NLRTM)</span>
             </div>
 
-            <div id="realMaritimeMap" class="real-map-viewport" style="height:330px; min-height:330px; width:100%; display:block;" aria-label="Interactive Maritime GIS Map">
+            <div id="realMaritimeMap" class="real-map-viewport" aria-label="Interactive Maritime GIS Map">
               <div id="mapActiveLegOverlay" class="map-coord-overlay">
                 CNSHA → SGSIN → EGPSD → MAPTM → NLRTM → DEHAM → GBFXT/GBSOU
               </div>
@@ -401,14 +401,21 @@
           <div id="planningRecommendation" class="alert-banner cyan"></div>
           <button type="button" id="applyRecommendedOption" class="ghost-btn"><span data-zh="载入候选参数（不会执行采购）" data-en="Load Candidate Inputs (No Purchase)">载入候选参数（不会执行采购）</span></button>
           <details class="customer-details"><summary><span data-zh="查看比较范围与条件" data-en="Comparison Scope and Conditions">查看比较范围与条件</span></summary><p id="planningSearchScope" class="model-note"></p></details>
-          <p data-zh="表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。" data-en="Party amounts include operating deltas allocated at the selected illustrative share; the headline owner card covers compliance only. UK costs remain separate; common baseline fuel costs are excluded, so comparison values can be negative and are not payable bills or profit." class="model-note">表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。</p>
-          <div class="table-wrap">
-            <table class="telemetry-table">
-              <thead><tr><th data-zh="方案／参数" data-en="Option / inputs">方案／参数</th><th data-zh="欧元费用比较值／差额" data-en="EUR comparison / delta">欧元费用比较值／差额</th><th data-zh="船东（含增量）" data-en="Owner incl. deltas">船东（含增量）</th><th data-zh="租家（含增量）" data-en="Charterer incl. deltas">租家（含增量）</th><th data-zh="新增航时" data-en="Extra time">新增航时</th><th data-zh="条件状态" data-en="Conditions">条件状态</th><th data-zh="EU ETS" data-en="EU ETS">EU ETS</th><th data-zh="FuelEU 罚款" data-en="FuelEU penalty">FuelEU 罚款</th><th data-zh="组池费" data-en="Pool fee">组池费</th><th data-zh="燃料净增量" data-en="Net fuel delta">燃料净增量</th><th data-zh="航时费" data-en="Time cost">航时费</th></tr></thead>
-              <tbody id="optionCompareBody"></tbody>
-            </table>
-          </div>
+
+
         </div>
+      </div>
+      <div class="panel-card option-comparison-panel">
+        <div class="panel-header"><h2 class="panel-title" data-zh="方案费用比较" data-en="Option Cost Comparison">方案费用比较</h2>
+          <label class="option-columns-toggle"><input type="checkbox" id="showAllOptionColumns" aria-controls="optionCompareTable" /><span data-zh="显示全部列" data-en="Show All Columns">显示全部列</span></label>
+        </div>
+          <p data-zh="表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。" data-en="Party amounts include operating deltas allocated at the selected illustrative share; the headline owner card covers compliance only. UK costs remain separate; common baseline fuel costs are excluded, so comparison values can be negative and are not payable bills or profit." class="model-note">表内双方金额包含按所选示例比例分摊的营运增量；首页“船东承担”仅为合规部分。英国费用另列，未加回共有基准燃油账单，比较值可为负，不代表应付账单或利润。</p>
+ <div class="table-wrap">
+<table class="telemetry-table option-comparison-table" id="optionCompareTable">
+<thead><tr><th data-en="Option / inputs" data-zh="方案／参数">方案／参数</th><th data-en="EUR comparison / delta" data-zh="欧元费用比较值／差额">欧元费用比较值／差额</th><th data-en="Owner incl. deltas" data-zh="船东（含增量）">船东（含增量）</th><th data-en="Charterer incl. deltas" data-zh="租家（含增量）">租家（含增量）</th><th class="option-extra" data-en="Extra time" data-zh="新增航时">新增航时</th><th data-en="Conditions" data-zh="条件状态">条件状态</th><th class="option-extra" data-en="EU ETS" data-zh="EU ETS">EU ETS</th><th class="option-extra" data-en="FuelEU penalty" data-zh="FuelEU 罚款">FuelEU 罚款</th><th class="option-extra" data-en="Pool fee" data-zh="组池费">组池费</th><th class="option-extra" data-en="Net fuel delta" data-zh="燃料净增量">燃料净增量</th><th class="option-extra" data-en="Time cost" data-zh="航时费">航时费</th></tr></thead>
+<tbody id="optionCompareBody"></tbody>
+</table>
+</div>
       </div>
     </section>
 
@@ -425,7 +432,7 @@
           <span class="badge badge-assumption"><span data-zh="可复算明细" data-en="Calculation trace">可复算明细</span></span>
         </div>
 
-        <details class="customer-details"><summary><span data-zh="展开输入、公式与结果" data-en="Show inputs, formulas and results">展开输入、公式与结果</span></summary>
+        <details class="customer-details" open><summary><span data-zh="展开输入、公式与结果" data-en="Show inputs, formulas and results">展开输入、公式与结果</span></summary>
         <div class="table-wrap">
           <table class="telemetry-table">
             <thead>
@@ -457,9 +464,9 @@
           <div class="dual-gauge-grid">
             <div class="gauge-card">
               <div class="ring-meter">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(15,23,42,0.10)" stroke-width="6"/>
-                  <circle id="ringArcFinancial" class="ring-arc" cx="50" cy="50" r="40" fill="none" stroke="#0f172a" stroke-width="6" stroke-dasharray="185 251" stroke-linecap="round"/>
+                <svg viewBox="0 0 100 100" role="img" aria-label="变化 0%。满环 = ±30%，超过按满环显示，中心为真实百分比；非零变化至少显示 3% 弧长，0% 不显示圆弧。费用下降不等于排放下降；结果为未核验模型估算。">
+                  <circle cx="50" cy="50" r="40" fill="none" class="ring-track" stroke-width="6"/>
+                  <circle id="ringArcFinancial" class="ring-arc is-zero" pathLength="251" cx="50" cy="50" r="40" fill="none" stroke-width="6" stroke-dasharray="0 251" stroke-linecap="round"/>
                 </svg>
                 <span id="gaugeFinancialVal" class="ring-val">0.0%</span>
               </div>
@@ -469,9 +476,9 @@
 
             <div class="gauge-card">
               <div class="ring-meter">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(15,23,42,0.10)" stroke-width="6"/>
-                  <circle id="ringArcPhysical" class="ring-arc" cx="50" cy="50" r="40" fill="none" stroke="#0284c7" stroke-width="6" stroke-dasharray="160 251" stroke-linecap="round"/>
+                <svg viewBox="0 0 100 100" role="img" aria-label="变化 0%。满环 = ±30%，超过按满环显示，中心为真实百分比；非零变化至少显示 3% 弧长，0% 不显示圆弧。费用下降不等于排放下降；结果为未核验模型估算。">
+                  <circle cx="50" cy="50" r="40" fill="none" class="ring-track" stroke-width="6"/>
+                  <circle id="ringArcPhysical" class="ring-arc is-zero" pathLength="251" cx="50" cy="50" r="40" fill="none" stroke-width="6" stroke-dasharray="0 251" stroke-linecap="round"/>
                 </svg>
                 <span id="gaugePhysicalVal" class="ring-val">0.0%</span>
               </div>
@@ -480,7 +487,7 @@
             </div>
           </div>
 
-          <p class="model-note"><span data-zh="圆弧保留原有示意动效，实际变化以中心读数为准；数值为模型估算，非实际减排。" data-en="Arcs retain the original illustrative animation; use the central readings. Values are model estimates, not observed reductions.">圆弧保留原有示意动效，实际变化以中心读数为准；数值为模型估算，非实际减排。</span></p>
+          <p class="model-note"><span data-zh="满环 = ±30%，超过按满环显示，中心为真实百分比；非零变化至少显示 3% 弧长，0% 不显示圆弧。费用下降不等于排放下降；结果为未核验模型估算。" data-en="Full ring = ±30%; larger changes are capped at a full ring; the centre shows the true percentage. Non-zero changes use at least 3% of the ring; zero has no arc. Lower cost does not imply lower emissions; results are unverified model estimates.">满环 = ±30%，超过按满环显示，中心为真实百分比；非零变化至少显示 3% 弧长，0% 不显示圆弧。费用下降不等于排放下降；结果为未核验模型估算。</span></p>
           <div id="reflexiveStatusText" class="alert-banner cyan"></div>
         </div>
 
@@ -515,7 +522,7 @@
         <p data-zh="来源核对日期：2026-10-15。并非实时法规更新，请在实际使用前核对适用范围及修订。" data-en="Sources checked on 15 October 2026. This is not a live regulatory feed; confirm applicability and amendments before real use." class="model-note">来源核对日期：2026-10-15。并非实时法规更新，请在实际使用前核对适用范围及修订。</p>
         <div id="aiFeedContainer" class="reference-list">
         </div>
-        <a class="ghost-btn" href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md#附录--appendices"><span data-zh="完整公式与来源" data-en="Full Formulas and Sources">完整公式与来源</span>
+        <a class="ghost-btn" href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md#附录--appendices" target="_blank" rel="noopener noreferrer"><span data-zh="完整公式与来源" data-en="Full Formulas and Sources">完整公式与来源</span>
         </a>
         </details>
         </div>
@@ -563,7 +570,7 @@
         <li data-zh="在“方案比较”核对基准、当前方案、组池及合同分摊；在“计算依据”查看原因。" data-en="Use Compare Options for the baseline, active option, pooling and allocation; open Calculation Basis to understand the results.">在“方案比较”核对基准、当前方案、组池及合同分摊；在“计算依据”查看原因。</li>
         <li data-zh="通过顶栏“当前计算快照”导出 JSON；刷新或重置会恢复默认输入。" data-en="Export JSON using Current Snapshot in the top bar. Refreshing or resetting restores default inputs.">通过顶栏“当前计算快照”导出 JSON；刷新或重置会恢复默认输入。</li>
         </ol>
-        <a class="ghost-btn" href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md"><span data-zh="打开中英文使用指南" data-en="Open the Bilingual User Guide">打开中英文使用指南</span>
+        <a class="ghost-btn" href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md" target="_blank" rel="noopener noreferrer"><span data-zh="打开中英文使用指南" data-en="Open the Bilingual User Guide">打开中英文使用指南</span>
         </a>
         </div>
         <div class="panel-card">
@@ -628,7 +635,7 @@
   <!-- Minimalist Footer Disclaimer -->
   <footer class="footer-bar">
     <span data-i18n="boundaryDesc">本系统为概念决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>
-    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0" data-zh="MAREG v4.2.0 · 更新记录" data-en="MAREG v4.2.0 · Release Notes">MAREG v4.2.0 · 更新记录</a>
+    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0" data-zh="MAREG v4.2.0 · 更新记录" data-en="MAREG v4.2.0 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.2.0 · 更新记录</a>
   </footer>
 
   <!-- Audit Log Modal -->
@@ -646,7 +653,7 @@
   </dialog>
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
-  <script src="js/data-and-i18n.js?v=4.0"></script>
-  <script type="module" src="js/app.js?v=4.2.0"></script>
+  <script src="js/data-and-i18n.js?v=4.2.1"></script>
+  <script type="module" src="js/app.js?v=4.2.1"></script>
 </body>
 </html>

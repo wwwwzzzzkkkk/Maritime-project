@@ -4,7 +4,7 @@
    1. Cool Architectural Silver-Gray Canvas (#edf1f7) + Soft Sky Caustic Mesh
    2. High-Contrast Obsidian & Slate Typography (#0f172a / #334155 / #64748b)
    3. Daylight Crystal Liquid Glass Bevels + Real-Time 3D Perspective Tilt
-   4. Locked 330px Explicit Height on #realMaritimeMap
+   4. Responsive maritime map viewport
    ========================================================================== */
 
 *, *::before, *::after {
@@ -787,7 +787,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 }
 
 /* ==========================================================================
-   Real Interactive Geographic Map Container (Locked 330px Height)
+   Responsive Interactive Geographic Map Container
    ========================================================================== */
 
 .map-stage {
@@ -816,16 +816,15 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 .real-map-viewport,
 #realMaritimeMap,
 #realMaritimeMap.leaflet-container {
-  width: 100% !important;
-  height: 330px !important;
-  min-height: 330px !important;
-  flex: 0 0 330px !important;
-  display: block !important;
+  width: 100%;
+  height: clamp(320px, 42vh, 480px);
+  flex: 0 0 auto;
+  display: block;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(15, 23, 42, 0.14);
   box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.08);
-  background: #dce4ee !important;
+  background: #dce4ee;
   position: relative;
   z-index: 1;
 }
@@ -1529,10 +1528,26 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 #planningInputsPanel .ghost-btn, #applyRecommendedOption { min-height: 44px; align-self: flex-start; }
 #applyRecommendedOption:disabled { opacity: .5; cursor: default; }
 #tab-sandbox .split-grid-2 { grid-template-columns: minmax(280px,340px) minmax(0,1fr); }
-#tab-sandbox .telemetry-table { min-width: 1600px; }
+
 #tab-sandbox .table-wrap { width: 100%; }
 @media (max-width: 1000px) { .planning-fields { grid-template-columns: repeat(2,minmax(0,1fr)); } #tab-sandbox .split-grid-2 { grid-template-columns: 1fr; } }
 @media (max-width: 680px) { .planning-fields { grid-template-columns: 1fr; } .planning-check { align-items: flex-start; } }
 #tab-sandbox .panel-card { min-width: 0; }
 
 #tab-sandbox .split-grid-2 { align-items: start; }
+
+/* v4.2.1 stage 1: comparison hierarchy and truthful signed change rings. */
+.option-comparison-panel { margin-top: 20px; }
+#tab-sandbox .option-comparison-table { width: 100%; min-width: 0; }
+.option-comparison-table:not(.show-all-columns) .option-extra { display: none; }
+#tab-sandbox .option-comparison-table.show-all-columns { min-width: 1600px; }
+.option-comparison-table th:first-child, .option-comparison-table td:first-child {
+  position: sticky; left: 0; z-index: 1; background: var(--bg-canvas);
+}
+.option-comparison-table th:first-child { z-index: 2; }
+.option-columns-toggle { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; }
+.option-columns-toggle input { width: 18px; height: 18px; }
+.ring-track { stroke: rgba(15,23,42,0.10); }
+.ring-arc { stroke: var(--accent); }
+.ring-arc.is-increase { stroke: var(--dot-warn); }
+.ring-arc.is-zero { visibility: hidden; }

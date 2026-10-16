@@ -1,15 +1,8 @@
-import { createPlanningUi } from './planning-ui.mjs?v=4.2.0';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.2.0';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.2.0';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs';
-/* ==========================================================================
-   MAREG — Core Deterministic Engine, Real GIS Maritime Map & Spatial 3D Tilt UI (v3.2)
-   Fixes:
-   1. 100% Aligned DOM IDs with index.html & data-and-i18n.js (Zero runtime errors)
-   2. Guaranteed Leaflet GIS Map Initialization + Multi-Stage invalidateSize()
-   3. Dedicated Camera Preset Switcher (Eurasia / Europe+UK / Suez & Gibraltar 300nm)
-   4. Leaflet-Safe 3D Spatial Tilt Engine (Never distorts map canvas or toolbar clicks)
-   ========================================================================== */
+import { createPlanningUi } from './planning-ui.mjs?v=4.2.1';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.2.1';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.2.1';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.2.1';
+/* MAREG light UI v4.2.1 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -36,6 +29,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
   state.vessels[0].nameZh='MV DEMO-01（示例货船）';
   state.vessels[0].nameEn='MV DEMO-01 (Demo cargo vessel)';
+  state.vessels[1].nameEn='MV PACIFIC HORIZON (Demo Panamax bulker)';
   const customerQuestions={
     q1:{zh:'为什么没有完整 ETS 总额？',en:'Why are ETS totals incomplete?'},
     q2:{zh:'未来情景会改变当前预算吗？',en:'Do future scenarios change this budget?'},
@@ -170,6 +164,47 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     });
   }
 
+  function updateChangeRings(m, replay=false) {
+    const lang=state.lang;
+    const scale=lang==='zh'
+      ? '满环 = ±30%，超过按满环显示，中心为真实百分比；非零最小弧长为满环的 3%，0% 无圆弧。'
+      : 'Full ring = ±30%; larger changes are capped at a full ring; the centre shows the true percentage. Non-zero changes use at least 3% of the ring; zero has no arc.';
+    for(const [id,pct,zh,en] of [
+      ['ringArcFinancial',-m.financialReductionPct,'欧元费用变化','EUR cost change'],
+      ['ringArcPhysical',-m.physicalReductionPct,'范围内 WtW 模型变化','Scoped WtW model change']
+    ]) {
+      const ring=document.getElementById(id);
+      const length=pct===0?0:Math.min(251,Math.max(251*.03,Math.abs(pct)/30*251));
+      ring.classList.toggle('is-zero',pct===0);
+      ring.classList.toggle('is-increase',pct>0);
+      ring.closest('svg').setAttribute('aria-label',`${lang==='zh'?zh:en}: ${pct.toFixed(4)}%. ${scale}`);
+      const draw=()=>ring.setAttribute('stroke-dasharray',`${length} 251`);
+      if(replay) {
+        ring.style.transition='none';ring.setAttribute('stroke-dasharray','0 251');
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          ring.style.transition='stroke-dasharray 760ms cubic-bezier(0.16, 1, 0.3, 1)';draw();
+        }));
+      } else draw();
+    }
+  }
+
+  function fullRouteBounds() {
+    return L.latLngBounds([...mapLayers.lineE1.getLatLngs(),...mapLayers.lineE2.getLatLngs(),...mapLayers.lineU1.getLatLngs()]);
+  }
+
+  function fitFullRoute(animate=false) {
+    leafletMap.invalidateSize();
+    const options={padding:[24,24]};
+    if(animate)leafletMap.flyToBounds(fullRouteBounds(),{...options,duration:.85});
+    else leafletMap.fitBounds(fullRouteBounds(),options);
+  }
+
+  function openExternalLinksSeparately() {
+    document.querySelectorAll('a[href^="https://"],a[href^="http://"]').forEach(link=>{
+      link.target='_blank';link.rel='noopener noreferrer';
+    });
+  }
+
   /**
    * Effect #6: Live Telemetry & Chart Replay on Tab Entry
    */
@@ -194,24 +229,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         });
       }
     } else if (panelId === 'tab-audit') {
-      const finArc = document.getElementById('ringArcFinancial');
-      const physArc = document.getElementById('ringArcPhysical');
-      if (finArc && physArc) {
-        const finTarget = Math.min(240, Math.max(45, 185 - m.financialReductionPct * 2.2));
-        const physTarget = Math.min(240, Math.max(35, 160 - m.physicalReductionPct * 2.5));
-        finArc.style.transition = 'none';
-        physArc.style.transition = 'none';
-        finArc.setAttribute('stroke-dasharray', '0 251');
-        physArc.setAttribute('stroke-dasharray', '0 251');
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            finArc.style.transition = 'stroke-dasharray 760ms cubic-bezier(0.16, 1, 0.3, 1)';
-            physArc.style.transition = 'stroke-dasharray 760ms cubic-bezier(0.16, 1, 0.3, 1)';
-            finArc.setAttribute('stroke-dasharray', `${finTarget.toFixed(0)} 251`);
-            physArc.setAttribute('stroke-dasharray', `${physTarget.toFixed(0)} 251`);
-          });
-        });
-      }
+      updateChangeRings(m,true);
     } else if (panelId === 'tab-scenarios') {
       const bars = document.querySelectorAll('#tab-scenarios .bar-fill');
       bars.forEach((bar, i) => {
@@ -250,7 +268,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       );
       if (leafletMap) {
         leafletMap.invalidateSize();
-        leafletMap.flyTo([28.0, 52.0], 3, { duration: 0.85 });
+        fitFullRoute(true);
       }
     } else if (camKey === 'europe') {
       setText('mapCursorCoords', 'LAT 52.20°N · LON 3.20°E (EU 100% + UK ETS)');
@@ -287,17 +305,10 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     if (!mapContainer || typeof L === 'undefined') return;
     if (leafletMap) return;
 
-    // Force explicit pixel height on the container before Leaflet initializes
-    mapContainer.style.setProperty('height', '330px', 'important');
-    mapContainer.style.setProperty('min-height', '330px', 'important');
-    mapContainer.style.setProperty('width', '100%', 'important');
-    mapContainer.style.setProperty('display', 'block', 'important');
-
     try {
       leafletMap = L.map('realMaritimeMap', {
-        center: [28.0, 52.0],
-        zoom: 3,
-        minZoom: 2,
+        minZoom: 1,
+        zoomSnap: .25,
         maxZoom: 11,
         zoomControl: true
       });
@@ -312,15 +323,15 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         opacity: 0.85
       }).addTo(leafletMap);
 
-      fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson')
+      fetch('vendor/geo/ne_50m_admin_0_countries.geojson')
         .then(res => res.ok ? res.json() : null)
         .then(geojson => {
           if (geojson && leafletMap) {
-            L.geoJSON(geojson, {
+            mapLayers.countries=L.geoJSON(geojson, {
               style: feature => {
-                const iso = feature.properties && (feature.properties.ISO_A2 || feature.properties.ADM0_A3);
-                const isEU = ['NL', 'DE', 'FR', 'BE', 'ES', 'IT', 'GR', 'PT', 'PL', 'DK', 'SE', 'FI', 'IE', 'NLD', 'DEU', 'FRA', 'BEL', 'ESP', 'ITA', 'GRC', 'DNK'].includes(iso);
-                const isUK = ['GB', 'GBR'].includes(iso);
+                const iso=feature.properties.ADM0_A3;
+                const isEU=new Set(['AUT','BEL','BGR','HRV','CYP','CZE','DNK','EST','FIN','FRA','DEU','GRC','HUN','IRL','ITA','LVA','LTU','LUX','MLT','NLD','POL','PRT','ROU','SVK','SVN','ESP','SWE']).has(iso);
+                const isUK=iso==='GBR';
                 return {
                   color: isEU ? 'rgba(2, 132, 199, 0.45)' : (isUK ? 'rgba(15, 23, 42, 0.45)' : 'rgba(15, 23, 42, 0.10)'),
                   weight: isEU || isUK ? 1.2 : 0.6,
@@ -421,6 +432,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       }).addTo(leafletMap);
 
       originalE1Coordinates=legE1Coords;
+      fitFullRoute();
       mapLayers.lineE1.on('click', () => selectLegFilter('E1'));
       mapLayers.lineE2.on('click', () => selectLegFilter('E2'));
       mapLayers.lineU1.on('click', () => selectLegFilter('U1'));
@@ -462,8 +474,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           nameEn: 'Tanger Med / Gibraltar (MAPTM)',
           coords: [35.89, -5.50],
           legId: 'E1',
-          roleZh: '欧盟指定 <300nm 邻近集装箱转运港（Lecture 3 案例：停靠不免除亚欧全程 50% 义务）',
-          roleEn: 'EU-Designated <300nm Neighboring Transshipment Port (Lecture 3 Anti-Evasion)',
+          roleZh: '欧盟指定 <300nm 邻近集装箱转运港（是否适用须按船型、挂靠性质与官方名单核对）',
+          roleEn: 'EU-Designated <300nm Neighboring Transshipment Port (Applicability Requires Review)',
           dotColor: '#f59e0b'
         },
         {
@@ -596,8 +608,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     Object.assign(marker.portMeta,{code:dest,nameZh:p.zh,nameEn:p.en,coords:p.coords,
       roleZh:'欧盟内示例航段；适用范围预设，非自动法律判断。',roleEn:'Illustrative intra-EU leg; preset scope, not an automatic legal determination.'});
     marker.setLatLng(p.coords);marker.setTooltipContent(dest);
-    document.querySelector('[data-leg-filter="E2"]').textContent=`E2 · Intra-EU 100% (NLRTM→${dest})`;
-    document.querySelector('[data-leg-filter="E1"]').textContent=`E1 · Extra-EU 50% (${id==='v3'?'MAPTM':'CNSHA'}→NLRTM)`;
+    if(document.getElementById('tab-cockpit').classList.contains('active') && document.querySelector('.map-cam-btn.active').dataset.cam==='eurasia')fitFullRoute();
   }
 
   function updateResponsiveNavigation() {
@@ -626,6 +637,11 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       el.textContent = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
     });
     updateResponsiveNavigation();
+    const destination={v1:'DEHAM',v2:'BEANR',v3:'DEBRV'}[state.selectedVesselId];
+    document.querySelector('[data-leg-filter="E1"]').textContent=`E1 · ${lang==='zh'?'欧盟外航段':'Extra-EU'} 50% (${state.selectedVesselId==='v3'?'MAPTM':'CNSHA'}→NLRTM)`;
+    document.querySelector('[data-leg-filter="E2"]').textContent=`E2 · ${lang==='zh'?'欧盟内航段':'Intra-EU'} 100% (NLRTM→${destination})`;
+    document.querySelector('[data-leg-filter="E3"]').textContent=lang==='zh'?'E3 · 欧盟港内 100%':'E3 · EU Berth 100%';
+    document.querySelector('[data-leg-filter="U1"]').textContent=lang==='zh'?'U1/U2 · 英国 ETS（£ · GBFXT→GBSOU）':'U1/U2 · UK ETS (£ · GBFXT→GBSOU)';
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -664,7 +680,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     setText('kpiFuelEuVal', fmtEur(m.fueleuPenaltyEur, 2));
     setHTML('kpiFuelEuSub', `
       <span>${lang === 'zh' ? '余额' : 'Balance'} ${fmtNum(m.netBalanceTonnes, 3)} t</span>
-      <span class="mono">-${twin.fueleuTargetCut.toFixed(0)}% (${m.targetIntensity})</span>
+      <span class="mono">-${twin.fueleuTargetCut.toFixed(0)}% (${m.targetIntensity.toFixed(4)})</span>
     `);
 
     setText('kpiUkEtsVal', fmtGbp(m.ukEtsBillGbp, 0));
@@ -776,14 +792,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     setText('gaugeFinancialSub', `${fmtEur(m.currentFinancialEur, 0)} vs ${fmtEur(m.baselineFinancialEur, 0)}`);
     setText('gaugePhysicalSub', `${fmtNum(m.currentPhysicalWtWTonnes, 0)} t vs ${fmtNum(m.baselinePhysicalWtWTonnes, 0)} t`);
 
-    const finArc = document.getElementById('ringArcFinancial');
-    const physArc = document.getElementById('ringArcPhysical');
-    if (finArc && physArc) {
-      const finDash = Math.min(240, Math.max(45, 185 - m.financialReductionPct * 2.2));
-      const physDash = Math.min(240, Math.max(35, 160 - m.physicalReductionPct * 2.5));
-      finArc.setAttribute('stroke-dasharray', `${finDash.toFixed(0)} 251`);
-      physArc.setAttribute('stroke-dasharray', `${physDash.toFixed(0)} 251`);
-    }
+    updateChangeRings(m);
 
     const reflexEl = document.getElementById('reflexiveStatusText');
     if (reflexEl) {
@@ -846,12 +855,13 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           <span class="badge badge-${item.status}">${lang === 'zh' ? item.badgeZh : item.badgeEn}</span>
         </div>
         <p style="font-size:11.5px; color:var(--text-secondary);">${lang === 'zh' ? item.summaryZh : item.summaryEn}</p>
-        <div class="mono" style="font-size:10.5px; color:var(--text-muted);">${item.date} · <a href="${item.url}" target="_blank" rel="noreferrer">${item.source}</a></div>
+        <div class="mono" style="font-size:10.5px; color:var(--text-muted);">${item.date} · <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.source}</a></div>
       </div>
     `).join(''));
 
     updateMapPopups();
     mobileBudget.update(m,lang);
+    openExternalLinksSeparately();
 
     requestAnimationFrame(() => {
       const activeNavBtn = document.querySelector('.nav-btn.active');
@@ -1027,7 +1037,10 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       updateResponsiveNavigation();
       const activeNavBtn = document.querySelector('.nav-btn.active');
       if (activeNavBtn) updateSlidingPill(activeNavBtn, false);
-      if (leafletMap) leafletMap.invalidateSize();
+      if (leafletMap) {
+        leafletMap.invalidateSize();
+        if(document.getElementById('tab-cockpit').classList.contains('active') && document.querySelector('.map-cam-btn.active').dataset.cam==='eurasia')fitFullRoute();
+      }
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1120,7 +1133,6 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         state.selectedVesselId = 'v1';
         state.selectedScenario = 'deadlock';
         state.twinState.euaPrice = 80;
-        state.twinState.ukEtsPrice = 60;
         state.twinState.fueleuTargetCut = 2.0;
         state.twinState.jitSpeedDeltaKn = 0.0;
         state.twinState.biofuelBlendPct = 0;
@@ -1140,7 +1152,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.2.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.2.1',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',

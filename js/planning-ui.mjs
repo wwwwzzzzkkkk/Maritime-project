@@ -1,9 +1,11 @@
-import { planOptions } from './option-planner.mjs?v=4.2.0';
+import { planOptions } from './option-planner.mjs?v=4.2.1';
 
 export function createPlanningUi({onApplyInputs,onApplyOption}) {
   const form=document.getElementById('planningForm');
   const note=document.getElementById('planningDraftNote');
   const apply=document.getElementById('applyRecommendedOption');
+  const columnsToggle=document.getElementById('showAllOptionColumns');
+  columnsToggle.addEventListener('change',()=>document.getElementById('optionCompareTable').classList.toggle('show-all-columns',columnsToggle.checked));
   let dirty=false,language='zh',latest;
   const money=value=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(value);
   const num=(value,digits=2)=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:digits}).format(value);
@@ -47,9 +49,9 @@ export function createPlanningUi({onApplyInputs,onApplyOption}) {
         <td><strong>${names[option.id][lang==='zh'?0:1]}</strong><br>${num(option.speedDelta,1)} kn / ${num(option.blendPct,1)}% / ${num(option.allocatedPoolTonnes,4)} tCB</td>
         <td class="num"><strong>${money(option.totalEur)}</strong><br>Δ ${money(option.totalEur-base.totalEur)}</td>
         <td class="num">${money(option.ownerScopedEur)}</td><td class="num">${money(option.chartererScopedEur)}</td>
-        <td class="num">${num(option.extraHours)} h</td><td>${status(option)}</td>
-        <td class="num">${money(option.euEts)}</td><td class="num">${money(option.fuelEu)}</td><td class="num">${money(option.poolCost)}</td>
-        <td class="num">${money(option.blendCost-option.fuelSaving)}</td><td class="num">${money(option.timeCost)}</td></tr>`).join('');
+        <td class="num option-extra">${num(option.extraHours)} h</td><td>${status(option)}</td>
+        <td class="num option-extra">${money(option.euEts)}</td><td class="num option-extra">${money(option.fuelEu)}</td><td class="num option-extra">${money(option.poolCost)}</td>
+        <td class="num option-extra">${money(option.blendCost-option.fuelSaving)}</td><td class="num option-extra">${money(option.timeCost)}</td></tr>`).join('');
       const best=latest.recommendation;
       document.getElementById('planningRecommendation').innerHTML=`<strong>${best.pending.length?text('最低成本待确认候选','Lowest-cost candidate: confirmation needed'):text('已确认输入下的最低模型成本候选','Lowest model-cost candidate under confirmed inputs')}</strong>
         <p>${text('航速调整','Speed change')} ${num(best.speedDelta,1)} kn · ${text('燃料能源占比','Fuel energy share')} ${num(best.blendPct,1)}% · ${text('实际组池','Allocated pool')} ${num(best.allocatedPoolTonnes,4)} tCB</p>

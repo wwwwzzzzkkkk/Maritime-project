@@ -20,3 +20,7 @@ Navigation now follows budgets, option comparison, calculation evidence, future 
 ## v4.2.0 operating-input layout
 
 Use the same glass cards, typography and materials for the added input disclosure, six-family comparison and conditional candidate. Original motion definitions are retained. Keep the new form flat for editing, matching the existing flat quick adjuster. The budget utility is now available on desktop and mobile with the same materials and direct drag. Dense comparison columns scroll within their container; mobile input fields stack.
+
+## v4.2.1 explicitly approved presentation corrections
+
+The user's stage-1 approval supersedes the historical fixed-height/illustrative-ring notes: map height is now responsive and camera bounds follow route coordinates; change rings use the disclosed ±30% scale with a 3% minimum non-zero arc, accent decreases and warn increases. The comparison occupies its own full-width glass card with five core columns and optional detail. These are the specifically approved changes; original glass tokens, remaining pointer tilt and replay timing are retained. Shared and Pro Max files are unchanged.

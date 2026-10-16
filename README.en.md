@@ -1,6 +1,11 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.2.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.2.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.2.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.2.1 · 首屏与演示修正 / Presentation and demo fixes:** 比较表独占整行，默认五列、可展开全部列；地图按航线适配并使用本地 50m 国家轮廓；变化环按 ±30% 满环并明确最小弧长；公式明细默认展开、外部链接新窗口打开。计算引擎输出与基准金额不变。
+>
+> Full-width five-column comparison with expandable detail; route-fitted map with local 50m country outlines; signed ±30% change rings with a disclosed minimum non-zero arc; open calculation trace and separate-tab external links. Calculation-engine outputs and benchmark amounts are unchanged.
+
 
 
 > **v4.2.0:** “方案比较”新增可编辑能源/强度、价格、航时与供给限制，六类方案及有条件的最低成本候选；双方金额明确包含营运增量。电脑与手机均支持可拖动玻璃预算浮窗。预算仍为声明范围内的示例估算，非完整航次成本或法定核验。
@@ -39,7 +44,7 @@ For local use, start a static server in the repository:
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required. Leaflet 1.9.4 is vendored locally; Esri tiles, geographic shading and the original Google Fonts still require network access.
+Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required. Leaflet 1.9.4 is vendored locally; Esri tiles and the original Google Fonts require network access; country outlines are now stored in the repository.
 
 ## 3. Five functional modules
 

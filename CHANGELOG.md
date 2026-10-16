@@ -1,5 +1,16 @@
 # Change log
 
+## v4.2.1 · 2026-10-16
+
+- 基线 / Baseline: `light-v4.2.0-baseline-2026-10-16` (`05cd7de`).
+- Move the unchanged numeric comparison into a full-width card with five core columns, expandable detail and a sticky first column. Keep allocation/recommendation/action in the right card.
+- Fit the map to the current full route, use responsive height and vendor Natural Earth 50m countries with EU27/GBR styling by ADM0_A3.
+- Use a signed change-ring scale: ±30% full, 3% minimum non-zero arc, zero hidden, accent down / warn up, with bilingual accessible disclosure.
+- Default the primary trace open; open external links separately; fix target formatting and light-only course references/unused reset write.
+- 表格、地图、比例环与答辩链接安全修正；计算引擎、默认金额、共享基础数据及 Pro Max 源码不变。
+- [中英文发布说明 / Bilingual release notes](docs/releases/v4.2.1.md) · [评审核实 / Review findings](docs/REVIEW_STAGE1.md)
+
+
 ## v4.2.0 · 2026-10-15
 
 - Expose editable base inputs, prices and operating/supply limits; keep draft/applied states explicit.

@@ -1,0 +1,4 @@
+PASS 1440px: local map/route/countries, five/all columns, sticky column, zero rings and screenshots
+PASS 768px: local map/route/countries, five/all columns, sticky column, zero rings and screenshots
+PASS 375px: local map/route/countries, five/all columns, sticky column, zero rings and screenshots
+PASS stage 1: baselines + frozen engine/planner, intercepted external network, ring scale/colors/replay, external-link state safety, Pro Max compatibility.

@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.2.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.2.1，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.2.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.2.1, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -54,7 +54,7 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 
 ### 4. 到“计算依据”看原因
 
-展开“输入、公式与结果”，查看当前船舶的计算明细。官方来源在同页下方按需展开。双环中心数字中，**负百分比表示相对基准下降，0 表示未变，正值表示上升**；圆弧是示意动效，以中心读数为准。
+“输入、公式与结果”默认展开，直接查看当前船舶的计算明细。官方来源在同页下方按需展开。双环中心数字中，**负百分比表示相对基准下降，0 表示未变，正值表示上升**；满环 = ±30%，超过按满环显示，中心为真实百分比；非零变化至少显示 3% 弧长，0% 无圆弧。下降用 accent，上升用 warn，不能把费用下降理解为排放下降。
 
 基准使用**同一船舶输入、同一价格、同一目标**，但不做航速、燃料或组池调整。所以只改碳价时，账单会变，而方案相对基准的变化百分比仍可能为 0。
 
@@ -124,7 +124,7 @@ GENCON, NYPE and 50:50 buttons select **illustrative reimbursement splits**, not
 
 ### 4. Inspect “Calculation Basis”
 
-Expand the inputs/formulas/results disclosure to trace the active vessel's calculations. Official references are in a separate disclosure below. For the central gauge readings, **negative percentages mean a decrease from baseline, zero means unchanged, and positive means an increase**. Arcs are illustrative animation; read the central numbers.
+The inputs/formulas/results disclosure is open by default to trace the active vessel's calculations. Official references are in a separate disclosure below. For the central gauge readings, **negative percentages mean a decrease from baseline, zero means unchanged, and positive means an increase**. Full ring = ±30%; larger changes cap at a full ring, while the centre shows the true percentage. Non-zero changes use at least 3% of the ring; zero has no arc. Decreases use accent and increases use warn, without equating cost savings to emissions reductions.
 
 The baseline uses the **same vessel, prices and target**, but no speed/fuel/pooling adjustment. A price-only change therefore changes the bill while the active-option percentage difference can remain zero.
 
@@ -272,9 +272,9 @@ The 550/260 prices and allocation shares are assumptions. Operating deltas use t
 变化 / Change (%) = (current − baseline) / baseline × 100
 ```
 
-财务比较使用 B4 欧元总净支出；物理比较使用范围内 WtW 估算。基准保持同一船舶、碳价和 FuelEU 目标，取消航速、燃料与组池调整。组池不直接改变 `I` 或 `E`。圆弧只保留示意动效。来源：引擎 `compareOptions()`、页面 `renderApp()`。
+财务比较使用 B4 欧元总净支出；物理比较使用范围内 WtW 估算。基准保持同一船舶、碳价和 FuelEU 目标，取消航速、燃料与组池调整。组池不直接改变 `I` 或 `E`。圆弧按 ±30% 满环绘制，非零最小弧长为满环的 3%，超过满环封顶；中心显示真实变化。来源：引擎 `compareOptions()`、页面 `renderApp()`。
 
-Financial comparison uses the B4 EUR total; physical comparison uses the in-scope WtW estimate. The baseline keeps the same vessel, allowance prices and FuelEU target, with no speed/fuel/pooling adjustment. Pooling does not directly change `I` or `E`. Arcs remain illustrative animation. Sources: engine `compareOptions()` and UI `renderApp()`.
+Financial comparison uses the B4 EUR total; physical comparison uses the in-scope WtW estimate. The baseline keeps the same vessel, allowance prices and FuelEU target, with no speed/fuel/pooling adjustment. Pooling does not directly change `I` or `E`. Arcs use ±30% as full scale, cap larger magnitudes, hide zero and apply a disclosed 3% minimum non-zero arc; centre values remain the true changes. Sources: engine `compareOptions()` and UI `renderApp()`.
 
 ### B6. 客户收益与创业盈亏 / Customer value and venture economics
 
@@ -341,3 +341,14 @@ Search speed from 0 to −2 kn in 0.2 steps, fuel share in 5-point steps plus th
 
 比较表和候选金额采用“合规费用＋营运增量”的费用比较口径，没有加回各方案共有的基准燃油账单，因此数值可能为负；不是负的应付账单、现金退款或利润。首页合规卡仍为对应费用预算。
 Comparison values combine compliance costs with operating deltas, excluding common baseline fuel costs. They can be negative; they are not negative payable bills, cash refunds or profit. Headline compliance cards retain their separate budget meaning.
+
+
+## v4.2.1 展示变化 / Presentation changes
+
+比较表位于滑块和分摊/推荐两栏下方，默认五列；勾选“显示全部列”查看新增航时与费用构成，首列在横滚时固定。推荐卡和“载入候选参数”仍位于分摊区域。公式明细默认展开；外部指南、来源、更新记录在新标签页打开，不替换当前演示页。
+
+The comparison is below the sliders and allocation/recommendation columns. Five core fields show by default; Show All Columns reveals time and components, with the first column sticky when scrolling. The recommendation/action stays with allocation. The main trace opens by default. External guides, sources and release notes open separately.
+
+地图“全航线”和重置基准按当前航段坐标适配；阴影使用本地 Natural Earth 50m 数据，仍不是法律覆盖范围。外网字体/底图不可用时，已加载页面或本地 HTTP 运行仍可使用本地航线、阴影、金额与台账。验证通过请求拦截模拟，不是真实离线，也不保证未缓存时首次打开。
+
+Full Route and Reset fit current route coordinates. Local Natural Earth 50m shading remains geographical illustration, not legal scope. Loaded pages/local HTTP operation can retain local route, shading and calculations when external fonts/tiles are unavailable. Verification uses request interception, not real offline, and does not guarantee uncached first load.
