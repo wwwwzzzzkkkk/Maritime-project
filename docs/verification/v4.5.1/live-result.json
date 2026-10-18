@@ -1,0 +1,29 @@
+{
+  "base": "https://wwwwzzzzkkkk.github.io/Maritime-project/",
+  "service": "https://mareg-ai.mareg-light-edition.workers.dev",
+  "httpStatus": 200,
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "knowledgeVersion": "4.5.1",
+  "incomplete": false,
+  "rawAnswer": "这两个数只是原型里的可编辑演示假设：400 tCB 是假定的可用组池盈余，足以覆盖当前 371.1648 tCB 的模型赤字；180 欧元/tCB 是假定的组池报价。它们没有对应的真实供应商、报价或经验校准依据，真实价格由商业协议决定 [pool]。",
+  "displayedAnswer": "这两个数只是原型里的可编辑演示假设：400 tCB 是假定的可用组池盈余，足以覆盖当前 371.1648 tCB 的模型赤字；180 欧元/tCB 是假定的组池报价。它们没有对应的真实供应商、报价或经验校准依据，真实价格由商业协议决定。",
+  "displayedCharacters": 118,
+  "sources": [
+    {
+      "id": "pool",
+      "title": "FuelEU：组池可行性",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "requestCount": 1,
+  "localAiBackendUsed": false,
+  "rawFormattingHidden": true,
+  "pageErrors": [],
+  "screens": [
+    "live-1440.png",
+    "live-375.png"
+  ],
+  "screenshotNote": "Existing floating budget collapsed manually for answer readability; product behavior unchanged."
+}

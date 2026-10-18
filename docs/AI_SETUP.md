@@ -2,7 +2,7 @@
 
 v4.5.1 · 2026-10-19
 
-v4.5.0 已验证本机和云端调用；本版验收记录见文末链接。/ v4.5.0 verified local and cloud calls; see the version-specific evidence below for this patch.
+v4.5.0 已验证本机和云端调用；本版已用公开网页复核新版知识与简洁格式，最终回答118字、两句话。/ v4.5.0 verified local/cloud calls; this patch verified its knowledge and readable formatting through the public page, with a final two-sentence answer. See the evidence below for scope and the earlier wording correction.
 
 ## 中文：教室里怎么用
 

@@ -1,0 +1,1 @@
+PASS: published page → cloud → DeepSeek, knowledge4.5.1, readable paragraphs, no raw markup, unchanged €88,000, one genuine request.
