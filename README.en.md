@@ -1,6 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.4.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.4.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.4.1:** “航次、燃料与组池数字孪生推演”及内部控件取消指针倾斜；保留玻璃、高光、其他卡片动效与计算。
+> Keep the voyage/fuel/pooling controls flat while preserving glass, highlights, other card motion and calculations.
 
 > **v4.4.0 · 分析工作流 / Analysis workflow:** 本机保存恢复、可恢复工作区、可打印决策报告；统一 CSV 台账与初步适用检查；具名规划情景、可配置本机 AI 接口（默认未连接）。原玻璃风格、五项快速输入和基准金额保留。
 > Local save/restore, printable reports, unified CSV ledger screening, named planning cases and configurable local AI integration (disconnected by default). Original glass design, five quick inputs and benchmarks remain. [操作说明 / Workflow guide](docs/WORKFLOWS.md) · [AI 配置 / AI setup](docs/AI_SETUP.md)

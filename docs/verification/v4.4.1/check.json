@@ -1,0 +1,242 @@
+{
+  "scope": "Chrome only; one focused desktop/mobile session, no broad/unit reruns",
+  "results": [
+    {
+      "width": 1440,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "",
+          "ry": "",
+          "px": ""
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "states": [
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        },
+        {
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg",
+          "px": "0px"
+        }
+      ]
+    }
+  ],
+  "otherCardStillTilts": true,
+  "mouseHighlightPreserved": true,
+  "sliderUpdates": true,
+  "pageErrors": [],
+  "protectedDiffExit": 0
+}

@@ -1,4 +1,4 @@
-import { sources as officialReferences } from './light-data.mjs?v=4.4.0';
+import { sources as officialReferences } from './light-data.mjs?v=4.4.1';
 export function createAiExplain({capture,evaluate,getCases}) {
   const el=id=>document.getElementById(id);let language='zh',connected=false,answerState='',busy=false;
   const t=(z,e)=>language==='zh'?z:e;

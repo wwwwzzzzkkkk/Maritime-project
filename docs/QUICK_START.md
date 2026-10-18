@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.4.0，2026-10-18 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.4.1，2026-10-18 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.4.0, documented on 18 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.4.1, documented on 18 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -28,6 +28,8 @@ For the default light edition v4.4.0, documented on 18 October 2026. No installa
 这是演示示例。黄色“缺失 CH₄/N₂O”提示表示数据范围有限，不是你操作出错；当前没有完整 ETS 总额。
 
 ### 2. 一次改一个参数，看哪里发生变化
+
+“方案比较”的航次、燃料与组池推演控件保持平面，避免鼠标移动使操作区倾斜。
 
 在 **预算总览** 左侧拖动滑块：
 
@@ -108,6 +110,8 @@ Open the link above and use `中 / EN` to select a language. For your first sess
 These are demonstration examples. The yellow missing-CH₄/N₂O notice describes the data limitation, not an operating mistake. Complete ETS totals are unavailable.
 
 ### 2. Change one input at a time
+
+The voyage/fuel/pooling controls in Compare Options stay flat when the pointer moves.
 
 Use the controls in **Budget Overview**:
 

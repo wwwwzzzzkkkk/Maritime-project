@@ -1,5 +1,12 @@
 # Change log
 
+## v4.4.1 · 2026-10-18
+
+- Baseline: `light-v4.4.0-baseline-2026-10-18`.
+- 用户指定的“航次、燃料与组池数字孪生推演”卡片及所有嵌套控件取消指针倾斜／空间视差；保留玻璃材质、跟随高光、悬停阴影及其他展示卡动效。
+- Keep the voyage/fuel/pooling panel and descendants flat; preserve material, glints, shadows and motion elsewhere. Calculation/source/protected files unchanged; UI/cache/report version 4.4.1.
+- [Release notes](docs/releases/v4.4.1.md)
+
 ## v4.4.0 · 2026-10-18
 
 - Baseline: `light-v4.3.1-baseline-2026-10-18` (`c1de121`).

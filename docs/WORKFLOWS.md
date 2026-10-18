@@ -1,4 +1,4 @@
-# MAREG v4.4.0：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.4.1：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 

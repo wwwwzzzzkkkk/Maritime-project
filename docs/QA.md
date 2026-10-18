@@ -180,3 +180,12 @@ git diff --exit-code light-v4.3.1-baseline-2026-10-18 -- js/compliance-engine.mj
 - 资源引用与新增浏览器模块均统一 `?v=4.4.0`，位置清单见验收目录。关键规则初筛来源于 2026-10-18 阅读的官方页；AI 固定参考资料保留各自原核对日期，不宣称实时法规检索。
 
 [原始日志、断言、快照与基准表](verification/v4.4.0/README.md) · [截图](previews/v4.4.0/README.md) · [操作说明](WORKFLOWS.md) · [本机 AI 配置](AI_SETUP.md)。人工确认真实记录、年度完整性、认证因子、特别适用范围、供给及答辩设备打印表现。
+
+
+## v4.4.1 · Flat simulation controls · 2026-10-18
+
+Baseline `light-v4.4.0-baseline-2026-10-18` (`1dca475`). Only the pointer-tilt exclusion selector and a stable target-panel ID changed, besides version/cache/documentation updates. No calculation, CSS material, ledger or AI-contract changes.
+
+One inline Playwright session in **Chrome only**, widths 1440/375, checks the target header and three nested control groups remain without is-tilting / nonzero rotation, preserves mouse highlights, verifies the neighboring allocation card still tilts and the speed slider updates the result. Two panel screenshots and the actual assertions are saved in `verification/v4.4.1/`. No pageerror. Protected-file git diff from the baseline exits 0. One `npm test` run passes 26/26; actual output saved. No repeated broad suite, performance work or hashes. External fonts/tiles blocked in the focused check.
+
+[交互结果 / Assertions](verification/v4.4.1/check.json) · [npm output](verification/v4.4.1/npm-test.txt).
