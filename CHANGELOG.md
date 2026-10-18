@@ -1,5 +1,14 @@
 # Change log
 
+## v4.5.1 · 2026-10-19
+
+- Baseline: light-v4.5.0-baseline-2026-10-19 (f4563ed).
+- 新增双语项目知识与回答规范，Node／Worker 共用；明确演示假设、计算与使用路径，当前已应用数据覆盖默认值。不是微调、持续记忆或实时检索。
+- Simpler question-first assistant; settings, references and help expand on demand. Suggestions fill without sending; access-code and consent gates remain.
+- 安全段落／列表显示替代裸露 Markdown／HTML／引用代码，保留来源链接、金额与单位；动态状态随中英文切换，只有真实输入变化才提示回答过期。
+- Preserve glass/motion, protected sources and all six benchmarks; UI/cache/report/snapshot version4.5.1. No dependencies/build/performance/hash work.
+- [知识与规范 / Knowledge](docs/AI_KNOWLEDGE.md) · [Release](docs/releases/v4.5.1.md) · [验收 / Evidence](docs/verification/v4.5.1/README.md)
+
 ## v4.5.0 · 2026-10-19
 
 - Baseline: `light-v4.4.1-baseline-2026-10-18` (`5878e4c`).

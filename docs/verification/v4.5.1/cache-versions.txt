@@ -1,0 +1,31 @@
+js/analysis-state.mjs:1:import { defaultSettings,compareOptions } from './compliance-engine.mjs?v=4.5.1';
+js/analysis-state.mjs:2:import { vessels } from './light-data.mjs?v=4.5.1';
+js/analysis-state.mjs:3:import { compileLedger,validateLedger } from './ledger.mjs?v=4.5.1';
+js/app.js:1:import { createWorkspaceUi } from './workspace-ui.mjs?v=4.5.1';
+js/app.js:2:import { compileLedger } from './ledger.mjs?v=4.5.1';
+js/app.js:3:import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.5.1';
+js/app.js:4:import { createAiExplain } from './ai-explain.mjs?v=4.5.1';
+js/app.js:5:import { escapeHtml } from './decision-report.mjs?v=4.5.1';
+js/app.js:6:import { createPlanningUi } from './planning-ui.mjs?v=4.5.1';
+js/app.js:7:import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.5.1';
+js/app.js:8:import { createMobileBudget } from './mobile-budget.mjs?v=4.5.1';
+js/app.js:9:import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.5.1';
+js/app.js:1133:      snapshot={uiVersion:'4.5.1',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+js/ai-explain.mjs:1:import { AI_SERVICE_URL } from './ai-config.mjs?v=4.5.1';
+js/ai-explain.mjs:2:import { sources as officialReferences } from './light-data.mjs?v=4.5.1';
+js/ai-explain.mjs:3:import { renderAiAnswer } from './ai-answer.mjs?v=4.5.1';
+js/ai-answer.mjs:1:import {sources} from './light-data.mjs?v=4.5.1';
+js/planning-ui.mjs:1:import { planOptions } from './option-planner.mjs?v=4.5.1';
+js/planning-ui.mjs:2:import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.5.1';
+js/option-planner.mjs:1:import { computeScenario } from './compliance-engine.mjs?v=4.5.1';
+js/decision-report.mjs:1:import { planOptions } from './option-planner.mjs?v=4.5.1';
+js/decision-report.mjs:2:import { evaluateAnalysis } from './analysis-state.mjs?v=4.5.1';
+js/decision-report.mjs:3:import { sources,checkedAt } from './light-data.mjs?v=4.5.1';
+js/workspace-ui.mjs:1:import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.5.1';
+js/workspace-ui.mjs:2:import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.5.1';
+js/workspace-ui.mjs:3:import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.5.1';
+index.html:11:  <link rel="stylesheet" href="styles/tokens.css?v=4.5.1" />
+index.html:12:  <link rel="stylesheet" href="styles/main.css?v=4.5.1" />
+index.html:759:  <script src="js/data-and-i18n.js?v=4.5.1"></script>
+index.html:760:  <script type="module" src="js/app.js?v=4.5.1"></script>
+js/inputs-adapter.mjs:1:import { ASSUMPTIONS } from './compliance-engine.mjs?v=4.5.1';

@@ -1,0 +1,1 @@
+PASS: simplified AI UI; keyboard, gating, safe answer formatting, applied context, zh/en 1440/375 layouts and Pro Max smoke.

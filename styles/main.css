@@ -1685,3 +1685,37 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 
 /* Classroom access code is revealed only when the backend requires it. */
 #aiAccessCodeField[hidden] { display: none; }
+
+/* v4.5.1: a short question-first assistant, using the existing glass material and motion. */
+.ai-assistant-header { align-items: flex-start; gap: 16px; }
+.ai-assistant-header .badge { flex-shrink: 0; }
+.ai-connect-row, .ai-submit-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ai-inline-status, .ai-input-hint, .ai-code-field small { font-size: 12px; line-height: 1.6; color: var(--text-muted-copy); margin: 0; }
+.ai-code-field { max-width: 440px; }
+#liveAiPanel .workflow-field { font-size: 14px; }
+#liveAiPanel textarea { min-height: 104px; font-size: 16px; }
+.ai-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 8px 18px; }
+#liveAiPanel .ai-suggestion { font-size: 12px; padding: 8px 12px; text-align: start; }
+.ai-consent { font-size: 13px; margin-block: 14px; }
+#liveAiPanel .ai-send { padding: 10px 22px; font-weight: 600; color: var(--accent-text); background: var(--bg-glass-pill); }
+.ai-request-status { font-size: 13px; line-height: 1.7; color: var(--text-primary); margin-block: 14px 0; }
+.ai-answer-section { border-block-start: 1px solid var(--border-hairline); padding-block-start: 20px; margin-block-start: 24px; }
+.ai-answer-section h3 { font-size: 15px; margin: 0 0 12px; }
+.ai-answer-copy { max-width: 78ch; font-size: 15px; line-height: 1.85; color: var(--text-primary); overflow-wrap: anywhere; }
+.ai-answer-copy p { margin: 0 0 14px; }
+.ai-answer-copy ul, .ai-answer-copy ol { padding-inline-start: 24px; margin: 0 0 14px; }
+.ai-answer-copy li + li { margin-block-start: 6px; }
+.ai-answer-section .model-note:empty { display: none; }
+.ai-details { border-block-start: 1px solid var(--border-hairline); margin-block-start: 18px; padding-block-start: 12px; }
+.ai-details summary, .ai-help-details > summary { cursor: pointer; font-size: 13px; color: var(--text-secondary); min-height: 44px; align-content: center; }
+.ai-details .workflow-sources { line-height: 1.8; }
+.ai-disclaimer { max-width: 78ch; font-size: 12px; line-height: 1.7; color: var(--text-muted-copy); margin: 20px 0 0; }
+.ai-help-details { margin-block: 18px; }
+.ai-help-details > summary { padding: 8px 4px; }
+#liveAiPanel button:focus-visible, #liveAiPanel summary:focus-visible, .ai-help-details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 680px) {
+  .ai-assistant-header { gap: 10px; }
+  .ai-submit-row { align-items: flex-start; }
+  .ai-assistant-header .panel-title { font-size: 18px; }
+  .ai-inline-status { flex: 1; min-width: 140px; }
+}

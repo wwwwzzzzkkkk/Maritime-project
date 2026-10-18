@@ -1,0 +1,27 @@
+{
+  "providerResponses": "explicit mocks, not real DeepSeek",
+  "calls": 2,
+  "questionFirst": true,
+  "collapsedSettingsAndHelp": true,
+  "keyboardSuggestionsAndDetails": true,
+  "codeAndConsentGating": true,
+  "noRawMarkupOrInlineCitationMarkers": true,
+  "safeTextNodes": true,
+  "preservedMoneyAndUnits": true,
+  "referencesRetained": true,
+  "noFalseStaleOnLanguageSwitch": true,
+  "staleAfterRealInputChange": true,
+  "appliedSummaryExpanded": true,
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "leafletCdnReplacedWithVendor": true
+  },
+  "screens": [
+    "docs/verification/v4.5.1/after-answer-zh-1440.png",
+    "docs/verification/v4.5.1/after-answer-zh-375.png",
+    "docs/verification/v4.5.1/after-answer-en-1440.png",
+    "docs/verification/v4.5.1/after-answer-en-375.png"
+  ]
+}

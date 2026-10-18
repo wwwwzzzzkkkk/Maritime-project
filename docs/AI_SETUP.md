@@ -1,14 +1,14 @@
 # DeepSeek AI 配置与课堂使用 / DeepSeek AI & Classroom Setup
 
-v4.5.0 · 2026-10-19
+v4.5.1 · 2026-10-19
 
-已通过一次本机及一次线上真实 DeepSeek 调用；线上调用时本机 AI 服务已停止。/ One genuine local and one public-page cloud call passed; the local AI server was stopped for the cloud check.
+v4.5.0 已验证本机和云端调用；本版验收记录见文末链接。/ v4.5.0 verified local and cloud calls; see the version-specific evidence below for this patch.
 
 ## 中文：教室里怎么用
 
 1. 在教室电脑打开 [原网站](https://wwwwzzzzkkkk.github.io/Maritime-project/)，进入“帮助与说明”。Mac 不需要开机，也不用在教室安装 Node。
-2. AI 服务地址已预填 `https://mareg-ai.mareg-light-edition.workers.dev`，点击“检查连接”。连接成功只表示服务可达，真正提问成功才验证模型调用。
-3. 输入小组私下提供的**课堂访问码**，勾选发送同意，再提问。课堂访问码不是 DeepSeek API key；不要把 API key 填进网页。
+2. “MAREG 助手”位于页面首位，AI 服务地址收在“连接设置与数据说明”里并已预填 `https://mareg-ai.mareg-light-edition.workers.dev`，点击“连接 AI”。连接成功只表示服务可达，真正提问成功才验证模型调用。
+3. 可点击常用问题填入问题（不会自动发送）。输入小组私下提供的**课堂访问码**，勾选发送同意，再提问。课堂访问码不是 DeepSeek API key；不要把 API key 填进网页。
 4. 可以问：“解释当前 EUR 与 GBP 预算分别包含什么，还有哪些假设需要确认？”输入变化后旧回答会显示过期提示。
 
 访问码不会保存进浏览器本机记录、工作区或报告，刷新后需重新输入。持有码的人可调用由项目账户付费的模型，因此仅向小组／课堂分享，勿放入公开仓库、截图或报告。课堂网络需能访问 GitHub Pages 和该 Workers 域名；尚未在实体教室网络验证。此为共享码控制的教学演示，未提供个人账户、多客户隔离、精细配额或商业服务保障。
@@ -17,11 +17,15 @@ v4.5.0 · 2026-10-19
 
 ## English: use in class
 
-Open the [same website](https://wwwwzzzzkkkk.github.io/Maritime-project/) → **Help & About** → **Check Connection**. The cloud URL is prefilled. Enter the privately shared **classroom access code**, consent and ask. No Mac or Node installation is needed on the classroom computer. Never enter the DeepSeek API key in the page.
+Open the [same website](https://wwwwzzzzkkkk.github.io/Maritime-project/) → **Help & About** → **Connect AI**. The cloud URL is prefilled. Enter the privately shared **classroom access code**, consent and ask. No Mac or Node installation is needed on the classroom computer. Never enter the DeepSeek API key in the page.
+
+The assistant is shown first. Settings, references and user help expand on demand. Suggested questions fill the editor without sending. Answers use readable paragraphs/steps, with raw formatting and inline reference codes hidden while the source links remain available.
 
 Connection checks only verify backend reachability/configuration. A successful question verifies the model call. The access code is kept in page memory, excluded from saved workspaces/reports and cleared on reload. Share it privately: its holders can incur provider charges. The physical classroom/network has not been tested. This is a shared-code teaching deployment, without individual accounts, tenant isolation, granular quotas or commercial availability guarantees.
 
 The configured API name is `deepseek-flash`, mapped by the checked official documentation to DeepSeek-V4.1-Flash-1017. Provider aliases may evolve. Secrets stay server-side; only the public service URL is shipped to browsers. Cloudflare Workers runs independently of the Mac and GitHub Pages.
+
+项目说明与回答规范由 Node 和 Worker 共用，详见 [MAREG 项目知识说明＋AI 回答规范](AI_KNOWLEDGE.md)。这不是微调或自动学习，每次请求独立。新增发送字段仅为已应用的能源、强度、运营限制、确认状态和分摊等摘要，不附带原始 CSV 或船名字段。/ Node and Worker share the [project knowledge and response rules](AI_KNOWLEDGE.md). This is request-time context, not fine-tuning or persistent memory. Additional applied operating/energy/allocation summaries exclude raw CSV and dedicated vessel-name fields.
 
 ## 可选：运行本机后端 / Optional local backend
 
@@ -69,4 +73,4 @@ Deployment does not automatically update the frontend URL. If the host changes, 
 - [模型与价格 / Model names and pricing](https://api-docs.deepseek.com/quick_start/pricing/)
 - [Cloudflare 配置 / Configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
 - [Cloudflare Secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
-- [实际验收 / Actual verification](verification/v4.5.0/README.md)
+- [实际验收 / Actual verification](verification/v4.5.1/README.md)

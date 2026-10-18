@@ -1,6 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.5.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.5.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.5.1 · MAREG 助手 / Assistant:** 后端加入项目知识与简短回答规范；AI 入口前置，设置、来源及使用帮助按需展开。回答按段落／步骤显示，去除裸露 Markdown、HTML 和引用代码，保留来源及金额单位。
+> Versioned project knowledge and concise response rules; a question-first AI panel with expandable settings, references and help. Safe paragraph/list display hides raw formatting while keeping citations and units. [知识说明 / Knowledge](docs/AI_KNOWLEDGE.md) · [验收 / Evidence](docs/verification/v4.5.1/README.md)
 
 > **v4.5.0 · 课堂云端 AI / Classroom cloud AI:** DeepSeek 云端后端已配置；在“帮助与说明”检查连接、输入私下提供的课堂访问码并同意后提问。教室电脑不依赖 Mac 开机，API 密钥不进入网页。
 > Cloud-hosted DeepSeek: check the prefilled connection in Help & About, enter the privately shared classroom code and consent. No Mac is needed; API keys remain server-side. [使用与维护 / Setup](docs/AI_SETUP.md) · [验收 / Evidence](docs/verification/v4.5.0/README.md)
@@ -70,7 +73,7 @@ Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses E
 | Compare Options | Compare baseline, current, speed, fuel, pooling and combined search with time/auxiliary costs, constraints, candidate status and party allocations. |
 | Calculation Basis | Trace current-vessel calculations and compare financial changes with in-scope WtW model changes; savings are not automatically physical reductions. |
 | Future Scenarios | Three possible regulatory paths and customer review steps; no automatic change to regional budgets or hypothetical global charges. |
-| Help & About | Quick-start steps, preset FAQs following current calculations, capability scope and a guide link. Course and business plans are in repository documents. |
+| Help & About | MAREG Assistant first; expandable quick-start, preset FAQs, product scope and guide. Course and business plans remain in repository documents. |
 
 The `中 / EN` control switches languages. Existing visual materials and effects are retained; header wrapping, stacked mobile metrics and local table scrolling address clipping. A working JSON snapshot records current inputs, sources, assumptions and outputs.
 

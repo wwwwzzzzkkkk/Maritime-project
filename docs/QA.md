@@ -203,3 +203,15 @@ One inline Playwright session in **Chrome only**, widths 1440/375, checks the ta
 - 实际语法检查：`node --check server/ai-handler.mjs`、`node --check js/ai-explain.mjs`、`node --check worker.mjs`；`git diff --check` 通过。
 
 [完整命令、真实输出、基准表、截图及异常说明](verification/v4.5.0/README.md) · [课堂使用](AI_SETUP.md)。AI 只解释有日期的资料与计算摘要，不更改预算／规则／采购，不发送原始CSV；仍需人工核对模型内容、实际范围与服务余额。
+
+## v4.5.1 · Project knowledge and simpler assistant · 2026-10-19
+
+基线light-v4.5.0-baseline-2026-10-19 (f4563ed)。范围**仅Chrome**，不做性能／哈希／全面扫描。
+
+一次npm test：33/33通过，[真实输出](verification/v4.5.1/npm-test.txt)。四个新模块／处理器语法检查通过；五个受保护文件git diff --exit-code一次exit0，六项基准由旧／新引擎分别实际计算完全相同。版本／缓存／快照／报告为4.5.1，模型仍light-4.2.0。
+
+node tests/ai-knowledge-ui.mjs首次在测试的浮点尾数硬比较失败，改成1e-7精度断言后定向会话通过；原异常保留，没有修改金额或重跑npm。覆盖折叠设置、建议／键盘、访问码与同意、模拟401/200、HTML/Markdown安全段落和列表、引用独立显示、金额／负号保留、已应用摘要、语言切换与过期提示。中文／英文1440／375无横向裁切及pageerror；空白／回答截图已生成，已查看代表性桌面和手机图。既有浮窗会覆盖正文，可拖动／收起，未移除或改行为。Pro Max一次冒烟通过，外部Leaflet替换为vendor，未验证CDN或真实离线。
+
+Cloudflare部署知识模块成功，Worker版本a96fe2ac-2949-4843-b019-794cc6a1d4d4；网站目录外的两个Secret不进入Git。真实新版本线上提问待Pages更新后补记，本提交不提前声称完成。无训练／持续记忆／实时法律检索；知识维护日期与来源核对日期分开。
+
+[实际命令、异常、基准和截图](verification/v4.5.1/README.md) · [双语项目知识与回答规范](AI_KNOWLEDGE.md)。页脚Release链接将在标签与Release创建后独立提交激活。

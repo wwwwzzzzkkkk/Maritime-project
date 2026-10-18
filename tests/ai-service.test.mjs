@@ -40,3 +40,23 @@ test('public Worker requires a classroom code before provider calls and supports
  const result=await handleAiRequest(new Request('https://worker.invalid/api/explain',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',Authorization:`Bearer ${env.MAREG_ACCESS_CODE}`},body}),options);assert.equal(result.status,200);assert.equal(calls,1);const text=await result.text();assert.equal(text.includes(env.DEEPSEEK_API_KEY),false);assert.equal(text.includes(env.MAREG_ACCESS_CODE),false);
  const unconfigured=await(await handleAiRequest(new Request('https://worker.invalid/api/health'),{env:{DEEPSEEK_API_KEY:'test'},requireAccessCode:true})).json();assert.equal(unconfigured.configured,false);
 });
+
+test('both AI adapters receive project knowledge and sanitized current values, not a fixed default scenario',async()=>{
+ let sent;
+ const settings={...defaultSettings(),poolPrice:90,poolAvailable:1000,maxExtraHours:48,bunkerPrice:700,operationsConfirmed:true};
+ const vessel={...vessels[0],euEnergyMJ:82000000,actualWtWIntensity:90.1};
+ const context={metrics:computeScenario(vessel,settings),assumptions:settings,vessel:{baseEnergyMJ:vessel.euEnergyMJ,baseIntensity:vessel.actualWtWIntensity,serviceSpeedKn:vessel.serviceSpeedKn},charterType:'voyage_gencon',cases:[],policyPath:'deadlock',ledgerMode:false,rawCsv:'PRIVATE-LEDGER',vesselName:'PRIVATE-VESSEL'};
+ for(const provider of ['deepseek','openai']){
+  const options={env:{AI_PROVIDER:provider,DEEPSEEK_API_KEY:'fake',OPENAI_API_KEY:'fake',OPENAI_MODEL:'test'},request:async(url,o)=>{sent=JSON.parse(o.body);return new Response(JSON.stringify(provider==='deepseek'?{choices:[{finish_reason:'stop',message:{content:'These are demo assumptions [pool].'}}]}:{output:[{type:'message',content:[{type:'output_text',text:'These are demo assumptions [pool].'}]}]}));}};
+  const make=c=>new Request('https://service.invalid/api/explain',{method:'POST',headers:{Origin:'https://wwwwzzzzkkkk.github.io','Content-Type':'application/json'},body:JSON.stringify({language:'en',question:'Where can I apply for pooling?',context:c})});
+  const response=await handleAiRequest(make(context),options);assert.equal(response.status,200);assert.equal((await response.json()).knowledgeVersion,'4.5.1');
+  const instructions=provider==='deepseek'?sent.messages[0].content:sent.instructions;
+  const input=JSON.parse(provider==='deepseek'?sent.messages[1].content:sent.input);
+  assert.match(instructions,/Answer in English/);assert.match(instructions,/2–4 short sentences/);assert.match(instructions,/plain text/);assert.match(instructions,/This page cannot submit a real application/);assert.match(instructions,/not.*standard contract defaults/i);
+  assert.equal(input.context.vessel.baseEnergyMJ,82000000);assert.equal(input.context.assumptions.poolPrice,90);assert.equal(input.context.assumptions.maxExtraHours,48);assert.equal(input.context.assumptions.operationsConfirmed,true);assert.equal(input.context.metricUnits.ownerScopedEur,'EUR including operating delta');
+  assert.equal(input.knowledge.version,'4.5.1');assert.equal(input.references[0].checkedAt,'2026-10-15');assert.equal(JSON.stringify(input).includes('PRIVATE-'),false);
+  assert.equal((await handleAiRequest(make({...context,vessel:null}),options)).status,400);
+  assert.equal((await handleAiRequest(make({...context,assumptions:{...settings,maxExtraHours:null}}),options)).status,400);
+  assert.equal((await handleAiRequest(make({...context,assumptions:{...settings,poolConfirmed:'true'}}),options)).status,400);
+ }
+});

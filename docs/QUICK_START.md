@@ -4,13 +4,13 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.5.0，2026-10-19 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.5.1，2026-10-19 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.5.0, documented on 19 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.5.1, documented on 19 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
-**v4.5.0 课堂 AI：** 在“帮助与说明”检查云端连接 → 输入私下提供的课堂访问码 → 同意并提问。不要填写 DeepSeek API key。/ **Classroom AI:** Help & About → Check Connection → private classroom code → consent → ask. Never enter the API key. [说明 / Setup](AI_SETUP.md)
+**v4.5.1 MAREG 助手：** 在“帮助与说明”点击“连接 AI” → 输入私下提供的课堂访问码 → 同意并提问。常用问题可直接填入，回答来源可展开。不要填写 DeepSeek API key。/ **Classroom AI:** Help & About → Connect AI → private classroom code → consent → ask. Suggestions fill the question; references expand below the answer. Never enter the API key. [说明 / Setup](AI_SETUP.md)
 
 **v4.4.0 新增：** 顶栏“分析与报告”可保存／恢复及导出可打印报告；“方案比较”可展开统一 CSV 台账；“未来情景”可保存并载入明确的规划条件；“帮助与说明”提供默认未连接的本机 AI 接口。[完整操作](WORKFLOWS.md) · [AI 配置](AI_SETUP.md)。台账只作普通范围初筛；数据未核验，非法律意见。
 

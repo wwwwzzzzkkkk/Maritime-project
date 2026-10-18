@@ -74,3 +74,10 @@ Baseline `light-v4.3.0-baseline-2026-10-18` pins `04c4dc5`, the published v4.3.0
 **云端独立回退 / Separate cloud rollback:** GitHub Pages 回退不会改变 Cloudflare Worker，也不会撤销任何密钥。需要恢复服务时，从相应 Git 版本取回 Worker 和其依赖，以现有私有 Secrets 重新部署；不要将 key 放入恢复提交。v4.4.1 及之前没有该 Worker，因此回退网页后云端服务仍存在，需按需要在 Cloudflare 停用／删除或轮换课堂码。DeepSeek key 撤销在供应商账户进行。/ A Pages rollback neither reverts the Worker nor revokes credentials. Redeploy the intended Worker sources using private secrets, or disable the new cloud service separately. Provider keys must be revoked/rotated at the provider too.
 
 当前部署 URL: `https://mareg-ai.mareg-light-edition.workers.dev`; initial Worker version ID `abe9b821-fb76-45e2-8bfa-aec2082f5944`. Latest deployed version ID: `89fd9bea-aa3a-4d9b-97d1-ea9b736344ef`. Shared classroom codes, local private env files and OAuth tokens must never enter Git, screenshots or public QA evidence. Do not rewrite public main history.
+
+
+## v4.5.1 · 2026-10-19
+
+Baseline light-v4.5.0-baseline-2026-10-19 pins f4563ed, including the prior published footer. Restore with a new commit; never move historical tags or rewrite public history. Restore the UI, answer presenter, shared AI handler/knowledge, Worker module rules and version/cache references together. UI/report/snapshot version is4.5.1; engine remains light-4.2.0.
+
+Worker version a96fe2ac-2949-4843-b019-794cc6a1d4d4 deploys this knowledge/rules update. A GitHub Pages rollback does not revert the Worker or revoke secrets. Redeploy sources from the intended checkpoint with private secrets separately. Do not place secrets into rollback commits. Create the Release before the separate footer activation commit.
