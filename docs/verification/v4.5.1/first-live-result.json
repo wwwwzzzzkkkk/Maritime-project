@@ -1,0 +1,29 @@
+{
+  "base": "https://wwwwzzzzkkkk.github.io/Maritime-project/",
+  "service": "https://mareg-ai.mareg-light-edition.workers.dev",
+  "httpStatus": 200,
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "knowledgeVersion": "4.5.1",
+  "incomplete": false,
+  "rawAnswer": "默认的 400 tCB 可用量和 180 欧元/tCB 报价都只是原型内可编辑的示例假设，用来演示组池覆盖不足的情形：本次计算中，缺口约 371.16 tCB，400 tCB 足以覆盖它，但这两个数值没有经核实的供应来源或市场报价依据。因此，它们不是法规要求、已确认的可供应量或真实成交价，实际条款需相关方商业协商并核验 [pool]。",
+  "displayedAnswer": "默认的 400 tCB 可用量和 180 欧元/tCB 报价都只是原型内可编辑的示例假设，用来演示组池覆盖不足的情形：本次计算中，缺口约 371.16 tCB，400 tCB 足以覆盖它，但这两个数值没有经核实的供应来源或市场报价依据。因此，它们不是法规要求、已确认的可供应量或真实成交价，实际条款需相关方商业协商并核验 。",
+  "displayedCharacters": 162,
+  "sources": [
+    {
+      "id": "pool",
+      "title": "FuelEU：组池可行性",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "requestCount": 1,
+  "localAiBackendUsed": false,
+  "rawFormattingHidden": true,
+  "pageErrors": [],
+  "screens": [
+    "live-1440.png",
+    "live-375.png"
+  ],
+  "screenshotNote": "The intended collapse selector was absent, so the budget stayed expanded and may cover copy. This note corrects the previous inaccurate screenshot caption; no model data changed."
+}

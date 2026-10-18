@@ -8,7 +8,7 @@ export function aiAnswerBlocks(answer) {
     .replace(/<\/?[a-z][^>]*>/gi,'')
     .replace(/^```[^\n]*$/gm,'')
     .replace(/\[([^\]]+)\]\(https?:\/\/[^)]+\)/g,'$1')
-    .replace(referencePattern,'')
+    .replace(referencePattern,'').replace(/[ \t]+([，。；：！？、])/g,'$1')
     .replace(/\*\*|__/g,'').replace(/`/g,'')
     .replace(/(^|\s)\*([^*\n]+)\*(?=\s|$|[，。,.!?])/g,'$1$2')
     .replace(/^\s{0,3}#{1,6}\s+/gm,'');

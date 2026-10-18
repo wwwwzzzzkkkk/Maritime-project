@@ -52,7 +52,7 @@ test('both AI adapters receive project knowledge and sanitized current values, n
   const response=await handleAiRequest(make(context),options);assert.equal(response.status,200);assert.equal((await response.json()).knowledgeVersion,'4.5.1');
   const instructions=provider==='deepseek'?sent.messages[0].content:sent.instructions;
   const input=JSON.parse(provider==='deepseek'?sent.messages[1].content:sent.input);
-  assert.match(instructions,/Answer in English/);assert.match(instructions,/2–4 short sentences/);assert.match(instructions,/plain text/);assert.match(instructions,/This page cannot submit a real application/);assert.match(instructions,/not.*standard contract defaults/i);
+  assert.match(instructions,/Answer in English/);assert.match(instructions,/2–4 short sentences/);assert.match(instructions,/plain text/);assert.match(instructions,/sufficient supply, not a coverage shortfall/);assert.match(instructions,/This page cannot submit a real application/);assert.match(instructions,/not.*standard contract defaults/i);
   assert.equal(input.context.vessel.baseEnergyMJ,82000000);assert.equal(input.context.assumptions.poolPrice,90);assert.equal(input.context.assumptions.maxExtraHours,48);assert.equal(input.context.assumptions.operationsConfirmed,true);assert.equal(input.context.metricUnits.ownerScopedEur,'EUR including operating delta');
   assert.equal(input.knowledge.version,'4.5.1');assert.equal(input.references[0].checkedAt,'2026-10-15');assert.equal(JSON.stringify(input).includes('PRIVATE-'),false);
   assert.equal((await handleAiRequest(make({...context,vessel:null}),options)).status,400);

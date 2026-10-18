@@ -1,6 +1,6 @@
 # v4.5.1 实际验收 / Actual Verification
 
-2026-10-19 · Baseline light-v4.5.0-baseline-2026-10-19 (f4563ed). **仅 Chrome / Chrome only**. 无性能、哈希、跨浏览器认证或重复模型抽样。
+2026-10-19 · Baseline light-v4.5.0-baseline-2026-10-19 (f4563ed). **仅 Chrome / Chrome only**. 无性能、哈希或跨浏览器认证；模型复核仅针对实测发现的问题。
 
 ## 实际命令与结果 / Actual commands and results
 
@@ -36,6 +36,6 @@
 
 使用官方npm的Wrangler4.151.1，原生模块no_bundle，未增加构建工具或项目依赖。实际命令：npx --yes wrangler@4.151.1 deploy --secrets-file <private-two-secret-json>（私有路径隐去）；[部署输出](worker-deploy.txt)仅去除行尾空格，Secret值未输出。Worker版本a96fe2ac-2949-4843-b019-794cc6a1d4d4已上线；包含新的知识模块。Node与Worker共用同一模块。
 
-本提交尚未宣称新网页→新知识→真实DeepSeek已验收；待Pages更新后只进行一次真实提问并补记。前面的富格式页面回答来自模拟；不能把它当作真实模型表现或回答质量认证。
+第一次线上真实提问HTTP200，knowledgeVersion4.5.1，显示162字，无裸露格式标记；[原始结果](first-live-result.json)与[first log](first-live-log.txt)保留。内容有一句把足额覆盖称为覆盖不足，已补强“不得编造参数选择目的、区分船舶缺口与供给不足”的规则；仅补跑格式3项与共用知识1项，均通过（[格式输出](format-followup.txt)、[知识输出](knowledge-followup.txt)），未重跑npm／完整UI会话。也清理了引用移除后的中文标点前空格。首次截图实际没有成功收起预算浮窗，已更正其说明，不把它记成已收起。\n\n修正后Worker版本3db13b7c-076a-41e5-893e-46234f5eba57已部署，[最终部署输出](final-worker-deploy.txt)。待Pages更新后只对该问题做一次真实定向复核，不宣称所有AI回答可靠。前面的富格式回答是模拟，不能当作真实模型表现。
 
 知识维护日期2026-10-19不等于法规重新核对日期；官方来源仍各自保留2026-10-15等原有日期。没有微调、持续对话记忆、实时法规检索、核验／申报或真实组池申请。AI短回答规范是指令，不能保证所有可能问题都严格同样长度。格式化层不改变金额，但不核验模型陈述的真实性。课堂网络、实际来源／供给／合同与模型回答仍需人工确认。
