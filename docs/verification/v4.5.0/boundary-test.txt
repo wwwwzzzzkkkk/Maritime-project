@@ -1,0 +1,10 @@
+✔ AI service rejects other origins and nonfinite or malformed external input (96.137416ms)
+✔ public Worker requires a classroom code before provider calls and supports the browser preflight (mock provider) (13.339834ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 394.104167

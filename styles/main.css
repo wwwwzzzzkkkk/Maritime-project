@@ -1682,3 +1682,6 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 #askAiBtn:disabled { opacity: .55; cursor: default; }
 @media (max-width: 1000px) { .workflow-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 680px) { .workflow-grid { grid-template-columns: minmax(0,1fr); } .workspace-controls .workflow-actions { flex-direction: column; } }
+
+/* Classroom access code is revealed only when the backend requires it. */
+#aiAccessCodeField[hidden] { display: none; }

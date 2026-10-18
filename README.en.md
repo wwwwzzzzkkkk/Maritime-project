@@ -1,6 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.4.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.5.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.5.0 · 课堂云端 AI / Classroom cloud AI:** DeepSeek 云端后端已配置；在“帮助与说明”检查连接、输入私下提供的课堂访问码并同意后提问。教室电脑不依赖 Mac 开机，API 密钥不进入网页。
+> Cloud-hosted DeepSeek: check the prefilled connection in Help & About, enter the privately shared classroom code and consent. No Mac is needed; API keys remain server-side. [使用与维护 / Setup](docs/AI_SETUP.md) · [验收 / Evidence](docs/verification/v4.5.0/README.md)
 
 > **v4.4.1:** “航次、燃料与组池数字孪生推演”及内部控件取消指针倾斜；保留玻璃、高光、其他卡片动效与计算。
 > Keep the voyage/fuel/pooling controls flat while preserving glass, highlights, other card motion and calculations.
@@ -57,7 +60,7 @@ For local use, start a static server in the repository:
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required. Leaflet 1.9.4 is vendored locally; Esri tiles and the original Google Fonts require network access; country outlines are now stored in the repository.
+Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required for the calculator; AI uses a separate hosted service or an explicitly configured local backend. Leaflet 1.9.4 is vendored locally; Esri tiles and the original Google Fonts require network access; country outlines are now stored in the repository.
 
 ## 3. Five functional modules
 
@@ -95,7 +98,7 @@ EU/UK ETS currently calculate **CO₂ subtotals only**. Missing CH₄/N₂O is n
 - Illustrative scenario operating results are −€30,000 / −€5,000 / −€4,000, with break-even at 70 / 67 / 57 full-year equivalent clients; these do not guarantee survival.
 - Twelve interviews, three paid pilots, platform ESG and human-workload metrics are **validation plans**, not completed results. Coursework mapping uses the available cached Brief; current course notices still need confirmation.
 
-FAQs remain templates. Local CSV import and an optional loopback AI backend are implemented; the public page is disconnected by default. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
+FAQs remain templates. Local CSV import and a cloud DeepSeek backend are implemented; connect manually, enter the classroom code and consent before asking. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
 
 ## 6. Minimal checks and rollback
 

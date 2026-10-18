@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.4.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.5.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.5.0 · 课堂云端 AI / Classroom cloud AI:** DeepSeek 云端后端已配置；在“帮助与说明”检查连接、输入私下提供的课堂访问码并同意后提问。教室电脑不依赖 Mac 开机，API 密钥不进入网页。
+> Cloud-hosted DeepSeek: check the prefilled connection in Help & About, enter the privately shared classroom code and consent. No Mac is needed; API keys remain server-side. [使用与维护 / Setup](docs/AI_SETUP.md) · [验收 / Evidence](docs/verification/v4.5.0/README.md)
 
 > **v4.4.1:** “航次、燃料与组池数字孪生推演”及内部控件取消指针倾斜；保留玻璃、高光、其他卡片动效与计算。
 > Keep the voyage/fuel/pooling controls flat while preserving glass, highlights, other card motion and calculations.
@@ -62,7 +65,7 @@
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-然后访问 [http://127.0.0.1:48173/](http://127.0.0.1:48173/)。默认页使用 ES modules，需要通过 HTTP 访问，不能直接双击文件运行。核心网页无需构建或后台；可选本机 AI 服务需另行配置；Leaflet 1.9.4 已随仓库保存，Esri 底图与原有 Google Fonts 仍需要网络；国家轮廓已随仓库保存。
+然后访问 [http://127.0.0.1:48173/](http://127.0.0.1:48173/)。默认页使用 ES modules，需要通过 HTTP 访问，不能直接双击文件运行。核心计算无需构建或后台；AI 使用独立云端服务，也可另行配置本机后端；Leaflet 1.9.4 已随仓库保存，Esri 底图与原有 Google Fonts 仍需要网络；国家轮廓已随仓库保存。
 
 ### 3. 五个功能模块
 
@@ -72,7 +75,7 @@ python3 -m http.server 48173 --bind 127.0.0.1
 | 方案比较 | 比较基准、当前、航速、燃料、组池和组合搜索；计入新增航时与辅助燃油，明确限制、候选状态及双方承担。 |
 | 计算依据 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
 | 未来情景 | 三种可能监管路径及客户需要核对的事项；不自动改变区域预算，也不计入假设全球收费。 |
-| 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；预设问答不使用 AI；另提供默认未连接的本机 AI 接口。 |
+| 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；预设问答不使用 AI；另提供需课堂访问码的云端 AI 解释。 |
 
 顶栏支持 `中 / EN` 切换。原有视觉材质及动效保留；桌面顶栏换行、手机 KPI 单列和表格局部滚动用于解决裁切。当前计算快照可导出为 JSON，记录输入、来源、假设及输出。
 
@@ -100,7 +103,7 @@ EU/UK ETS 当前只计算 **CO₂ 部分**。CH₄/N₂O 缺失不等于零，�
 - 三情景经营结果示例为 −€30,000 / −€5,000 / −€4,000，经营平衡为 70 / 67 / 57 个全年等效客户，不保证经营存续。
 - 12 家访谈、3 家付费试点、平台自身 ESG 和人的工作量指标均是**验证计划**，不是已完成结果。课程映射依据取得的 Brief 缓存，最新课程通知仍需确认。
 
-常见问题仍为预设模板；另有可配置本机 AI 接口，公开网页默认未连接。支持本机 CSV 台账，不代表核验；未提供实时 RAG、客户后台、专家审批或自动申报。快照不代表授权台账、人工批准或鉴证。[完整方法及官方来源](docs/LIGHT_EDITION.md)
+常见问题仍为预设模板；另有云端 DeepSeek 解释接口，需手动连接、课堂访问码及发送同意。支持本机 CSV 台账，不代表核验；未提供实时 RAG、客户后台、专家审批或自动申报。快照不代表授权台账、人工批准或鉴证。[完整方法及官方来源](docs/LIGHT_EDITION.md)
 
 ### 6. 必要检查与版本回退
 
@@ -152,7 +155,7 @@ For local use, start a static server in the repository:
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required. Leaflet 1.9.4 is vendored locally; Esri tiles and the original Google Fonts require network access; country outlines are now stored in the repository.
+Open [http://127.0.0.1:48173/](http://127.0.0.1:48173/). The default page uses ES modules and must be served over HTTP rather than opened by double-clicking the file. No build step or backend is required for the calculator; AI uses a separate hosted service or an explicitly configured local backend. Leaflet 1.9.4 is vendored locally; Esri tiles and the original Google Fonts require network access; country outlines are now stored in the repository.
 
 ### 3. Five functional modules
 
@@ -190,7 +193,7 @@ EU/UK ETS currently calculate **CO₂ subtotals only**. Missing CH₄/N₂O is n
 - Illustrative scenario operating results are −€30,000 / −€5,000 / −€4,000, with break-even at 70 / 67 / 57 full-year equivalent clients; these do not guarantee survival.
 - Twelve interviews, three paid pilots, platform ESG and human-workload metrics are **validation plans**, not completed results. Coursework mapping uses the available cached Brief; current course notices still need confirmation.
 
-FAQs remain templates. Local CSV import and an optional loopback AI backend are implemented; the public page is disconnected by default. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
+FAQs remain templates. Local CSV import and a cloud DeepSeek backend are implemented; connect manually, enter the classroom code and consent before asking. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
 
 ### 6. Minimal checks and rollback
 

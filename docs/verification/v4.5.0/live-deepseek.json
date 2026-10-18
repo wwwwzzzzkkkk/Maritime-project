@@ -1,0 +1,55 @@
+{
+  "testedAt": "2026-10-18T15:39:43.634Z",
+  "httpStatus": 200,
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "liveCall": true,
+  "requestCount": 1,
+  "dataScope": "Default demo calculated summary and bundled sources only; no real customer ledger",
+  "answer": "**三句话说明（基于给定资料）：**\n\n1. **EU ETS** 按排放年与清缴年、航程地理范围计费：2026 年对 2025 排放的清缴比例为 70%，且 2026 排放纳入 CH₄/N₂O，通常欧盟内及港内 100%、进出欧盟 50%[eu]。资料中 EU ETS 相关预算为 88,000（币种未在资料中统一标注，本回答不换算、不重算）。\n2. **FuelEU** 按年度温室气体强度目标与缺口机制运作：参考强度 91.16，2025–2029 降 2%、2030 起降 6%，连续缺口需考虑加成，且本原型不模拟岸电、RFNBO 奖励、冰区与认证燃料完整方法[fuel]。资料中 FuelEU 相关预算为 237,191.26637554567，实际强度 91.6、目标 89.3368，均按给定值引用、不重算。\n3. 两者性质不同：ETS 是排放配额清缴义务，FuelEU 是强度合规与（可选）组池/罚则路径；真实组池须满足参与、年度、分配和核验条件，盈余价格由商业协议决定，本页不连接 FuelEU 数据库[pool]。\n\n**待核对条件（只列一个）：** 需核对本航次/船型是否落入 EU ETS 的“欧盟内及港内 100%、进出欧盟 50%”适用范围，尤其涉及邻近集装箱转运港与 300 海里判断时，须按船型、港口性质及官方名单确认，地图不自动判定[ports][eu]。此外 UK ETS 自 2026-07-01 起对符合条件的 ≥5,000 GT 船舶国内及港内活动纳入三种气体，北爱—大不列颠等例外需另核[uk]。\n\n**未解决的范围与燃料假设：** ① 币种与汇率未在资料中统一（EU ETS 88,000、FuelEU 237,191.26637554567 不可混算）；② 燃料类型、认证燃料与 RFNBO 奖励未建模[fuel]；③ 组池可用量 400、价格 180 为假设，非保证供应[pool]；④ IMO 草案未生效，不改变现行区域账单[imo]；⑤ 租约分摊比例（如 85/15、50/50）仅为示例，不是标准默认[charter]。政策路径“deadlock”为假设情形。证据在币种、燃料认证与组池核验方面不足；引用资料 checkedAt 为 2026-10-15，若后续规则更新可能过时。",
+  "sources": [
+    {
+      "id": "eu",
+      "title": "EU ETS：排放年与清缴年",
+      "url": "https://climate.ec.europa.eu/areas-action/transport-decarbonisation/reducing-emissions-shipping-sector_en",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "fuel",
+      "title": "FuelEU：年度强度与赤字",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1805",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "pool",
+      "title": "FuelEU：组池可行性",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "uk",
+      "title": "UK ETS：国内与港内活动",
+      "url": "https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "imo",
+      "title": "IMO：草案与续会安排",
+      "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/iswg-ghg-22.aspx",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "charter",
+      "title": "租约：责任与偿付",
+      "url": "https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/etsa_clause/",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "ports",
+      "title": "邻近集装箱转运港",
+      "url": "https://emsa.europa.eu/reducing-emissions/extension-ets/faq-extension-ets.html",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "incomplete": false
+}

@@ -1,0 +1,27 @@
+
+ ⛅️ wrangler 4.151.1
+────────────────────
+Attaching additional modules:
+┌───────────────────────┬──────┬───────────┐
+│ Name                  │ Type │ Size      │
+├───────────────────────┼──────┼───────────┤
+│ js/light-data.mjs     │ esm  │ 11.71 KiB │
+├───────────────────────┼──────┼───────────┤
+│ server/ai-handler.mjs │ esm  │ 7.40 KiB  │
+├───────────────────────┼──────┼───────────┤
+│ Total (2 modules)     │      │ 19.11 KiB │
+└───────────────────────┴──────┴───────────┘
+Total Upload: 19.27 KiB / gzip: 8.68 KiB
+Worker Startup Time: 2 ms
+Your Worker has access to the following bindings:
+Binding                                                                 Resource                  
+env.AI_PROVIDER ("deepseek")                                            Environment Variable      
+env.DEEPSEEK_MODEL ("deepseek-flash")                                   Environment Variable      
+env.ALLOWED_ORIGINS ("https://wwwwzzzzkkkk.github.io,http:/...")        Environment Variable      
+env.DEEPSEEK_API_KEY ("(hidden)")                                       Environment Variable      
+env.MAREG_ACCESS_CODE ("(hidden)")                                      Environment Variable      
+
+Uploaded mareg-ai (6.40 sec)
+Deployed mareg-ai triggers (2.21 sec)
+  https://mareg-ai.mareg-light-edition.workers.dev
+Current Version ID: 89fd9bea-aa3a-4d9b-97d1-ea9b736344ef

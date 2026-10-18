@@ -1,13 +1,13 @@
-import { createWorkspaceUi } from './workspace-ui.mjs?v=4.4.1';
-import { compileLedger } from './ledger.mjs?v=4.4.1';
-import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.4.1';
-import { createAiExplain } from './ai-explain.mjs?v=4.4.1';
-import { escapeHtml } from './decision-report.mjs?v=4.4.1';
-import { createPlanningUi } from './planning-ui.mjs?v=4.4.1';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.4.1';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.4.1';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.4.1';
-/* MAREG light UI v4.4.1 — presentation fixes; calculation engine outputs remain frozen. */
+import { createWorkspaceUi } from './workspace-ui.mjs?v=4.5.0';
+import { compileLedger } from './ledger.mjs?v=4.5.0';
+import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.5.0';
+import { createAiExplain } from './ai-explain.mjs?v=4.5.0';
+import { escapeHtml } from './decision-report.mjs?v=4.5.0';
+import { createPlanningUi } from './planning-ui.mjs?v=4.5.0';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.5.0';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.5.0';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.5.0';
+/* MAREG light UI v4.5.0 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -912,7 +912,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   /**
-   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.4.1)
+   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.5.0)
    * - Never tilts the panel-card containing the interactive GIS map when hovering inside .map-stage
    */
   function initSpatial3DTiltEngine() {
@@ -1130,7 +1130,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.4.1',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.5.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',

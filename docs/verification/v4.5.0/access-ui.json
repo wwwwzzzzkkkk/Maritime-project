@@ -1,0 +1,22 @@
+{
+  "mode": "local-ui-with-cloud-access-check",
+  "base": "http://127.0.0.1:48184/",
+  "service": "https://mareg-ai.mareg-light-edition.workers.dev",
+  "localAiServerStopped": true,
+  "health": "DeepSeek 后端已连接 · deepseek-flash；模型调用待实际提问验证。",
+  "wrongCodeStatus": 401,
+  "gating": {
+    "requiresCode": true,
+    "requiresConsent": true
+  },
+  "screens": [
+    "docs/verification/v4.5.0/access-ui-zh-1440.png",
+    "docs/verification/v4.5.0/access-ui-en-375.png"
+  ],
+  "errors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "externalLeafletReplacedWithLocal": true
+  }
+}

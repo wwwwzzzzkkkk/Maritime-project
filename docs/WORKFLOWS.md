@@ -1,4 +1,4 @@
-# MAREG v4.4.1：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.5.0：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 
@@ -41,7 +41,7 @@ id,date,activity,from,to,fuelTonnes,lhvMJPerKg,co2Factor,wtwIntensity,distanceNm
 
 “未来情景”中的监管路径只提供讨论背景，不自动更改法律或收费。在“规划条件与成本比较”明确输入名称、EUA、UKA、FuelEU 目标、组池报价／可用量，保存后可并列比较 EUR、GBP 和新增航时；载入才改变当前输入。每个情景保留保存时的船舶、台账和其他输入，恢复时展示对应对象。无全球假设收费或发生概率。
 
-AI 入口位于“帮助与说明”，默认未连接。按 AI 配置文档运行本机服务后检查连接；只有服务已配置、勾选发送同意后才能提问。请求仅含问题、计算摘要、已有规划情景摘要和已保存参考资料，不发送原始 CSV。回答显示引用，输入变化后显示过期提示，不修改任何预算或规则。不是实时法规检索、核验或法律意见。
+AI 入口位于“帮助与说明”，已预填云端地址。检查连接、输入私下提供的课堂访问码、勾选发送同意后才能提问。教室电脑无需 Mac 开机，不要填写 DeepSeek API 密钥。请求仅含问题、计算摘要、已有规划情景摘要和已保存参考资料，不发送原始 CSV。回答显示引用，输入变化后显示过期提示，不修改任何预算或规则。不是实时法规检索、核验或法律意见。
 
 ## English instructions
 
@@ -69,7 +69,7 @@ After Apply, energy/intensity/distance are derived read-only views; edit ledger 
 
 Policy paths are context only. Set explicit prices, FuelEU target and pool assumptions, save named cases and compare EUR/GBP separately. Loading restores the saved vessel/data/conditions; no automatic global fee or probability is introduced.
 
-AI is disconnected by default. Configure the loopback backend, check its connection, then consent before sending a question. Only calculated summaries, saved-case summaries, the question and bundled references are sent; raw CSV is excluded. Answers show references and become marked stale when inputs change. AI does not change calculations, retrieve live regulations, verify compliance or provide legal advice.
+The cloud AI URL is prefilled. Check its connection, enter the privately shared classroom code and consent before asking. The Mac need not run; never enter a DeepSeek API key in the webpage. Only calculated summaries, saved-case summaries, the question and bundled references are sent; raw CSV is excluded. Answers show references and become marked stale when inputs change. AI does not change calculations, retrieve live regulations, verify compliance or provide legal advice.
 
 ## 方法来源 / Method sources
 

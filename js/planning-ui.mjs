@@ -1,5 +1,5 @@
-import { planOptions } from './option-planner.mjs?v=4.4.1';
-import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.4.1';
+import { planOptions } from './option-planner.mjs?v=4.5.0';
+import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.5.0';
 
 export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
   const form=document.getElementById('planningForm');

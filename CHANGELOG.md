@@ -1,5 +1,14 @@
 # Change log
 
+## v4.5.0 · 2026-10-19
+
+- Baseline: `light-v4.4.1-baseline-2026-10-18` (`5878e4c`).
+- 接入 DeepSeek 官方 deepseek-flash，Node/Cloudflare Worker 共用安全边界；仅显式选择 OpenAI 时使用原适配器，不自动回退。
+- Deploy a separate Cloudflare Worker; prefill its URL, require a private classroom code plus consent, and keep provider keys server-side. No Mac dependency for classroom use.
+- 访问码不保存进浏览器记录／报告；区分访问码、密钥、余额与限流错误；回答保留引用、未核验及过期提示，不改变计算。
+- 保留原玻璃与动效、五个受保护文件及默认金额；版本／缓存／快照／报告统一为 4.5.0。无前端构建工具、新依赖、性能或哈希工作。
+- [使用与维护 / Setup](docs/AI_SETUP.md) · [Release notes](docs/releases/v4.5.0.md) · [真实验收 / Evidence](docs/verification/v4.5.0/README.md)
+
 ## v4.4.1 · 2026-10-18
 
 - Baseline: `light-v4.4.0-baseline-2026-10-18`.

@@ -1,0 +1,13 @@
+✔ unconfigured local AI service reports disabled without contacting a provider (51.963875ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (24.546375ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (22.278959ms)
+✔ DeepSeek uses the documented Flash model/chat endpoint and returns only final cited text (mock provider) (17.538417ms)
+✔ DeepSeek never falls back to another provider when its key is missing (10.936625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 310.530709

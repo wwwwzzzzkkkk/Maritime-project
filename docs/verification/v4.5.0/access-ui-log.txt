@@ -1,0 +1,1 @@
+PASS: local-ui-with-cloud-access-check code/consent gating; unchanged EU benchmark; Chrome zh1440/en375 layout. Wrong code returns 401; Pro Max smoke passed.

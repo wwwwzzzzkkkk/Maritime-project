@@ -1,0 +1,33 @@
+js/inputs-adapter.mjs:1:import { ASSUMPTIONS } from './compliance-engine.mjs?v=4.5.0';
+js/decision-report.mjs:1:import { planOptions } from './option-planner.mjs?v=4.5.0';
+js/decision-report.mjs:2:import { evaluateAnalysis } from './analysis-state.mjs?v=4.5.0';
+js/decision-report.mjs:3:import { sources,checkedAt } from './light-data.mjs?v=4.5.0';
+js/decision-report.mjs:23:  const body=`<header><p>MAREG · v4.5.0 · ${new Date().toISOString()}</p><h1>${esc(workspace.name)}</h1><p>${t('合规预算与决策比较报告','Compliance Budget & Decision Comparison')}</p><p>${esc(vessel.name)} · ${n(vessel.gt,0)} GT · 2026</p></header>`+
+js/analysis-state.mjs:1:import { defaultSettings,compareOptions } from './compliance-engine.mjs?v=4.5.0';
+js/analysis-state.mjs:2:import { vessels } from './light-data.mjs?v=4.5.0';
+js/analysis-state.mjs:3:import { compileLedger,validateLedger } from './ledger.mjs?v=4.5.0';
+js/ai-explain.mjs:1:import { AI_SERVICE_URL } from './ai-config.mjs?v=4.5.0';
+js/ai-explain.mjs:2:import { sources as officialReferences } from './light-data.mjs?v=4.5.0';
+js/app.js:1:import { createWorkspaceUi } from './workspace-ui.mjs?v=4.5.0';
+js/app.js:2:import { compileLedger } from './ledger.mjs?v=4.5.0';
+js/app.js:3:import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.5.0';
+js/app.js:4:import { createAiExplain } from './ai-explain.mjs?v=4.5.0';
+js/app.js:5:import { escapeHtml } from './decision-report.mjs?v=4.5.0';
+js/app.js:6:import { createPlanningUi } from './planning-ui.mjs?v=4.5.0';
+js/app.js:7:import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.5.0';
+js/app.js:8:import { createMobileBudget } from './mobile-budget.mjs?v=4.5.0';
+js/app.js:9:import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.5.0';
+js/app.js:10:/* MAREG light UI v4.5.0 — presentation fixes; calculation engine outputs remain frozen. */
+js/app.js:915:   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.5.0)
+js/app.js:1133:      snapshot={uiVersion:'4.5.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+js/option-planner.mjs:1:import { computeScenario } from './compliance-engine.mjs?v=4.5.0';
+js/planning-ui.mjs:1:import { planOptions } from './option-planner.mjs?v=4.5.0';
+js/planning-ui.mjs:2:import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.5.0';
+js/workspace-ui.mjs:1:import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.5.0';
+js/workspace-ui.mjs:2:import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.5.0';
+js/workspace-ui.mjs:3:import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.5.0';
+index.html:11:  <link rel="stylesheet" href="styles/tokens.css?v=4.5.0" />
+index.html:12:  <link rel="stylesheet" href="styles/main.css?v=4.5.0" />
+index.html:686:    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.1" data-zh="MAREG v4.5.0 · 更新记录" data-en="MAREG v4.5.0 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.5.0 · 更新记录</a>
+index.html:705:  <script src="js/data-and-i18n.js?v=4.5.0"></script>
+index.html:706:  <script type="module" src="js/app.js?v=4.5.0"></script>

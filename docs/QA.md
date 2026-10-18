@@ -189,3 +189,17 @@ Baseline `light-v4.4.0-baseline-2026-10-18` (`1dca475`). Only the pointer-tilt e
 One inline Playwright session in **Chrome only**, widths 1440/375, checks the target header and three nested control groups remain without is-tilting / nonzero rotation, preserves mouse highlights, verifies the neighboring allocation card still tilts and the speed slider updates the result. Two panel screenshots and the actual assertions are saved in `verification/v4.4.1/`. No pageerror. Protected-file git diff from the baseline exits 0. One `npm test` run passes 26/26; actual output saved. No repeated broad suite, performance work or hashes. External fonts/tiles blocked in the focused check.
 
 [交互结果 / Assertions](verification/v4.4.1/check.json) · [npm output](verification/v4.4.1/npm-test.txt).
+
+
+## v4.5.0 · DeepSeek and classroom cloud backend · 2026-10-19
+
+基线 `light-v4.4.1-baseline-2026-10-18` (`5878e4c`)。工作从18日持续至19日，基线标签保持实际开工日期。**仅 Chrome**，无哈希／性能／全站重复检查。
+
+- DeepSeek 初次接入后 npm 28/28；抽取共用处理器后定向5/5；云端鉴权后 `npm test` 29/29。根据真实回答补上明确币种/单位后仅补跑 AI 六项，全部通过；随后只补跑两个外部 JSON／鉴权边界用例（null 请求及情景条目），2/2通过。每次原始输出均保留，不称没有重复执行。
+- 五个受保护文件从基线 `git diff --exit-code` 一次通过（exit0，空输出）；六项金额分别使用基线和当前引擎计算完全相同。原玻璃、倾斜例外、声明与 EUR/GBP 分列保留。
+- `node tests/ai-cloud-ui.mjs` 真实连接已部署云端：health configured:true、requiresAccessCode:true；无访问码／无发送同意禁用；错误码401；默认金额不变。中文1440／英文375截图无页面横向裁切、无 pageerror，截图已查看。Pro Max 页面冒烟正常（外部 Leaflet 用 vendor 同版本替换，未验证 CDN）。
+- 真实本机浏览器→本机后端→DeepSeek 取得200及回答；不是法规事实核验。Cloudflare Worker 已部署，服务端两个私有 Secret，前端只有 URL；Node 本机适配器停止。官方 npm 的 Wrangler 原生模块部署，不新增构建步骤／项目依赖。初次模块上传失败、CLI/TLS异常和修复在证据文档如实保留。
+- 缓存／UI／报告为4.5.0；页脚 Release 链接创建新 Release 后单独激活。线上 Pages→云端→真实模型的最后一次调用待本次 Pages 更新后补记，未提前宣称通过。没有在实体教室或其他浏览器验收。
+- 实际语法检查：`node --check server/ai-handler.mjs`、`node --check js/ai-explain.mjs`、`node --check worker.mjs`；`git diff --check` 通过。
+
+[完整命令、真实输出、基准表、截图及异常说明](verification/v4.5.0/README.md) · [课堂使用](AI_SETUP.md)。AI 只解释有日期的资料与计算摘要，不更改预算／规则／采购，不发送原始CSV；仍需人工核对模型内容、实际范围与服务余额。

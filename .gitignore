@@ -9,3 +9,6 @@ test-results/
 # Local AI credentials (never publish).
 .env.local
 .env.*.local
+.wrangler/
+.dev.vars
+.dev.vars.*

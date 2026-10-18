@@ -1,0 +1,23 @@
+{
+  "name": "mareg-ai",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-18",
+  "workers_dev": true,
+  "no_bundle": true,
+  "preserve_file_names": true,
+  "find_additional_modules": true,
+  "base_dir": ".",
+  "rules": [
+    {"type":"ESModule","globs":["server/ai-handler.mjs","js/light-data.mjs"],"fallthrough":false},
+    {"type":"Text","globs":[],"fallthrough":false},
+    {"type":"Data","globs":[],"fallthrough":false},
+    {"type":"CompiledWasm","globs":[],"fallthrough":false}
+  ],
+  "vars": {
+    "AI_PROVIDER": "deepseek",
+    "DEEPSEEK_MODEL": "deepseek-flash",
+    "ALLOWED_ORIGINS": "https://wwwwzzzzkkkk.github.io,http://127.0.0.1:48184,http://localhost:48184"
+  },
+  "secrets": {"required":["DEEPSEEK_API_KEY","MAREG_ACCESS_CODE"]},
+  "observability": {"enabled":false}
+}
