@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.3.0，2026-10-15 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.3.1，2026-10-18 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.3.0, documented on 15 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.3.1, documented on 18 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -40,9 +40,17 @@ For the default light edition v4.3.0, documented on 15 October 2026. No installa
 
 ### 3. 到“方案比较”比较方案
 
-先查看上方的基准强度、范围内能源与基准航速，再展开“编辑能源、价格及运营限制”。预填值是示例；修改后点击“应用输入并比较”，否则结果仍使用上次已应用的输入。
+先使用默认可见的五个快速输入：范围内燃油消耗（等效吨）、燃油价、低碳燃料溢价、组池报价、允许增加的航时。组池报价旁显示已应用可用量，点击“修改”进入高级区。EUA 继续在总览滑块调整。
 
-距离、能源、排放台账和新增航时必须属于同一声明范围与比较期间；地图不提供自动测距。每日时间成本填写非燃油增量，避免重复计费。燃料兼容性、认证与供给、组池参与条件及运营输入需自行核对；勾选确认不等于外部核验。
+默认 4,000 等效吨 = 164,000,000 MJ；41,000 MJ/吨仅用于 VLSFO 等效换算，不适用于所有实际燃料。高级区可直接输入 MJ，两种单位同步，计算和快照只保存 MJ。
+
+“高级假设”默认折叠，分燃料与价格、组池、运营限制三组，原字段仍可编辑。字段旁有默认标记和还原按钮；ⓘ 可点击或用键盘聚焦阅读，Esc 关闭。上方假设标签可定位输入，高级项自动展开；有草稿时标签明确提示仍显示已应用值。修改后点击“应用输入并比较”，否则结果仍使用上次已应用的输入。越界、空值或不符步长会显示行内提示并阻止应用。
+
+“确认以上假设”区域保留三项声明，可用主按钮一次确认。修改表单输入后重新应用会取消此前确认；“重置基准”也恢复未确认。“载入演示假设并确认”将当前船舶的表单恢复默认值并确认三项，仅用于演示，不代表真实核验；不会修改滑块。
+
+四个按钮均为演示预设，只调整既有滑块：基准设燃料 0%、航速 0.0 kn、组池 0；慢航只设航速 −1.0 kn；低碳燃料只设占比 20%；组池抵扣只设请求 200 tCB。后三项保留其他滑块不变，全部预设均不修改价格、能源、供给和确认状态。慢航预设在默认距离下会超过 24 小时限制，这是用于观察约束的演示，不是可直接执行的建议。
+
+距离、能源、排放台账和新增航时必须属于同一声明范围与比较期间；地图不提供自动测距。每日时间成本填写非燃油增量，避免重复计费。燃料兼容性、认证与供给、组池参与条件及运营输入需自行核对；点击确认不等于外部核验。
 
 表格比较 **保持现状、当前方案、仅航速、仅燃料、仅组池、组合搜索** 六类结果。先看范围内欧元支出及相对基准差额，再看新增航时和条件状态。超出时间或燃料限制的当前方案会明确标出；未知条件只显示待确认候选。UK 英镑费用独立查看，当前搜索只最小化表列欧元成本，不是完整航次成本。
 
@@ -110,9 +118,17 @@ On desktop and mobile, a **live budget window** appears when the original cards 
 
 ### 3. Compare options in “Compare Options”
 
-Review the base intensity, scoped energy and service speed, then expand Edit Energy, Prices and Operating Limits. Select Apply Inputs & Compare after editing; drafts do not change the applied calculation.
+Start with five visible numeric inputs: scoped fuel consumption in equivalent tonnes, base fuel price, fuel premium, pool quote and allowed extra sailing time. The quote row shows applied pool availability; Edit opens its advanced field. EUA remains on the overview slider.
 
-Distance, energy, emissions records and extra time must refer to the same declared scope and comparison period. The map does not measure this distance. Daily time cost excludes separately counted fuel costs. Confirm operating inputs, fuel compatibility/certification/supply and pool participation conditions; a check mark is not external verification.
+The default 4,000 equivalent tonnes equals 164,000,000 MJ. The 41,000 MJ/tonne conversion is VLSFO equivalence, not a universal fuel heating value. Advanced assumptions also allow direct MJ input; both units stay synchronized, while calculations and snapshots retain MJ only.
+
+Advanced assumptions are collapsed into Fuel and prices / Pooling / Operating limits. All original fields remain editable, with default markers and restore buttons. Click or keyboard-focus ⓘ to read the explanation; Escape closes it. Assumption tags focus the linked input and open Advanced when necessary. Unapplied drafts are labelled and do not replace applied tags or results. Apply Inputs & Compare submits valid edits; inline errors block empty, out-of-range or step-invalid values.
+
+The confirmation area retains all three declarations and offers one action to confirm them. Applying edited form inputs or resetting clears confirmation. Load & Confirm Demo Assumptions restores the active vessel's form defaults and confirms all three declarations; it does not change sliders and is for demonstration only, not real verification.
+
+The four demo presets only set existing sliders: Baseline sets fuel 0%, speed 0.0 kn and pool 0; Slow steaming sets speed −1.0 kn only; Low-carbon fuel sets fuel 20% only; Pooling offset sets requested pool 200 tCB only. Non-baseline presets retain other sliders. None changes prices, energy, supply or confirmation. Slow steaming exceeds the default 24-hour allowance at the default distance: this demonstrates the constraint, not an executable recommendation.
+
+Distance, energy, emissions records and extra time must refer to the same declared scope and comparison period. The map does not measure this distance. Daily time cost excludes separately counted fuel costs. Confirm operating inputs, fuel compatibility/certification/supply and pool participation conditions; confirmation is not external verification.
 
 Six rows compare baseline, current, speed-only, fuel-only, pooling-only and combined search. Read scoped EUR expenditure/delta, extra hours and condition status. The current option is flagged if outside numerical limits; unknown conditions remain pending. UK GBP is separate and excluded from the EUR objective. Results are not full-voyage costs.
 
@@ -354,7 +370,7 @@ The comparison is below the sliders and allocation/recommendation columns. Five 
 Full Route and Reset fit current route coordinates. Local Natural Earth 50m shading remains geographical illustration, not legal scope. Loaded pages/local HTTP operation can retain local route, shading and calculations when external fonts/tiles are unavailable. Verification uses request interception, not real offline, and does not guarantee uncached first load.
 
 
-## v4.3.0：阅读与操作 / Reading and interaction
+## v4.3.1：阅读与操作 / Reading and interaction
 
 保持原来的玻璃外观。辅助文字更清晰、字号更大；将指针放入表格或来源列表正文后，相关卡片平滑恢复平面，方便横滚和阅读；标题区域和展示卡仍保留原倾斜。系统设置“减少动态效果”时不再倾斜，概览快速调节器继续保持平面。滑块输入按帧合并，金额仍按同一模型更新，弹窗打开时显示当前数据。
 

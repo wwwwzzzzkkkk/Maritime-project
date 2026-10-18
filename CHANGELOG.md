@@ -1,5 +1,16 @@
 # Change log
 
+## v4.3.1 · 2026-10-18
+
+- Baseline: `light-v4.3.0-baseline-2026-10-18` (`04c4dc5`). This release follows v4.3.0.
+- 默认五个快速数值输入；组池可用量通过同一行的修改入口进入高级区。原 14 字段完整保留，高级区按三组折叠。
+- Add VLSFO-equivalent tonnes/MJ display conversion using the engine's exported constant. Canonical energy and snapshot fields remain MJ; do not treat equivalent tonnes as measured fuel mass.
+- 新增默认值标记、单项还原、可键盘操作的说明、已应用假设标签及未应用草稿提示；输入边界校验显示双语行内错误。
+- Four explicit demo presets only set existing sliders. The speed −1.0 kn preset intentionally exceeds the default time allowance; other controls/prices/confirmations are preserved.
+- 三项声明合并一次确认；另提供“载入演示假设并确认”，明确不代表真实核验。重置恢复未确认，应用修改后的输入也撤销确认。
+- Preserve glass styling, motion, protected files, benchmarks, separate currencies and legal/data limitations. No CSV import, clean mode, performance assessment, engine or planner algorithm change.
+- [双语发布说明 / Release notes](docs/releases/v4.3.1.md) · [验收材料 / Evidence](docs/verification/v4.3.1/README.md)
+
 ## v4.3.0 · 2026-10-16
 
 - Baseline: `light-v4.2.1-baseline-2026-10-16` (`cdec884`). CSS-only consolidation is an independent commit `86d3f20`; controlled three-width screenshots are pixel-identical.

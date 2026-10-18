@@ -1,0 +1,76 @@
+{
+  "scope": "Only Chrome; external fonts and map services blocked; no performance measurements",
+  "checks": [
+    "Five visible numeric inputs; all 14 original named inputs retained; advanced default count 10",
+    "All original min/max/step attributes unchanged",
+    "Bidirectional conversion incl. 1001 MJ; draft/applied tags; default restore; empty/range/fractional-MJ errors blocked without NaN",
+    "Keyboard help (15), assumption tags, advanced disclosure and restore; one-action confirmation; demo defaults; reset clears all flags",
+    "All four exact demo presets keyboard-operated; non-baseline presets leave other sliders unchanged; prices/energy/supply/confirmation unchanged",
+    "Bilingual 1440/768/375 layout; all 15 inputs visible when advanced is open; no page/control overflow; 30-frame continuous slider input"
+  ],
+  "screens": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "path": "docs/previews/v4.3.1/inputs-zh-1440.png"
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "path": "docs/previews/v4.3.1/inputs-zh-768.png"
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "path": "docs/previews/v4.3.1/inputs-zh-375.png"
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "path": "docs/previews/v4.3.1/inputs-en-1440.png"
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "path": "docs/previews/v4.3.1/inputs-en-768.png"
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "path": "docs/previews/v4.3.1/inputs-en-375.png"
+    }
+  ],
+  "snapshot": {
+    "equalExcept": [
+      "uiVersion",
+      "generatedAt"
+    ],
+    "noTonnesField": true
+  },
+  "baselines": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "fuel6": {
+      "before": "619346.72",
+      "after": "619346.72"
+    }
+  },
+  "proMax": {
+    "pass": true,
+    "errors": [],
+    "note": "CDN Leaflet replaced by unchanged vendored 1.9.4 in test; external network errors excluded; CDN availability not assessed"
+  },
+  "pageErrors": []
+}

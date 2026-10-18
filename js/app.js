@@ -1,8 +1,8 @@
-import { createPlanningUi } from './planning-ui.mjs?v=4.3.0';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.3.0';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.3.0';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.3.0';
-/* MAREG light UI v4.3.0 — presentation fixes; calculation engine outputs remain frozen. */
+import { createPlanningUi } from './planning-ui.mjs?v=4.3.1';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.3.1';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.3.1';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.3.1';
+/* MAREG light UI v4.3.1 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -782,7 +782,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     const c=m.comparison;
     setHTML('optionDeltaSummary', `<div><strong>${lang==='zh'?'当前方案与同条件基准':'Active Option vs. Same-Condition Baseline'}</strong><span>${lang==='zh'?'范围内欧元净支出变化（含航时费）':'Scoped EUR net expenditure change'}: ${fmtEur(c.costDelta,2)} · ${lang==='zh'?'负值表示节省；不含英国费用，也不是完整航次成本。':'Negative means savings; excludes UK costs and is not the full voyage cost.'}</span></div>`);
-    currentPlan=planningUi.render(m,lang);
+    currentPlan=planningUi.render(m,lang,{...defaultSettings(),euEnergyMJ:modelVessels.find(v=>v.id===m.vessel.id).euEnergyMJ,actualWtWIntensity:modelVessels.find(v=>v.id===m.vessel.id).actualWtWIntensity});
 
     const auditRows=m.computedLegs.map(l=>`<tr><td class="mono"><strong>${l.code}</strong></td><td>${lang==='zh'?l.routeZh:l.routeEn}</td><td><span class="formula-code">CO₂ × ${l.coveragePct*100}% × ${l.currency==='EUR'?'EUA':'UKA'}</span></td><td class="num">${fmtNum(l.adjRaw,2)} × ${l.coveragePct*100}% = ${fmtNum(l.adjCovered,2)} t</td><td class="num">${l.currency==='EUR'?fmtEur(l.cost,2):fmtGbp(l.cost,2)}</td><td>CO₂ only</td></tr>`);
     auditRows.push(`<tr><td>FuelEU · Active</td><td>${lang==='zh'?'当前目标与实际组池分配':'Current target and allocated pooling'}</td><td><span class="formula-code">max(−CB,0) / (${fmtNum(m.actualIntensity,4)} × 41,000) × €2,400</span></td><td class="num">${fmtNum(m.netBalanceGrams)} g · ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB pool</td><td class="num">${fmtEur(m.fueleuPenaltyEur,2)}</td><td>${lang==='zh'?'单期简化估算':'Single-period model'}</td></tr>`);
@@ -878,7 +878,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   /**
-   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.3.0)
+   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.3.1)
    * - Never tilts the panel-card containing the interactive GIS map when hovering inside .map-stage
    */
   function initSpatial3DTiltEngine() {
@@ -1094,7 +1094,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.3.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.3.1',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',
@@ -1132,6 +1132,13 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         Object.assign(planningSettings,settings);
         state.twinState.poolingSurplusTonnes=Math.min(state.twinState.poolingSurplusTonnes,settings.poolAvailable);
         renderApp();
+      },
+      onPreset(id) {
+        const presets={baseline:{bio:0,jit:0,pool:0},speed:{jit:-1},fuel:{bio:20},pool:{pool:200}};
+        for(const [control,value] of Object.entries(presets[id])) {
+          const slider=document.querySelector(`.sync-${control}`);
+          slider.value=value;slider.dispatchEvent(new Event('input',{bubbles:true}));
+        }
       },
       onApplyOption(option) {
         state.twinState.jitSpeedDeltaKn=option.speedDelta;

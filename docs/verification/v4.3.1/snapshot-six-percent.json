@@ -1,0 +1,1543 @@
+{
+  "uiVersion": "4.3.1",
+  "modelVersion": "light-4.2.0",
+  "generatedAt": "2026-10-18T11:20:54.008Z",
+  "vesselId": "v1",
+  "evidenceStatus": "teaching-demo-not-verified",
+  "etsEmissionYear": 2026,
+  "ukActivityPeriod": "2026-07/2026-12",
+  "fuelEUTargetYear": 2030,
+  "settings": {
+    "year": 2030,
+    "euaPrice": 80,
+    "ukPrice": 60,
+    "speedDelta": 0,
+    "blendPct": 0,
+    "poolingTonnes": 0,
+    "poolAvailable": 400,
+    "poolPrice": 180,
+    "bunkerPrice": 550,
+    "blendPremium": 260,
+    "consecutiveDeficits": 1,
+    "etsOwnerPct": 85,
+    "fuelOwnerPct": 85,
+    "poolOwnerPct": 85,
+    "hoursSaved": 120,
+    "advisorSavings": 2000,
+    "internalCost": 0,
+    "distanceNm": 6000,
+    "maxExtraHours": 24,
+    "dailyTimeCost": 5000,
+    "maxBlendPct": 30,
+    "auxFuelPerDay": 2,
+    "auxCo2Factor": 3.114,
+    "auxCoveragePct": 100,
+    "operationsConfirmed": false,
+    "fuelConfirmed": false,
+    "poolConfirmed": false,
+    "operatingOwnerPct": 85
+  },
+  "assumptions": {
+    "referenceIntensity": 91.16,
+    "vlsfoMJPerTonne": 41000,
+    "penaltyPerEquivalentTonne": 2400,
+    "sailingEnergyShare": 0.88,
+    "blendTtwReduction": 0.26,
+    "blendWtwReduction": 0.32
+  },
+  "etsComplete": false,
+  "externalVerification": "not-performed",
+  "humanApproval": "not-performed",
+  "sources": [
+    {
+      "id": "eu",
+      "url": "https://climate.ec.europa.eu/areas-action/transport-decarbonisation/reducing-emissions-shipping-sector_en",
+      "clause": "Directive 2003/87/EC · maritime scope",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "fuel",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1805",
+      "clause": "Regulation (EU) 2023/1805 · Art. 4, 23; Annex IV",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "pool",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+      "clause": "Art. 20–21 · Commission implementation Q&A",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "uk",
+      "url": "https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply",
+      "clause": "UK ETS maritime guidance · scope and surrender",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "imo",
+      "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/iswg-ghg-22.aspx",
+      "clause": "ISWG-GHG 22 · September 2026 meeting summary",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "charter",
+      "url": "https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/etsa_clause/",
+      "clause": "BIMCO ETS Time Charter Clause 2022",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "ports",
+      "url": "https://emsa.europa.eu/reducing-emissions/extension-ets/faq-extension-ets.html",
+      "clause": "Port-of-call definition · neighbouring container transhipment ports",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "modelInputs": {
+    "id": "v1",
+    "name": "MV A3-BENCHMARK",
+    "zh": "附录 A3 基准货船",
+    "en": "A3 reference cargo vessel",
+    "gt": 10000,
+    "serviceSpeedKn": 13.5,
+    "fuel": "VLSFO",
+    "actualWtWIntensity": 91.6,
+    "euEnergyMJ": 164000000,
+    "legs": [
+      {
+        "id": "E1",
+        "zh": "非欧盟 → 鹿特丹（示意）",
+        "en": "Non-EU → Rotterdam (illustration)",
+        "co2Tonnes": 1000,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 0.5,
+        "currency": "EUR",
+        "activity": "sailing",
+        "ports": [
+          "CNSHA",
+          "SGSIN",
+          "EGPSD",
+          "MAPTM",
+          "NLRTM"
+        ]
+      },
+      {
+        "id": "E2",
+        "zh": "鹿特丹 → 汉堡",
+        "en": "Rotterdam → Hamburg",
+        "co2Tonnes": 500,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "EUR",
+        "activity": "sailing",
+        "ports": [
+          "NLRTM",
+          "DEHAM"
+        ]
+      },
+      {
+        "id": "E3",
+        "zh": "欧盟港内活动",
+        "en": "EU port activity",
+        "co2Tonnes": 100,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "EUR",
+        "activity": "port",
+        "ports": [
+          "NLRTM"
+        ]
+      },
+      {
+        "id": "U1",
+        "zh": "费利克斯托 → 南安普顿",
+        "en": "Felixstowe → Southampton",
+        "co2Tonnes": 200,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "GBP",
+        "activity": "sailing",
+        "ports": [
+          "GBFXT",
+          "GBSOU"
+        ]
+      },
+      {
+        "id": "U2",
+        "zh": "英国港内活动",
+        "en": "UK port activity",
+        "co2Tonnes": 20,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "GBP",
+        "activity": "port",
+        "ports": [
+          "GBSOU"
+        ]
+      }
+    ]
+  },
+  "planner": {
+    "rows": [
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 601244.716157205,
+        "chartererScopedEur": 106102.00873362448,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 1000,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 500,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 100,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 100,
+            "unitPrice": 80,
+            "cost": 8000
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 200,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 200,
+            "unitPrice": 60,
+            "cost": 12000
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 20,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 20,
+            "unitPrice": 60,
+            "cost": 1200
+          }
+        ],
+        "euCoveredCo2": 1100,
+        "ukCoveredCo2": 220,
+        "euEts": 88000,
+        "ukEts": 13200,
+        "energyMJ": 164000000,
+        "actualIntensity": 91.6,
+        "target": 85.6904,
+        "rawBalanceGrams": -969174399.9999996,
+        "netBalanceGrams": -969174399.9999996,
+        "deficitTonnes": 969.1743999999997,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 619346.7248908295,
+        "fuelEu": 619346.7248908295,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 707346.7248908295,
+        "totalEur": 707346.7248908295,
+        "ownerEur": 601244.716157205,
+        "chartererEur": 106102.00873362448,
+        "physicalWtWTonnes": 15022.4,
+        "etsComplete": false,
+        "id": "baseline",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 601244.716157205,
+        "chartererScopedEur": 106102.00873362448,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 1000,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 500,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 100,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 100,
+            "unitPrice": 80,
+            "cost": 8000
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 200,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 200,
+            "unitPrice": 60,
+            "cost": 12000
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 20,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 20,
+            "unitPrice": 60,
+            "cost": 1200
+          }
+        ],
+        "euCoveredCo2": 1100,
+        "ukCoveredCo2": 220,
+        "euEts": 88000,
+        "ukEts": 13200,
+        "energyMJ": 164000000,
+        "actualIntensity": 91.6,
+        "target": 85.6904,
+        "rawBalanceGrams": -969174399.9999996,
+        "netBalanceGrams": -969174399.9999996,
+        "deficitTonnes": 969.1743999999997,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 619346.7248908295,
+        "fuelEu": 619346.7248908295,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 707346.7248908295,
+        "totalEur": 707346.7248908295,
+        "ownerEur": 601244.716157205,
+        "chartererEur": 106102.00873362448,
+        "physicalWtWTonnes": 15022.4,
+        "etsComplete": false,
+        "id": "current",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 20.67183462532296,
+        "timeCost": 4306.632213608949,
+        "extraAuxFuelTonnes": 1.7226528854435799,
+        "extraAuxEnergyMJ": 70628.76830318678,
+        "ownerScopedEur": 417102.5065494359,
+        "chartererScopedEur": 73606.32468519459,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 913.0864197530865,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 456.54320987654324,
+            "unitPrice": 80,
+            "cost": 36523.45679012346
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 456.54320987654324,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 456.54320987654324,
+            "unitPrice": 80,
+            "cost": 36523.45679012346
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 100,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 100,
+            "unitPrice": 80,
+            "cost": 8000
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 182.6172839506173,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 182.6172839506173,
+            "unitPrice": 60,
+            "cost": 10957.037037037038
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 20,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 20,
+            "unitPrice": 60,
+            "cost": 1200
+          },
+          {
+            "id": "AUX",
+            "activity": "auxiliary",
+            "currency": "EUR",
+            "co2Tonnes": 5.364341085271308,
+            "coverage": 1,
+            "coveredTonnes": 5.364341085271308,
+            "unitPrice": 80,
+            "cost": 429.1472868217046
+          }
+        ],
+        "euCoveredCo2": 1018.4507608383578,
+        "ukCoveredCo2": 202.6172839506173,
+        "euEts": 81476.06086706862,
+        "ukEts": 12157.037037037038,
+        "energyMJ": 151527260.86706862,
+        "actualIntensity": 91.6,
+        "target": 85.6904,
+        "rawBalanceGrams": -895465500.8200283,
+        "netBalanceGrams": -895465500.8200283,
+        "deficitTonnes": 895.4655008200283,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 572243.3704249836,
+        "fuelEu": 572243.3704249836,
+        "poolCost": 0,
+        "fuelSaving": 167317.2322710306,
+        "blendCost": 0,
+        "operatingDelta": -163010.60005742166,
+        "complianceEur": 653719.4312920521,
+        "totalEur": 490708.8312346305,
+        "ownerEur": 555661.5165982443,
+        "chartererEur": 98057.91469380783,
+        "physicalWtWTonnes": 13879.897095423485,
+        "etsComplete": false,
+        "id": "speed",
+        "speedDelta": -0.6,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 252202.61811667128,
+        "chartererScopedEur": 44506.34437353023,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 948,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 474,
+            "unitPrice": 80,
+            "cost": 37920
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 474,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 474,
+            "unitPrice": 80,
+            "cost": 37920
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 94.8,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 94.8,
+            "unitPrice": 80,
+            "cost": 7584
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 189.6,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 189.6,
+            "unitPrice": 60,
+            "cost": 11376
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 18.96,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 18.96,
+            "unitPrice": 60,
+            "cost": 1137.6000000000001
+          }
+        ],
+        "euCoveredCo2": 1042.8,
+        "ukCoveredCo2": 208.56,
+        "euEts": 83424,
+        "ukEts": 12513.6,
+        "energyMJ": 164000000,
+        "actualIntensity": 85.73759999999999,
+        "target": 85.6904,
+        "rawBalanceGrams": -7740799.999998273,
+        "netBalanceGrams": -7740799.999998273,
+        "deficitTonnes": 7.7407999999982735,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 5284.962490201487,
+        "fuelEu": 5284.962490201487,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 208000,
+        "operatingDelta": 208000,
+        "complianceEur": 88708.96249020149,
+        "totalEur": 296708.96249020146,
+        "ownerEur": 75402.61811667126,
+        "chartererEur": 13306.344373530228,
+        "physicalWtWTonnes": 14060.966399999998,
+        "etsComplete": false,
+        "id": "fuel",
+        "speedDelta": 0,
+        "blendPct": 20,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "fuel"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 445169.18095643824,
+        "chartererScopedEur": 78559.26722760673,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 1000,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 500,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 500,
+            "unitPrice": 80,
+            "cost": 40000
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 100,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 100,
+            "unitPrice": 80,
+            "cost": 8000
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 200,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 200,
+            "unitPrice": 60,
+            "cost": 12000
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 20,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 20,
+            "unitPrice": 60,
+            "cost": 1200
+          }
+        ],
+        "euCoveredCo2": 1100,
+        "ukCoveredCo2": 220,
+        "euEts": 88000,
+        "ukEts": 13200,
+        "energyMJ": 164000000,
+        "actualIntensity": 91.6,
+        "target": 85.6904,
+        "rawBalanceGrams": -969174399.9999996,
+        "netBalanceGrams": -569174399.9999996,
+        "deficitTonnes": 969.1743999999997,
+        "allocatedPoolTonnes": 400,
+        "unpooledPenalty": 619346.7248908295,
+        "fuelEu": 363728.448184045,
+        "poolCost": 72000,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 523728.448184045,
+        "totalEur": 523728.448184045,
+        "ownerEur": 445169.18095643824,
+        "chartererEur": 78559.26722760673,
+        "physicalWtWTonnes": 15022.4,
+        "etsComplete": false,
+        "id": "pooling",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "pool"
+        ]
+      },
+      {
+        "extraHours": 20.67183462532296,
+        "timeCost": 4306.632213608949,
+        "extraAuxFuelTonnes": 1.7226528854435799,
+        "extraAuxEnergyMJ": 70628.76830318678,
+        "ownerScopedEur": 85582.30171843147,
+        "chartererScopedEur": 15102.759126782024,
+        "legs": [
+          {
+            "id": "E1",
+            "zh": "非欧盟 → 鹿特丹（示意）",
+            "en": "Non-EU → Rotterdam (illustration)",
+            "co2Tonnes": 877.476049382716,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "CNSHA",
+              "SGSIN",
+              "EGPSD",
+              "MAPTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 438.738024691358,
+            "unitPrice": 80,
+            "cost": 35099.04197530864
+          },
+          {
+            "id": "E2",
+            "zh": "鹿特丹 → 汉堡",
+            "en": "Rotterdam → Hamburg",
+            "co2Tonnes": 438.738024691358,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "sailing",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 438.738024691358,
+            "unitPrice": 80,
+            "cost": 35099.04197530864
+          },
+          {
+            "id": "E3",
+            "zh": "欧盟港内活动",
+            "en": "EU port activity",
+            "co2Tonnes": 96.1,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "activity": "port",
+            "ports": [
+              "NLRTM"
+            ],
+            "coveredTonnes": 96.1,
+            "unitPrice": 80,
+            "cost": 7688
+          },
+          {
+            "id": "U1",
+            "zh": "费利克斯托 → 南安普顿",
+            "en": "Felixstowe → Southampton",
+            "co2Tonnes": 175.4952098765432,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "sailing",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 175.4952098765432,
+            "unitPrice": 60,
+            "cost": 10529.712592592592
+          },
+          {
+            "id": "U2",
+            "zh": "英国港内活动",
+            "en": "UK port activity",
+            "co2Tonnes": 19.22,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "activity": "port",
+            "ports": [
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.22,
+            "unitPrice": 60,
+            "cost": 1153.1999999999998
+          },
+          {
+            "id": "AUX",
+            "activity": "auxiliary",
+            "currency": "EUR",
+            "co2Tonnes": 5.155131782945727,
+            "coverage": 1,
+            "coveredTonnes": 5.155131782945727,
+            "unitPrice": 80,
+            "cost": 412.41054263565815
+          }
+        ],
+        "euCoveredCo2": 978.7311811656618,
+        "ukCoveredCo2": 194.7152098765432,
+        "euEts": 78298.49449325295,
+        "ukEts": 11682.912592592593,
+        "energyMJ": 151527260.86706862,
+        "actualIntensity": 87.2032,
+        "target": 85.6904,
+        "rawBalanceGrams": -229230440.23970118,
+        "netBalanceGrams": 0,
+        "deficitTonnes": 229.23044023970118,
+        "allocatedPoolTonnes": 229.23044023970118,
+        "unpooledPenalty": 153874.71140443799,
+        "fuelEu": 0,
+        "poolCost": 41261.47924314621,
+        "fuelSaving": 167317.2322710306,
+        "blendCost": 144135.687166236,
+        "operatingDelta": -18874.91289118566,
+        "complianceEur": 119559.97373639916,
+        "totalEur": 100685.0608452135,
+        "ownerEur": 101625.97767593928,
+        "chartererEur": 17933.996060459875,
+        "physicalWtWTonnes": 13213.662034843157,
+        "etsComplete": false,
+        "id": "combined",
+        "speedDelta": -0.6,
+        "blendPct": 15,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "fuel",
+          "pool"
+        ]
+      }
+    ],
+    "recommendation": {
+      "extraHours": 20.67183462532296,
+      "timeCost": 4306.632213608949,
+      "extraAuxFuelTonnes": 1.7226528854435799,
+      "extraAuxEnergyMJ": 70628.76830318678,
+      "ownerScopedEur": 85582.30171843147,
+      "chartererScopedEur": 15102.759126782024,
+      "legs": [
+        {
+          "id": "E1",
+          "zh": "非欧盟 → 鹿特丹（示意）",
+          "en": "Non-EU → Rotterdam (illustration)",
+          "co2Tonnes": 877.476049382716,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "CNSHA",
+            "SGSIN",
+            "EGPSD",
+            "MAPTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 438.738024691358,
+          "unitPrice": 80,
+          "cost": 35099.04197530864
+        },
+        {
+          "id": "E2",
+          "zh": "鹿特丹 → 汉堡",
+          "en": "Rotterdam → Hamburg",
+          "co2Tonnes": 438.738024691358,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 438.738024691358,
+          "unitPrice": 80,
+          "cost": 35099.04197530864
+        },
+        {
+          "id": "E3",
+          "zh": "欧盟港内活动",
+          "en": "EU port activity",
+          "co2Tonnes": 96.1,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "port",
+          "ports": [
+            "NLRTM"
+          ],
+          "coveredTonnes": 96.1,
+          "unitPrice": 80,
+          "cost": 7688
+        },
+        {
+          "id": "U1",
+          "zh": "费利克斯托 → 南安普顿",
+          "en": "Felixstowe → Southampton",
+          "co2Tonnes": 175.4952098765432,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "sailing",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 175.4952098765432,
+          "unitPrice": 60,
+          "cost": 10529.712592592592
+        },
+        {
+          "id": "U2",
+          "zh": "英国港内活动",
+          "en": "UK port activity",
+          "co2Tonnes": 19.22,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "port",
+          "ports": [
+            "GBSOU"
+          ],
+          "coveredTonnes": 19.22,
+          "unitPrice": 60,
+          "cost": 1153.1999999999998
+        },
+        {
+          "id": "AUX",
+          "activity": "auxiliary",
+          "currency": "EUR",
+          "co2Tonnes": 5.155131782945727,
+          "coverage": 1,
+          "coveredTonnes": 5.155131782945727,
+          "unitPrice": 80,
+          "cost": 412.41054263565815
+        }
+      ],
+      "euCoveredCo2": 978.7311811656618,
+      "ukCoveredCo2": 194.7152098765432,
+      "euEts": 78298.49449325295,
+      "ukEts": 11682.912592592593,
+      "energyMJ": 151527260.86706862,
+      "actualIntensity": 87.2032,
+      "target": 85.6904,
+      "rawBalanceGrams": -229230440.23970118,
+      "netBalanceGrams": 0,
+      "deficitTonnes": 229.23044023970118,
+      "allocatedPoolTonnes": 229.23044023970118,
+      "unpooledPenalty": 153874.71140443799,
+      "fuelEu": 0,
+      "poolCost": 41261.47924314621,
+      "fuelSaving": 167317.2322710306,
+      "blendCost": 144135.687166236,
+      "operatingDelta": -18874.91289118566,
+      "complianceEur": 119559.97373639916,
+      "totalEur": 100685.0608452135,
+      "ownerEur": 101625.97767593928,
+      "chartererEur": 17933.996060459875,
+      "physicalWtWTonnes": 13213.662034843157,
+      "etsComplete": false,
+      "id": "recommendation",
+      "speedDelta": -0.6,
+      "blendPct": 15,
+      "withinLimits": true,
+      "reasons": [],
+      "pending": [
+        "operations",
+        "fuel",
+        "pool"
+      ]
+    },
+    "candidateCount": 57,
+    "search": {
+      "speedStepKn": 0.2,
+      "fuelStepPct": 5,
+      "pooling": "zero-or-available-capped-by-deficit",
+      "objective": "scoped-EUR-excludes-GBP",
+      "includesCurrent": true
+    }
+  },
+  "comparison": {
+    "baseline": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 601244.716157205,
+      "chartererScopedEur": 106102.00873362448,
+      "legs": [
+        {
+          "id": "E1",
+          "zh": "非欧盟 → 鹿特丹（示意）",
+          "en": "Non-EU → Rotterdam (illustration)",
+          "co2Tonnes": 1000,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "CNSHA",
+            "SGSIN",
+            "EGPSD",
+            "MAPTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E2",
+          "zh": "鹿特丹 → 汉堡",
+          "en": "Rotterdam → Hamburg",
+          "co2Tonnes": 500,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E3",
+          "zh": "欧盟港内活动",
+          "en": "EU port activity",
+          "co2Tonnes": 100,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "port",
+          "ports": [
+            "NLRTM"
+          ],
+          "coveredTonnes": 100,
+          "unitPrice": 80,
+          "cost": 8000
+        },
+        {
+          "id": "U1",
+          "zh": "费利克斯托 → 南安普顿",
+          "en": "Felixstowe → Southampton",
+          "co2Tonnes": 200,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "sailing",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 200,
+          "unitPrice": 60,
+          "cost": 12000
+        },
+        {
+          "id": "U2",
+          "zh": "英国港内活动",
+          "en": "UK port activity",
+          "co2Tonnes": 20,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "port",
+          "ports": [
+            "GBSOU"
+          ],
+          "coveredTonnes": 20,
+          "unitPrice": 60,
+          "cost": 1200
+        }
+      ],
+      "euCoveredCo2": 1100,
+      "ukCoveredCo2": 220,
+      "euEts": 88000,
+      "ukEts": 13200,
+      "energyMJ": 164000000,
+      "actualIntensity": 91.6,
+      "target": 85.6904,
+      "rawBalanceGrams": -969174399.9999996,
+      "netBalanceGrams": -969174399.9999996,
+      "deficitTonnes": 969.1743999999997,
+      "allocatedPoolTonnes": 0,
+      "unpooledPenalty": 619346.7248908295,
+      "fuelEu": 619346.7248908295,
+      "poolCost": 0,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 707346.7248908295,
+      "totalEur": 707346.7248908295,
+      "ownerEur": 601244.716157205,
+      "chartererEur": 106102.00873362448,
+      "physicalWtWTonnes": 15022.4,
+      "etsComplete": false
+    },
+    "active": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 601244.716157205,
+      "chartererScopedEur": 106102.00873362448,
+      "legs": [
+        {
+          "id": "E1",
+          "zh": "非欧盟 → 鹿特丹（示意）",
+          "en": "Non-EU → Rotterdam (illustration)",
+          "co2Tonnes": 1000,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "CNSHA",
+            "SGSIN",
+            "EGPSD",
+            "MAPTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E2",
+          "zh": "鹿特丹 → 汉堡",
+          "en": "Rotterdam → Hamburg",
+          "co2Tonnes": 500,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E3",
+          "zh": "欧盟港内活动",
+          "en": "EU port activity",
+          "co2Tonnes": 100,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "port",
+          "ports": [
+            "NLRTM"
+          ],
+          "coveredTonnes": 100,
+          "unitPrice": 80,
+          "cost": 8000
+        },
+        {
+          "id": "U1",
+          "zh": "费利克斯托 → 南安普顿",
+          "en": "Felixstowe → Southampton",
+          "co2Tonnes": 200,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "sailing",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 200,
+          "unitPrice": 60,
+          "cost": 12000
+        },
+        {
+          "id": "U2",
+          "zh": "英国港内活动",
+          "en": "UK port activity",
+          "co2Tonnes": 20,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "port",
+          "ports": [
+            "GBSOU"
+          ],
+          "coveredTonnes": 20,
+          "unitPrice": 60,
+          "cost": 1200
+        }
+      ],
+      "euCoveredCo2": 1100,
+      "ukCoveredCo2": 220,
+      "euEts": 88000,
+      "ukEts": 13200,
+      "energyMJ": 164000000,
+      "actualIntensity": 91.6,
+      "target": 85.6904,
+      "rawBalanceGrams": -969174399.9999996,
+      "netBalanceGrams": -969174399.9999996,
+      "deficitTonnes": 969.1743999999997,
+      "allocatedPoolTonnes": 0,
+      "unpooledPenalty": 619346.7248908295,
+      "fuelEu": 619346.7248908295,
+      "poolCost": 0,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 707346.7248908295,
+      "totalEur": 707346.7248908295,
+      "ownerEur": 601244.716157205,
+      "chartererEur": 106102.00873362448,
+      "physicalWtWTonnes": 15022.4,
+      "etsComplete": false
+    },
+    "pooling": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 445169.18095643824,
+      "chartererScopedEur": 78559.26722760673,
+      "legs": [
+        {
+          "id": "E1",
+          "zh": "非欧盟 → 鹿特丹（示意）",
+          "en": "Non-EU → Rotterdam (illustration)",
+          "co2Tonnes": 1000,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "CNSHA",
+            "SGSIN",
+            "EGPSD",
+            "MAPTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E2",
+          "zh": "鹿特丹 → 汉堡",
+          "en": "Rotterdam → Hamburg",
+          "co2Tonnes": 500,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "sailing",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 500,
+          "unitPrice": 80,
+          "cost": 40000
+        },
+        {
+          "id": "E3",
+          "zh": "欧盟港内活动",
+          "en": "EU port activity",
+          "co2Tonnes": 100,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "activity": "port",
+          "ports": [
+            "NLRTM"
+          ],
+          "coveredTonnes": 100,
+          "unitPrice": 80,
+          "cost": 8000
+        },
+        {
+          "id": "U1",
+          "zh": "费利克斯托 → 南安普顿",
+          "en": "Felixstowe → Southampton",
+          "co2Tonnes": 200,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "sailing",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 200,
+          "unitPrice": 60,
+          "cost": 12000
+        },
+        {
+          "id": "U2",
+          "zh": "英国港内活动",
+          "en": "UK port activity",
+          "co2Tonnes": 20,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "activity": "port",
+          "ports": [
+            "GBSOU"
+          ],
+          "coveredTonnes": 20,
+          "unitPrice": 60,
+          "cost": 1200
+        }
+      ],
+      "euCoveredCo2": 1100,
+      "ukCoveredCo2": 220,
+      "euEts": 88000,
+      "ukEts": 13200,
+      "energyMJ": 164000000,
+      "actualIntensity": 91.6,
+      "target": 85.6904,
+      "rawBalanceGrams": -969174399.9999996,
+      "netBalanceGrams": -569174399.9999996,
+      "deficitTonnes": 969.1743999999997,
+      "allocatedPoolTonnes": 400,
+      "unpooledPenalty": 619346.7248908295,
+      "fuelEu": 363728.448184045,
+      "poolCost": 72000,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 523728.448184045,
+      "totalEur": 523728.448184045,
+      "ownerEur": 445169.18095643824,
+      "chartererEur": 78559.26722760673,
+      "physicalWtWTonnes": 15022.4,
+      "etsComplete": false
+    },
+    "costDelta": 0,
+    "physicalDelta": 0,
+    "drivers": {
+      "etsOperations": 0,
+      "fuelOperations": 0,
+      "poolPenalty": 0,
+      "poolFees": 0,
+      "operatingCosts": 0
+    },
+    "costDeltaPct": 0,
+    "physicalDeltaPct": 0,
+    "priceEffectVs80": 0,
+    "priceEffectVs80Gbp": 0
+  }
+}

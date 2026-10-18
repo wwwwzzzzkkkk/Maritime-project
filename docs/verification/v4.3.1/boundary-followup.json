@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "energyMJ": 1000,
+      "pass": true
+    },
+    {
+      "energyMJ": 1001,
+      "pass": true
+    },
+    {
+      "energyMJ": 999999999999,
+      "pass": true
+    },
+    {
+      "energyMJ": 1000000000000,
+      "pass": true
+    }
+  ],
+  "demoRestoresDefaultInputs": true,
+  "demoComparisonUnchanged": true,
+  "allFlagsConfirmed": true,
+  "resetAllFlagsFalse": true
+}

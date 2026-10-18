@@ -1,0 +1,62 @@
+[
+  {
+    "file": "index.html",
+    "line": 11,
+    "reference": "styles/tokens.css?v=4.3.1"
+  },
+  {
+    "file": "index.html",
+    "line": 12,
+    "reference": "styles/main.css?v=4.3.1"
+  },
+  {
+    "file": "index.html",
+    "line": 703,
+    "reference": "js/data-and-i18n.js?v=4.3.1"
+  },
+  {
+    "file": "index.html",
+    "line": 704,
+    "reference": "js/app.js?v=4.3.1"
+  },
+  {
+    "file": "js/app.js",
+    "line": 1,
+    "reference": "./planning-ui.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/app.js",
+    "line": 2,
+    "reference": "./compliance-engine.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/app.js",
+    "line": 3,
+    "reference": "./mobile-budget.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/app.js",
+    "line": 4,
+    "reference": "./light-data.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/planning-ui.mjs",
+    "line": 1,
+    "reference": "./option-planner.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/planning-ui.mjs",
+    "line": 2,
+    "reference": "./inputs-adapter.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/option-planner.mjs",
+    "line": 1,
+    "reference": "./compliance-engine.mjs?v=4.3.1"
+  },
+  {
+    "file": "js/inputs-adapter.mjs",
+    "line": 1,
+    "reference": "./compliance-engine.mjs?v=4.3.1"
+  }
+]

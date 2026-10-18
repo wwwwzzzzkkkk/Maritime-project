@@ -108,3 +108,36 @@ git diff --check
 纠正过的评审判断：缓存已在阶段1统一为4.2.1；徽章正文实际是 secondary；Chrome 顶栏最终为普通 blur、导航与 KPI 才使用折射。保留默认光斑与折射的决定不变。无高对比度自动模式；不支持 blur 的回退只有一小段 @supports not，本机 Chrome 支持 blur，未实测不支持 blur 的浏览器。
 
 [完整证据、基准表、含像素坐标的对比度表、缓存位置及人工项](verification/v4.3.0/README.md) · [中英文三宽截图](previews/v4.3.0/README.md)
+
+
+## v4.3.1 · Input simplification · 2026-10-18
+
+基线 `light-v4.3.0-baseline-2026-10-18` (`04c4dc5`)。范围 **仅 Chrome**。五项快速输入与高级分组保留全部 14 原字段和约束，吨数只是 MJ 的显示换算。没有修改引擎、搜索算法、Pro Max、商业数值；没有性能评估或哈希工作。
+
+实际运行：
+
+```sh
+npm test
+node tests/inputs-ui.mjs
+node tests/inputs-boundary.mjs
+node --check js/planning-ui.mjs
+node --input-type=module --check < js/app.js
+git diff --check
+git diff --exit-code light-v4.3.0-baseline-2026-10-18 -- js/compliance-engine.mjs js/data-and-i18n.js js/app-pro-max.js index-pro-max.html styles/pro-max.css
+```
+
+- 另实际执行两段内联 Playwright 脚本：修改前导出 v4.3.0 快照；主流程后仅补查八个标签的最终键盘焦点，结果保存为 `keyboard-tags.json`。
+- `npm test` 一次：17 tests / 17 pass / 0 fail；新增 3 项换算、边界及真实引擎一致性测试。完整原始输出见验收目录。
+- 受保护文件 diff 一次：exit 0，空差异；不做哈希。六项默认金额逐项相同。
+- 默认可见数值输入 5 个；高级展开共 15 个单位视图（14 个原字段 + 1 个等效吨输入）。全部原 min/max/step 未变。
+- 默认快照除 `uiVersion`、`generatedAt` 外深度相同，吨数不入快照。默认值演示确认不改变 comparison；三个确认标志均为 true，重置均回到 false。
+- 双向换算、未应用草稿提示、默认还原、空值／越界及非整数 MJ 错误、说明 focus/Esc、折叠、预设与确认通过。30 帧滑块连续输入正确更新到 €132,000；这是通过／失败检查，不是性能测量。
+- 主流程对标签的逐项最终焦点断言不够明确，补做了一次仅限八个标签的键盘断言，均通过；已将明确断言写回检查脚本。
+- 大能源量的浮点往返采用与数值量级匹配的舍入误差容差；之后只补查 1000、1001、999999999999、1000000000000 MJ，以及演示默认／重置标志，未重跑整个浏览器套件或 npm test。
+- 中文／英文 × 1440／768／375 共六张截图，以及 375 高级区展开截图；无页面或输入控件横向裁切。已查看六图总览及桌面／手机放大区域。原有预算浮窗仍可能覆盖截图中的内容，保留收起和拖动功能。
+- 主页面无 pageerror；Pro Max 一次冒烟加载、英国金额及 Leaflet 正常，无应用控制台／页面错误。检查中以未修改的 vendor Leaflet 替代其 CDN，排除被主动拦截资源的网络报错，未验证 CDN 可达性。
+- 字体、外部地图服务通过请求拦截屏蔽，非真实离线或首次未缓存保证；不扩展为跨浏览器／全站无障碍／监管核验。
+- 纠正本轮评审：同一行报价和数量仍是两个输入；吨数应标为 VLSFO 等效；原表单已有浏览器约束；快照版本／时间本来需要变化。竞品“两档”未作市场核实。
+- 12 处默认页 CSS/JS 引用及模块导入统一为 `?v=4.3.1`，位置清单见验收目录。受保护源码保持不变。
+
+[真实输出、快照、基准表和断言](verification/v4.3.1/README.md) · [截图](previews/v4.3.1/README.md) · [发布说明](releases/v4.3.1.md)。人工确认：答辩设备上的输入体验，以及实际供给、报价、能源与法律适用边界。

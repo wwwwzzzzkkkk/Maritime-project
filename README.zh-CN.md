@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台（中文文档）
 
-> **Current website / 当前网页：v4.3.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.3.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.3.1 · 输入体验简化 / Simpler inputs:** 默认五个快速数值输入；等效吨与 MJ 双向换算，高级假设分组折叠，保留原字段。支持假设标签定位、四个演示预设、行内提示及统一确认；演示确认不代表真实核验。默认玻璃风格、计算引擎与基准金额不变。
+> Five quick numeric inputs with equivalent-tonne/MJ conversion, grouped advanced assumptions, linked assumption tags, four demo presets, inline errors and consolidated confirmation. Demo confirmation is not verification. Glass styling, engine and benchmark amounts are unchanged. [更新说明 / Release notes](docs/releases/v4.3.1.md)
 
 > **v4.3.0 · 可读性 / Readability:** 小字与文字对比度提升，保留默认玻璃、光斑、折射和展示卡倾斜；表格/来源正文内局部归零，标题仍可倾斜。
 > Larger/more legible text with the existing glass design. Tilt settles only inside reading regions, remains on titles/display cards, and respects reduced motion. [验收材料 / Evidence](docs/verification/v4.3.0/README.md)

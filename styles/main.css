@@ -1628,3 +1628,35 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 .bar-fill { width:var(--w,0%); }
 .bar-fill.is-scenario-replay { transition:width 720ms cubic-bezier(.16,1,.3,1); }
 .bar-fill.is-resetting { transition:none; }
+
+/* v4.3.1 progressive inputs: retain the existing glass surfaces and motion. */
+.input-section-title { font-size: 15px; margin: 12px 0; }
+.quick-inputs { grid-template-columns: repeat(5,minmax(0,1fr)); }
+.field-heading, .field-tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.field-heading label { line-height: 1.5; }
+.input-info, .field-restore, .pool-supply-shortcut button, .assumption-tag {
+  font: inherit; color: var(--text-primary); border: 1px solid var(--border-hairline); background: var(--bg-glass-pill); border-radius: var(--radius-sm); cursor: pointer; min-height: 44px;
+}
+.input-info { min-width: 44px; flex-shrink: 0; font-size: 18px; }
+.field-tools { font-size: 12px; color: var(--text-secondary); flex-wrap: wrap; }
+.field-restore { padding: 4px 8px; }
+.field-restore:disabled { opacity: .55; cursor: default; }
+.input-help { font-size: 12px; line-height: 1.7; color: var(--text-secondary); padding: 8px; border-inline-start: 2px solid var(--accent); overflow-wrap: anywhere; }
+.input-error { min-height: 0; font-size: 12px; line-height: 1.6; color: var(--text-primary); margin: 0; overflow-wrap: anywhere; }
+.planning-field input[aria-invalid="true"] { border-color: var(--text-primary); }
+.assumption-tags, .demo-presets, .confirmation-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.assumption-tag { font-size: 12px; padding: 8px 12px; max-width: 100%; white-space: normal; text-align: start; }
+.pool-supply-shortcut { font-size: 12px; color: var(--text-secondary); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.pool-supply-shortcut button { padding: 4px 10px; }
+.demo-presets { margin: 18px 0; }
+#planningInputsPanel .demo-presets .ghost-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; white-space: normal; }
+.demo-presets small { font-size: 12px; color: var(--text-secondary); }
+.advanced-assumptions { margin: 18px 0; }
+.assumption-group { min-width: 0; border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 16px; margin: 16px 0; }
+.assumption-group legend { font-size: 14px; color: var(--text-primary); padding: 0 6px; }
+.confirmation-declarations { padding-inline-start: 22px; font-size: 13px; line-height: 1.7; }
+.demo-confirmation { border-block-start: 1px solid var(--border-hairline); padding-top: 12px; }
+#planningInputsPanel button:focus-visible, #planningInputsPanel summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#planningInputsPanel .ghost-btn { white-space: normal; max-width: 100%; }
+@media (max-width: 1100px) { .quick-inputs { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 680px) { .quick-inputs { grid-template-columns: minmax(0,1fr); } .assumption-group { padding: 12px; } }

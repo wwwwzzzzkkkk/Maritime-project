@@ -1,0 +1,29 @@
+
+> mareg-light-edition@4.3.1 test
+> node --test tests/*.test.mjs
+
+✔ A3 subtotals and single-period FuelEU examples reproduce the benchmark (3.40425ms)
+✔ surplus vessel has no penalty, fictitious savings or unnecessary pooling purchase (0.62175ms)
+✔ same-price baseline follows market inputs without changing physical emissions (1.574959ms)
+✔ pooling is capped by available surplus and leaves the correct residual penalty (0.259417ms)
+✔ pure pooling changes costs without changing the vessel physical estimate (0.536667ms)
+✔ repeated deficits escalate, while surplus never becomes a penalty (0.528208ms)
+✔ all supported vessels, years and sensitivity prices obey accounting identities (5.547375ms)
+✔ speed affects sailing energy and sailing legs, with port activity held constant (0.205458ms)
+✔ client and venture economics keep negative cases visible (1.746375ms)
+✔ 4000 VLSFO-equivalent tonnes and 164000000 MJ convert in both directions (0.73675ms)
+✔ conversion covers zero, original energy limits, and fractional equivalent tonnes (0.17575ms)
+✔ converted energy reproduces real engine benchmarks without engine edits (2.66875ms)
+✔ extra time, auxiliary energy/emissions and party amounts reconcile independently (1.341625ms)
+✔ zero delay and fuel allowance exclude slower/blended candidates; current violation stays visible (4.113792ms)
+✔ uncertain supply cannot displace a user-confirmed candidate (4.213125ms)
+✔ expensive pooling stays unpurchased and positive-balance vessel is not sold fictitious savings (0.701375ms)
+✔ an exact non-grid fuel limit is considered; objective remains scoped EUR with separate UK ledger (4.168458ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.936875

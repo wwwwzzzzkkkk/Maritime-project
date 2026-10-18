@@ -1,0 +1,37 @@
+{
+  "scope": "Narrow follow-up for focus assertions only, no repeated full suite",
+  "checks": [
+    {
+      "name": "eua",
+      "focus": true
+    },
+    {
+      "name": "fuelTonnes",
+      "focus": true
+    },
+    {
+      "name": "bunkerPrice",
+      "focus": true
+    },
+    {
+      "name": "blendPremium",
+      "focus": true
+    },
+    {
+      "name": "poolPrice",
+      "focus": true
+    },
+    {
+      "name": "poolAvailable",
+      "focus": true
+    },
+    {
+      "name": "maxExtraHours",
+      "focus": true
+    },
+    {
+      "name": "actualWtWIntensity",
+      "focus": true
+    }
+  ]
+}

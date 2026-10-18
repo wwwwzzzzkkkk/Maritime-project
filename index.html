@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="styles/tokens.css?v=4.3.0" />
-  <link rel="stylesheet" href="styles/main.css?v=4.3.0" />
+  <link rel="stylesheet" href="styles/tokens.css?v=4.3.1" />
+  <link rel="stylesheet" href="styles/main.css?v=4.3.1" />
 </head>
 <body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
@@ -251,75 +251,122 @@
         </p>
         <p id="planningCurrentInputs" class="model-note">
         </p>
-        <details class="customer-details">
-        <summary><span data-zh="编辑能源、价格及运营限制" data-en="Edit Energy, Prices and Operating Limits">编辑能源、价格及运营限制</span>
-        </summary>
-        <form id="planningForm">
-        <div class="planning-fields">
-        <label class="planning-field"><span data-zh="基准范围内能源（MJ）" data-en="Base scoped energy (MJ)">基准范围内能源（MJ）</span>
-        <input type="number" inputmode="decimal" name="euEnergyMJ" value="164000000" min="1000" max="1000000000000.0" step="1" required />
-        <small data-zh="FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。" data-en="FuelEU demo input; match the comparison distance scope and period, not all vessel energy.">FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。</small>
-        </label>
-        <label class="planning-field"><span data-zh="船舶基准强度（gCO₂e/MJ）" data-en="Vessel base intensity (gCO₂e/MJ)">船舶基准强度（gCO₂e/MJ）</span>
-        <input type="number" inputmode="decimal" name="actualWtWIntensity" value="91.6" min="1" max="200" step="0.0001" required />
-        <small data-zh="这是船舶输入；法规参考值为 91.16，不能混用。" data-en="Vessel input; distinct from the regulatory reference of 91.16.">这是船舶输入；法规参考值为 91.16，不能混用。</small>
-        </label>
-        <label class="planning-field"><span data-zh="基准燃油价（€/t VLSFO-eq）" data-en="Base fuel price (€/t VLSFO-eq)">基准燃油价（€/t VLSFO-eq）</span>
-        <input type="number" inputmode="decimal" name="bunkerPrice" value="550" min="0" max="10000" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="低碳燃料溢价（€/t VLSFO-eq）" data-en="Fuel premium (€/t VLSFO-eq)">低碳燃料溢价（€/t VLSFO-eq）</span>
-        <input type="number" inputmode="decimal" name="blendPremium" value="260" min="0" max="10000" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="UKA 假设价格（£/t）" data-en="Assumed UKA price (£/t)">UKA 假设价格（£/t）</span>
-        <input type="number" inputmode="decimal" name="ukPrice" value="60" min="0" max="1000" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="组池假设报价（€/tCB）" data-en="Assumed pool quote (€/tCB)">组池假设报价（€/tCB）</span>
-        <input type="number" inputmode="decimal" name="poolPrice" value="180" min="0" max="10000" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="组池可用量（tCB）" data-en="Available pool (tCB)">组池可用量（tCB）</span>
-        <input type="number" inputmode="decimal" name="poolAvailable" value="400" min="0" max="10000" step="25" required />
-        </label>
-        <label class="planning-field"><span data-zh="可用燃料能源占比上限（%）" data-en="Available fuel-share limit (%)">可用燃料能源占比上限（%）</span>
-        <input type="number" inputmode="decimal" name="maxBlendPct" value="30" min="0" max="50" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="比较范围内航行总距离（海里）" data-en="Scoped total sailing distance (nm)">比较范围内航行总距离（海里）</span>
-        <input type="number" inputmode="decimal" name="distanceNm" value="6000" min="1" max="1000000" step="1" required />
-        <small data-zh="同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。" data-en="Cumulative distance in the same model period, not map measurement; extra time covers this scope only.">同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。</small>
-        </label>
-        <label class="planning-field"><span data-zh="允许增加的航时（小时）" data-en="Allowed extra sailing time (h)">允许增加的航时（小时）</span>
-        <input type="number" inputmode="decimal" name="maxExtraHours" value="24" min="0" max="100000" step="1" required />
-        </label>
-        <label class="planning-field"><span data-zh="新增航时成本（€/天）" data-en="Extra-time cost (€/day)">新增航时成本（€/天）</span>
-        <input type="number" inputmode="decimal" name="dailyTimeCost" value="5000" min="0" max="1000000" step="1" required />
-        <small data-zh="填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。" data-en="Additional non-fuel daily cost in this scope; avoid duplicating fuel or charter costs.">填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。</small>
-        </label>
-        <label class="planning-field"><span data-zh="新增航时辅助耗油（t VLSFO-eq/天）" data-en="Extra-time auxiliary fuel (t VLSFO-eq/day)">新增航时辅助耗油（t VLSFO-eq/天）</span>
-        <input type="number" inputmode="decimal" name="auxFuelPerDay" value="2" min="0" max="1000" step="0.01" required />
-        </label>
-        <label class="planning-field"><span data-zh="辅助燃油 CO₂ 因子（tCO₂/t）" data-en="Auxiliary fuel CO₂ factor (tCO₂/t)">辅助燃油 CO₂ 因子（tCO₂/t）</span>
-        <input type="number" inputmode="decimal" name="auxCo2Factor" value="3.114" min="0.01" max="10" step="0.001" required />
-        <small data-zh="3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。" data-en="3.114 is a demo assumption, not universal; the fuel-share model still uses simplified adjustments.">3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。</small>
-        </label>
-        <label class="planning-field"><span data-zh="辅助排放 EU ETS 覆盖比例（%）" data-en="Auxiliary EU ETS coverage (%)">辅助排放 EU ETS 覆盖比例（%）</span>
-        <input type="number" inputmode="decimal" name="auxCoveragePct" value="100" min="0" max="100" step="1" required />
-        <small data-zh="须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。" data-en="Check the activity scope; auxiliary energy is assumed fully inside the declared FuelEU scope.">须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。</small>
-        </label>
-        </div>
-        <div class="planning-confirmations">
-        <label class="planning-check">
-        <input type="checkbox" name="operationsConfirmed" /><span data-zh="我已核对比较范围、距离、时间成本及辅助燃油假设" data-en="I have checked the scope, distance, time costs and auxiliary-fuel assumptions">我已核对比较范围、距离、时间成本及辅助燃油假设</span>
-        </label>
-        <label class="planning-check">
-        <input type="checkbox" name="fuelConfirmed" /><span data-zh="我已核对燃料兼容性、供给、认证与报价" data-en="I have checked fuel compatibility, supply, certification and quote">我已核对燃料兼容性、供给、认证与报价</span>
-        </label>
-        <label class="planning-check">
-        <input type="checkbox" name="poolConfirmed" /><span data-zh="我已核对组池供给、报价及参与条件" data-en="I have checked pool supply, quote and participation conditions">我已核对组池供给、报价及参与条件</span>
-        </label>
-        </div>
-        <button type="submit" class="ghost-btn"><span data-zh="应用输入并比较" data-en="Apply Inputs &amp; Compare">应用输入并比较</span>
-        </button>
-        </form>
-        </details>
+        <div id="assumptionTags" class="assumption-tags" aria-label="当前已应用假设 / Currently applied assumptions"></div>
+<p id="assumptionDraftStatus" class="model-note" role="status"></p>
+<form id="planningForm" novalidate>
+<h3 class="input-section-title"><span data-zh="快速输入" data-en="Quick inputs">快速输入</span></h3>
+<div class="planning-fields quick-inputs"><div class="planning-field" data-field="fuelTonnes">
+<div class="field-heading"><label for="input-fuelTonnes"><span data-zh="范围内燃油消耗（等效吨）" data-en="Scoped fuel consumption (equivalent tonnes)">范围内燃油消耗（等效吨）</span></label><button type="button" class="input-info" data-help="fuelTonnes" aria-controls="help-fuelTonnes" aria-describedby="help-fuelTonnes" aria-expanded="false" aria-label="说明 / Explanation: 范围内燃油消耗（等效吨）">ⓘ</button></div>
+<input type="number" inputmode="decimal" value="4000" min="0.024390243902439025" max="24390243.902439024" step="any" required id="input-fuelTonnes" aria-describedby="help-fuelTonnes error-fuelTonnes" />
+<div id="help-fuelTonnes" class="input-help" hidden><span data-zh="41,000 MJ/吨的换算只对 VLSFO 等效成立，不是所有燃料的通用热值。FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。" data-en="41,000 MJ/tonne applies only to VLSFO equivalence, not all fuel heating values. FuelEU demo input; match the comparison distance scope and period, not all vessel energy.">41,000 MJ/吨的换算只对 VLSFO 等效成立，不是所有燃料的通用热值。FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。</span></div>
+<p id="error-fuelTonnes" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="fuelTonnes"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="bunkerPrice">
+<div class="field-heading"><label for="input-bunkerPrice"><span data-zh="基准燃油价（€/等效吨）" data-en="Base fuel price (€/equivalent tonne)">基准燃油价（€/等效吨）</span></label><button type="button" class="input-info" data-help="bunkerPrice" aria-controls="help-bunkerPrice" aria-describedby="help-bunkerPrice" aria-expanded="false" aria-label="说明 / Explanation: 基准燃油价（€/等效吨）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="bunkerPrice" value="550" min="0" max="10000" step="1" required id="input-bunkerPrice" aria-describedby="help-bunkerPrice error-bunkerPrice" />
+<div id="help-bunkerPrice" class="input-help" hidden><span data-zh="价格按 VLSFO 等效吨计，不是任意实际燃料的吨价。预填价格为演示假设，不是市场报价。" data-en="Price is per VLSFO-equivalent tonne, not per actual tonne of any fuel. Prefilled prices are demo assumptions, not market quotes.">价格按 VLSFO 等效吨计，不是任意实际燃料的吨价。预填价格为演示假设，不是市场报价。</span></div>
+<p id="error-bunkerPrice" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="bunkerPrice"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="blendPremium">
+<div class="field-heading"><label for="input-blendPremium"><span data-zh="低碳燃料溢价（€/等效吨）" data-en="Low-carbon fuel premium (€/equivalent tonne)">低碳燃料溢价（€/等效吨）</span></label><button type="button" class="input-info" data-help="blendPremium" aria-controls="help-blendPremium" aria-describedby="help-blendPremium" aria-expanded="false" aria-label="说明 / Explanation: 低碳燃料溢价（€/等效吨）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="blendPremium" value="260" min="0" max="10000" step="1" required id="input-blendPremium" aria-describedby="help-blendPremium error-blendPremium" />
+<div id="help-blendPremium" class="input-help" hidden><span data-zh="每 VLSFO 等效吨的额外燃料价格；燃料比例按能源占比计算。报价、兼容性及认证均需核对。" data-en="Extra price per VLSFO-equivalent tonne; fuel share is an energy share. Check quotes, compatibility and certification.">每 VLSFO 等效吨的额外燃料价格；燃料比例按能源占比计算。报价、兼容性及认证均需核对。</span></div>
+<p id="error-blendPremium" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="blendPremium"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="poolPrice">
+<div class="field-heading"><label for="input-poolPrice"><span data-zh="组池报价（€/tCB）" data-en="Pool quote (€/tCB)">组池报价（€/tCB）</span></label><button type="button" class="input-info" data-help="poolPrice" aria-controls="help-poolPrice" aria-describedby="help-poolPrice" aria-expanded="false" aria-label="说明 / Explanation: 组池报价（€/tCB）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="poolPrice" value="180" min="0" max="10000" step="1" required id="input-poolPrice" aria-describedby="help-poolPrice error-poolPrice" />
+<div id="help-poolPrice" class="input-help" hidden><span data-zh="tCB 是以吨 CO₂e 表示的合规余额，不是本船实际减排。报价为演示假设，真实参与条件和资源尚未核实。" data-en="tCB is compliance balance expressed in tonnes CO₂e, not actual vessel reductions. The quote is a demo assumption; real participation and supply remain unverified.">tCB 是以吨 CO₂e 表示的合规余额，不是本船实际减排。报价为演示假设，真实参与条件和资源尚未核实。</span></div>
+<p id="error-poolPrice" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="poolPrice"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+<div class="pool-supply-shortcut"><span id="poolSupplySummary"></span> <button type="button" data-jump="poolAvailable"><span data-zh="修改" data-en="Edit">修改</span></button></div></div>
+<div class="planning-field" data-field="maxExtraHours">
+<div class="field-heading"><label for="input-maxExtraHours"><span data-zh="允许增加的航时（小时）" data-en="Allowed extra sailing time (h)">允许增加的航时（小时）</span></label><button type="button" class="input-info" data-help="maxExtraHours" aria-controls="help-maxExtraHours" aria-describedby="help-maxExtraHours" aria-expanded="false" aria-label="说明 / Explanation: 允许增加的航时（小时）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="maxExtraHours" value="24" min="0" max="100000" step="1" required id="input-maxExtraHours" aria-describedby="help-maxExtraHours error-maxExtraHours" />
+<div id="help-maxExtraHours" class="input-help" hidden><span data-zh="限制本次比较范围内允许增加的航时，不是已核验的到港窗口。" data-en="Caps extra sailing time within this comparison scope; not a verified arrival window.">限制本次比较范围内允许增加的航时，不是已核验的到港窗口。</span></div>
+<p id="error-maxExtraHours" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="maxExtraHours"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div></div>
+<div class="demo-presets" aria-label="演示预设 / Demo presets"><button type="button" class="ghost-btn" data-preset="baseline"><span data-zh="基准" data-en="Baseline">基准</span> <small><span data-zh="演示预设" data-en="Demo preset">演示预设</span></small></button><button type="button" class="ghost-btn" data-preset="speed"><span data-zh="慢航省油" data-en="Slow steaming">慢航省油</span> <small><span data-zh="演示预设" data-en="Demo preset">演示预设</span></small></button><button type="button" class="ghost-btn" data-preset="fuel"><span data-zh="低碳燃料" data-en="Low-carbon fuel">低碳燃料</span> <small><span data-zh="演示预设" data-en="Demo preset">演示预设</span></small></button><button type="button" class="ghost-btn" data-preset="pool"><span data-zh="组池抵扣" data-en="Pooling offset">组池抵扣</span> <small><span data-zh="演示预设" data-en="Demo preset">演示预设</span></small></button></div>
+<details id="advancedAssumptions" class="customer-details advanced-assumptions"><summary id="advancedAssumptionsSummary"></summary><fieldset class="assumption-group"><legend><span data-zh="燃料与价格" data-en="Fuel and prices">燃料与价格</span></legend><div class="planning-fields"><div class="planning-field" data-field="euEnergyMJ">
+<div class="field-heading"><label for="input-euEnergyMJ"><span data-zh="高级：直接输入能源（MJ）" data-en="Advanced: enter energy directly (MJ)">高级：直接输入能源（MJ）</span></label><button type="button" class="input-info" data-help="euEnergyMJ" aria-controls="help-euEnergyMJ" aria-describedby="help-euEnergyMJ" aria-expanded="false" aria-label="说明 / Explanation: 高级：直接输入能源（MJ）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="euEnergyMJ" value="164000000" min="1000" max="1000000000000.0" step="1" required id="input-euEnergyMJ" aria-describedby="help-euEnergyMJ error-euEnergyMJ" />
+<div id="help-euEnergyMJ" class="input-help" hidden><span data-zh="FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。" data-en="FuelEU demo input; match the comparison distance scope and period, not all vessel energy.">FuelEU 示例输入；必须与比较距离为同一范围和期间，非整船全部能耗。</span></div>
+<p id="error-euEnergyMJ" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="euEnergyMJ"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="actualWtWIntensity">
+<div class="field-heading"><label for="input-actualWtWIntensity"><span data-zh="燃料碳强度（gCO₂e/MJ，生命周期）" data-en="Lifecycle fuel intensity (gCO₂e/MJ, WtW)">燃料碳强度（gCO₂e/MJ，生命周期）</span></label><button type="button" class="input-info" data-help="actualWtWIntensity" aria-controls="help-actualWtWIntensity" aria-describedby="help-actualWtWIntensity" aria-expanded="false" aria-label="说明 / Explanation: 燃料碳强度（gCO₂e/MJ，生命周期）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="actualWtWIntensity" value="91.6" min="1" max="200" step="0.0001" required id="input-actualWtWIntensity" aria-describedby="help-actualWtWIntensity error-actualWtWIntensity" />
+<div id="help-actualWtWIntensity" class="input-help" hidden><span data-zh="这是船舶输入；法规参考值为 91.16，不能混用。" data-en="Vessel input; distinct from the regulatory reference of 91.16.">这是船舶输入；法规参考值为 91.16，不能混用。</span></div>
+<p id="error-actualWtWIntensity" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="actualWtWIntensity"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="ukPrice">
+<div class="field-heading"><label for="input-ukPrice"><span data-zh="英国碳配额价格（£/t，UKA）" data-en="UK allowance price (£/t, UKA)">英国碳配额价格（£/t，UKA）</span></label><button type="button" class="input-info" data-help="ukPrice" aria-controls="help-ukPrice" aria-describedby="help-ukPrice" aria-expanded="false" aria-label="说明 / Explanation: 英国碳配额价格（£/t，UKA）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="ukPrice" value="60" min="0" max="1000" step="1" required id="input-ukPrice" aria-describedby="help-ukPrice error-ukPrice" />
+<div id="help-ukPrice" class="input-help" hidden><span data-zh="英国配额价格是英镑假设值，独立列示，不与欧元混加。" data-en="UK allowance price is an assumed GBP value, kept separate from EUR.">英国配额价格是英镑假设值，独立列示，不与欧元混加。</span></div>
+<p id="error-ukPrice" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="ukPrice"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="maxBlendPct">
+<div class="field-heading"><label for="input-maxBlendPct"><span data-zh="可用燃料能源占比上限（%）" data-en="Available fuel-share limit (%)">可用燃料能源占比上限（%）</span></label><button type="button" class="input-info" data-help="maxBlendPct" aria-controls="help-maxBlendPct" aria-describedby="help-maxBlendPct" aria-expanded="false" aria-label="说明 / Explanation: 可用燃料能源占比上限（%）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="maxBlendPct" value="30" min="0" max="50" step="1" required id="input-maxBlendPct" aria-describedby="help-maxBlendPct error-maxBlendPct" />
+<div id="help-maxBlendPct" class="input-help" hidden><span data-zh="低碳燃料占总能源的上限，不是燃料质量或体积比例；兼容性、供给与认证待核实。" data-en="Maximum low-carbon share of total energy, not fuel mass or volume; compatibility, supply and certification remain unverified.">低碳燃料占总能源的上限，不是燃料质量或体积比例；兼容性、供给与认证待核实。</span></div>
+<p id="error-maxBlendPct" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="maxBlendPct"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div></div></fieldset><fieldset class="assumption-group"><legend><span data-zh="组池" data-en="Pooling">组池</span></legend><div class="planning-fields"><div class="planning-field" data-field="poolAvailable">
+<div class="field-heading"><label for="input-poolAvailable"><span data-zh="组池可用盈余（tCB）" data-en="Available pool surplus (tCB)">组池可用盈余（tCB）</span></label><button type="button" class="input-info" data-help="poolAvailable" aria-controls="help-poolAvailable" aria-describedby="help-poolAvailable" aria-expanded="false" aria-label="说明 / Explanation: 组池可用盈余（tCB）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="poolAvailable" value="400" min="0" max="10000" step="25" required id="input-poolAvailable" aria-describedby="help-poolAvailable error-poolAvailable" />
+<div id="help-poolAvailable" class="input-help" hidden><span data-zh="假设可取得的组池盈余，不代表已获得真实供给；实际分配不超过申请量、供给和本船缺口。" data-en="Assumed available pool surplus, not secured real supply. Allocation cannot exceed the request, supply or vessel deficit.">假设可取得的组池盈余，不代表已获得真实供给；实际分配不超过申请量、供给和本船缺口。</span></div>
+<p id="error-poolAvailable" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="poolAvailable"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div></div></fieldset><fieldset class="assumption-group"><legend><span data-zh="运营限制" data-en="Operating limits">运营限制</span></legend><div class="planning-fields"><div class="planning-field" data-field="distanceNm">
+<div class="field-heading"><label for="input-distanceNm"><span data-zh="比较范围内航行总距离（海里）" data-en="Scoped total sailing distance (nm)">比较范围内航行总距离（海里）</span></label><button type="button" class="input-info" data-help="distanceNm" aria-controls="help-distanceNm" aria-describedby="help-distanceNm" aria-expanded="false" aria-label="说明 / Explanation: 比较范围内航行总距离（海里）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="distanceNm" value="6000" min="1" max="1000000" step="1" required id="input-distanceNm" aria-describedby="help-distanceNm error-distanceNm" />
+<div id="help-distanceNm" class="input-help" hidden><span data-zh="同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。" data-en="Cumulative distance in the same model period, not map measurement; extra time covers this scope only.">同一模型期的累计距离，不是地图测距；新增航时也只覆盖这个范围。</span></div>
+<p id="error-distanceNm" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="distanceNm"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="dailyTimeCost">
+<div class="field-heading"><label for="input-dailyTimeCost"><span data-zh="新增航时成本（€/天）" data-en="Extra-time cost (€/day)">新增航时成本（€/天）</span></label><button type="button" class="input-info" data-help="dailyTimeCost" aria-controls="help-dailyTimeCost" aria-describedby="help-dailyTimeCost" aria-expanded="false" aria-label="说明 / Explanation: 新增航时成本（€/天）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="dailyTimeCost" value="5000" min="0" max="1000000" step="1" required id="input-dailyTimeCost" aria-describedby="help-dailyTimeCost error-dailyTimeCost" />
+<div id="help-dailyTimeCost" class="input-help" hidden><span data-zh="填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。" data-en="Additional non-fuel daily cost in this scope; avoid duplicating fuel or charter costs.">填写该范围内每天新增的非燃油成本，避免与燃油或租金重复计费。</span></div>
+<p id="error-dailyTimeCost" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="dailyTimeCost"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="auxFuelPerDay">
+<div class="field-heading"><label for="input-auxFuelPerDay"><span data-zh="新增航时辅助耗油（等效吨/天）" data-en="Extra-time auxiliary fuel (equivalent tonnes/day)">新增航时辅助耗油（等效吨/天）</span></label><button type="button" class="input-info" data-help="auxFuelPerDay" aria-controls="help-auxFuelPerDay" aria-describedby="help-auxFuelPerDay" aria-expanded="false" aria-label="说明 / Explanation: 新增航时辅助耗油（等效吨/天）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="auxFuelPerDay" value="2" min="0" max="1000" step="0.01" required id="input-auxFuelPerDay" aria-describedby="help-auxFuelPerDay error-auxFuelPerDay" />
+<div id="help-auxFuelPerDay" class="input-help" hidden><span data-zh="以 VLSFO 等效吨/天计；41,000 MJ/吨的换算只对 VLSFO 等效成立，不是所有燃料的通用热值。" data-en="Measured in VLSFO-equivalent tonnes/day; 41,000 MJ/tonne applies only to VLSFO equivalence, not all fuel heating values.">以 VLSFO 等效吨/天计；41,000 MJ/吨的换算只对 VLSFO 等效成立，不是所有燃料的通用热值。</span></div>
+<p id="error-auxFuelPerDay" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="auxFuelPerDay"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="auxCo2Factor">
+<div class="field-heading"><label for="input-auxCo2Factor"><span data-zh="辅助燃油 CO₂ 因子（tCO₂/t）" data-en="Auxiliary fuel CO₂ factor (tCO₂/t)">辅助燃油 CO₂ 因子（tCO₂/t）</span></label><button type="button" class="input-info" data-help="auxCo2Factor" aria-controls="help-auxCo2Factor" aria-describedby="help-auxCo2Factor" aria-expanded="false" aria-label="说明 / Explanation: 辅助燃油 CO₂ 因子（tCO₂/t）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="auxCo2Factor" value="3.114" min="0.01" max="10" step="0.001" required id="input-auxCo2Factor" aria-describedby="help-auxCo2Factor error-auxCo2Factor" />
+<div id="help-auxCo2Factor" class="input-help" hidden><span data-zh="3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。" data-en="3.114 is a demo assumption, not universal; the fuel-share model still uses simplified adjustments.">3.114 是本版示例假设，不是所有燃料的通用因子；燃料比例仍使用简化修正。</span></div>
+<p id="error-auxCo2Factor" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="auxCo2Factor"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div>
+<div class="planning-field" data-field="auxCoveragePct">
+<div class="field-heading"><label for="input-auxCoveragePct"><span data-zh="辅助排放 EU ETS 覆盖比例（%）" data-en="Auxiliary EU ETS coverage (%)">辅助排放 EU ETS 覆盖比例（%）</span></label><button type="button" class="input-info" data-help="auxCoveragePct" aria-controls="help-auxCoveragePct" aria-describedby="help-auxCoveragePct" aria-expanded="false" aria-label="说明 / Explanation: 辅助排放 EU ETS 覆盖比例（%）">ⓘ</button></div>
+<input type="number" inputmode="decimal" name="auxCoveragePct" value="100" min="0" max="100" step="1" required id="input-auxCoveragePct" aria-describedby="help-auxCoveragePct error-auxCoveragePct" />
+<div id="help-auxCoveragePct" class="input-help" hidden><span data-zh="须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。" data-en="Check the activity scope; auxiliary energy is assumed fully inside the declared FuelEU scope.">须按新增航时活动范围核对；辅助能源假设全部属于声明的 FuelEU 范围。</span></div>
+<p id="error-auxCoveragePct" class="input-error" aria-live="polite"></p>
+<div class="field-tools"><span class="field-default"></span><button type="button" class="field-restore" data-restore="auxCoveragePct"><span data-zh="还原默认" data-en="Restore default">还原默认</span></button></div>
+</div></div></fieldset></details>
+<section class="planning-confirmations" aria-labelledby="confirmationTitle">
+<h3 id="confirmationTitle" class="input-section-title"><span data-zh="确认以上假设" data-en="Confirm these assumptions">确认以上假设</span></h3>
+<p id="confirmationStatus" class="model-note" role="status"></p>
+<details class="customer-details"><summary><span data-zh="查看三项确认声明" data-en="Read the three declarations">查看三项确认声明</span></summary><ul class="confirmation-declarations"><li><span data-zh="我已核对比较范围、距离、时间成本及辅助燃油假设" data-en="I have checked the scope, distance, time costs and auxiliary-fuel assumptions">我已核对比较范围、距离、时间成本及辅助燃油假设</span></li><li><span data-zh="我已核对燃料兼容性、供给、认证与报价" data-en="I have checked fuel compatibility, supply, certification and quote">我已核对燃料兼容性、供给、认证与报价</span></li><li><span data-zh="我已核对组池供给、报价及参与条件" data-en="I have checked pool supply, quote and participation conditions">我已核对组池供给、报价及参与条件</span></li></ul></details>
+<div class="confirmation-actions"><button type="submit" class="ghost-btn"><span data-zh="应用输入并比较" data-en="Apply Inputs &amp; Compare">应用输入并比较</span></button><button type="button" id="confirmAssumptionsBtn" class="ghost-btn"><span data-zh="确认以上假设并比较" data-en="Confirm Assumptions &amp; Compare">确认以上假设并比较</span></button></div>
+<div class="demo-confirmation"><button type="button" id="loadDemoAssumptionsBtn" class="ghost-btn"><span data-zh="载入演示假设并确认" data-en="Load &amp; Confirm Demo Assumptions">载入演示假设并确认</span></button><p class="model-note"><span data-zh="仅用于演示，不代表真实核验；未核验数据、示例分摊及非法律意见等边界仍然适用。" data-en="For demonstration only, not real verification. Unverified-data, illustrative-allocation and non-legal-advice limitations still apply.">仅用于演示，不代表真实核验；未核验数据、示例分摊及非法律意见等边界仍然适用。</span></p></div>
+</section>
+</form>
         <p id="planningDraftNote" class="model-note" role="status">
         </p>
         </div>
@@ -635,7 +682,7 @@
   <!-- Minimalist Footer Disclaimer -->
   <footer class="footer-bar">
     <span data-i18n="boundaryDesc">本系统为概念决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>
-    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.0" data-zh="MAREG v4.3.0 · 更新记录" data-en="MAREG v4.3.0 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.3.0 · 更新记录</a>
+    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.0" data-zh="MAREG v4.3.1 · 更新记录" data-en="MAREG v4.3.1 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.3.1 · 更新记录</a>
   </footer>
 
   <!-- Audit Log Modal -->
@@ -653,7 +700,7 @@
   </dialog>
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
-  <script src="js/data-and-i18n.js?v=4.3.0"></script>
-  <script type="module" src="js/app.js?v=4.3.0"></script>
+  <script src="js/data-and-i18n.js?v=4.3.1"></script>
+  <script type="module" src="js/app.js?v=4.3.1"></script>
 </body>
 </html>
