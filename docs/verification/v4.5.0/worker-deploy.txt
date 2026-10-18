@@ -14,12 +14,12 @@ Attaching additional modules:
 Total Upload: 19.27 KiB / gzip: 8.68 KiB
 Worker Startup Time: 2 ms
 Your Worker has access to the following bindings:
-Binding                                                                 Resource                  
-env.AI_PROVIDER ("deepseek")                                            Environment Variable      
-env.DEEPSEEK_MODEL ("deepseek-flash")                                   Environment Variable      
-env.ALLOWED_ORIGINS ("https://wwwwzzzzkkkk.github.io,http:/...")        Environment Variable      
-env.DEEPSEEK_API_KEY ("(hidden)")                                       Environment Variable      
-env.MAREG_ACCESS_CODE ("(hidden)")                                      Environment Variable      
+Binding                                                                 Resource
+env.AI_PROVIDER ("deepseek")                                            Environment Variable
+env.DEEPSEEK_MODEL ("deepseek-flash")                                   Environment Variable
+env.ALLOWED_ORIGINS ("https://wwwwzzzzkkkk.github.io,http:/...")        Environment Variable
+env.DEEPSEEK_API_KEY ("(hidden)")                                       Environment Variable
+env.MAREG_ACCESS_CODE ("(hidden)")                                      Environment Variable
 
 Uploaded mareg-ai (6.40 sec)
 Deployed mareg-ai triggers (2.21 sec)

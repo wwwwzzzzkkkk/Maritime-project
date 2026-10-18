@@ -1,0 +1,67 @@
+{
+  "mode": "public-page-to-cloud",
+  "base": "https://wwwwzzzzkkkk.github.io/Maritime-project/",
+  "service": "https://mareg-ai.mareg-light-edition.workers.dev",
+  "localAiServerStopped": true,
+  "health": "DeepSeek 后端已连接 · deepseek-flash；模型调用待实际提问验证。",
+  "model": {
+    "status": 200,
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "answer": "当前预算将 EU ETS 与 FuelEU 的金额以 EUR 列示（euEts 88,000 EUR、fuelEu 237,191.27 EUR、totalEur 325,191.27 EUR），将 UK ETS 以 GBP 列示（ukEts 13,200 GBP），并把 poolCost、fuelSaving、blendCost、timeCost 记为 0 EUR；这些货币列示本身是按指标单位标注的记账安排。请注意：上述金额均为**未核验的示例估算**，不构成合规结论或经核证减排量，且 EUR 与 GBP 合计未作换算、不可直接相加；其中 EU ETS 与 UK ETS 的监管范围分别参见 [eu] 与 [uk]，FuelEU 的强度与赤字方法参见 [fuel]，组池仅为盈余与价格的模拟、非真实组池可行性结论 [pool]。\n\n**未解决的适用范围与燃料假设**\n\n- 燃料假设：blendPct=0、fuelSaving=0、poolAvailable=400 tCB、poolPrice=180 EUR/tCB 均为用户输入假设，未核验；本原型不模拟岸电、RFNBO 奖励、冰区与认证燃料的完整方法 [fuel]。\n- 排放范围：EU ETS 中进出欧盟航段的 50% 规则、2026 年清缴比例等仅来自参考资料摘要 [eu]；UK ETS 自 2026-07-01 起的范围与北爱例外需另行核实 [uk]；300 海里并非通用征税圈，港口性质与官方名单需逐案判断 [ports]。\n- 强度：actualIntensity 91.6 与 target 89.3368 gCO2e/MJ（WtW）为模型估计，target 的具体年度校正需按 [fuel] 核对。\n- 政策路径：所给 policyPath 为“deadlock”，属假设情景；IMO 草案未生效，不据此更改现行区域账单 [imo]。\n- 合同分摊：85/15 等比例仅为可编辑示例，不是任何标准租约的默认比例 [charter]。\n- 时效：上述参考资料的 checkedAt 均为 2026-10-15，之后规则或名单可能变化，证据可能过时。\n\n本回答不构成法律意见，也不代表任何申报已获批准；在补充燃料凭证、核验港口范围与最新规则前，证据不足以支撑合规结论。",
+    "sources": [
+      {
+        "id": "eu",
+        "title": "EU ETS：排放年与清缴年",
+        "url": "https://climate.ec.europa.eu/areas-action/transport-decarbonisation/reducing-emissions-shipping-sector_en",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "fuel",
+        "title": "FuelEU：年度强度与赤字",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1805",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "pool",
+        "title": "FuelEU：组池可行性",
+        "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "uk",
+        "title": "UK ETS：国内与港内活动",
+        "url": "https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "imo",
+        "title": "IMO：草案与续会安排",
+        "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/iswg-ghg-22.aspx",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "charter",
+        "title": "租约：责任与偿付",
+        "url": "https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/etsa_clause/",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "id": "ports",
+        "title": "邻近集装箱转运港",
+        "url": "https://emsa.europa.eu/reducing-emissions/extension-ets/faq-extension-ets.html",
+        "checkedAt": "2026-10-15"
+      }
+    ],
+    "incomplete": false
+  },
+  "gating": {
+    "requiresCode": true,
+    "requiresConsent": true
+  },
+  "screens": [
+    "docs/verification/v4.5.0/cloud-live-zh-1440.png",
+    "docs/verification/v4.5.0/cloud-live-en-375.png"
+  ],
+  "errors": []
+}

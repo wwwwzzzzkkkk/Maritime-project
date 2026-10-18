@@ -2,6 +2,8 @@
 
 v4.5.0 · 2026-10-19
 
+已通过一次本机及一次线上真实 DeepSeek 调用；线上调用时本机 AI 服务已停止。/ One genuine local and one public-page cloud call passed; the local AI server was stopped for the cloud check.
+
 ## 中文：教室里怎么用
 
 1. 在教室电脑打开 [原网站](https://wwwwzzzzkkkk.github.io/Maritime-project/)，进入“帮助与说明”。Mac 不需要开机，也不用在教室安装 Node。

@@ -1,0 +1,1 @@
+PASS: public-page-to-cloud code/consent gating; unchanged EU benchmark; Chrome zh1440/en375 layout. Real DeepSeek cloud response.

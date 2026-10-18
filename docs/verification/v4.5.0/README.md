@@ -32,8 +32,8 @@ EUR/GBP 没有合并；示例／未核验／ETS仅CO₂／非法律意见／非�
 - Cloudflare OAuth 首次等待超时；第二次授权后浏览器回调未连接本机，随后由本机回调处理完成登录。没有将一次性 code 或 token 写入仓库。
 - 初次 dry-run 因 Wrangler 默认规则额外收集了 HTML/txt；已限制附加模块为 server/ai-handler.mjs 与 js/light-data.mjs。首次上传因入口被放到模块根而相对路径无效，返回10021；改用根目录 worker.mjs 后部署成功。期间 .env 文件被 CLI 作为全部 Secret 读取，后改为网站目录外只含两个 Secret 的私有 JSON，最终绑定只有公开配置与两项 Secret，不含 PORT。
 - 官方注册表运行 Wrangler 4.151.1，`no_bundle:true`，没有项目新依赖／前端构建工具。部署使用 `npx --yes wrangler@4.151.1 deploy --secrets-file <private-two-secret-json>`。API key／课堂码不进入命令输出、QA、工作区、截图或报告。
-- Worker `https://mareg-ai.mareg-light-edition.workers.dev` 已部署；最终服务版本 ID `89fd9bea-aa3a-4d9b-97d1-ea9b736344ef`（[实际部署输出](worker-deploy.txt)）；Chrome 实际 health 显示 configured:true / requiresAccessCode:true。本机 Node fetch 与 curl 两次尝试遇到 TLS handshake failure，随后 Chrome 访问及本机页面→Worker 检查通过；未绕过 TLS 校验，未断言所有网络均可达。
-- 本机 AI 服务已停止。线上网页→云端→DeepSeek 的真实最终提问，在 Pages 更新后执行并补记结果；截至本提交尚未声称该路径验收通过。
+- Worker `https://mareg-ai.mareg-light-edition.workers.dev` 已部署；部署输出已仅去除 CLI 行尾空格；最终服务版本 ID `89fd9bea-aa3a-4d9b-97d1-ea9b736344ef`（[实际部署输出](worker-deploy.txt)）；Chrome 实际 health 显示 configured:true / requiresAccessCode:true。本机 Node fetch 与 curl 两次尝试遇到 TLS handshake failure，随后 Chrome 访问及本机页面→Worker 检查通过；未绕过 TLS 校验，未断言所有网络均可达。
+- 本机 AI 服务已停止。Pages 部署 5ff8735 成功后，实际执行 node --env-file=<private-env> tests/ai-cloud-ui.mjs --live（私有配置路径隐去），线上网页→Cloudflare Worker→DeepSeek 真实 HTTP200，provider deepseek / model deepseek-flash / incomplete:false；没有本地 AI 后端依赖。返回回答、七条固定日期引用、同意／访问码门控、基准€88,000及无pageerror断言通过。[真实结果](cloud-live.json) · [输出](cloud-live-log.txt) · [线上中文桌面图](cloud-live-zh-1440.png) · [线上英文手机图](cloud-live-en-375.png)。本轮仅一次本机真实调用加一次线上真实调用，没有为截图重复调用模型。
 
 ## 人工确认 / Manual checks
 
