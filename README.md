@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.3.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.4.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.4.0 · 分析工作流 / Analysis workflow:** 本机保存恢复、可恢复工作区、可打印决策报告；统一 CSV 台账与初步适用检查；具名规划情景、可配置本机 AI 接口（默认未连接）。原玻璃风格、五项快速输入和基准金额保留。
+> Local save/restore, printable reports, unified CSV ledger screening, named planning cases and configurable local AI integration (disconnected by default). Original glass design, five quick inputs and benchmarks remain. [操作说明 / Workflow guide](docs/WORKFLOWS.md) · [AI 配置 / AI setup](docs/AI_SETUP.md)
 
 > **v4.3.1 · 输入体验简化 / Simpler inputs:** 默认五个快速数值输入；等效吨与 MJ 双向换算，高级假设分组折叠，保留原字段。支持假设标签定位、四个演示预设、行内提示及统一确认；演示确认不代表真实核验。默认玻璃风格、计算引擎与基准金额不变。
 > Five quick numeric inputs with equivalent-tonne/MJ conversion, grouped advanced assumptions, linked assumption tags, four demo presets, inline errors and consolidated confirmation. Demo confirmation is not verification. Glass styling, engine and benchmark amounts are unchanged. [更新说明 / Release notes](docs/releases/v4.3.1.md)
@@ -56,7 +59,7 @@
 python3 -m http.server 48173 --bind 127.0.0.1
 ```
 
-然后访问 [http://127.0.0.1:48173/](http://127.0.0.1:48173/)。默认页使用 ES modules，需要通过 HTTP 访问，不能直接双击文件运行。没有构建步骤或后台服务；Leaflet 1.9.4 已随仓库保存，Esri 底图与原有 Google Fonts 仍需要网络；国家轮廓已随仓库保存。
+然后访问 [http://127.0.0.1:48173/](http://127.0.0.1:48173/)。默认页使用 ES modules，需要通过 HTTP 访问，不能直接双击文件运行。核心网页无需构建或后台；可选本机 AI 服务需另行配置；Leaflet 1.9.4 已随仓库保存，Esri 底图与原有 Google Fonts 仍需要网络；国家轮廓已随仓库保存。
 
 ### 3. 五个功能模块
 
@@ -66,7 +69,7 @@ python3 -m http.server 48173 --bind 127.0.0.1
 | 方案比较 | 比较基准、当前、航速、燃料、组池和组合搜索；计入新增航时与辅助燃油，明确限制、候选状态及双方承担。 |
 | 计算依据 | 跟随当前船舶与输入展开公式；并列财务变化与范围内 WtW 模型变化，避免把省钱直接表述为实际减排。 |
 | 未来情景 | 三种可能监管路径及客户需要核对的事项；不自动改变区域预算，也不计入假设全球收费。 |
-| 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；未连接 AI 服务。 |
+| 帮助与说明 | 快速上手、随当前结果更新的预设常见问题、能力范围及指南入口；预设问答不使用 AI；另提供默认未连接的本机 AI 接口。 |
 
 顶栏支持 `中 / EN` 切换。原有视觉材质及动效保留；桌面顶栏换行、手机 KPI 单列和表格局部滚动用于解决裁切。当前计算快照可导出为 JSON，记录输入、来源、假设及输出。
 
@@ -94,7 +97,7 @@ EU/UK ETS 当前只计算 **CO₂ 部分**。CH₄/N₂O 缺失不等于零，�
 - 三情景经营结果示例为 −€30,000 / −€5,000 / −€4,000，经营平衡为 70 / 67 / 57 个全年等效客户，不保证经营存续。
 - 12 家访谈、3 家付费试点、平台自身 ESG 和人的工作量指标均是**验证计划**，不是已完成结果。课程映射依据取得的 Brief 缓存，最新课程通知仍需确认。
 
-解释为预设模板，未接入真实 AI、RAG、专家审批、真实数据导入、后台或自动申报。快照不代表授权台账、人工批准或鉴证。[完整方法及官方来源](docs/LIGHT_EDITION.md)
+常见问题仍为预设模板；另有可配置本机 AI 接口，公开网页默认未连接。支持本机 CSV 台账，不代表核验；未提供实时 RAG、客户后台、专家审批或自动申报。快照不代表授权台账、人工批准或鉴证。[完整方法及官方来源](docs/LIGHT_EDITION.md)
 
 ### 6. 必要检查与版本回退
 
@@ -184,7 +187,7 @@ EU/UK ETS currently calculate **CO₂ subtotals only**. Missing CH₄/N₂O is n
 - Illustrative scenario operating results are −€30,000 / −€5,000 / −€4,000, with break-even at 70 / 67 / 57 full-year equivalent clients; these do not guarantee survival.
 - Twelve interviews, three paid pilots, platform ESG and human-workload metrics are **validation plans**, not completed results. Coursework mapping uses the available cached Brief; current course notices still need confirmation.
 
-Explanations are templates. No live AI/RAG, expert-approval service, real-data import, backend or automated filing is implemented. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
+FAQs remain templates. Local CSV import and an optional loopback AI backend are implemented; the public page is disconnected by default. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
 
 ### 6. Minimal checks and rollback
 

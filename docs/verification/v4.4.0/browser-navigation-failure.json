@@ -1,0 +1,9 @@
+{
+  "error": "page.goto: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:48184/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/workflow-ui.mjs:12:10",
+  "errors": [],
+  "completed": {
+    "scope": "Only Chrome; external fonts/tiles blocked; AI provider/browser responses simulated, no real model call",
+    "checks": [],
+    "screens": []
+  }
+}

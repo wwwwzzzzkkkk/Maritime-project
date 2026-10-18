@@ -1,0 +1,24 @@
+import { sources as officialReferences } from './light-data.mjs?v=4.4.0';
+export function createAiExplain({capture,evaluate,getCases}) {
+  const el=id=>document.getElementById(id);let language='zh',connected=false,answerState='',busy=false;
+  const t=(z,e)=>language==='zh'?z:e;
+  const setStatus=value=>el('aiServiceStatus').textContent=value;
+  function root(){const u=new URL(el('aiServiceUrl').value);if(u.username||u.password||u.search||u.hash||(u.protocol!=='https:'&&!(u.protocol==='http:'&&['127.0.0.1','localhost'].includes(u.hostname))))throw new Error(t('只接受 HTTPS 服务或本机 localhost 服务；不要填写密钥。','Use HTTPS or a localhost service; do not enter keys.'));return u.href.replace(/\/$/,'');}
+  function controls(){el('askAiBtn').disabled=!connected||!el('aiSendConsent').checked||busy;}
+  el('aiServiceUrl').addEventListener('input',()=>{connected=false;controls();setStatus(t('未连接；请检查服务配置。','Not connected; check service configuration.'));});
+  el('aiSendConsent').addEventListener('change',controls);
+  el('connectAiBtn').addEventListener('click',async()=>{try{setStatus(t('正在连接本地／指定服务…','Connecting to the selected service…'));const r=await fetch(root()+'/api/health',{signal:AbortSignal.timeout(10000),credentials:'omit'});if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();if(data.protocol!=='mareg-explain-v1')throw new Error(t('服务协议不匹配。','Incompatible service protocol.'));connected=data.configured===true;setStatus(connected?t(`服务已连接 · ${data.model}；仅解释，不核验法规。`,`Connected · ${data.model}; explanation, not verification.`):t('后端可达，但尚未配置密钥和模型；AI 未启用。','Backend reachable, but key/model are not configured; AI disabled.'));}catch(error){connected=false;setStatus(t('未连接：','Not connected: ')+error.message);}controls();});
+  el('aiExplainForm').addEventListener('submit',async event=>{event.preventDefault();if(!connected||!el('aiSendConsent').checked||busy)return;
+    try{const question=el('aiQuestion').value.trim();if(!question||question.length>2000)throw new Error(t('请输入 1–2000 字符的问题。','Use a question of 1–2000 characters.'));
+      const input=capture(),m=evaluate(input);answerState=JSON.stringify(input);el('liveAiAnswer').textContent='';el('liveAiSources').replaceChildren();busy=true;controls();setStatus(t('正在生成有来源约束的解释…','Generating a source-constrained explanation…'));
+      const response=await fetch(root()+'/api/explain',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',signal:AbortSignal.timeout(50000),body:JSON.stringify({language,question,context:{metrics:Object.fromEntries(['euEts','ukEts','fuelEu','poolCost','totalEur','energyMJ','actualIntensity','extraHours','physicalWtWTonnes','target','allocatedPoolTonnes','fuelSaving','blendCost','timeCost'].map(k=>[k,m.comparison.active[k]])),assumptions:Object.fromEntries(['euaPrice','ukPrice','speedDelta','blendPct','poolPrice','poolAvailable'].map(k=>[k,m.settings[k]])),cases:getCases().map(item=>{const x=evaluate(item.input);return {name:item.name,policyPath:item.input.selectedScenario,eur:x.comparison.active.totalEur,gbp:x.comparison.active.ukEts,extraHours:x.comparison.active.extraHours};}),policyPath:input.selectedScenario,ledgerMode:Boolean(input.ledgerDocuments[input.selectedVesselId])}})});
+      if(!response.ok)throw new Error(t(`服务请求失败（${response.status}），当前计算未改变。`,`Service request failed (${response.status}); calculations are unchanged.`));
+      const data=await response.json();if(typeof data.answer!=='string'||!Array.isArray(data.sources))throw new Error(t('AI 服务响应格式错误。','Invalid AI response format.'));
+      el('liveAiAnswer').textContent=data.answer;el('liveAiSources').replaceChildren();
+      for(const source of data.sources){if(!officialReferences.some(s=>s.id===source.id&&s.url===source.url))throw new Error('Unrecognised reference');const u=new URL(source.url);if(u.protocol!=='https:')throw new Error('Invalid reference URL');const li=document.createElement('li'),a=document.createElement('a');a.href=u.href;a.textContent=`[${source.id}] ${source.title} · ${source.checkedAt}`;a.target='_blank';a.rel='noopener noreferrer';li.append(a);el('liveAiSources').append(li);}
+      setStatus(t('AI 解释已生成，未经人工核验；核对引用及适用日期。','AI explanation generated, not human-verified; check citations and applicability dates.'));
+    }catch(error){el('liveAiAnswer').textContent='';el('liveAiSources').replaceChildren();setStatus(t('未取得可用 AI 解释：','No usable AI explanation: ')+error.message);}finally{busy=false;controls();}
+  });
+  controls();
+  return {render(lang){language=lang;if(!connected&&!busy)setStatus(t('AI 未连接。运行并配置本地服务后，填写服务地址并连接。','AI not connected. Configure/run the local service, enter its address and connect.'));el('aiAnswerStale').textContent=answerState&&answerState!==JSON.stringify(capture())?t('输入已改变：以上回答基于上一次发送的分析，请重新提问。','Inputs changed: the answer refers to the previously sent analysis. Ask again.'):' ';}};
+}

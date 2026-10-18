@@ -1,0 +1,51 @@
+{
+  "schema": "mareg-workspace-v1",
+  "name": "Saved 100 EUA",
+  "savedAt": "2026-10-18T14:49:43.885Z",
+  "input": {
+    "selectedVesselId": "v1",
+    "selectedScenario": "deadlock",
+    "language": "zh",
+    "twin": {
+      "euaPrice": 100,
+      "jitSpeedDeltaKn": 0,
+      "biofuelBlendPct": 0,
+      "poolingSurplusTonnes": 0,
+      "fueleuTargetCut": 2,
+      "charterType": "voyage_gencon"
+    },
+    "settings": {
+      "year": 2026,
+      "euaPrice": 80,
+      "ukPrice": 60,
+      "speedDelta": 0,
+      "blendPct": 0,
+      "poolingTonnes": 0,
+      "poolAvailable": 400,
+      "poolPrice": 180,
+      "bunkerPrice": 550,
+      "blendPremium": 260,
+      "consecutiveDeficits": 1,
+      "etsOwnerPct": 85,
+      "fuelOwnerPct": 85,
+      "poolOwnerPct": 85,
+      "hoursSaved": 120,
+      "advisorSavings": 2000,
+      "internalCost": 0,
+      "distanceNm": 6000,
+      "maxExtraHours": 24,
+      "dailyTimeCost": 5000,
+      "maxBlendPct": 30,
+      "auxFuelPerDay": 2,
+      "auxCo2Factor": 3.114,
+      "auxCoveragePct": 100,
+      "operationsConfirmed": false,
+      "fuelConfirmed": false,
+      "poolConfirmed": false,
+      "operatingOwnerPct": 85
+    },
+    "vesselInputs": {},
+    "ledgerDocuments": {}
+  },
+  "cases": []
+}

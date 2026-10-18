@@ -1,0 +1,1 @@
+PASS: draft invalidation; quoted ledger/editor round trip; six-option report; six final screenshots.

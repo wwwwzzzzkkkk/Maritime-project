@@ -1,0 +1,1719 @@
+{
+  "uiVersion": "4.4.0",
+  "modelVersion": "light-4.2.0",
+  "generatedAt": "2026-10-18T14:50:45.974Z",
+  "vesselId": "v1",
+  "evidenceStatus": "user-input-not-verified",
+  "etsEmissionYear": 2026,
+  "ukActivityPeriod": "2026-07/2026-12",
+  "fuelEUTargetYear": 2026,
+  "settings": {
+    "year": 2026,
+    "euaPrice": 80,
+    "ukPrice": 60,
+    "speedDelta": 0,
+    "blendPct": 0,
+    "poolingTonnes": 0,
+    "poolAvailable": 400,
+    "poolPrice": 180,
+    "bunkerPrice": 550,
+    "blendPremium": 260,
+    "consecutiveDeficits": 1,
+    "etsOwnerPct": 85,
+    "fuelOwnerPct": 85,
+    "poolOwnerPct": 85,
+    "hoursSaved": 120,
+    "advisorSavings": 2000,
+    "internalCost": 0,
+    "distanceNm": 3300,
+    "maxExtraHours": 24,
+    "dailyTimeCost": 5000,
+    "maxBlendPct": 30,
+    "auxFuelPerDay": 2,
+    "auxCo2Factor": 3.114,
+    "auxCoveragePct": 100,
+    "operationsConfirmed": false,
+    "fuelConfirmed": false,
+    "poolConfirmed": false,
+    "operatingOwnerPct": 85
+  },
+  "assumptions": {
+    "referenceIntensity": 91.16,
+    "vlsfoMJPerTonne": 41000,
+    "penaltyPerEquivalentTonne": 2400,
+    "sailingEnergyShare": 0.88,
+    "blendTtwReduction": 0.26,
+    "blendWtwReduction": 0.32
+  },
+  "etsComplete": false,
+  "externalVerification": "not-performed",
+  "humanApproval": "not-performed",
+  "sources": [
+    {
+      "id": "eu",
+      "url": "https://climate.ec.europa.eu/areas-action/transport-decarbonisation/reducing-emissions-shipping-sector_en",
+      "clause": "Directive 2003/87/EC · maritime scope",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "fuel",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1805",
+      "clause": "Regulation (EU) 2023/1805 · Art. 4, 23; Annex IV",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "pool",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime/questions-and-answers-regulation-eu-20231805-use-renewable-and-low-carbon-fuels-maritime-transport_en",
+      "clause": "Art. 20–21 · Commission implementation Q&A",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "uk",
+      "url": "https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply",
+      "clause": "UK ETS maritime guidance · scope and surrender",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "imo",
+      "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/iswg-ghg-22.aspx",
+      "clause": "ISWG-GHG 22 · September 2026 meeting summary",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "charter",
+      "url": "https://www.bimco.org/contractual-affairs/bimco-clauses/current-clauses/etsa_clause/",
+      "clause": "BIMCO ETS Time Charter Clause 2022",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "id": "ports",
+      "url": "https://emsa.europa.eu/reducing-emissions/extension-ets/faq-extension-ets.html",
+      "clause": "Port-of-call definition · neighbouring container transhipment ports",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "modelInputs": {
+    "id": "v1",
+    "name": "My vessel",
+    "gt": 10000,
+    "serviceSpeedKn": 13.5,
+    "fuel": "User ledger / unverified",
+    "euEnergyMJ": 14432000,
+    "actualWtWIntensity": 91.6,
+    "legs": [
+      {
+        "id": "R1",
+        "zh": "CNSHA → NLRTM",
+        "en": "CNSHA → NLRTM",
+        "activity": "sailing",
+        "co2Tonnes": 996.48,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 0.5,
+        "currency": "EUR",
+        "ports": [
+          "CNSHA",
+          "NLRTM"
+        ]
+      },
+      {
+        "id": "R2",
+        "zh": "NLRTM → DEHAM",
+        "en": "NLRTM → DEHAM",
+        "activity": "sailing",
+        "co2Tonnes": 498.24,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "EUR",
+        "ports": [
+          "NLRTM",
+          "DEHAM"
+        ]
+      },
+      {
+        "id": "R3",
+        "zh": "NLRTM → NLRTM",
+        "en": "NLRTM → NLRTM",
+        "activity": "port",
+        "co2Tonnes": 99.648,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "EUR",
+        "ports": [
+          "NLRTM",
+          "NLRTM"
+        ]
+      },
+      {
+        "id": "R4",
+        "zh": "GBFXT → GBSOU",
+        "en": "GBFXT → GBSOU",
+        "activity": "sailing",
+        "co2Tonnes": 199.296,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "GBP",
+        "ports": [
+          "GBFXT",
+          "GBSOU"
+        ]
+      },
+      {
+        "id": "R5",
+        "zh": "GBSOU → GBSOU",
+        "en": "GBSOU → GBSOU",
+        "activity": "port",
+        "co2Tonnes": 19.9296,
+        "ch4Tonnes": null,
+        "n2oTonnes": null,
+        "coverage": 1,
+        "currency": "GBP",
+        "ports": [
+          "GBSOU",
+          "GBSOU"
+        ]
+      }
+    ]
+  },
+  "planner": {
+    "rows": [
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 92278.61072489081,
+        "chartererScopedEur": 16284.460716157191,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 996.48,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 498.24,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 99.648,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 99.648,
+            "unitPrice": 80,
+            "cost": 7971.84
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 199.296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 199.296,
+            "unitPrice": 60,
+            "cost": 11957.76
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.9296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.9296,
+            "unitPrice": 60,
+            "cost": 1195.776
+          }
+        ],
+        "euCoveredCo2": 1096.128,
+        "ukCoveredCo2": 219.2256,
+        "euEts": 87690.23999999999,
+        "ukEts": 13153.536,
+        "energyMJ": 14432000,
+        "actualIntensity": 91.6,
+        "target": 89.3368,
+        "rawBalanceGrams": -32662502.399999965,
+        "netBalanceGrams": -32662502.399999965,
+        "deficitTonnes": 32.662502399999966,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 20872.831441048012,
+        "fuelEu": 20872.831441048012,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 108563.071441048,
+        "totalEur": 108563.071441048,
+        "ownerEur": 92278.61072489081,
+        "chartererEur": 16284.460716157191,
+        "physicalWtWTonnes": 1321.9712,
+        "etsComplete": false,
+        "id": "baseline",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 92278.61072489081,
+        "chartererScopedEur": 16284.460716157191,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 996.48,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 498.24,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 99.648,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 99.648,
+            "unitPrice": 80,
+            "cost": 7971.84
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 199.296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 199.296,
+            "unitPrice": 60,
+            "cost": 11957.76
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.9296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.9296,
+            "unitPrice": 60,
+            "cost": 1195.776
+          }
+        ],
+        "euCoveredCo2": 1096.128,
+        "ukCoveredCo2": 219.2256,
+        "euEts": 87690.23999999999,
+        "ukEts": 13153.536,
+        "energyMJ": 14432000,
+        "actualIntensity": 91.6,
+        "target": 89.3368,
+        "rawBalanceGrams": -32662502.399999965,
+        "netBalanceGrams": -32662502.399999965,
+        "deficitTonnes": 32.662502399999966,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 20872.831441048012,
+        "fuelEu": 20872.831441048012,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 108563.071441048,
+        "totalEur": 108563.071441048,
+        "ownerEur": 92278.61072489081,
+        "chartererEur": 16284.460716157191,
+        "physicalWtWTonnes": 1321.9712,
+        "etsComplete": false,
+        "id": "current",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 23.848238482384772,
+        "timeCost": 4968.3830171634945,
+        "extraAuxFuelTonnes": 1.9873532068653976,
+        "extraAuxEnergyMJ": 81481.4814814813,
+        "ownerScopedEur": 59188.31588433895,
+        "chartererScopedEur": 10444.996920765689,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 827.2014222222225,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 413.60071111111125,
+            "unitPrice": 80,
+            "cost": 33088.0568888889
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 413.60071111111125,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 413.60071111111125,
+            "unitPrice": 80,
+            "cost": 33088.0568888889
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 99.648,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 99.648,
+            "unitPrice": 80,
+            "cost": 7971.84
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 165.44028444444447,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 165.44028444444447,
+            "unitPrice": 60,
+            "cost": 9926.417066666669
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.9296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.9296,
+            "unitPrice": 60,
+            "cost": 1195.776
+          },
+          {
+            "id": "AUX",
+            "activity": "auxiliary",
+            "currency": "EUR",
+            "co2Tonnes": 6.188617886178848,
+            "coverage": 1,
+            "coveredTonnes": 6.188617886178848,
+            "unitPrice": 80,
+            "cost": 495.08943089430784
+          }
+        ],
+        "euCoveredCo2": 933.0380401084013,
+        "ukCoveredCo2": 185.36988444444447,
+        "euEts": 74643.04320867211,
+        "ukEts": 11122.193066666669,
+        "energyMJ": 12356022.202469138,
+        "actualIntensity": 91.6,
+        "target": 89.3368,
+        "rawBalanceGrams": -27964149.448628124,
+        "netBalanceGrams": -27964149.448628124,
+        "deficitTonnes": 27.964149448628124,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 17870.36922907325,
+        "fuelEu": 17870.36922907325,
+        "poolCost": 0,
+        "fuelSaving": 27848.482649804228,
+        "blendCost": 0,
+        "operatingDelta": -22880.099632640733,
+        "complianceEur": 92513.41243774537,
+        "totalEur": 69633.31280510464,
+        "ownerEur": 78636.40057208357,
+        "chartererEur": 13877.0118656618,
+        "physicalWtWTonnes": 1131.811633746173,
+        "etsComplete": false,
+        "id": "speed",
+        "speedDelta": -1.2,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 80377.949696,
+        "chartererScopedEur": 14184.344064,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 970.57152,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 485.28576,
+            "unitPrice": 80,
+            "cost": 38822.860799999995
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 485.28576,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 485.28576,
+            "unitPrice": 80,
+            "cost": 38822.860799999995
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 97.05715199999999,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 97.05715199999999,
+            "unitPrice": 80,
+            "cost": 7764.572159999999
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 194.11430399999998,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 194.11430399999998,
+            "unitPrice": 60,
+            "cost": 11646.858239999998
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.4114304,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.4114304,
+            "unitPrice": 60,
+            "cost": 1164.6858240000001
+          }
+        ],
+        "euCoveredCo2": 1067.628672,
+        "ukCoveredCo2": 213.52573439999998,
+        "euEts": 85410.29376,
+        "ukEts": 12811.544063999998,
+        "energyMJ": 14432000,
+        "actualIntensity": 88.66879999999999,
+        "target": 89.3368,
+        "rawBalanceGrams": 9640576.000000091,
+        "netBalanceGrams": 9640576.000000091,
+        "deficitTonnes": 0,
+        "allocatedPoolTonnes": 0,
+        "unpooledPenalty": 0,
+        "fuelEu": 0,
+        "poolCost": 0,
+        "fuelSaving": 0,
+        "blendCost": 9152,
+        "operatingDelta": 9152,
+        "complianceEur": 85410.29376,
+        "totalEur": 94562.29376,
+        "ownerEur": 72598.749696,
+        "chartererEur": 12811.544064000002,
+        "physicalWtWTonnes": 1279.6681216,
+        "etsComplete": false,
+        "id": "fuel",
+        "speedDelta": 0,
+        "blendPct": 10,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "fuel"
+        ]
+      },
+      {
+        "extraHours": 0,
+        "timeCost": 0,
+        "extraAuxFuelTonnes": 0,
+        "extraAuxEnergyMJ": 0,
+        "ownerScopedEur": 79534.06686719999,
+        "chartererScopedEur": 14035.423564800003,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 996.48,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 498.24,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 498.24,
+            "unitPrice": 80,
+            "cost": 39859.2
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 99.648,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 99.648,
+            "unitPrice": 80,
+            "cost": 7971.84
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 199.296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 199.296,
+            "unitPrice": 60,
+            "cost": 11957.76
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.9296,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.9296,
+            "unitPrice": 60,
+            "cost": 1195.776
+          }
+        ],
+        "euCoveredCo2": 1096.128,
+        "ukCoveredCo2": 219.2256,
+        "euEts": 87690.23999999999,
+        "ukEts": 13153.536,
+        "energyMJ": 14432000,
+        "actualIntensity": 91.6,
+        "target": 89.3368,
+        "rawBalanceGrams": -32662502.399999965,
+        "netBalanceGrams": 0,
+        "deficitTonnes": 32.662502399999966,
+        "allocatedPoolTonnes": 32.662502399999966,
+        "unpooledPenalty": 20872.831441048012,
+        "fuelEu": 0,
+        "poolCost": 5879.250431999993,
+        "fuelSaving": 0,
+        "blendCost": 0,
+        "operatingDelta": 0,
+        "complianceEur": 93569.49043199999,
+        "totalEur": 93569.49043199999,
+        "ownerEur": 79534.06686719999,
+        "chartererEur": 14035.423564800003,
+        "physicalWtWTonnes": 1321.9712,
+        "etsComplete": false,
+        "id": "pooling",
+        "speedDelta": 0,
+        "blendPct": 0,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "pool"
+        ]
+      },
+      {
+        "extraHours": 23.848238482384772,
+        "timeCost": 4968.3830171634945,
+        "extraAuxFuelTonnes": 1.9873532068653976,
+        "extraAuxEnergyMJ": 81481.4814814813,
+        "ownerScopedEur": 48011.635065163355,
+        "chartererScopedEur": 8472.641482087638,
+        "legs": [
+          {
+            "id": "R1",
+            "zh": "CNSHA → NLRTM",
+            "en": "CNSHA → NLRTM",
+            "activity": "sailing",
+            "co2Tonnes": 816.4478037333336,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 0.5,
+            "currency": "EUR",
+            "ports": [
+              "CNSHA",
+              "NLRTM"
+            ],
+            "coveredTonnes": 408.2239018666668,
+            "unitPrice": 80,
+            "cost": 32657.912149333344
+          },
+          {
+            "id": "R2",
+            "zh": "NLRTM → DEHAM",
+            "en": "NLRTM → DEHAM",
+            "activity": "sailing",
+            "co2Tonnes": 408.2239018666668,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "DEHAM"
+            ],
+            "coveredTonnes": 408.2239018666668,
+            "unitPrice": 80,
+            "cost": 32657.912149333344
+          },
+          {
+            "id": "R3",
+            "zh": "NLRTM → NLRTM",
+            "en": "NLRTM → NLRTM",
+            "activity": "port",
+            "co2Tonnes": 98.352576,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "EUR",
+            "ports": [
+              "NLRTM",
+              "NLRTM"
+            ],
+            "coveredTonnes": 98.352576,
+            "unitPrice": 80,
+            "cost": 7868.20608
+          },
+          {
+            "id": "R4",
+            "zh": "GBFXT → GBSOU",
+            "en": "GBFXT → GBSOU",
+            "activity": "sailing",
+            "co2Tonnes": 163.2895607466667,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBFXT",
+              "GBSOU"
+            ],
+            "coveredTonnes": 163.2895607466667,
+            "unitPrice": 60,
+            "cost": 9797.373644800002
+          },
+          {
+            "id": "R5",
+            "zh": "GBSOU → GBSOU",
+            "en": "GBSOU → GBSOU",
+            "activity": "port",
+            "co2Tonnes": 19.6705152,
+            "ch4Tonnes": null,
+            "n2oTonnes": null,
+            "coverage": 1,
+            "currency": "GBP",
+            "ports": [
+              "GBSOU",
+              "GBSOU"
+            ],
+            "coveredTonnes": 19.6705152,
+            "unitPrice": 60,
+            "cost": 1180.230912
+          },
+          {
+            "id": "AUX",
+            "activity": "auxiliary",
+            "currency": "EUR",
+            "co2Tonnes": 6.108165853658523,
+            "coverage": 1,
+            "coveredTonnes": 6.108165853658523,
+            "unitPrice": 80,
+            "cost": 488.65326829268184
+          }
+        ],
+        "euCoveredCo2": 920.9085455869921,
+        "ukCoveredCo2": 182.9600759466667,
+        "euEts": 73672.68364695937,
+        "ukEts": 10977.604556800003,
+        "energyMJ": 12356022.202469138,
+        "actualIntensity": 90.1344,
+        "target": 89.3368,
+        "rawBalanceGrams": -9855163.30868942,
+        "netBalanceGrams": 0,
+        "deficitTonnes": 9.85516330868942,
+        "allocatedPoolTonnes": 9.85516330868942,
+        "unpooledPenalty": 6400.3045265018345,
+        "fuelEu": 0,
+        "poolCost": 1773.9293955640956,
+        "fuelSaving": 27848.482649804228,
+        "blendCost": 3917.763137368264,
+        "operatingDelta": -18962.33649527247,
+        "complianceEur": 75446.61304252346,
+        "totalEur": 56484.27654725099,
+        "ownerEur": 64129.62108614495,
+        "chartererEur": 11316.991956378508,
+        "physicalWtWTonnes": 1113.7026476062342,
+        "etsComplete": false,
+        "id": "combined",
+        "speedDelta": -1.2,
+        "blendPct": 5,
+        "withinLimits": true,
+        "reasons": [],
+        "pending": [
+          "operations",
+          "fuel",
+          "pool"
+        ]
+      }
+    ],
+    "recommendation": {
+      "extraHours": 23.848238482384772,
+      "timeCost": 4968.3830171634945,
+      "extraAuxFuelTonnes": 1.9873532068653976,
+      "extraAuxEnergyMJ": 81481.4814814813,
+      "ownerScopedEur": 48011.635065163355,
+      "chartererScopedEur": 8472.641482087638,
+      "legs": [
+        {
+          "id": "R1",
+          "zh": "CNSHA → NLRTM",
+          "en": "CNSHA → NLRTM",
+          "activity": "sailing",
+          "co2Tonnes": 816.4478037333336,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "ports": [
+            "CNSHA",
+            "NLRTM"
+          ],
+          "coveredTonnes": 408.2239018666668,
+          "unitPrice": 80,
+          "cost": 32657.912149333344
+        },
+        {
+          "id": "R2",
+          "zh": "NLRTM → DEHAM",
+          "en": "NLRTM → DEHAM",
+          "activity": "sailing",
+          "co2Tonnes": 408.2239018666668,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 408.2239018666668,
+          "unitPrice": 80,
+          "cost": 32657.912149333344
+        },
+        {
+          "id": "R3",
+          "zh": "NLRTM → NLRTM",
+          "en": "NLRTM → NLRTM",
+          "activity": "port",
+          "co2Tonnes": 98.352576,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 98.352576,
+          "unitPrice": 80,
+          "cost": 7868.20608
+        },
+        {
+          "id": "R4",
+          "zh": "GBFXT → GBSOU",
+          "en": "GBFXT → GBSOU",
+          "activity": "sailing",
+          "co2Tonnes": 163.2895607466667,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 163.2895607466667,
+          "unitPrice": 60,
+          "cost": 9797.373644800002
+        },
+        {
+          "id": "R5",
+          "zh": "GBSOU → GBSOU",
+          "en": "GBSOU → GBSOU",
+          "activity": "port",
+          "co2Tonnes": 19.6705152,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBSOU",
+            "GBSOU"
+          ],
+          "coveredTonnes": 19.6705152,
+          "unitPrice": 60,
+          "cost": 1180.230912
+        },
+        {
+          "id": "AUX",
+          "activity": "auxiliary",
+          "currency": "EUR",
+          "co2Tonnes": 6.108165853658523,
+          "coverage": 1,
+          "coveredTonnes": 6.108165853658523,
+          "unitPrice": 80,
+          "cost": 488.65326829268184
+        }
+      ],
+      "euCoveredCo2": 920.9085455869921,
+      "ukCoveredCo2": 182.9600759466667,
+      "euEts": 73672.68364695937,
+      "ukEts": 10977.604556800003,
+      "energyMJ": 12356022.202469138,
+      "actualIntensity": 90.1344,
+      "target": 89.3368,
+      "rawBalanceGrams": -9855163.30868942,
+      "netBalanceGrams": 0,
+      "deficitTonnes": 9.85516330868942,
+      "allocatedPoolTonnes": 9.85516330868942,
+      "unpooledPenalty": 6400.3045265018345,
+      "fuelEu": 0,
+      "poolCost": 1773.9293955640956,
+      "fuelSaving": 27848.482649804228,
+      "blendCost": 3917.763137368264,
+      "operatingDelta": -18962.33649527247,
+      "complianceEur": 75446.61304252346,
+      "totalEur": 56484.27654725099,
+      "ownerEur": 64129.62108614495,
+      "chartererEur": 11316.991956378508,
+      "physicalWtWTonnes": 1113.7026476062342,
+      "etsComplete": false,
+      "id": "recommendation",
+      "speedDelta": -1.2,
+      "blendPct": 5,
+      "withinLimits": true,
+      "reasons": [],
+      "pending": [
+        "operations",
+        "fuel",
+        "pool"
+      ]
+    },
+    "candidateCount": 99,
+    "search": {
+      "speedStepKn": 0.2,
+      "fuelStepPct": 5,
+      "pooling": "zero-or-available-capped-by-deficit",
+      "objective": "scoped-EUR-excludes-GBP",
+      "includesCurrent": true
+    }
+  },
+  "comparison": {
+    "baseline": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 92278.61072489081,
+      "chartererScopedEur": 16284.460716157191,
+      "legs": [
+        {
+          "id": "R1",
+          "zh": "CNSHA → NLRTM",
+          "en": "CNSHA → NLRTM",
+          "activity": "sailing",
+          "co2Tonnes": 996.48,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "ports": [
+            "CNSHA",
+            "NLRTM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R2",
+          "zh": "NLRTM → DEHAM",
+          "en": "NLRTM → DEHAM",
+          "activity": "sailing",
+          "co2Tonnes": 498.24,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R3",
+          "zh": "NLRTM → NLRTM",
+          "en": "NLRTM → NLRTM",
+          "activity": "port",
+          "co2Tonnes": 99.648,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 99.648,
+          "unitPrice": 80,
+          "cost": 7971.84
+        },
+        {
+          "id": "R4",
+          "zh": "GBFXT → GBSOU",
+          "en": "GBFXT → GBSOU",
+          "activity": "sailing",
+          "co2Tonnes": 199.296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 199.296,
+          "unitPrice": 60,
+          "cost": 11957.76
+        },
+        {
+          "id": "R5",
+          "zh": "GBSOU → GBSOU",
+          "en": "GBSOU → GBSOU",
+          "activity": "port",
+          "co2Tonnes": 19.9296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBSOU",
+            "GBSOU"
+          ],
+          "coveredTonnes": 19.9296,
+          "unitPrice": 60,
+          "cost": 1195.776
+        }
+      ],
+      "euCoveredCo2": 1096.128,
+      "ukCoveredCo2": 219.2256,
+      "euEts": 87690.23999999999,
+      "ukEts": 13153.536,
+      "energyMJ": 14432000,
+      "actualIntensity": 91.6,
+      "target": 89.3368,
+      "rawBalanceGrams": -32662502.399999965,
+      "netBalanceGrams": -32662502.399999965,
+      "deficitTonnes": 32.662502399999966,
+      "allocatedPoolTonnes": 0,
+      "unpooledPenalty": 20872.831441048012,
+      "fuelEu": 20872.831441048012,
+      "poolCost": 0,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 108563.071441048,
+      "totalEur": 108563.071441048,
+      "ownerEur": 92278.61072489081,
+      "chartererEur": 16284.460716157191,
+      "physicalWtWTonnes": 1321.9712,
+      "etsComplete": false
+    },
+    "active": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 92278.61072489081,
+      "chartererScopedEur": 16284.460716157191,
+      "legs": [
+        {
+          "id": "R1",
+          "zh": "CNSHA → NLRTM",
+          "en": "CNSHA → NLRTM",
+          "activity": "sailing",
+          "co2Tonnes": 996.48,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "ports": [
+            "CNSHA",
+            "NLRTM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R2",
+          "zh": "NLRTM → DEHAM",
+          "en": "NLRTM → DEHAM",
+          "activity": "sailing",
+          "co2Tonnes": 498.24,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R3",
+          "zh": "NLRTM → NLRTM",
+          "en": "NLRTM → NLRTM",
+          "activity": "port",
+          "co2Tonnes": 99.648,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 99.648,
+          "unitPrice": 80,
+          "cost": 7971.84
+        },
+        {
+          "id": "R4",
+          "zh": "GBFXT → GBSOU",
+          "en": "GBFXT → GBSOU",
+          "activity": "sailing",
+          "co2Tonnes": 199.296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 199.296,
+          "unitPrice": 60,
+          "cost": 11957.76
+        },
+        {
+          "id": "R5",
+          "zh": "GBSOU → GBSOU",
+          "en": "GBSOU → GBSOU",
+          "activity": "port",
+          "co2Tonnes": 19.9296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBSOU",
+            "GBSOU"
+          ],
+          "coveredTonnes": 19.9296,
+          "unitPrice": 60,
+          "cost": 1195.776
+        }
+      ],
+      "euCoveredCo2": 1096.128,
+      "ukCoveredCo2": 219.2256,
+      "euEts": 87690.23999999999,
+      "ukEts": 13153.536,
+      "energyMJ": 14432000,
+      "actualIntensity": 91.6,
+      "target": 89.3368,
+      "rawBalanceGrams": -32662502.399999965,
+      "netBalanceGrams": -32662502.399999965,
+      "deficitTonnes": 32.662502399999966,
+      "allocatedPoolTonnes": 0,
+      "unpooledPenalty": 20872.831441048012,
+      "fuelEu": 20872.831441048012,
+      "poolCost": 0,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 108563.071441048,
+      "totalEur": 108563.071441048,
+      "ownerEur": 92278.61072489081,
+      "chartererEur": 16284.460716157191,
+      "physicalWtWTonnes": 1321.9712,
+      "etsComplete": false
+    },
+    "pooling": {
+      "extraHours": 0,
+      "timeCost": 0,
+      "extraAuxFuelTonnes": 0,
+      "extraAuxEnergyMJ": 0,
+      "ownerScopedEur": 79534.06686719999,
+      "chartererScopedEur": 14035.423564800003,
+      "legs": [
+        {
+          "id": "R1",
+          "zh": "CNSHA → NLRTM",
+          "en": "CNSHA → NLRTM",
+          "activity": "sailing",
+          "co2Tonnes": 996.48,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 0.5,
+          "currency": "EUR",
+          "ports": [
+            "CNSHA",
+            "NLRTM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R2",
+          "zh": "NLRTM → DEHAM",
+          "en": "NLRTM → DEHAM",
+          "activity": "sailing",
+          "co2Tonnes": 498.24,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "DEHAM"
+          ],
+          "coveredTonnes": 498.24,
+          "unitPrice": 80,
+          "cost": 39859.2
+        },
+        {
+          "id": "R3",
+          "zh": "NLRTM → NLRTM",
+          "en": "NLRTM → NLRTM",
+          "activity": "port",
+          "co2Tonnes": 99.648,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "EUR",
+          "ports": [
+            "NLRTM",
+            "NLRTM"
+          ],
+          "coveredTonnes": 99.648,
+          "unitPrice": 80,
+          "cost": 7971.84
+        },
+        {
+          "id": "R4",
+          "zh": "GBFXT → GBSOU",
+          "en": "GBFXT → GBSOU",
+          "activity": "sailing",
+          "co2Tonnes": 199.296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBFXT",
+            "GBSOU"
+          ],
+          "coveredTonnes": 199.296,
+          "unitPrice": 60,
+          "cost": 11957.76
+        },
+        {
+          "id": "R5",
+          "zh": "GBSOU → GBSOU",
+          "en": "GBSOU → GBSOU",
+          "activity": "port",
+          "co2Tonnes": 19.9296,
+          "ch4Tonnes": null,
+          "n2oTonnes": null,
+          "coverage": 1,
+          "currency": "GBP",
+          "ports": [
+            "GBSOU",
+            "GBSOU"
+          ],
+          "coveredTonnes": 19.9296,
+          "unitPrice": 60,
+          "cost": 1195.776
+        }
+      ],
+      "euCoveredCo2": 1096.128,
+      "ukCoveredCo2": 219.2256,
+      "euEts": 87690.23999999999,
+      "ukEts": 13153.536,
+      "energyMJ": 14432000,
+      "actualIntensity": 91.6,
+      "target": 89.3368,
+      "rawBalanceGrams": -32662502.399999965,
+      "netBalanceGrams": 0,
+      "deficitTonnes": 32.662502399999966,
+      "allocatedPoolTonnes": 32.662502399999966,
+      "unpooledPenalty": 20872.831441048012,
+      "fuelEu": 0,
+      "poolCost": 5879.250431999993,
+      "fuelSaving": 0,
+      "blendCost": 0,
+      "operatingDelta": 0,
+      "complianceEur": 93569.49043199999,
+      "totalEur": 93569.49043199999,
+      "ownerEur": 79534.06686719999,
+      "chartererEur": 14035.423564800003,
+      "physicalWtWTonnes": 1321.9712,
+      "etsComplete": false
+    },
+    "costDelta": 0,
+    "physicalDelta": 0,
+    "drivers": {
+      "etsOperations": 0,
+      "fuelOperations": 0,
+      "poolPenalty": 0,
+      "poolFees": 0,
+      "operatingCosts": 0
+    },
+    "costDeltaPct": 0,
+    "physicalDeltaPct": 0,
+    "priceEffectVs80": 0,
+    "priceEffectVs80Gbp": 0
+  },
+  "ledger": {
+    "profile": {
+      "name": "My vessel",
+      "gt": 10000,
+      "shipType": "cargo",
+      "serviceSpeedKn": 13.5,
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-12-31",
+      "scopeStatus": "ordinary"
+    },
+    "rows": [
+      {
+        "id": "R1",
+        "date": "2026-02-10",
+        "activity": "sailing",
+        "from": "CNSHA",
+        "to": "NLRTM",
+        "fuelTonnes": 320,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 6000,
+        "source": "Demo log 001 - replace with authorised records"
+      },
+      {
+        "id": "R2",
+        "date": "2026-03-12",
+        "activity": "sailing",
+        "from": "NLRTM",
+        "to": "DEHAM",
+        "fuelTonnes": 160,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 300,
+        "source": "Demo log 002"
+      },
+      {
+        "id": "R3",
+        "date": "2026-03-13",
+        "activity": "port",
+        "from": "NLRTM",
+        "to": "NLRTM",
+        "fuelTonnes": 32,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 0,
+        "source": "Demo berth log"
+      },
+      {
+        "id": "R4",
+        "date": "2026-08-15",
+        "activity": "sailing",
+        "from": "GBFXT",
+        "to": "GBSOU",
+        "fuelTonnes": 64,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 200,
+        "source": "Demo UK log"
+      },
+      {
+        "id": "R5",
+        "date": "2026-08-16",
+        "activity": "port",
+        "from": "GBSOU",
+        "to": "GBSOU",
+        "fuelTonnes": 6.4,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 0,
+        "source": "Demo UK berth log"
+      }
+    ]
+  },
+  "scopeScreening": {
+    "rows": [
+      {
+        "id": "R1",
+        "date": "2026-02-10",
+        "activity": "sailing",
+        "from": "CNSHA",
+        "to": "NLRTM",
+        "fuelTonnes": 320,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 6000,
+        "source": "Demo log 001 - replace with authorised records",
+        "energyMJ": 13120000,
+        "co2Tonnes": 996.48,
+        "euCoverage": 0.5,
+        "ukCoverage": 0,
+        "needsReview": false
+      },
+      {
+        "id": "R2",
+        "date": "2026-03-12",
+        "activity": "sailing",
+        "from": "NLRTM",
+        "to": "DEHAM",
+        "fuelTonnes": 160,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 300,
+        "source": "Demo log 002",
+        "energyMJ": 6560000,
+        "co2Tonnes": 498.24,
+        "euCoverage": 1,
+        "ukCoverage": 0,
+        "needsReview": false
+      },
+      {
+        "id": "R3",
+        "date": "2026-03-13",
+        "activity": "port",
+        "from": "NLRTM",
+        "to": "NLRTM",
+        "fuelTonnes": 32,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 0,
+        "source": "Demo berth log",
+        "energyMJ": 1312000,
+        "co2Tonnes": 99.648,
+        "euCoverage": 1,
+        "ukCoverage": 0,
+        "needsReview": false
+      },
+      {
+        "id": "R4",
+        "date": "2026-08-15",
+        "activity": "sailing",
+        "from": "GBFXT",
+        "to": "GBSOU",
+        "fuelTonnes": 64,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 200,
+        "source": "Demo UK log",
+        "energyMJ": 2624000,
+        "co2Tonnes": 199.296,
+        "euCoverage": 0,
+        "ukCoverage": 1,
+        "needsReview": false
+      },
+      {
+        "id": "R5",
+        "date": "2026-08-16",
+        "activity": "port",
+        "from": "GBSOU",
+        "to": "GBSOU",
+        "fuelTonnes": 6.4,
+        "lhvMJPerKg": 41,
+        "co2Factor": 3.114,
+        "wtwIntensity": 91.6,
+        "distanceNm": 0,
+        "source": "Demo UK berth log",
+        "energyMJ": 262400,
+        "co2Tonnes": 19.9296,
+        "euCoverage": 0,
+        "ukCoverage": 1,
+        "needsReview": false
+      }
+    ],
+    "energyMJ": 14432000,
+    "distanceNm": 3300,
+    "actualWtWIntensity": 91.6,
+    "canApply": true,
+    "issues": [],
+    "regimes": {
+      "euEts": "preliminary-in-scope",
+      "fuelEU": "preliminary-in-scope",
+      "ukEts": "preliminary-in-scope"
+    },
+    "checkedAt": "2026-10-18",
+    "limitations": [
+      "CO2-only; CH4/N2O missing",
+      "Annual completeness and fuel factors unverified",
+      "Ordinary EU27/UK activities only; exceptions and transhipment require review",
+      "Speed/fuel what-if coefficients remain the existing simplified model"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "scope": "Only Chrome; external fonts/tiles blocked; AI provider/browser responses simulated, no real model call",
+  "checks": [
+    "Default snapshot deep-equal to v4.3.1 except UI version/time; local save survives reload; explicit restore/import; malformed file blocked; readable report exported",
+    "Named policy assumptions save without changing budget; explicit load produces €110000 / €619346.72 with separate GBP; cases included in workspace",
+    "CSV demo preview is non-mutating; unified energy/CO2/distance applies; derived inputs stay read-only; GT boundary/missing factor blocked; map provenance; ledger restores and recomputes",
+    "Real local backend health reports unconfigured; ask disabled until configured+consent; browser mocked response shows citations and stale-input warning; no raw CSV/legs sent"
+  ],
+  "screens": [
+    {
+      "language": "zh",
+      "width": 1440,
+      "file": "workflow-zh-1440.png"
+    },
+    {
+      "language": "zh",
+      "width": 768,
+      "file": "workflow-zh-768.png"
+    },
+    {
+      "language": "zh",
+      "width": 375,
+      "file": "workflow-zh-375.png"
+    },
+    {
+      "language": "en",
+      "width": 1440,
+      "file": "workflow-en-1440.png"
+    },
+    {
+      "language": "en",
+      "width": 768,
+      "file": "workflow-en-768.png"
+    },
+    {
+      "language": "en",
+      "width": 375,
+      "file": "workflow-en-375.png"
+    }
+  ],
+  "proMax": {
+    "pass": true,
+    "errors": [],
+    "note": "Remote Leaflet replaced by unchanged vendored files; CDN reachability not tested"
+  },
+  "pageErrors": [],
+  "ai": "Unconfigured backend and mock provider only; no genuine model call or hosted AI deployment"
+}

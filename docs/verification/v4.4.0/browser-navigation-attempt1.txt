@@ -1,0 +1,16 @@
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+page.goto: Timeout 15000ms exceeded.
+Call log:
+[2m  - navigating to "http://127.0.0.1:48184/", waiting until "domcontentloaded"[22m
+
+    at /Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/workflow-ui.mjs:12:10 {
+  log: [
+    '  - navigating to "http://127.0.0.1:48184/", waiting until "domcontentloaded"'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v23.11.0

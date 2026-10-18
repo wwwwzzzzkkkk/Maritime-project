@@ -1,0 +1,33 @@
+{
+  "draftPreviewCleared": true,
+  "appliedBudgetUnchangedByDraft": true,
+  "quotedLedgerEditorRestore": true,
+  "reportSixOptionComparison": true,
+  "reportNamesMatchUi": true,
+  "screens": [
+    {
+      "lang": "zh",
+      "width": 1440
+    },
+    {
+      "lang": "zh",
+      "width": 768
+    },
+    {
+      "lang": "zh",
+      "width": 375
+    },
+    {
+      "lang": "en",
+      "width": 1440
+    },
+    {
+      "lang": "en",
+      "width": 768
+    },
+    {
+      "lang": "en",
+      "width": 375
+    }
+  ]
+}

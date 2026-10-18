@@ -4,11 +4,13 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.3.1，2026-10-18 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.4.0，2026-10-18 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.3.1, documented on 18 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.4.0, documented on 18 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
+
+**v4.4.0 新增：** 顶栏“分析与报告”可保存／恢复及导出可打印报告；“方案比较”可展开统一 CSV 台账；“未来情景”可保存并载入明确的规划条件；“帮助与说明”提供默认未连接的本机 AI 接口。[完整操作](WORKFLOWS.md) · [AI 配置](AI_SETUP.md)。台账只作普通范围初筛；数据未核验，非法律意见。
 
 ### 1. 打开网站，先用默认船舶
 
@@ -71,10 +73,10 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 ### 5. 其他模块与保存结果
 
 - **未来情景**：看三种监管路径下需要核对的事项。它不自动修改区域账单，不计算假设的全球收费，也不表示发生概率。
-- **帮助与说明**：看操作步骤、预设常见问题及产品能力范围。解释跟随当前计算值，未连接 AI 服务。课程与商业验证材料已移到仓库文档。
-- **当前计算快照 → 导出 JSON**：保存当前输入、假设、来源与结果；关掉弹窗可点 `✕` 或按 `Esc`。新手不必读 JSON，可留作核对或与团队讨论。
+- **帮助与说明**：看操作步骤、预设常见问题及产品能力范围。预设解释跟随当前计算；另有可配置本机 AI 接口，默认未连接。课程与商业验证材料已移到仓库文档。
+- **分析与报告 → 导出 JSON**：保存当前输入、假设、来源与结果；关掉弹窗可点 `✕` 或按 `Esc`。新手不必读 JSON，可留作核对或与团队讨论。
 
-**刷新或“重置基准”会回到默认教学情景。** 如需保留当前结果，请先导出；当前没有重新导入快照自动恢复情景的功能。
+**刷新或“重置基准”会回到默认教学情景。** 如需保留当前结果，请先导出；旧计算快照不能恢复；请导出“可恢复工作区”，或使用本机保存记录手动恢复。
 
 ### 三个小练习
 
@@ -89,6 +91,8 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 地图没有加载时，先检查网络；数值和台账仍可查看。想了解一个数字怎么算，再展开下面附录即可。
 
 ## English quick start
+
+**New in v4.4.0:** Analysis & Reports saves/restores and exports printable reports. Compare offers unified CSV ledgers, Future offers explicit named planning conditions, and Help offers local AI integration, disconnected by default. [Workflow guide](WORKFLOWS.md) · [AI setup](AI_SETUP.md). Scope screening is preliminary; data is unverified and not legal advice.
 
 ### 1. Open the site and start with the default vessel
 
@@ -149,10 +153,10 @@ Lower expenditure is not automatically physical decarbonisation. Pooling alone m
 ### 5. Explore the other views and save
 
 - **Future Scenarios** explains what to review under three possible regulatory paths. It does not change regional bills, calculate hypothetical global charges or assign probabilities.
-- **Help & About** contains getting-started steps, preset FAQs and product scope. Explanations follow current calculations without an AI service. Course and venture plans are now in repository documents.
-- **Current Snapshot → Export JSON** saves current inputs, assumptions, sources and outputs. Close with `✕` or `Esc`. Beginners need not read JSON; keep it for reference or discuss it with your team.
+- **Help & About** contains getting-started steps, preset FAQs and product scope. Preset explanations follow current calculations; optional local AI integration is disconnected by default. Course and venture plans are now in repository documents.
+- **Analysis & Reports → Export JSON** saves current inputs, assumptions, sources and outputs. Close with `✕` or `Esc`. Beginners need not read JSON; keep it for reference or discuss it with your team.
 
-**Refreshing or selecting Reset returns to the default teaching scenario.** Export first if you need a record; automatic restoration by importing a snapshot is not implemented.
+**Refreshing or selecting Reset returns to the default teaching scenario.** Export first if you need a record; old snapshots are not restorable; export a workspace or explicitly restore a locally saved analysis.
 
 ### Three short exercises
 

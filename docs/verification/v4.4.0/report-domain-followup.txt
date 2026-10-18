@@ -1,0 +1,14 @@
+✔ one fuel ledger derives scoped energy, CO2, intensity and distance for the unchanged engine (12.42875ms)
+✔ scope screening distinguishes 5000 GT, UK commencement, special calls and Norway/Iceland review (1.875917ms)
+✔ CSV import supports BOM, CRLF and quoted commas; rejects missing factors, duplicate IDs and invalid dates (1.5115ms)
+✔ workspaces preserve calculation inputs and recompute values rather than trusting outputs (10.110333ms)
+✔ standalone report escapes imported text, separates currencies and retains formula/disclaimer evidence (57.115ms)
+✔ explicit planning cases change conditional costs without changing regional law or base inputs (0.623834ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 288.610333

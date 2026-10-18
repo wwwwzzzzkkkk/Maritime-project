@@ -1,0 +1,1 @@
+PASS: workspace round trips, readable report, unified ledger/scope, planning cases, local AI health + simulated contract, six bilingual layouts, keyboard, Pro Max.

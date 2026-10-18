@@ -1,0 +1,130 @@
+{
+  "schema": "mareg-workspace-v1",
+  "name": "Saved 100 EUA",
+  "savedAt": "2026-10-18T14:50:46.101Z",
+  "input": {
+    "selectedVesselId": "v1",
+    "selectedScenario": "deadlock",
+    "language": "zh",
+    "twin": {
+      "euaPrice": 80,
+      "jitSpeedDeltaKn": 0,
+      "biofuelBlendPct": 0,
+      "poolingSurplusTonnes": 0,
+      "fueleuTargetCut": 2,
+      "charterType": "voyage_gencon"
+    },
+    "settings": {
+      "year": 2026,
+      "euaPrice": 80,
+      "ukPrice": 60,
+      "speedDelta": 0,
+      "blendPct": 0,
+      "poolingTonnes": 0,
+      "poolAvailable": 400,
+      "poolPrice": 180,
+      "bunkerPrice": 550,
+      "blendPremium": 260,
+      "consecutiveDeficits": 1,
+      "etsOwnerPct": 85,
+      "fuelOwnerPct": 85,
+      "poolOwnerPct": 85,
+      "hoursSaved": 120,
+      "advisorSavings": 2000,
+      "internalCost": 0,
+      "distanceNm": 3300,
+      "maxExtraHours": 24,
+      "dailyTimeCost": 5000,
+      "maxBlendPct": 30,
+      "auxFuelPerDay": 2,
+      "auxCo2Factor": 3.114,
+      "auxCoveragePct": 100,
+      "operationsConfirmed": false,
+      "fuelConfirmed": false,
+      "poolConfirmed": false,
+      "operatingOwnerPct": 85
+    },
+    "vesselInputs": {},
+    "ledgerDocuments": {
+      "v1": {
+        "profile": {
+          "name": "My vessel",
+          "gt": 10000,
+          "shipType": "cargo",
+          "serviceSpeedKn": 13.5,
+          "periodStart": "2026-01-01",
+          "periodEnd": "2026-12-31",
+          "scopeStatus": "ordinary"
+        },
+        "rows": [
+          {
+            "id": "R1",
+            "date": "2026-02-10",
+            "activity": "sailing",
+            "from": "CNSHA",
+            "to": "NLRTM",
+            "fuelTonnes": 320,
+            "lhvMJPerKg": 41,
+            "co2Factor": 3.114,
+            "wtwIntensity": 91.6,
+            "distanceNm": 6000,
+            "source": "Demo log 001 - replace with authorised records"
+          },
+          {
+            "id": "R2",
+            "date": "2026-03-12",
+            "activity": "sailing",
+            "from": "NLRTM",
+            "to": "DEHAM",
+            "fuelTonnes": 160,
+            "lhvMJPerKg": 41,
+            "co2Factor": 3.114,
+            "wtwIntensity": 91.6,
+            "distanceNm": 300,
+            "source": "Demo log 002"
+          },
+          {
+            "id": "R3",
+            "date": "2026-03-13",
+            "activity": "port",
+            "from": "NLRTM",
+            "to": "NLRTM",
+            "fuelTonnes": 32,
+            "lhvMJPerKg": 41,
+            "co2Factor": 3.114,
+            "wtwIntensity": 91.6,
+            "distanceNm": 0,
+            "source": "Demo berth log"
+          },
+          {
+            "id": "R4",
+            "date": "2026-08-15",
+            "activity": "sailing",
+            "from": "GBFXT",
+            "to": "GBSOU",
+            "fuelTonnes": 64,
+            "lhvMJPerKg": 41,
+            "co2Factor": 3.114,
+            "wtwIntensity": 91.6,
+            "distanceNm": 200,
+            "source": "Demo UK log"
+          },
+          {
+            "id": "R5",
+            "date": "2026-08-16",
+            "activity": "port",
+            "from": "GBSOU",
+            "to": "GBSOU",
+            "fuelTonnes": 6.4,
+            "lhvMJPerKg": 41,
+            "co2Factor": 3.114,
+            "wtwIntensity": 91.6,
+            "distanceNm": 0,
+            "source": "Demo UK berth log"
+          }
+        ]
+      }
+    }
+  },
+  "cases": []
+}

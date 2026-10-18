@@ -1,0 +1,11 @@
+✔ unconfigured local AI service reports disabled without contacting a provider (73.324709ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (24.291ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (26.578792ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 426.9755

@@ -1,0 +1,137 @@
+[
+  {
+    "file": "index.html",
+    "line": 11,
+    "reference": "styles/tokens.css?v=4.4.0"
+  },
+  {
+    "file": "index.html",
+    "line": 12,
+    "reference": "styles/main.css?v=4.4.0"
+  },
+  {
+    "file": "index.html",
+    "line": 705,
+    "reference": "js/data-and-i18n.js?v=4.4.0"
+  },
+  {
+    "file": "index.html",
+    "line": 706,
+    "reference": "js/app.js?v=4.4.0"
+  },
+  {
+    "file": "js/decision-report.mjs",
+    "line": 1,
+    "reference": "./option-planner.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/decision-report.mjs",
+    "line": 2,
+    "reference": "./analysis-state.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/decision-report.mjs",
+    "line": 3,
+    "reference": "./light-data.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/planning-ui.mjs",
+    "line": 1,
+    "reference": "./option-planner.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/planning-ui.mjs",
+    "line": 2,
+    "reference": "./inputs-adapter.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/ai-explain.mjs",
+    "line": 1,
+    "reference": "./light-data.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/workspace-ui.mjs",
+    "line": 1,
+    "reference": "./analysis-state.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/workspace-ui.mjs",
+    "line": 2,
+    "reference": "./ledger.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/workspace-ui.mjs",
+    "line": 3,
+    "reference": "./decision-report.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/option-planner.mjs",
+    "line": 1,
+    "reference": "./compliance-engine.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/inputs-adapter.mjs",
+    "line": 1,
+    "reference": "./compliance-engine.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/analysis-state.mjs",
+    "line": 1,
+    "reference": "./compliance-engine.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/analysis-state.mjs",
+    "line": 2,
+    "reference": "./light-data.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/analysis-state.mjs",
+    "line": 3,
+    "reference": "./ledger.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 1,
+    "reference": "./workspace-ui.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 2,
+    "reference": "./ledger.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 3,
+    "reference": "./analysis-state.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 4,
+    "reference": "./ai-explain.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 5,
+    "reference": "./decision-report.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 6,
+    "reference": "./planning-ui.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 7,
+    "reference": "./compliance-engine.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 8,
+    "reference": "./mobile-budget.mjs?v=4.4.0"
+  },
+  {
+    "file": "js/app.js",
+    "line": 9,
+    "reference": "./light-data.mjs?v=4.4.0"
+  }
+]

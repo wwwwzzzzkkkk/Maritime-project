@@ -5,3 +5,7 @@ node_modules/
 .vscode/
 .idea/
 test-results/
+
+# Local AI credentials (never publish).
+.env.local
+.env.*.local

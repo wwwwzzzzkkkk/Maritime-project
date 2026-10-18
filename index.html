@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="styles/tokens.css?v=4.3.1" />
-  <link rel="stylesheet" href="styles/main.css?v=4.3.1" />
+  <link rel="stylesheet" href="styles/tokens.css?v=4.4.0" />
+  <link rel="stylesheet" href="styles/main.css?v=4.4.0" />
 </head>
 <body data-active-tab="tab-cockpit">
   <!-- Inline SVG Optical Displacement Filter (Apple WWDC25 Liquid Glass Refraction Engine) -->
@@ -55,7 +55,7 @@
       <div class="topbar-right">
         <a href="https://github.com/wwwwzzzzkkkk/Maritime-project/blob/main/docs/QUICK_START.md" class="ghost-btn" data-zh="使用指南" data-en="User Guide" target="_blank" rel="noopener noreferrer">使用指南</a>
         <button type="button" id="resetTwinBtn" class="ghost-btn" data-zh="重置基准" data-en="Reset">重置基准</button>
-        <button type="button" id="openAuditModalBtn" class="ghost-btn" data-zh="当前计算快照" data-en="Current Snapshot">当前计算快照</button>
+        <button type="button" id="openAuditModalBtn" class="ghost-btn" data-zh="分析与报告" data-en="Analysis & Reports">分析与报告</button>
         <div class="lang-switch" role="group" aria-label="Language Switcher">
           <button type="button" class="lang-btn active" data-lang="zh">中</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -64,7 +64,7 @@
     </div>
   </header>
 
-  <div class="customer-notice" role="note"><span class="badge badge-assumption"><span data-zh="演示模式" data-en="Demo mode">演示模式</span></span><span data-zh="使用预设示例船舶与价格，尚未接入真实营运数据。" data-en="Preset vessels and prices; no live operational data is connected.">使用预设示例船舶与价格，尚未接入真实营运数据。</span><span data-zh="ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。FuelEU 可比较不同目标条件。" data-en="ETS covers CO₂ only: 2026 activity, July–December for UK. FuelEU target conditions can be compared.">ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。FuelEU 可比较不同目标条件。</span></div>
+  <div class="customer-notice" role="note"><span class="badge badge-assumption"><span data-zh="未核验分析" data-en="Unverified analysis">未核验分析</span></span><span id="dataModeNotice"></span><span><span data-zh="ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。非法律意见。" data-en="ETS CO₂ only; 2026 activity, July–December for UK. Not legal advice.">ETS 仅含 CO₂；2026 活动输入，UK 为 7–12 月。非法律意见。</span></span></div>
 
   <!-- Current vessel context -->
   <div class="context-bar">
@@ -188,7 +188,7 @@
             <span class="badge badge-in-force">Illustrative GIS · UN/LOCODE</span>
           </div>
 
-          <div class="map-stage">
+          <p id="ledgerMapNotice" class="model-note" hidden><span data-zh="地图仍为演示船舶示意，不表示上传台账的航线或费用分配。" data-en="The map remains illustrative and does not represent the imported ledger route or cost allocation.">地图仍为演示船舶示意，不表示上传台账的航线或费用分配。</span></p><div class="map-stage">
             <div class="map-toolbar">
               <div class="leg-pills" role="group" aria-label="Map Camera View Presets">
                 <button type="button" class="leg-btn map-cam-btn active" data-cam="eurasia" data-zh="🌏 亚欧全航线 (CNSHA → NLRTM)" data-en="🌏 Full Eurasia Route">🌏 亚欧全航线 (CNSHA → NLRTM)</button>
@@ -251,6 +251,7 @@
         </p>
         <p id="planningCurrentInputs" class="model-note">
         </p>
+<p id="ledgerModeStatus" class="model-note" role="status"></p><details id="ledgerEditor" class="customer-details ledger-editor"><summary><span data-zh="统一燃料台账与适用范围检查" data-en="Unified fuel ledger &amp; scope screening">统一燃料台账与适用范围检查</span></summary><p class="model-note"><span data-zh="先检查，再明确应用；不会自动覆盖当前预算。仅支持普通 2026 年货船／客船活动，非法律判断或核验。CSV 每行含吨数、真实低位热值、CO₂ 因子、生命周期强度、距离与原始来源。" data-en="Screen first, then explicitly apply; current budgets are not overwritten automatically. Ordinary 2026 cargo/passenger activities only, not legal determination or verification. CSV rows contain fuel tonnes, actual LHV, CO₂ factor, lifecycle intensity, distance and source.">先检查，再明确应用；不会自动覆盖当前预算。仅支持普通 2026 年货船／客船活动，非法律判断或核验。CSV 每行含吨数、真实低位热值、CO₂ 因子、生命周期强度、距离与原始来源。</span></p><form id="ledgerProfileForm"><div class="workflow-grid"><label class="workflow-field"><span data-zh="船舶名称" data-en="Vessel name">船舶名称</span><input name="vesselName" type="text" maxlength="80" required value="My vessel" /></label><label class="workflow-field"><span data-zh="总吨（GT）" data-en="Gross tonnage (GT)">总吨（GT）</span><input name="gt" type="number" min="1" max="1000000" step="1" required value="10000" /></label><label class="workflow-field"><span data-zh="船型" data-en="Ship type">船型</span><select name="shipType"><option value="cargo">Cargo / 货船</option><option value="passenger">Passenger / 客船</option><option value="other">Other — review / 其他需复核</option></select></label><label class="workflow-field"><span data-zh="基准航速（节）" data-en="Service speed (kn)">基准航速（节）</span><input name="serviceSpeedKn" type="number" min="5" max="30" step="0.1" required value="13.5" /></label><label class="workflow-field"><span data-zh="范围声明" data-en="Scope declaration">范围声明</span><select name="scopeStatus"><option value="review">Needs review / 待核对</option><option value="ordinary">Ordinary qualifying calls / 普通有效挂靠、无已知特殊安排</option></select></label></div><p class="model-note"><span data-zh="期间固定为 2026-01-01 至 2026-12-31，需覆盖声明的年度活动；英国仅计入 7 月 1 日起的相关活动。年度完整性、有效挂靠与排除项须由资料负责人核对。" data-en="Period: 2026-01-01 to 2026-12-31. Include the declared annual activities; UK coverage starts on 1 July. The data owner must check annual completeness, qualifying calls and exclusions.">期间固定为 2026-01-01 至 2026-12-31，需覆盖声明的年度活动；英国仅计入 7 月 1 日起的相关活动。年度完整性、有效挂靠与排除项须由资料负责人核对。</span></p><label class="workflow-field"><span data-zh="CSV 编辑区（按模板列名）" data-en="CSV editor (use template headers)">CSV 编辑区（按模板列名）</span><textarea id="ledgerCsv" rows="8" required spellcheck="false"></textarea></label><div class="workflow-actions"><button type="submit" class="ghost-btn"><span data-zh="检查台账与范围" data-en="Screen ledger &amp; scope">检查台账与范围</span></button><button type="button" id="applyLedgerBtn" class="ghost-btn"><span data-zh="检查并应用台账" data-en="Screen &amp; Apply Ledger">检查并应用台账</span></button><button type="button" id="clearLedgerBtn" class="ghost-btn"><span data-zh="返回独立演示输入" data-en="Use Independent Demo Inputs">返回独立演示输入</span></button><button type="button" id="ledgerExampleBtn" class="ghost-btn"><span data-zh="填入台账示例（不应用）" data-en="Fill Demo Ledger (Do Not Apply)">填入台账示例（不应用）</span></button><button type="button" id="ledgerTemplateBtn" class="ghost-btn"><span data-zh="下载 CSV 模板" data-en="Download CSV Template">下载 CSV 模板</span></button></div></form><label class="workflow-field"><span data-zh="从本机读取 CSV（最大 1 MB，不上传）" data-en="Read local CSV (max 1 MB, no upload)">从本机读取 CSV（最大 1 MB，不上传）</span><input id="ledgerCsvFile" type="file" accept=".csv,text/csv" /></label><p id="ledgerCheckResult" class="workflow-status" role="status"></p><div class="table-wrap"><table class="telemetry-table"><thead><tr><th>ID</th><th><span data-zh="日期" data-en="Date">日期</span></th><th><span data-zh="港口" data-en="Ports">港口</span></th><th>MJ</th><th>tCO₂</th><th>EU / UK</th><th><span data-zh="来源" data-en="Source">来源</span></th></tr></thead><tbody id="ledgerPreviewBody"></tbody></table></div><p class="model-note"><span data-zh="初步检查不覆盖全部例外、转运港规则或认证方法。能源来自各行耗油×热值×范围；CO₂ 来自同一行耗油×因子。航速／燃料推演仍使用原有简化系数，缺失 CH₄/N₂O 不补零。" data-en="Screening does not cover every exemption, transhipment rule or certified-fuel method. Energy and CO₂ derive from the same fuel rows and declared factors. Speed/fuel what-if coefficients remain simplified; missing CH₄/N₂O is not zero.">初步检查不覆盖全部例外、转运港规则或认证方法。能源来自各行耗油×热值×范围；CO₂ 来自同一行耗油×因子。航速／燃料推演仍使用原有简化系数，缺失 CH₄/N₂O 不补零。</span></p></details>
         <div id="assumptionTags" class="assumption-tags" aria-label="当前已应用假设 / Currently applied assumptions"></div>
 <p id="assumptionDraftStatus" class="model-note" role="status"></p>
 <form id="planningForm" novalidate>
@@ -549,8 +550,8 @@
 
           <div class="control-group">
             <strong class="strong-caption" data-zh="当前功能与数据边界" data-en="Current Features and Data Scope">当前功能与数据边界</strong>
-            <p class="body-note" data-zh="本页只使用演示数据，不连接船载控制系统，也未完成真实表格导入或 THETIS-MRV 核验。可通过顶栏导出当前计算快照；正式导入、后台隔离与审批属于规划能力。" data-en="This page uses demo data only, without shipboard connections, real-data import or THETIS-MRV verification. Current snapshots can be exported; ingestion, backend isolation and approval remain planned.">
-              本页只使用演示数据，不连接船载控制系统，也未完成真实表格导入或 THETIS-MRV 核验。可通过顶栏导出当前计算快照；正式导入、后台隔离与审批属于规划能力。
+            <p class="body-note" data-zh="支持本机 CSV 台账、工作区保存恢复与报告导出；导入资料未经核验，不连接船载系统或 THETIS-MRV，不提供客户后台隔离或审批。" data-en="Local CSV ledgers, workspaces and readable reports are supported. Imports are unverified; no shipboard/THETIS-MRV connection, customer isolation or approval is provided.">
+              支持本机 CSV 台账、工作区保存恢复与报告导出；导入资料未经核验，不连接船载系统或 THETIS-MRV，不提供客户后台隔离或审批。
             </p>
           </div>
 
@@ -598,7 +599,7 @@
         </div>
         </div>
         </div>
-        </section>
+        <div class="panel-card" id="policyPlanningPanel"><div class="panel-header"><h2 class="panel-title"><span data-zh="规划条件与成本比较" data-en="Planning Conditions &amp; Cost Comparison">规划条件与成本比较</span></h2></div><p class="model-note"><span data-zh="三种监管路径是讨论背景，不自动改变法律或收费。请明确设置规划条件；保存情景不会改变当前预算，点击载入后才应用。每个情景保留保存时的船舶和台账，不表示发生概率或未来账单预测。" data-en="The three policy paths provide context; they do not change laws or fees. Set explicit planning assumptions. Saving does not change current budgets until Load. Each case retains its saved vessel and ledger; no probabilities or future-bill forecast are implied.">三种监管路径是讨论背景，不自动改变法律或收费。请明确设置规划条件；保存情景不会改变当前预算，点击载入后才应用。每个情景保留保存时的船舶和台账，不表示发生概率或未来账单预测。</span></p><form id="policyCaseForm"><div class="workflow-grid"><label class="workflow-field"><span data-zh="情景名称" data-en="Case name">情景名称</span><input name="caseName" type="text" maxlength="80" required value="Planning case" /></label><label class="workflow-field"><span data-zh="欧盟碳价（€/t）" data-en="EUA (€/t)">欧盟碳价（€/t）</span><input name="euaPrice" type="number" min="50" max="120" step="5" required value="80" /></label><label class="workflow-field"><span data-zh="英国碳价（£/t）" data-en="UKA (£/t)">英国碳价（£/t）</span><input name="ukPrice" type="number" min="0" max="1000" step="1" required value="60" /></label><label class="workflow-field"><span data-zh="FuelEU 目标条件" data-en="FuelEU target condition">FuelEU 目标条件</span><select name="targetCut"><option value="2">2% · 2025–2029</option><option value="6">6% · 2030 condition</option></select></label><label class="workflow-field"><span data-zh="组池报价（€/tCB）" data-en="Pool quote (€/tCB)">组池报价（€/tCB）</span><input name="poolPrice" type="number" min="0" max="10000" step="1" required value="180" /></label><label class="workflow-field"><span data-zh="可用组池盈余（tCB）" data-en="Available pool (tCB)">可用组池盈余（tCB）</span><input name="poolAvailable" type="number" min="0" max="10000" step="25" required value="400" /></label></div><button class="ghost-btn" type="submit"><span data-zh="保存规划情景（不应用）" data-en="Save Planning Case (Do Not Apply)">保存规划情景（不应用）</span></button></form><p id="policyCaseStatus" class="workflow-status" role="status"></p><div class="table-wrap"><table class="telemetry-table"><thead><tr><th><span data-zh="情景／船舶" data-en="Case / vessel">情景／船舶</span></th><th>EUR</th><th>GBP</th><th><span data-zh="新增航时" data-en="Extra hours">新增航时</span></th><th><span data-zh="操作" data-en="Actions">操作</span></th></tr></thead><tbody id="policyCaseBody"></tbody></table></div></div></section>
 
     <!-- ================================================================
          VIEW 5: CUSTOMER HELP AND PRODUCT SCOPE
@@ -645,17 +646,17 @@
         <p data-zh="MAREG 用于比较海事合规预算、燃料与航速情景以及示例合同分摊。当前是公开演示，无需登录，不代表核验、审批或法定申报。" data-en="MAREG compares maritime compliance budgets, fuel and speed scenarios, and illustrative contract allocations. This is a public demo without login, not verification, approval or statutory filing.">MAREG 用于比较海事合规预算、燃料与航速情景以及示例合同分摊。当前是公开演示，无需登录，不代表核验、审批或法定申报。</p>
         <div class="bento-grid-3">
         <div class="control-group"><strong data-zh="可以使用" data-en="Available now">可以使用</strong>
-        <p data-zh="分制度预算、方案比较、计算明细、中英文切换和 JSON 快照导出。" data-en="Budgets by regime, option comparisons, calculation traces, bilingual UI and JSON snapshot export.">分制度预算、方案比较、计算明细、中英文切换和 JSON 快照导出。</p>
+        <p data-zh="分制度预算、统一台账初步筛查、方案比较、保存恢复、报告导出和可配置的本地 AI 接口。" data-en="Budgets, preliminary unified-ledger screening, comparisons, save/restore, report export and configurable local AI integration.">分制度预算、统一台账初步筛查、方案比较、保存恢复、报告导出和可配置的本地 AI 接口。</p>
         </div>
         <div class="control-group"><strong data-zh="需要核实" data-en="Needs confirmation">需要核实</strong>
         <p data-zh="真实排放记录、法规适用范围、合同条款、燃料认证及组池供给。" data-en="Actual emissions records, legal scope, contract terms, fuel certification and pool supply.">真实排放记录、法规适用范围、合同条款、燃料认证及组池供给。</p>
         </div>
         <div class="control-group"><strong data-zh="尚未提供" data-en="Not available">尚未提供</strong>
-        <p data-zh="真实数据导入、客户账户、AI 服务、自动申报及外部核验；请勿将演示当作已上线的正式服务。" data-en="Real-data import, customer accounts, AI services, automated filing and external verification. The demo does not establish an operational service.">真实数据导入、客户账户、AI 服务、自动申报及外部核验；请勿将演示当作已上线的正式服务。</p>
+        <p data-zh="客户账户、云端隔离、实时法规检索、自动申报及外部核验尚未提供。AI 默认未连接，导入不代表已核验；演示不等于正式服务。" data-en="No customer accounts, cloud isolation, live legal retrieval, automated filing or external verification. AI is disconnected by default; imported data is unverified. This is not an operational service.">客户账户、云端隔离、实时法规检索、自动申报及外部核验尚未提供。AI 默认未连接，导入不代表已核验；演示不等于正式服务。</p>
         </div>
         </div>
         </div>
-        </section>
+        <div class="panel-card" id="liveAiPanel"><div class="panel-header"><h2 class="panel-title"><span data-zh="有来源约束的 AI 解释" data-en="Source-Constrained AI Explanation">有来源约束的 AI 解释</span></h2></div><p class="model-note"><span data-zh="默认未连接。公开网页不保存 API 密钥；须先运行并配置本地后端。AI 仅解释已计算结果和已有参考资料，不检索实时法规、不代替核验，也不更改预算。" data-en="Disconnected by default. API keys are never stored in this page; configure and run the local backend first. AI explains computed results and supplied references; it does not retrieve live laws, verify compliance or change budgets.">默认未连接。公开网页不保存 API 密钥；须先运行并配置本地后端。AI 仅解释已计算结果和已有参考资料，不检索实时法规、不代替核验，也不更改预算。</span></p><label class="workflow-field"><span data-zh="后端服务地址（不要填写密钥）" data-en="Backend URL (never enter an API key)">后端服务地址（不要填写密钥）</span><input id="aiServiceUrl" type="url" placeholder="http://127.0.0.1:48185" /></label><button type="button" class="ghost-btn" id="connectAiBtn"><span data-zh="检查连接" data-en="Check Connection">检查连接</span></button><p id="aiServiceStatus" class="workflow-status" role="status"></p><form id="aiExplainForm"><label class="workflow-field"><span data-zh="询问当前成本、情景或需要核对的条件" data-en="Ask about current costs, scenarios or review conditions">询问当前成本、情景或需要核对的条件</span><textarea id="aiQuestion" maxlength="2000" rows="4" required></textarea></label><label class="planning-check"><input id="aiSendConsent" type="checkbox" /><span data-zh="我同意将当前计算摘要、问题与参考资料交给指定服务；不发送原始 CSV。" data-en="I consent to send the calculation summary, question and references to this service; raw CSV is excluded.">我同意将当前计算摘要、问题与参考资料交给指定服务；不发送原始 CSV。</span></label><button type="submit" class="ghost-btn" id="askAiBtn" disabled><span data-zh="请求 AI 解释" data-en="Request AI Explanation">请求 AI 解释</span></button></form><p id="aiAnswerStale" class="model-note" role="status"></p><div id="liveAiAnswer" class="workflow-status"></div><ul id="liveAiSources" class="workflow-sources"></ul><p class="model-note"><span data-zh="AI 可能出错。核对引用、日期、适用范围与所有重大决策；未引用的结论不能视作法规事实。" data-en="AI can be wrong. Check citations, dates, scope and material decisions; uncited claims are not established regulatory facts.">AI 可能出错。核对引用、日期、适用范围与所有重大决策；未引用的结论不能视作法规事实。</span></p></div></section>
   </main>
 
   <aside id="mobileBudget" class="mobile-budget" aria-labelledby="mobileBudgetTitle" hidden>
@@ -682,7 +683,7 @@
   <!-- Minimalist Footer Disclaimer -->
   <footer class="footer-bar">
     <span data-i18n="boundaryDesc">本系统为概念决策辅助原型，不替代授权核验方（Verifier）或海事律师意见；EUR 与 GBP 严格分列，不混加未授权汇率。</span>
-    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.1" data-zh="MAREG v4.3.1 · 更新记录" data-en="MAREG v4.3.1 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.3.1 · 更新记录</a>
+    <a class="mono" href="https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.1" data-zh="MAREG v4.4.0 · 更新记录" data-en="MAREG v4.4.0 · Release Notes" target="_blank" rel="noopener noreferrer">MAREG v4.4.0 · 更新记录</a>
   </footer>
 
   <!-- Audit Log Modal -->
@@ -695,12 +696,13 @@
         </div>
         <button type="button" id="downloadSnapshotBtn" class="ghost-btn"><span data-zh="导出 JSON" data-en="Export JSON">导出 JSON</span></button><button type="button" id="closeAuditModalBtn" class="ghost-btn" aria-label="Close" autofocus>✕</button>
       </div>
-      <div id="auditSnapshotContent" class="control-group mono snapshot-copy"></div>
+      <section class="workspace-controls"><h3><span data-zh="保存、恢复与决策报告" data-en="Save, Restore &amp; Decision Report">保存、恢复与决策报告</span></h3><p class="model-note"><span data-zh="只保存已应用输入。记录仅在本机浏览器保存，不是云端账户、加密存储或团队共享；敏感资料请自行管理。" data-en="Applied inputs only. Records stay in this browser, not a cloud account, encrypted storage or team sharing. Manage sensitive data appropriately.">只保存已应用输入。记录仅在本机浏览器保存，不是云端账户、加密存储或团队共享；敏感资料请自行管理。</span></p><label class="workflow-field"><span data-zh="分析名称" data-en="Analysis name">分析名称</span><input id="analysisName" type="text" maxlength="80" value="MAREG analysis" /></label><div class="workflow-actions"><button type="button" class="ghost-btn" id="saveAnalysisBtn"><span data-zh="保存到本机" data-en="Save Locally">保存到本机</span></button><button type="button" class="ghost-btn" id="downloadWorkspaceBtn"><span data-zh="导出可恢复工作区" data-en="Export Restorable Workspace">导出可恢复工作区</span></button><button type="button" class="ghost-btn" id="downloadReportBtn"><span data-zh="导出可读报告（可打印 PDF）" data-en="Export Readable Report (Print to PDF)">导出可读报告（可打印 PDF）</span></button></div><label class="workflow-field"><span data-zh="已保存分析" data-en="Saved analyses">已保存分析</span><select id="savedAnalysisList"></select></label><p id="savedAnalysisCount" class="model-note"></p><div class="workflow-actions"><button type="button" class="ghost-btn" id="restoreAnalysisBtn"><span data-zh="恢复选中分析" data-en="Restore Selected">恢复选中分析</span></button><button type="button" class="ghost-btn" id="deleteAnalysisBtn"><span data-zh="删除选中本机记录" data-en="Delete Selected Local Record">删除选中本机记录</span></button></div><label class="workflow-field"><span data-zh="恢复工作区 JSON（最大 2 MB）" data-en="Restore Workspace JSON (max 2 MB)">恢复工作区 JSON（最大 2 MB）</span><input id="restoreWorkspaceFile" type="file" accept=".json,application/json" /></label><p class="model-note"><span data-zh="旧“计算快照”只记录结果，不是可恢复工作区。恢复后按当前同版本公式重新计算，不信任文件内的结果。" data-en="Old calculation snapshots are records, not restorable workspaces. Restoration recalculates from inputs rather than trusting file outputs.">旧“计算快照”只记录结果，不是可恢复工作区。恢复后按当前同版本公式重新计算，不信任文件内的结果。</span></p><p id="workspaceStatus" class="workflow-status" role="status"></p></section>
+<div id="auditSnapshotContent" class="control-group mono snapshot-copy"></div>
     </div>
   </dialog>
 
   <script src="vendor/leaflet/leaflet.js" crossorigin=""></script>
-  <script src="js/data-and-i18n.js?v=4.3.1"></script>
-  <script type="module" src="js/app.js?v=4.3.1"></script>
+  <script src="js/data-and-i18n.js?v=4.4.0"></script>
+  <script type="module" src="js/app.js?v=4.4.0"></script>
 </body>
 </html>

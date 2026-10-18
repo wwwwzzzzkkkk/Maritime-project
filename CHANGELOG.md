@@ -1,5 +1,17 @@
 # Change log
 
+## v4.4.0 · 2026-10-18
+
+- Baseline: `light-v4.3.1-baseline-2026-10-18` (`c1de121`).
+- 本机显式保存／恢复、可恢复工作区 JSON、含六类方案／条件／公式／来源的独立 HTML 报告及浏览器打印入口。旧快照仍为只读证据。
+- Add validated local CSV ledger input and ordinary-2026 preliminary scope screening; derive energy, CO2, intensity and coverage-weighted distance from common fuel rows. Keep derived fields read-only; retained what-if/time estimates are not certified voyage predictions.
+- 编辑台账清空旧预览；恢复工作区同时恢复编辑区（含带逗号／引号来源）。无效文件及不支持范围不覆盖预算。
+- Add named explicit policy conditions with independent EUR/GBP comparisons and deliberate Load; preserve saved vessel/data and avoid invented global charges/probabilities.
+- 新增可配置本机 AI 接口，密钥仅服务端；同意后发送摘要，展示来源与回答过期提示。按用户决定默认未连接，只完成本地后端与接入；没有真实模型调用或公网部署验收。
+- Correct workspace validation to accept the existing pool request/supply range up to 10000 tCB, rather than incorrectly rejecting legitimate requests above 400. Default values/ranges remain unchanged.
+- Protected engine/shared-data/Pro Max bytes, six benchmark amounts, glass/motion design, currency separation and all material limitations remain unchanged. No CSV-to-regulator filing or full certified-fuel calculation is claimed.
+- [操作说明 / Workflows](docs/WORKFLOWS.md) · [发布说明 / Release notes](docs/releases/v4.4.0.md) · [验收 / Evidence](docs/verification/v4.4.0/README.md)
+
 ## v4.3.1 · 2026-10-18
 
 - Baseline: `light-v4.3.0-baseline-2026-10-18` (`04c4dc5`). This release follows v4.3.0.

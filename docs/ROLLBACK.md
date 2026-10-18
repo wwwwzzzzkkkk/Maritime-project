@@ -53,3 +53,10 @@ Baseline `light-v4.2.1-baseline-2026-10-16` pins `cdec884`. Pure CSS consolidati
 Baseline `light-v4.3.0-baseline-2026-10-18` pins `04c4dc5`, the published v4.3.0 before input simplification. This is a direct v4.3.0 → v4.3.1 update. Keep this baseline and the immutable release tag. To roll back, create a new revert or targeted restoration commit from the baseline; retain later unrelated changes and do not force-push or move historical tags.
 
 按既有顺序先发布已验收的实现提交、v4.3.1 标签和 GitHub Release，再以单独提交激活页脚 Release 链接。五个受保护文件保持不变，转换仅在界面适配层实现。恢复时一并恢复输入适配模块、界面、版本与缓存引用，并给恢复发布记录版本。
+
+
+## v4.4.0 · 2026-10-18
+
+`light-v4.3.1-baseline-2026-10-18` pins `c1de121` before workspace/ledger/planning/local-AI changes. Keep the immutable baseline and v4.4.0 Release tag. Revert with a new commit or restore affected files from that baseline, retaining unrelated later work; never force-push or move published tags. New modules, server template, docs and their cache references must be restored together.
+
+本机保存记录属于浏览器数据，不随 Git 回退删除。回退前导出工作区及只读快照；旧版本不支持新工作区恢复时保留文件，不能把计算结果当作授权文件。不要将本机密钥文件加入恢复提交。先创建标签与 Release，再用单独提交激活页脚链接。

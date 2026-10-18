@@ -1,0 +1,38 @@
+
+> mareg-light-edition@4.4.0 test
+> node --test tests/*.test.mjs
+
+✔ unconfigured local AI service reports disabled without contacting a provider (66.894042ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (23.553083ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (23.767667ms)
+✔ one fuel ledger derives scoped energy, CO2, intensity and distance for the unchanged engine (5.409667ms)
+✔ scope screening distinguishes 5000 GT, UK commencement, special calls and Norway/Iceland review (4.089583ms)
+✔ CSV import supports BOM, CRLF and quoted commas; rejects missing factors, duplicate IDs and invalid dates (1.575917ms)
+✔ workspaces preserve calculation inputs and recompute values rather than trusting outputs (10.657834ms)
+✔ standalone report escapes imported text, separates currencies and retains formula/disclaimer evidence (44.284375ms)
+✔ explicit planning cases change conditional costs without changing regional law or base inputs (0.345209ms)
+✔ A3 subtotals and single-period FuelEU examples reproduce the benchmark (3.413125ms)
+✔ surplus vessel has no penalty, fictitious savings or unnecessary pooling purchase (0.514791ms)
+✔ same-price baseline follows market inputs without changing physical emissions (1.056083ms)
+✔ pooling is capped by available surplus and leaves the correct residual penalty (0.226167ms)
+✔ pure pooling changes costs without changing the vessel physical estimate (0.278791ms)
+✔ repeated deficits escalate, while surplus never becomes a penalty (0.375417ms)
+✔ all supported vessels, years and sensitivity prices obey accounting identities (5.316833ms)
+✔ speed affects sailing energy and sailing legs, with port activity held constant (1.719ms)
+✔ client and venture economics keep negative cases visible (2.296417ms)
+✔ 4000 VLSFO-equivalent tonnes and 164000000 MJ convert in both directions (1.072833ms)
+✔ conversion covers zero, original energy limits, and fractional equivalent tonnes (0.211042ms)
+✔ converted energy reproduces real engine benchmarks without engine edits (3.147125ms)
+✔ extra time, auxiliary energy/emissions and party amounts reconcile independently (1.386ms)
+✔ zero delay and fuel allowance exclude slower/blended candidates; current violation stays visible (5.067417ms)
+✔ uncertain supply cannot displace a user-confirmed candidate (3.268833ms)
+✔ expensive pooling stays unpurchased and positive-balance vessel is not sold fictitious savings (1.889917ms)
+✔ an exact non-grid fuel limit is considered; objective remains scoped EUR with separate UK ledger (2.842334ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 408.209375

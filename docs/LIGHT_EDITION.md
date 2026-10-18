@@ -1,4 +1,4 @@
-# Light edition v4.2: methods and evidence
+# Light edition v4.4.0: methods and evidence
 
 ## Architecture and scope
 
@@ -27,7 +27,7 @@ Implemented: deterministic comparison, current-state formulas, official source l
 
 Simulation/planning: source data, fuel/speed parameters, pooling supply, editable contract splits, static explanations, venture financial assumptions, customer-validation and ESG plans.
 
-Not implemented: real-data import, complete three-gas ETS, AI/RAG, live policy updates, multi-tenant backend, external verification, human approval or filing. Exported snapshots explicitly state that verification and approval were not performed.
+v4.4.0 adds local CSV import, workspace restore, readable reports and an optional loopback AI backend (disconnected by default). Not implemented: complete three-gas ETS, live RAG/policy updates, multi-tenant backend, external verification, expert approval or filing. Exported snapshots explicitly state that verification and approval were not performed.
 
 The course map uses the available cached Chinese Group Venture Project Brief, not a verified latest NTULearn notice. Its five written-rubric weights guide evidence coverage; the website does not replace the written report or establish a grade.
 
@@ -75,3 +75,14 @@ Change rings map absolute signed changes to a ±30% full scale, with saturation 
 ## UI v4.3.0
 
 The light-4.2.0 calculation engine is unchanged. This stage changes text readability, CSS organization and interaction scheduling only. New text-specific colors preserve the original decorative accent. Pointer work uses the actual target/ancestor chain and one animation frame; input events use scheduleRender. Reading-region flattening is local, not a whole-card or global tilt removal. Popup content is bound lazily and refreshed while open. No clean mode, localStorage style setting, high-contrast automatic mode, performance budget or performance comparison is supplied. User cancellation decisions and actual Chrome-only evidence are documented in QA and verification.
+
+
+## v4.4.0 analysis workflows
+
+The five protected files and engine outputs remain unchanged. Default inputs remain independent demo data; an explicitly applied ordinary 2026 ledger derives FuelEU energy/intensity and ETS CO2 from common fuel rows. Import values are user-supplied and unverified, never a final compliance determination. GT threshold differences, UK commencement and special-case/EEA review are explicit. The existing what-if coefficients remain simplified, and coverage-weighted distance/time is not verified voyage timing.
+
+Only supported ordinary cargo/passenger ledgers with GT>5000, positive factors, supported EU energy/distance and a declared 2026 period load into the estimator. Other cases remain screening-only. Derived energy, intensity and distance cannot be independently edited while a ledger is active.
+
+Workspaces preserve applied inputs, user confirmations, ledgers and planning cases; importing recalculates outputs. Browser-local storage is explicit, bounded and not encrypted/cloud storage. Readable reports include six option families, conditions, formulas and dated sources. Named policy conditions save without changing the active budget; explicit Load restores their data/assumptions. No global fees or probabilities are invented.
+
+The AI client and loopback backend are implemented; deployment defaults to disconnected. Only summaries and questions are sent after consent. Sources remain dated bundled references, not live retrieval. No actual model call was verified; unit/browser provider responses are explicitly simulated. The user selected completion of the connection/local-backend work pending their later configuration. See [workflows](WORKFLOWS.md) and [AI setup](AI_SETUP.md).

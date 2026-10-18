@@ -141,3 +141,42 @@ git diff --exit-code light-v4.3.0-baseline-2026-10-18 -- js/compliance-engine.mj
 - 12 处默认页 CSS/JS 引用及模块导入统一为 `?v=4.3.1`，位置清单见验收目录。受保护源码保持不变。
 
 [真实输出、快照、基准表和断言](verification/v4.3.1/README.md) · [截图](previews/v4.3.1/README.md) · [发布说明](releases/v4.3.1.md)。人工确认：答辩设备上的输入体验，以及实际供给、报价、能源与法律适用边界。
+
+
+## v4.4.0 · Analysis workflows · 2026-10-18
+
+Baseline `light-v4.3.1-baseline-2026-10-18` (`c1de121`). **仅 Chrome**；不做性能或哈希。实现本机保存恢复／可读报告、统一 CSV 台账初筛、具名规划条件，以及按用户选择默认未连接的本机 AI 接口和后端。
+
+实际命令：
+
+```sh
+npm test
+node tests/workflow-ui.mjs
+node --test tests/analysis-workflow.test.mjs
+node --test --test-name-pattern='explicit planning' tests/analysis-workflow.test.mjs
+node --test tests/ai-service.test.mjs
+node tests/workflow-followup.mjs
+node --check js/ledger.mjs
+node --check js/analysis-state.mjs
+node --check js/workspace-ui.mjs
+node --check js/decision-report.mjs
+node --check js/ai-explain.mjs
+node --check js/planning-ui.mjs
+node --input-type=module --check < js/app.js
+node --check server/explain.mjs
+git diff --exit-code light-v4.3.1-baseline-2026-10-18 -- js/compliance-engine.mjs js/data-and-i18n.js js/app-pro-max.js index-pro-max.html styles/pro-max.css
+```
+
+- npm test 一次，26/26 通过；五文件 diff 一次 exit 0，空差异。默认快照除版本和时间外与 v4.3.1 深度相同，六项金额不变。
+- 浏览器首次启动等待 DOMContentLoaded 在 15 秒超时，尚未进行功能检查；改用 commit + 明确页面就绪等待后，下一次完整会话通过。保留首次日志。没有为此改产品逻辑。
+- 本机保存跨刷新恢复；工作区导入重算，错误格式不覆盖当前输入；报告可导出。统一台账从相同燃油行推导能源／CO₂／强度／覆盖加权距离，应用明确、派生字段只读。5000 GT 与缺因子等阻止载入，地图标示示意范围。
+- 保存规划条件不改预算，载入才改变；2030 目标条件与 EUA100 产生对应 €619346.72、€110000，GBP 独立。没有全局收费或发生概率。
+- AI 后端真实本机 health 为未配置；密钥不进入客户端。模型调用及浏览器回答使用明确模拟响应，验证 consent、引用、摘要不含原始 CSV/legs、输入变化回答过期。没有真实模型／公网 AI 调用验收。
+- 截图审查后修复台账草稿编辑时旧预览残留，并同步恢复编辑区；报告补充六类方案与条件，默认船名与网页一致。随后只运行报告/domain 六项与窄范围浏览器补查、刷新最终截图，未重复 npm 或完整浏览器套件。
+- 保存边界校验修正为支持既有最高 10000 tCB 请求／供给；一项针对 1000 请求的条件计算通过，默认不变。
+- AI 后端按完整字节缓冲解码 UTF-8，避免中文在网络分块处损坏；随后只补跑 3 项 AI 服务检查，均通过，含中文问题传递。
+- 中文／英文 × 1440／768／375 六图、报告截图均已生成，页面及输入无横向裁切；宽表保留内部滚动，浮窗保留拖动／收起。已查看六图总览和报告；打印机/PDF 分页未实际验证。
+- Pro Max 冒烟正常，无应用控制台／页面错误；其 CDN Leaflet 在测试中替换为未修改 vendor 文件，未验证 CDN 可达性。主页面无 pageerror。字体／底图拦截不代表真实离线，未做跨浏览器认证。
+- 资源引用与新增浏览器模块均统一 `?v=4.4.0`，位置清单见验收目录。关键规则初筛来源于 2026-10-18 阅读的官方页；AI 固定参考资料保留各自原核对日期，不宣称实时法规检索。
+
+[原始日志、断言、快照与基准表](verification/v4.4.0/README.md) · [截图](previews/v4.4.0/README.md) · [操作说明](WORKFLOWS.md) · [本机 AI 配置](AI_SETUP.md)。人工确认真实记录、年度完整性、认证因子、特别适用范围、供给及答辩设备打印表现。

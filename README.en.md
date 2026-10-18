@@ -1,6 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.3.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.3.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.4.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.4.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.4.0 · 分析工作流 / Analysis workflow:** 本机保存恢复、可恢复工作区、可打印决策报告；统一 CSV 台账与初步适用检查；具名规划情景、可配置本机 AI 接口（默认未连接）。原玻璃风格、五项快速输入和基准金额保留。
+> Local save/restore, printable reports, unified CSV ledger screening, named planning cases and configurable local AI integration (disconnected by default). Original glass design, five quick inputs and benchmarks remain. [操作说明 / Workflow guide](docs/WORKFLOWS.md) · [AI 配置 / AI setup](docs/AI_SETUP.md)
 
 > **v4.3.1 · 输入体验简化 / Simpler inputs:** 默认五个快速数值输入；等效吨与 MJ 双向换算，高级假设分组折叠，保留原字段。支持假设标签定位、四个演示预设、行内提示及统一确认；演示确认不代表真实核验。默认玻璃风格、计算引擎与基准金额不变。
 > Five quick numeric inputs with equivalent-tonne/MJ conversion, grouped advanced assumptions, linked assumption tags, four demo presets, inline errors and consolidated confirmation. Demo confirmation is not verification. Glass styling, engine and benchmark amounts are unchanged. [更新说明 / Release notes](docs/releases/v4.3.1.md)
@@ -89,7 +92,7 @@ EU/UK ETS currently calculate **CO₂ subtotals only**. Missing CH₄/N₂O is n
 - Illustrative scenario operating results are −€30,000 / −€5,000 / −€4,000, with break-even at 70 / 67 / 57 full-year equivalent clients; these do not guarantee survival.
 - Twelve interviews, three paid pilots, platform ESG and human-workload metrics are **validation plans**, not completed results. Coursework mapping uses the available cached Brief; current course notices still need confirmation.
 
-Explanations are templates. No live AI/RAG, expert-approval service, real-data import, backend or automated filing is implemented. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
+FAQs remain templates. Local CSV import and an optional loopback AI backend are implemented; the public page is disconnected by default. Live RAG, customer-account backend, expert approval and automated filing are not provided. Snapshots are not authorized source ledgers, human approvals or assurance. [Methods and official references](docs/LIGHT_EDITION.md)
 
 ## 6. Minimal checks and rollback
 
