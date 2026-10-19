@@ -1,0 +1,1 @@
+PASS: four panels and nested controls flat; pointer glints and other KPI tilt retained; charter interaction and six benchmarks unchanged; 1440/375 layouts and Pro Max smoke passed.

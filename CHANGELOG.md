@@ -1,5 +1,13 @@
 # Change log
 
+## v4.5.2 · 2026-10-19
+
+- Baseline: light-v4.5.1-baseline-2026-10-19 (2ff062d).
+- 按用户要求取消MAREG助手、租约碳成本分摊与方案对比、官方来源与模型说明、规划条件与成本比较四个板块及其内部控件的3D指针倾斜／空间视差。
+- Keep the four work/read panels flat while retaining glass, glints, hover shadows, entry effects and tilt on other cards. Existing flat quick/simulation controls and the draggable budget remain.
+- 两个容器新增稳定ID，扩展已有倾斜例外；计算、CSS材质、后端和五个受保护文件不变。UI／缓存／快照／报告4.5.2，AI知识4.5.1。
+- [Release](docs/releases/v4.5.2.md) · [真实验收 / Evidence](docs/verification/v4.5.2/README.md)
+
 ## v4.5.1 · 2026-10-19
 
 - Baseline: light-v4.5.0-baseline-2026-10-19 (f4563ed).

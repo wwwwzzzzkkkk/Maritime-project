@@ -1,6 +1,6 @@
-import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.5.1';
-import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.5.1';
-import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.5.1';
+import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.5.2';
+import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.5.2';
+import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.5.2';
 const KEY='mareg.saved-analyses.v1';
 export function createWorkspaceUi({capture,restore,applyLedger,clearLedger}) {
   let lang='zh',cases=[];

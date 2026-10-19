@@ -1,4 +1,4 @@
-import { ASSUMPTIONS } from './compliance-engine.mjs?v=4.5.1';
+import { ASSUMPTIONS } from './compliance-engine.mjs?v=4.5.2';
 
 // VLSFO-equivalent display conversion; canonical energy remains euEnergyMJ.
 export const tonnesToMJ = tonnes => tonnes * ASSUMPTIONS.vlsfoMJPerTonne;

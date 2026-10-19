@@ -215,3 +215,13 @@ node tests/ai-knowledge-ui.mjs首次在测试的浮点尾数硬比较失败，�
 Cloudflare部署知识模块成功，Worker版本a96fe2ac-2949-4843-b019-794cc6a1d4d4；网站目录外的两个Secret不进入Git。第一次线上真实200、知识版本4.5.1，显示162字；发现一句足额／不足混淆，补强规则并清理标点前空格，仅追加格式3/3和知识1/1定向检查，未重跑npm或完整UI。首次浮窗收起选择器没命中，实际仍展开，已纠正截图说明。最终Worker版本3db13b7c-076a-41e5-893e-46234f5eba57。修正提交1eb91f4部署后真实定向复核通过：HTTP200、knowledge4.5.1、两句话、网页118字，足额覆盖的措辞正确，原始引用标记和中文标点前空格不显示；€88,000未变、无pageerror。共两次真实调用（原始问题发现＋修正后复核），不为截图重复调用；最终手机截图已查看，实际使用原按钮收起预算浮窗。回答质量不是全面认证。无训练／持续记忆／实时法律检索；知识维护日期与来源核对日期分开。
 
 [实际命令、异常、基准和截图](verification/v4.5.1/README.md) · [双语项目知识与回答规范](AI_KNOWLEDGE.md)。页脚Release链接将在标签与Release创建后独立提交激活。
+
+## v4.5.2 · Four flat work/read panels · 2026-10-19
+
+Baseline light-v4.5.1-baseline-2026-10-19 (2ff062d)。**仅Chrome**。用户明确要求的四个板块及嵌套控件不再指针倾斜／空间视差；保留玻璃、高光、阴影、入场动效、其他卡片倾斜和既有平面例外。CSS材质、计算和AI后端未改。
+
+npm test一次33/33通过；js/app.js模块语法检查与git diff --check通过。五个受保护文件git diff --exit-code一次exit0，空差异。一次定向Chrome会话验证四板块标题／正文／内部控件rx和ry均0deg，px/py/tz/lift均0、无is-tilting，高光坐标继续更新。非目标KPI仍倾斜（3.02deg / −4.51deg）；租约按钮与六项基准金额不变，NYPE18%交互正常。1440/375无页面横向裁切、无pageerror；两张代表性截图已查看。Pro Max冒烟通过，Leaflet CDN用vendor替换，未验证CDN或跨浏览器。
+
+没有AI实调、Worker部署、性能测试、哈希或重复广泛检查。UI／缓存／快照／报告为4.5.2，AI知识仍4.5.1。页脚链接在Release创建后单独启用。
+
+[真实命令、输出、悬停数据、基准与截图](verification/v4.5.2/README.md)。

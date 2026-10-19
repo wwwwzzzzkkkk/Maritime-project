@@ -1,0 +1,38 @@
+import{chromium}from'playwright';import assert from'node:assert/strict';import{writeFile}from'node:fs/promises';import{execFileSync}from'node:child_process';
+import * as engine from '../../js/compliance-engine.mjs';import{vessels}from'../../js/light-data.mjs';
+const base='http://127.0.0.1:48184',out='docs/verification/v4.5.2';
+const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+try{
+ const context=await browser.newContext({viewport:{width:1440,height:1000}});await context.route('**/*',r=>r.request().url().startsWith(base+'/')?r.continue():r.abort());
+ const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base,{waitUntil:'commit',timeout:60000});await page.waitForSelector('#optionCompareBody tr',{state:'attached',timeout:60000});
+ const targets=[
+  {id:'liveAiPanel',tab:'tab-ai-esg',inside:'#aiQuestion'},
+  {id:'charterAllocationPanel',tab:'tab-sandbox',inside:'.control-group'},
+  {id:'officialSourcesPanel',tab:'tab-audit',inside:'#aiFeedContainer'},
+  {id:'policyPlanningPanel',tab:'tab-scenarios',inside:'#policyCaseForm input'}
+ ],measurements=[];
+ async function hover(target,panel){
+  await target.evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));await page.waitForTimeout(120);
+  const box=await target.boundingBox();assert.ok(box);await page.mouse.move(box.x+Math.min(box.width*.2,50),box.y+Math.min(box.height*.35,18));await page.waitForTimeout(120);
+  const values=await panel.evaluate(e=>({rx:getComputedStyle(e).getPropertyValue('--rx'),ry:getComputedStyle(e).getPropertyValue('--ry'),px:getComputedStyle(e).getPropertyValue('--px'),py:getComputedStyle(e).getPropertyValue('--py'),tz:getComputedStyle(e).getPropertyValue('--tz'),lift:getComputedStyle(e).getPropertyValue('--lift-y'),tilting:e.classList.contains('is-tilting'),mouseX:e.style.getPropertyValue('--mouse-x'),mouseY:e.style.getPropertyValue('--mouse-y')}));
+  for(const key of['rx','ry','px','py','tz','lift'])assert.equal(parseFloat(values[key]),0,panel.toString()+' '+key);
+  assert.equal(values.tilting,false);assert.ok(values.mouseX&&values.mouseY);return values;
+ }
+ for(const item of targets){
+  await page.locator('[data-tab="'+item.tab+'"]').click();const panel=page.locator('#'+item.id);
+  const header=await hover(panel.locator('.panel-header').first(),panel);
+  if(item.id==='officialSourcesPanel')await panel.locator('details').evaluate(e=>e.open=true);
+  const inside=panel.locator(item.inside).first();const inner=await hover(inside,panel);
+  const activeCards=await inside.evaluate(e=>{const a=[];for(let c=e.closest('.kpi-card,.panel-card,.control-group,.gauge-card');c;c=c.parentElement.closest('.kpi-card,.panel-card,.control-group,.gauge-card'))a.push({id:c.id,tilting:c.classList.contains('is-tilting'),rx:getComputedStyle(c).getPropertyValue('--rx'),ry:getComputedStyle(c).getPropertyValue('--ry')});return a;});
+  for(const card of activeCards){assert.equal(card.tilting,false);assert.equal(parseFloat(card.rx),0);assert.equal(parseFloat(card.ry),0);}
+  measurements.push({id:item.id,header,inner,activeCards});
+ }
+ await page.locator('[data-tab="tab-cockpit"]').click();const kpi=page.locator('.kpi-card').first();await kpi.evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));let box=await kpi.boundingBox();await page.mouse.move(box.x+box.width*.2,box.y+box.height*.3);await page.waitForTimeout(150);
+ const other=await kpi.evaluate(e=>({tilting:e.classList.contains('is-tilting'),rx:e.style.getPropertyValue('--rx'),ry:e.style.getPropertyValue('--ry')}));assert.equal(other.tilting,true);assert.ok(Math.abs(parseFloat(other.rx))+Math.abs(parseFloat(other.ry))>0);
+ await page.locator('[data-tab="tab-sandbox"]').click();await page.locator('[data-charter="time_nype_bimco"]').click();assert.match(await page.locator('#ownerSplitLabel').textContent(),/18%/);assert.equal(await page.locator('#kpiEuEtsVal').textContent(),'€88,000');await page.locator('[data-charter="voyage_gencon"]').click();
+ const screens=[];for(const [tab,id]of[['tab-sandbox','charterAllocationPanel'],['tab-ai-esg','liveAiPanel']]){await page.locator('[data-tab="'+tab+'"]').click();for(const width of[1440,375]){await page.setViewportSize({width,height:1000});await page.locator('#'+id).scrollIntoViewIfNeeded();await page.mouse.move(0,0);await page.waitForTimeout(600);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));const path=out+'/'+id+'-'+width+'.png';await page.screenshot({path,fullPage:true});screens.push(path);}}
+ const pro=await context.newPage(),proErrors=[];pro.on('pageerror',e=>proErrors.push(e.message));await context.route('**/leaflet.js',r=>r.fulfill({path:'vendor/leaflet/leaflet.js',contentType:'text/javascript'}));await context.route('**/leaflet.css',r=>r.fulfill({path:'vendor/leaflet/leaflet.css',contentType:'text/css'}));await pro.goto(base+'/index-pro-max.html',{waitUntil:'commit'});await pro.waitForTimeout(1500);assert.ok(await pro.locator('body').innerText());assert.deepEqual(proErrors,[]);assert.deepEqual(errors,[]);
+ const baseline='light-v4.5.1-baseline-2026-10-19',old=await import('data:text/javascript;base64,'+Buffer.from(execFileSync('git',['show',baseline+':js/compliance-engine.mjs'])).toString('base64'));
+ const values=x=>{const m=x.computeScenario(vessels[0],x.defaultSettings());return{eu:m.euEts,uk:m.ukEts,fuel:m.fuelEu,fuel6:x.computeScenario(vessels[0],{...x.defaultSettings(),year:2030}).fuelEu,owner:m.ownerEur,charterer:m.chartererEur};};const before=values(old),after=values(engine);assert.deepEqual(after,before);
+ await writeFile(out+'/check.json',JSON.stringify({baseline,measurements,otherCard:other,charterInteraction:true,pageErrors:errors,benchmarks:{before,after},proMax:{loaded:true,pageErrors:proErrors,leafletReplacedWithVendor:true},screens},null,2)+'\n');console.log('PASS: four panels and nested controls flat; pointer glints and other KPI tilt retained; charter interaction and six benchmarks unchanged; 1440/375 layouts and Pro Max smoke passed.');
+}finally{await browser.close();}

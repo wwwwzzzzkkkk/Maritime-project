@@ -1,6 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.5.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.5.2** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.2) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.5.2 · 四个操作／阅读板块保持平面 / Flat work panels:** MAREG 助手、租约碳成本分摊与方案对比、官方来源与模型说明、规划条件与成本比较及内部控件取消3D指针倾斜；保留玻璃、高光、其他卡片动效和计算。
+> Remove pointer tilt/parallax only from the assistant, charter allocation, official sources and planning-condition panels, including nested controls. Glass, glints, other motion and calculations remain. [更新说明 / Release notes](docs/releases/v4.5.2.md)
 
 > **v4.5.1 · MAREG 助手 / Assistant:** 后端加入项目知识与简短回答规范；AI 入口前置，设置、来源及使用帮助按需展开。回答按段落／步骤显示，去除裸露 Markdown、HTML 和引用代码，保留来源及金额单位。
 > Versioned project knowledge and concise response rules; a question-first AI panel with expandable settings, references and help. Safe paragraph/list display hides raw formatting while keeping citations and units. [知识说明 / Knowledge](docs/AI_KNOWLEDGE.md) · [验收 / Evidence](docs/verification/v4.5.1/README.md)

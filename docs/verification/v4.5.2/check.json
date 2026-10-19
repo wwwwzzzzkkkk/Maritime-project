@@ -1,0 +1,179 @@
+{
+  "baseline": "light-v4.5.1-baseline-2026-10-19",
+  "measurements": [
+    {
+      "id": "liveAiPanel",
+      "header": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "40.25px"
+      },
+      "inner": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "219.25px"
+      },
+      "activeCards": [
+        {
+          "id": "liveAiPanel",
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg"
+        }
+      ]
+    },
+    {
+      "id": "charterAllocationPanel",
+      "header": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "40.046875px"
+      },
+      "inner": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "175.046875px"
+      },
+      "activeCards": [
+        {
+          "id": "",
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg"
+        },
+        {
+          "id": "charterAllocationPanel",
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg"
+        }
+      ]
+    },
+    {
+      "id": "officialSourcesPanel",
+      "header": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "72.9844970703125px",
+        "mouseY": "36.605224609375px"
+      },
+      "inner": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "185.640625px"
+      },
+      "activeCards": [
+        {
+          "id": "officialSourcesPanel",
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg"
+        }
+      ]
+    },
+    {
+      "id": "policyPlanningPanel",
+      "header": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73.30977630615234px",
+        "mouseY": "35.93994140625px"
+      },
+      "inner": {
+        "rx": "0deg",
+        "ry": "0deg",
+        "px": "0px",
+        "py": "0px",
+        "tz": "0px",
+        "lift": "0px",
+        "tilting": false,
+        "mouseX": "73px",
+        "mouseY": "195.40625px"
+      },
+      "activeCards": [
+        {
+          "id": "policyPlanningPanel",
+          "tilting": false,
+          "rx": "0deg",
+          "ry": "0deg"
+        }
+      ]
+    }
+  ],
+  "otherCard": {
+    "tilting": true,
+    "rx": "3.02deg",
+    "ry": "-4.51deg"
+  },
+  "charterInteraction": true,
+  "pageErrors": [],
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "leafletReplacedWithVendor": true
+  },
+  "screens": [
+    "docs/verification/v4.5.2/charterAllocationPanel-1440.png",
+    "docs/verification/v4.5.2/charterAllocationPanel-375.png",
+    "docs/verification/v4.5.2/liveAiPanel-1440.png",
+    "docs/verification/v4.5.2/liveAiPanel-375.png"
+  ]
+}

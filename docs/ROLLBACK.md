@@ -81,3 +81,10 @@ Baseline `light-v4.3.0-baseline-2026-10-18` pins `04c4dc5`, the published v4.3.0
 Baseline light-v4.5.0-baseline-2026-10-19 pins f4563ed, including the prior published footer. Restore with a new commit; never move historical tags or rewrite public history. Restore the UI, answer presenter, shared AI handler/knowledge, Worker module rules and version/cache references together. UI/report/snapshot version is4.5.1; engine remains light-4.2.0.
 
 Initial Worker version a96fe2ac-2949-4843-b019-794cc6a1d4d4 deploys the knowledge update; final version 3db13b7c-076a-41e5-893e-46234f5eba57 tightens the observed pooling wording. A GitHub Pages rollback does not revert the Worker or revoke secrets. Redeploy sources from the intended checkpoint with private secrets separately. Do not place secrets into rollback commits. Create the Release before the separate footer activation commit.
+
+
+## v4.5.2 · 2026-10-19
+
+Baseline light-v4.5.1-baseline-2026-10-19 pins 2ff062d before four-panel tilt removal. This patch changes only the light page's panel IDs, existing tilt exclusion, version/cache metadata and documentation. Restore these from the baseline using a new commit, retaining later unrelated work. Never force-push or move published tags, including v4.4.1.
+
+No Worker deployment or AI-secret change is part of this patch. Keep the v4.5.1 knowledge/backend configuration. Create the v4.5.2 tag and Release before the separate footer-link activation commit.

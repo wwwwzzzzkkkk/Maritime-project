@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.5.1，2026-10-19 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.5.2，2026-10-19 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.5.1, documented on 19 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.5.2, documented on 19 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 

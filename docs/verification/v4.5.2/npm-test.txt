@@ -1,0 +1,45 @@
+
+> mareg-light-edition@4.5.2 test
+> node --test tests/*.test.mjs
+
+✔ AI display turns common Markdown/HTML wrappers into paragraphs and real step lists (11.160583ms)
+✔ formatting preserves monetary signs, units and legitimate comparison symbols (4.421375ms)
+✔ untrusted model HTML becomes text content, while official reference markers stay out of answer copy (3.209583ms)
+✔ unconfigured local AI service reports disabled without contacting a provider (71.324834ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (31.009458ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (30.143459ms)
+✔ DeepSeek uses the documented Flash model/chat endpoint and returns only final cited text (mock provider) (17.604584ms)
+✔ DeepSeek never falls back to another provider when its key is missing (14.904541ms)
+✔ public Worker requires a classroom code before provider calls and supports the browser preflight (mock provider) (2.98225ms)
+✔ both AI adapters receive project knowledge and sanitized current values, not a fixed default scenario (7.451125ms)
+✔ one fuel ledger derives scoped energy, CO2, intensity and distance for the unchanged engine (14.872042ms)
+✔ scope screening distinguishes 5000 GT, UK commencement, special calls and Norway/Iceland review (7.727458ms)
+✔ CSV import supports BOM, CRLF and quoted commas; rejects missing factors, duplicate IDs and invalid dates (4.617959ms)
+✔ workspaces preserve calculation inputs and recompute values rather than trusting outputs (16.138041ms)
+✔ standalone report escapes imported text, separates currencies and retains formula/disclaimer evidence (59.710084ms)
+✔ explicit planning cases change conditional costs without changing regional law or base inputs (0.455375ms)
+✔ A3 subtotals and single-period FuelEU examples reproduce the benchmark (4.654542ms)
+✔ surplus vessel has no penalty, fictitious savings or unnecessary pooling purchase (1.2715ms)
+✔ same-price baseline follows market inputs without changing physical emissions (2.023666ms)
+✔ pooling is capped by available surplus and leaves the correct residual penalty (0.419792ms)
+✔ pure pooling changes costs without changing the vessel physical estimate (0.207458ms)
+✔ repeated deficits escalate, while surplus never becomes a penalty (1.511375ms)
+✔ all supported vessels, years and sensitivity prices obey accounting identities (11.856792ms)
+✔ speed affects sailing energy and sailing legs, with port activity held constant (0.20825ms)
+✔ client and venture economics keep negative cases visible (2.517917ms)
+✔ 4000 VLSFO-equivalent tonnes and 164000000 MJ convert in both directions (1.506459ms)
+✔ conversion covers zero, original energy limits, and fractional equivalent tonnes (0.205417ms)
+✔ converted energy reproduces real engine benchmarks without engine edits (10.241167ms)
+✔ extra time, auxiliary energy/emissions and party amounts reconcile independently (4.028833ms)
+✔ zero delay and fuel allowance exclude slower/blended candidates; current violation stays visible (8.706041ms)
+✔ uncertain supply cannot displace a user-confirmed candidate (4.628125ms)
+✔ expensive pooling stays unpurchased and positive-balance vessel is not sold fictitious savings (2.67725ms)
+✔ an exact non-grid fuel limit is considered; objective remains scoped EUR with separate UK ledger (2.790708ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 559.003459

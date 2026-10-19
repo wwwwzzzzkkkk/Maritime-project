@@ -1,8 +1,8 @@
 # DeepSeek AI 配置与课堂使用 / DeepSeek AI & Classroom Setup
 
-v4.5.1 · 2026-10-19
+网页 / Website v4.5.2 · AI knowledge v4.5.1 · 2026-10-19
 
-v4.5.0 已验证本机和云端调用；本版已用公开网页复核新版知识与简洁格式，最终回答118字、两句话。/ v4.5.0 verified local/cloud calls; this patch verified its knowledge and readable formatting through the public page, with a final two-sentence answer. See the evidence below for scope and the earlier wording correction.
+v4.5.0 已验证本机和云端调用；v4.5.1 已用公开网页复核新版知识与简洁格式，最终回答118字、两句话。/ v4.5.0 verified local/cloud calls; v4.5.1 verified its knowledge and readable formatting through the public page, with a final two-sentence answer. See the evidence below for scope and the earlier wording correction.
 
 ## 中文：教室里怎么用
 

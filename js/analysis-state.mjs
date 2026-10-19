@@ -1,6 +1,6 @@
-import { defaultSettings,compareOptions } from './compliance-engine.mjs?v=4.5.1';
-import { vessels } from './light-data.mjs?v=4.5.1';
-import { compileLedger,validateLedger } from './ledger.mjs?v=4.5.1';
+import { defaultSettings,compareOptions } from './compliance-engine.mjs?v=4.5.2';
+import { vessels } from './light-data.mjs?v=4.5.2';
+import { compileLedger,validateLedger } from './ledger.mjs?v=4.5.2';
 export const WORKSPACE_SCHEMA='mareg-workspace-v1';
 const range=(x,min,max)=>typeof x==='number'&&Number.isFinite(x)&&x>=min&&x<=max;
 const limits={euaPrice:[50,120],ukPrice:[0,1000],speedDelta:[-2,0],blendPct:[0,50],poolingTonnes:[0,10000],poolAvailable:[0,10000],poolPrice:[0,10000],bunkerPrice:[0,10000],blendPremium:[0,10000],distanceNm:[1,1e6],maxExtraHours:[0,100000],dailyTimeCost:[0,1e6],maxBlendPct:[0,50],auxFuelPerDay:[0,1000],auxCo2Factor:[.01,10],auxCoveragePct:[0,100]};
