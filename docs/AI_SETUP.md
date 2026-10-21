@@ -74,3 +74,8 @@ Deployment does not automatically update the frontend URL. If the host changes, 
 - [Cloudflare 配置 / Configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
 - [Cloudflare Secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
 - [实际验收 / Actual verification](verification/v4.5.1/README.md)
+
+
+## v4.6.0 知识同步 / Knowledge update
+
+后端共享知识版本4.6.0补充船队、政策与行动入口，回答格式和访问码机制不变。新工作区记录不自动加入AI请求；用户报告附件也未上传。部署记录与只读健康检查见 [本轮验收](verification/v4.6.0/README.md)。/ Shared knowledge4.6.0 documents the new fleet/evidence/action workflows; answer format and access-code handling stay unchanged. New local records and the user's report attachment are not automatically submitted. Deployment/health evidence is recorded separately; no paid model call is implied.

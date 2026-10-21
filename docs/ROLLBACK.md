@@ -88,3 +88,14 @@ Initial Worker version a96fe2ac-2949-4843-b019-794cc6a1d4d4 deploys the knowledg
 Baseline light-v4.5.1-baseline-2026-10-19 pins 2ff062d before four-panel tilt removal. This patch changes only the light page's panel IDs, existing tilt exclusion, version/cache metadata and documentation. Restore these from the baseline using a new commit, retaining later unrelated work. Never force-push or move published tags, including v4.4.1.
 
 No Worker deployment or AI-secret change is part of this patch. Keep the v4.5.1 knowledge/backend configuration. Create the v4.5.2 tag and Release before the separate footer-link activation commit.
+
+
+## v4.6.0 · 2026-10-21
+
+Baseline `light-v4.5.2-baseline-2026-10-21` pins `4b6e937`, the published v4.5.2. Keep it and v4.6.0 immutable. Restore affected files with a new revert or targeted recovery commit, retaining later unrelated work. Never force-push or replace tags. Restore decision modules, analysis/workspace/report/UI integrations and cache/version metadata together; protected engine/shared-data/Pro Max files did not change.
+
+回退前导出工作区JSON。新船队／政策／行动只在本机库和导出文件中；Git回退不删除这些数据，旧版也不显示／保留新扩展字段，请保留新版本备份，不用旧版覆盖唯一文件。重置基准保留本轮记录。/ Export before rollback. Git does not delete local/exported records; older versions do not display/preserve the new fields, so retain the4.6.0 backup and do not overwrite the only copy with an old-version export.
+
+AI后端单独部署知识4.6.0，Worker version `6e1b7d51-adee-4f26-8431-a5b5f0995070`。Pages回退不会回退Worker；需从目标版本取回后端及知识文件，通过现有私有Secrets重新部署。不要把密钥或课堂码写进Git。/ Pages rollback does not revert the Worker. Redeploy intended sources separately using private Secrets. No credentials belong in Git.
+
+先发布实现、标签与Release，再独立提交激活页脚Release链接；标签不移动。/ Publish implementation/tag/Release before the separate footer-link activation commit.

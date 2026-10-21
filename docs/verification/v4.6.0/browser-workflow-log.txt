@@ -1,0 +1,22 @@
+STEP
+STEP
+STEP
+STEP
+STEP
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /已恢复/. Input:
+
+'已保存已应用输入、船队、政策及行动；未应用草稿不保存。'
+
+    at file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/decision-browser.mjs:64:165 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '已保存已应用输入、船队、政策及行动；未应用草稿不保存。',
+  expected: /已恢复/,
+  operator: 'match'
+}
+
+Node.js v23.11.0

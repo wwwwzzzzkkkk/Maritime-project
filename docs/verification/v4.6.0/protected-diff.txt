@@ -1,0 +1,2 @@
+git diff --exit-code light-v4.5.2-baseline-2026-10-21 -- js/compliance-engine.mjs js/data-and-i18n.js js/app-pro-max.js index-pro-max.html styles/pro-max.css
+Exit 0; no diff output. No hashes calculated.

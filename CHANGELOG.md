@@ -1,5 +1,16 @@
 # Change log
 
+## v4.6.0 · 2026-10-21
+
+- Baseline: `light-v4.5.2-baseline-2026-10-21` (4b6e937).
+- 船队最多20份独立快照，唯一编号、资料编辑、明确载入／更新及EUR／GBP分列汇总；2026年度完整性待核，混合2%／6%条件提示可比性。
+- Up to40 manual policy-evidence records: HTTPS source, dates, user-entered status, all/specified-vessel scope, explicit numeric conditions and self-entered second-person review. Evidence without conditions has unknown cost impact; no live retrieval or automatic budget/rule changes.
+- 最多80条行动，保留生成时输入与政策版本，展示两币种、航时与WtW模型差异，记录负责人、日期、前提、风险、复核与实施自报；来源更新标记过期，推进需满足确认、限制与复核门控。不是认证专家批准、实际交易或防篡改审计。
+- Workspace save/restore/export includes the records; HTML adds sections8–10 with frozen sources and history.10 MB file boundary, explicit local saving, no cloud sync. Reset preserves desk records; legacy workspaces supported.
+- UI延续玻璃，按需展开表单，手机表转卡片；新增输入／阅读区域有意保持平面，原有动效与例外不变。AI知识同步4.6.0，不自动发送新本机记录或用户报告附件。
+- Protected engine/shared-data/Pro Max sources and six benchmarks remain unchanged. No build tool, dependency, hash or performance audit.
+- [Release](docs/releases/v4.6.0.md) · [验收 / Evidence](docs/verification/v4.6.0/README.md)
+
 ## v4.5.2 · 2026-10-19
 
 - Baseline: light-v4.5.1-baseline-2026-10-19 (2ff062d).

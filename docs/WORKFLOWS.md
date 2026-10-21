@@ -1,4 +1,4 @@
-# MAREG v4.5.2：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.6.0：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 
@@ -6,7 +6,7 @@
 
 ### 1. 保存、恢复、导出报告
 
-顶栏打开“分析与报告”。填写分析名称，保存到本机浏览器，或导出可恢复工作区 JSON。刷新后不会自动载入：重新打开此入口，选择记录并恢复，或选择工作区文件。最多保留 20 条本机记录、每个工作区 12 个规划情景；JSON 文件最大 2 MB，过大时减少保留情景。记录包含当前船舶、已应用输入、用户确认状态、统一台账和规划情景，未应用草稿不保存。恢复重新计算，不信任文件提供的结果。旧“计算快照”是只读计算证据，不是可恢复工作区。
+顶栏打开“分析与报告”。填写分析名称，保存到本机浏览器，或导出可恢复工作区 JSON。刷新后不会自动载入：重新打开此入口，选择记录并恢复，或选择工作区文件。最多保留 20 条本机记录、每个工作区 12 个规划情景；JSON 文件最大 10 MB，过大时减少保留情景。记录包含当前船舶、已应用输入、用户确认状态、统一台账和规划情景，未应用草稿不保存。恢复重新计算，不信任文件提供的结果。旧“计算快照”是只读计算证据，不是可恢复工作区。
 
 “导出可读报告”下载独立 HTML，包含预算、六类方案、条件状态、公式、台账来源、规划情景及边界。用浏览器打开后可打印／另存 PDF；未做自动申报或鉴证。报告用当前选择的中／英文生成。真正的打印机/PDF 分页仍需在所用设备上确认。
 
@@ -47,7 +47,7 @@ id,date,activity,from,to,fuelTonnes,lhvMJPerKg,co2Factor,wtwIntensity,distanceNm
 
 ### Save, restore and report
 
-Open **Analysis & Reports**. Save applied inputs locally or download a restorable workspace JSON. Reload does not auto-restore: select a saved record or import the workspace. Limits: 20 local records, 12 planning cases and a 2 MB workspace file; reduce cases if too large. Unapplied drafts are excluded. Restore recomputes from validated inputs instead of trusting stored outputs. Old calculation snapshots are evidence records, not workspaces.
+Open **Analysis & Reports**. Save applied inputs locally or download a restorable workspace JSON. Reload does not auto-restore: select a saved record or import the workspace. Limits: 20 local records, 12 planning cases and a 10 MB workspace file; reduce cases if too large. Unapplied drafts are excluded. Restore recomputes from validated inputs instead of trusting stored outputs. Old calculation snapshots are evidence records, not workspaces.
 
 Export Readable Report downloads standalone HTML containing budgets, six option families, conditions, formulas, source records, planning cases and limitations. Open it in a browser to print/save PDF. Reports use the selected UI language. Actual print/PDF pagination remains device-dependent and was not certified.
 
@@ -81,3 +81,32 @@ Initial screening source review: 2026-10-18; limited to the implemented ordinary
 - [UK maritime ETS guidance — activities, exclusions and period](https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply)
 
 Official-reference text bundled for AI retains its own 2026-10-15 review date; the service is not a live policy feed. Recheck legal status, actual ports, certified factors, supply and scope before real use.
+
+
+## v4.6.0：船队、证据与行动 / Fleet, evidence and actions
+
+### 中文
+
+- **船队**：预算总览中添加最多20艘船，唯一编号防止混淆；逐船保留已应用输入、台账、确认状态和资料。修改资料保留原计算输入；修改分析先载入对应船舶再明确更新。模型仍以三个模板为起点，不将模板误称为真实船舶记录；导入台账仍未核验。
+- **预算**：仅加总存入的2026活动输入；EUR和GBP分别汇总，不换汇。2%与6%混用会提示可比性问题；6%条件不构成完整2030年度账户。不是完整航次成本，也不保证年度覆盖完整。
+- **政策证据**：最多40条；HTTPS来源不自动抓取，合法性及适用范围由团队核对。状态可选规划／提案／用户标注已生效；没有数值条件时不计算影响。数值条件只改变比较副本，不改当前预算或引擎法律规则。可选全部／指定船；新资料或复核生成新版本。
+- **行动**：最多80条，从已存船舶与既有方案搜索生成；原输入、建议参数与关联政策版本冻结。比较原条件和所列数值情景中的两币种差额、航时和范围内WtW模型变化；费用下降不等于实际减排。没有数值情景时明确仅有基准证据。
+- **复核和门控**：姓名由用户填写，不验证身份。负责人、日期、前提、风险、另一人复核、全部关联政策复核、输入确认与限制满足后才可记为计划；已实施还需凭证与结果。重大支出标记不代替专业复核。后续来源变化会标记旧行动需重新生成。每项最多40条事件，不是防篡改审计。
+- **保存**：记录通过同一“分析与报告”入口保存／恢复／导出，HTML报告新增8–10节。默认不自动保存、不上传；本机库最多20份工作区，文件最大10 MB，浏览器容量可能更小。刷新后需恢复；重置基准保留本轮船队／政策／行动。原旧工作区仍可恢复，但不会包含新记录。
+- **AI边界**：云端知识说明更新为4.6.0；请求仍只含用户同意发送的当前单船计算与既有规划摘要，不自动上传整个船队、证据、行动或项目报告附件。AI看不到未发送的本机记录。
+
+### English
+
+- **Fleet:** up to20 uniquely referenced vessels, each storing applied inputs, confirmations, profile and optional unverified ledger. Edit a profile without changing saved calculations; load the matching vessel before explicitly updating its snapshot. Templates are not real fleet evidence.
+- **Totals:** scoped2026 activity estimates only, with EUR/GBP separate. Mixed2%/6% conditions are flagged;6% does not create a verified2030 account. Coverage and annual completeness remain unverified.
+- **Policy:** up to40 manual records, explicit sources/dates/status/scope/uncertainty and optional numeric conditions. No URL retrieval, legal verification or automatic rule changes. Evidence-only impact is unknown. Comparisons use copies, never mutate the active budget. Edits/reviews create revisions.
+- **Actions:** up to80 frozen proposal/source snapshots using the existing planner. Baseline and numeric-policy comparisons retain currencies, time and scoped WtW model estimates. Names/reviews are self-entered, not authenticated approval. Planning requires complete ownership, fresh reviews, confirmed inputs and satisfied limits; implementation additionally needs self-reported evidence/outcomes. Material spending still needs professional review. Changed sources require regeneration. Maximum40 events/action; editable history is not tamper-proof.
+- **Recovery/reporting:** one Analysis & Reports entry saves/restores/exports all records and HTML sections8–10. Explicit save only; no upload or cross-device synchronization. Maximum20 saved workspaces and10 MB/file, subject to browser quota. Reset preserves decision records. Older workspaces remain supported but contain no new records.
+- **AI:** knowledge version4.6.0 explains the new workflow. Consented requests still contain only current single-vessel calculations and existing bounded planning summaries; local fleet/evidence/actions and the project-report attachment are not automatically sent.
+
+
+### 新汇总怎么算 / Aggregation calculation
+
+船队EUR = 每艘已存分析的EUR比较值之和；该值沿用引擎的EU ETS CO₂＋FuelEU罚款＋组池费用＋燃料净增量＋航时费用。GBP只累加UK ETS CO₂部分，不换汇。政策差额 = 同船条件副本 − 原已存分析；行动差额 = 同条件候选 − 原方案。不存在把船东承担再加一次的步骤。WtW变化仍为模型估算，组池本身不减少本船物理排放。
+
+Fleet EUR sums the existing per-vessel comparison value (EU ETS CO₂ + FuelEU penalty + pool fee + net fuel delta + time cost). GBP sums UK ETS CO₂ separately, without FX conversion. Policy impact subtracts the original snapshot from its conditional copy; action impact subtracts the original option from the candidate under identical conditions. Owner allocation is not added again. WtW changes remain model estimates; pooling does not reduce this vessel's physical estimate.

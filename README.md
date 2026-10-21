@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.5.2** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.5.2) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.6.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.6.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.6.0 · 政策—船队—行动 / Evidence, fleet and actions:** 逐船快照与欧元／英镑分列汇总；带来源和人工复核的政策条件比较；保留依据版本的行动、复核与实施自报，并纳入工作区及报告。新增表单按需展开，手机表格转为易读卡片，延续玻璃风格。
+> Independent vessel snapshots, separate-currency fleet totals, sourced policy-condition comparisons and traceable action/review/outcome records. Included in workspaces and reports; expandable forms and mobile cards retain the glass design. Local records and self-entered reviews are not cloud collaboration, authenticated approval or statutory verification. [操作 / Guide](docs/WORKFLOWS.md) · [更新 / Release](docs/releases/v4.6.0.md)
 
 > **v4.5.2 · 四个操作／阅读板块保持平面 / Flat work panels:** MAREG 助手、租约碳成本分摊与方案对比、官方来源与模型说明、规划条件与成本比较及内部控件取消3D指针倾斜；保留玻璃、高光、其他卡片动效和计算。
 > Remove pointer tilt/parallax only from the assistant, charter allocation, official sources and planning-condition panels, including nested controls. Glass, glints, other motion and calculations remain. [更新说明 / Release notes](docs/releases/v4.5.2.md)

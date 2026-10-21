@@ -49,10 +49,10 @@ Plan 12 interviews and 3 paid pilots; no measured results yet. Compare against s
 
 | 风险 / Risk | 控制与剩余问题 / Controls and remaining issues |
 | --- | --- |
-| 规则变化 / Rule changes | 官方来源和版本记录；双人批准是流程计划，法律解释仍有差异 / Official sources and versions; dual approval remains planned and legal interpretation may differ |
+| 规则变化 / Rule changes | 官方来源和版本记录；已有自填双人复核记录，非身份认证或专家批准，法律解释仍需复核 / Official sources and revisions; self-entered second-person records are not authenticated expert approval, and legal interpretation needs review |
 | 数据与模型 / Data and model | 缺失气体不填零，只显示 CO₂ 部分；原始数据、覆盖范围及系数仍待核实 / Preserve missing gases, show CO₂ subtotals; source data, scope and factors need confirmation |
-| AI 建议 / AI advice | 当前只有预设解释，无 AI 或检索服务；未来重要建议需专业复核 / Preset explanations only; material future advice needs professional review |
-| 网络与隐私 / Cyber and privacy | 当前无后台或船载连接；正式服务的隔离、加密、恢复和责任条款待验证 / No backend or shipboard connection; production isolation, encryption, recovery and liability terms are unverified |
+| AI 建议 / AI advice | 已有需同意及课堂码的云端AI解释；不实时检索法规，重要建议仍需专业复核 / Consented cloud AI with a classroom code is available; no live legal retrieval, and material advice requires professional review |
+| 网络与隐私 / Cyber and privacy | 已部署独立AI代理；客户数据仍为本机工作区，无客户云端账户或船载连接，正式隔离、加密、恢复和责任条款待验证 / A separate AI proxy is deployed; customer records remain local, with no cloud workspace or shipboard connection. Production isolation, encryption, recovery and liability terms are unverified |
 | 漂绿与责任 / Greenwashing and liability | 财务与 WtW 模型分列，预算不冒充核验；仍有赔偿与声誉风险 / Separate cost and WtW estimates, do not equate budgets with verification; liability and reputation risks remain |
 | 获客、续订与交付 / Acquisition, retention, delivery | 访谈和试点为计划，记录实际支持与质控工时；客户不足、超支和资金缺口待验证 / Interviews and pilots planned; measure support/QC effort; customer, cost and funding risks remain |
 
@@ -60,3 +60,10 @@ Plan 12 interviews and 3 paid pilots; no measured results yet. Compare against s
 Original compensation-independence statements are proposed governance policies, not assured operational controls. Disclose referral commissions to customers if recommendations are offered in future.
 
 [迁移原文 / Archived text](archive/PRE_CUSTOMER_CONTENT.md) · [课程映射 / Course map](COURSE_MAPPING.md)
+
+
+## v4.6.0 对最终报告的落地范围 / Final-report delivery scope
+
+本轮补齐“政策证据→船队成本→行动建议”本机演示链路。政策录入与复核为人工记录，船队年度完整性需核对，行动实施为用户自报。仍未提供客户云端隔离、认证专家签批、实时法规推送、交易／申报、季度实际ESG绩效与第三方核验。后续先用真实样本和团队复核验证这些本机流程，再考虑生产服务。
+
+This release implements the local evidence→fleet costs→actions demonstration. It does not establish authenticated expert approval, customer cloud isolation, live regulatory alerts, transactions/filings or verified actual quarterly ESG performance. Validate the workflows with real samples and team review before planning production services.

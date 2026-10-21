@@ -1,6 +1,6 @@
 # MAREG 项目知识说明 / Project Knowledge
-知识版本 / Knowledge version: 4.5.1
-维护日期 / Maintained: 2026-10-19. This date is NOT a fresh regulatory review; bundled official references retain their own checkedAt dates.
+知识版本 / Knowledge version: 4.6.0
+维护日期 / Maintained: 2026-10-21. This date is NOT a fresh regulatory review; bundled official references retain their own checkedAt dates.
 
 ## 定位与能力 / Purpose and capabilities
 MAREG 是面向船东、船管和租家等使用者的海事合规预算与方案比较原型，优先让新手理解成本和假设。起源于 NTU MT6503 Track B 项目；客户回答通常不需要提课程背景。商业需求与付费意愿尚未验证。
@@ -89,3 +89,10 @@ Answer: These presets change who pays, so check the owner and charterer columns 
 
 
 网页展示层会将常见 Markdown／HTML 外壳转为安全的段落和列表，隐藏正文中的引用代码，将官方来源链接保留在折叠区。它不会改变金额、单位或负号。/ The presenter uses text-only paragraphs/lists, hides inline citation codes and retains official source links separately; money, units and signs are preserved.
+
+
+## v4.6.0 操作知识 / Workflow knowledge
+
+船队预算、政策证据和行动复核已在网页本机工作区实现，见 [操作说明](WORKFLOWS.md)。AI应引导用户到对应入口，不能声称已读取、同步或复核这些本地记录。记录中的“已实施”“已生效”是用户自报；没有认证专家或实时法律检索。没有数值条件不得编造影响金额；EUR／GBP分列；6%仅为固定活动输入的目标条件。费用变化不能称为已实现减排。
+
+Fleet snapshots, manual policy evidence and reviewed action/outcome records are browser-local workflows. Guide users to their controls, but never claim access to unsent records, authenticated expert approval, verified implementation or live policy retrieval. Do not invent monetary impacts for text-only evidence or treat pooling cost savings as physical reductions. Do not upload the user's report or customer records automatically.

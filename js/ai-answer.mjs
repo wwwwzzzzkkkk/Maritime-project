@@ -1,4 +1,4 @@
-import {sources} from './light-data.mjs?v=4.5.2';
+import {sources} from './light-data.mjs?v=4.6.0';
 const referencePattern=new RegExp('\\[(?:'+sources.map(s=>s.id).join('|')+'|[0-9]{1,3})\\]','g');
 
 // Model text is untrusted. Build text nodes only; never parse it as HTML.

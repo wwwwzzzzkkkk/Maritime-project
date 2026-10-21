@@ -1719,3 +1719,55 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
   .ai-assistant-header .panel-title { font-size: 18px; }
   .ai-inline-status { flex: 1; min-width: 140px; }
 }
+
+/* v4.6: existing glass tokens; new input/read panels intentionally stay flat. */
+.venture-panel { margin-block: 20px 24px; min-width: 0; }
+.venture-panel .panel-title { text-wrap: balance; }
+.desk-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-block: 14px; }
+.desk-toolbar .workflow-field { margin: 0; }
+.desk-inline { min-width: min(100%,300px); flex: 1; max-width: 600px; }
+.desk-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 18px; }
+.desk-grid-three { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.desk-editor, .desk-legacy { border-block-start: 1px solid var(--border-hairline); margin-block-start: 18px; padding-block-start: 10px; }
+.desk-editor > summary, .desk-legacy > summary { cursor: pointer; color: var(--accent-text); font-size: 14px; line-height: 1.6; padding-block: 10px; min-height: 44px; box-sizing: border-box; }
+.desk-legacy { margin-block-end: 20px; }
+.desk-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-block: 1px solid var(--border-hairline); margin-block: 18px; padding-block: 18px; gap: 18px; }
+.desk-metric { min-width: 0; }
+.desk-metric span { display: block; font-size: 12px; color: var(--text-muted-copy); margin-bottom: 8px; }
+.desk-metric strong { font-size: clamp(18px,2.1vw,28px); letter-spacing: -.04em; color: var(--text-primary); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.desk-records { display: grid; gap: 12px; margin-block: 16px; }
+.desk-record { padding: 16px; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); background: var(--bg-glass-pill); min-width: 0; overflow-wrap: anywhere; }
+.desk-record.is-selected { border-color: var(--accent-muted); }
+.desk-record h3 { font-size: 15px; line-height: 1.5; margin: 0 0 8px; }
+.desk-record p { margin: 8px 0; font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.desk-record a { color: var(--accent-text); }
+.desk-record .badge { margin-inline-end: 8px; }
+.desk-record .desk-toolbar { margin-bottom: 0; }
+.desk-empty { padding: 20px 0; font-size: 14px; line-height: 1.8; color: var(--text-muted-copy); }
+.desk-choice-list { display: flex; gap: 10px 18px; flex-wrap: wrap; margin: 12px 0; }
+.desk-choice-list label { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.desk-table { min-width: 0; width: 100%; table-layout: fixed; }
+.desk-table td, .desk-table th { overflow-wrap: anywhere; white-space: normal; }
+.desk-table th:first-child { width: 23%; }
+.desk-table .ghost-btn { padding: 7px 10px; }
+.venture-panel .ghost-btn { min-height: 44px; white-space: normal; }
+.venture-panel .planning-check { margin-block: 12px; font-size: 13px; }
+.venture-panel .model-note { line-height: 1.75; }
+.venture-panel .workflow-field textarea { min-height: 80px; }
+.venture-panel button:focus-visible, .venture-panel summary:focus-visible, .desk-legacy summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#actionSelected[hidden], .desk-choice-list[hidden] { display: none; }
+@media (max-width: 850px) { .desk-grid-three { grid-template-columns: minmax(0,1fr); } .desk-table th:first-child { width: 26%; } }
+@media (max-width: 680px) {
+ .desk-grid { grid-template-columns: minmax(0,1fr); gap: 0; }
+ .desk-metrics { grid-template-columns: minmax(0,1fr); gap: 16px; }
+ .desk-metric { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+ .desk-metric span { margin: 0; } .desk-metric strong { font-size: 22px; text-align: end; }
+ .desk-table, .desk-table tbody { display: block; } .desk-table thead { display: none; }
+ .desk-table tr { display: block; border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 8px 12px; margin-block: 12px; }
+ .desk-table td { display: flex; justify-content: space-between; gap: 12px; border: 0; padding: 8px 0; text-align: end; }
+ .desk-table .desk-cell-value { flex: 1; min-width: 0; }
+ .desk-table td::before { content: attr(data-label); text-align: start; color: var(--text-muted-copy); flex: 0 0 34%; font-size: 12px; }
+ .desk-table td:last-child .desk-toolbar { justify-content: flex-end; margin: 0; }
+ .desk-record { padding: 12px; }
+ .venture-panel .workflow-field input, .venture-panel .workflow-field select, .venture-panel .workflow-field textarea { font-size: 16px; }
+}

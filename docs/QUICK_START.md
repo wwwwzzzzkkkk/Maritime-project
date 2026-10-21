@@ -4,15 +4,25 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.5.2，2026-10-19 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.6.0，2026-10-21 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.5.2, documented on 19 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.6.0, documented on 21 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
 **v4.5.1 MAREG 助手：** 在“帮助与说明”点击“连接 AI” → 输入私下提供的课堂访问码 → 同意并提问。常用问题可直接填入，回答来源可展开。不要填写 DeepSeek API key。/ **Classroom AI:** Help & About → Connect AI → private classroom code → consent → ask. Suggestions fill the question; references expand below the answer. Never enter the API key. [说明 / Setup](AI_SETUP.md)
 
 **v4.4.0 新增：** 顶栏“分析与报告”可保存／恢复及导出可打印报告；“方案比较”可展开统一 CSV 台账；“未来情景”可保存并载入明确的规划条件；“帮助与说明”提供默认未连接的本机 AI 接口。[完整操作](WORKFLOWS.md) · [AI 配置](AI_SETUP.md)。台账只作普通范围初筛；数据未核验，非法律意见。
+
+### 新增：从单船走向船队决策（v4.6.0）
+
+1. **预算总览 → 添加船舶**：先应用单船输入，再填名称、唯一编号、总吨和基准航速，存为独立记录。下一艘可以继续用当前输入或先切换模板／应用台账。重复用模板不代表已有真实五艘船数据。
+2. 修改已存船：先在该行“载入分析”，调节并应用，再点该行“更新分析”。船队汇总不会跟着单船滑块偷偷改变。EUR／GBP始终分开，2026活动输入的完整性仍待核。
+3. **未来情景 → 新增政策证据**：填HTTPS来源、日期、整理人、变化和待核点；需要算影响才填价格／目标条件，选择全部或指定船舶。证据只有文字时显示“无可计算条件”，不等于影响为零。记录另一位成员的复核后再生成行动。
+4. **方案比较 → 行动与复核**：选船和候选类型生成草稿；填负责人、日期、前提和风险，另一人填写复核。只有确认与限制均满足才可标为计划；“已实施”还需凭证和结果，仍是自报，不执行真实交易。
+5. **保存／导出项目**：通过顶栏“分析与报告”保存本机、导出JSON或可读报告。新报告增加船队、政策、行动三节。文件上限10 MB，本机保存容量受浏览器限制。重置基准只重置单船推演，不删除这些记录。来源／输入更新后旧行动标记为过期，重新生成才能继续复核。
+
+资料保存在本机浏览器，需明确保存；不自动上传、不跨设备同步。姓名和复核意见不经过身份认证，也不等于专家批准。地图仍为示意，用户标注“已生效”不构成法律核验。
 
 ### 1. 打开网站，先用默认船舶
 
@@ -95,6 +105,16 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 地图没有加载时，先检查网络；数值和台账仍可查看。想了解一个数字怎么算，再展开下面附录即可。
 
 ## English quick start
+
+### New in v4.6.0: vessel → evidence → action
+
+1. **Budget Overview → Add a vessel** stores the applied analysis under a unique reference. Reusing a template does not establish real fleet data. Load a stored vessel before editing, then explicitly **Update snapshot**; sliders do not silently change stored totals.
+2. **Future Scenarios → Add policy evidence** records an HTTPS source, dates, preparer, before/after conditions and uncertainty. Set explicit numeric conditions only when comparing costs. Select all or specific vessels; record a different team member’s review. Text-only evidence has unknown cost impact, not zero.
+3. **Compare Options → Actions & review** generates a draft from a stored vessel and candidate. Complete owner, date, prerequisites, risks and another person’s review. Planning requires confirmed inputs and satisfied limits; self-reported implementation also requires evidence/outcomes. No purchase or filing is executed.
+4. **Analysis & Reports** saves locally or exports JSON/HTML including fleet, evidence and actions. JSON limit10 MB; local storage is browser-limited. Reset keeps these records. Changed sources mark previous actions stale; regenerate and review.
+
+EUR and GBP remain separate. Figures summarize scoped2026 inputs, not verified annual accounts. Names/reviews are self-entered, not authenticated expert approval. Records require explicit saving and do not synchronize across devices.
+
 
 **New in v4.4.0:** Analysis & Reports saves/restores and exports printable reports. Compare offers unified CSV ledgers, Future offers explicit named planning conditions, and Help offers local AI integration, disconnected by default. [Workflow guide](WORKFLOWS.md) · [AI setup](AI_SETUP.md). Scope screening is preliminary; data is unverified and not legal advice.
 

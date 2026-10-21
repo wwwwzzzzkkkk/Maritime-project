@@ -1,0 +1,9 @@
+{
+  "scope": "Chrome only; external fonts/tiles blocked; no live AI request",
+  "checks": [
+    "Five uniquely referenced, independently stored vessels; confirmed default inputs",
+    "Profile edits and explicit snapshot update affect only selected vessel; active editing does not silently change fleet"
+  ],
+  "screens": [],
+  "failure": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#policyEvidenceForm [name=\"euaPrice\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input min=\"50\" step=\"5\" value=\"\" max=\"120\" type=\"number\" name=\"euaPrice\"/>\u001b[22m\n\u001b[2m    - fill(\"100\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    57 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying fill action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at fill (/Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/decision-browser.mjs:17:121)\n    at async file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/decision-browser.mjs:36:2"
+}

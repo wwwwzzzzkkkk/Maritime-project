@@ -1,0 +1,61 @@
+STEP
+STEP
+STEP
+PASS {
+  "scope": "Chrome only; external fonts/tiles blocked; no live AI request",
+  "checks": [
+    "Five uniquely referenced, independently stored vessels; confirmed default inputs",
+    "Profile edits and explicit snapshot update affect only selected vessel; active editing does not silently change fleet",
+    "Manual evidence and explicit 6%/EUA100 comparison; no automatic mutation of active single analysis; different-person review",
+    "Action generation; unreviewed planning blocked; planning succeeds after review; implementation requires evidence/outcome and remains self-reported",
+    "Source revision marks old actions stale without overwriting original inputs/evidence",
+    "Local save, exported JSON round trip and restored records; report sections8–10 include frozen source reviewer and newer evidence reviewer",
+    "Reset preserves desk, resets single budget; six baseline values match pre-stage engine",
+    "Native form disclosure toggles using keyboard; all-ships picker hidden",
+    "Chinese/English ×1440/768/375 new panels contained; unchanged Pro Max loads with no page errors"
+  ],
+  "screens": [
+    "docs/verification/v4.6.0/fleetDesk-zh-1440.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-zh-1440.png",
+    "docs/verification/v4.6.0/actionDesk-zh-1440.png",
+    "docs/verification/v4.6.0/fleetDesk-zh-768.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-zh-768.png",
+    "docs/verification/v4.6.0/actionDesk-zh-768.png",
+    "docs/verification/v4.6.0/fleetDesk-zh-375.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-zh-375.png",
+    "docs/verification/v4.6.0/actionDesk-zh-375.png",
+    "docs/verification/v4.6.0/fleetDesk-en-1440.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-en-1440.png",
+    "docs/verification/v4.6.0/actionDesk-en-1440.png",
+    "docs/verification/v4.6.0/fleetDesk-en-768.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-en-768.png",
+    "docs/verification/v4.6.0/actionDesk-en-768.png",
+    "docs/verification/v4.6.0/fleetDesk-en-375.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-en-375.png",
+    "docs/verification/v4.6.0/actionDesk-en-375.png"
+  ],
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "leafletReplacedWithLocalVendor": true
+  }
+}

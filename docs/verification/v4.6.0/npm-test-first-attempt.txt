@@ -1,0 +1,74 @@
+
+> mareg-light-edition@4.6.0 test
+> node --test tests/*.test.mjs
+
+✔ AI display turns common Markdown/HTML wrappers into paragraphs and real step lists (8.579334ms)
+✔ formatting preserves monetary signs, units and legitimate comparison symbols (2.019875ms)
+✔ untrusted model HTML becomes text content, while official reference markers stay out of answer copy (1.65575ms)
+✔ unconfigured local AI service reports disabled without contacting a provider (70.457375ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (27.255208ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (33.518625ms)
+✔ DeepSeek uses the documented Flash model/chat endpoint and returns only final cited text (mock provider) (16.938958ms)
+✔ DeepSeek never falls back to another provider when its key is missing (14.194458ms)
+✔ public Worker requires a classroom code before provider calls and supports the browser preflight (mock provider) (2.701208ms)
+✔ both AI adapters receive project knowledge and sanitized current values, not a fixed default scenario (6.458667ms)
+✔ one fuel ledger derives scoped energy, CO2, intensity and distance for the unchanged engine (7.148334ms)
+✔ scope screening distinguishes 5000 GT, UK commencement, special calls and Norway/Iceland review (2.352042ms)
+✔ CSV import supports BOM, CRLF and quoted commas; rejects missing factors, duplicate IDs and invalid dates (2.215541ms)
+✔ workspaces preserve calculation inputs and recompute values rather than trusting outputs (11.615208ms)
+✔ standalone report escapes imported text, separates currencies and retains formula/disclaimer evidence (59.623584ms)
+✔ explicit planning cases change conditional costs without changing regional law or base inputs (0.445ms)
+✖ five and twenty independent vessels aggregate currencies separately; profiles survive a workspace round trip (8.55275ms)
+✔ policy scope and explicit conditions do not mutate baseline inputs or invent zero impact for evidence-only records (4.14125ms)
+✔ team review is self-entered, distinct from the author, and bound to the source revision (0.857125ms)
+✔ action snapshots preserve pooling physical estimates and expose input/policy changes as stale (9.0815ms)
+✔ planning and self-reported implementation require fresh review, confirmed inputs, evidence and outcomes (12.343583ms)
+✔ extended reports retain fleet currencies, policy evidence, frozen action sources and escaped user text (36.513334ms)
+✔ A3 subtotals and single-period FuelEU examples reproduce the benchmark (3.626708ms)
+✔ surplus vessel has no penalty, fictitious savings or unnecessary pooling purchase (0.606958ms)
+✔ same-price baseline follows market inputs without changing physical emissions (1.234917ms)
+✔ pooling is capped by available surplus and leaves the correct residual penalty (0.2625ms)
+✔ pure pooling changes costs without changing the vessel physical estimate (0.155083ms)
+✔ repeated deficits escalate, while surplus never becomes a penalty (0.383458ms)
+✔ all supported vessels, years and sensitivity prices obey accounting identities (5.763542ms)
+✔ speed affects sailing energy and sailing legs, with port activity held constant (0.221125ms)
+✔ client and venture economics keep negative cases visible (1.45125ms)
+✔ 4000 VLSFO-equivalent tonnes and 164000000 MJ convert in both directions (0.905125ms)
+✔ conversion covers zero, original energy limits, and fractional equivalent tonnes (0.196875ms)
+✔ converted energy reproduces real engine benchmarks without engine edits (3.067ms)
+✔ extra time, auxiliary energy/emissions and party amounts reconcile independently (1.562333ms)
+✔ zero delay and fuel allowance exclude slower/blended candidates; current violation stays visible (3.805083ms)
+✔ uncertain supply cannot displace a user-confirmed candidate (3.391375ms)
+✔ expensive pooling stays unpurchased and positive-balance vessel is not sold fictitious savings (1.941125ms)
+✔ an exact non-grid fuel limit is considered; objective remains scoped EUR with separate UK ledger (3.60925ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 38
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2319.278
+
+✖ failing tests:
+
+test at tests/decision-desk.test.mjs:10:1
+✖ five and twenty independent vessels aggregate currencies separately; profiles survive a workspace round trip (8.55275ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 1625956.3318777282
+  - 1625956.3318777285
+                     ^
+  
+      at TestContext.<anonymous> (file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/decision-desk.test.mjs:11:43)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.start (node:internal/test_runner/test:944:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:297:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1625956.3318777282,
+    expected: 1625956.3318777285,
+    operator: 'strictEqual'
+  }

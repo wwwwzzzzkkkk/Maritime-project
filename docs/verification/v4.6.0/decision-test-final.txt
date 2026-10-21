@@ -1,0 +1,14 @@
+✔ five and twenty independent vessels aggregate currencies separately; profiles survive a workspace round trip (16.845917ms)
+✔ policy scope and explicit conditions do not mutate baseline inputs or invent zero impact for evidence-only records (11.523833ms)
+✔ team review is self-entered, distinct from the author, and bound to the source revision (0.429042ms)
+✔ action snapshots preserve pooling physical estimates and expose input/policy changes as stale (7.78075ms)
+✔ planning and self-reported implementation require fresh review, confirmed inputs, evidence and outcomes (4.231208ms)
+✔ extended reports retain fleet currencies, policy evidence, frozen action sources and escaped user text (65.771833ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 327.833209

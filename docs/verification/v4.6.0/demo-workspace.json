@@ -1,0 +1,529 @@
+{
+  "schema": "mareg-workspace-v1",
+  "name": "Synthetic classroom demonstration",
+  "savedAt": "",
+  "input": {
+    "vesselProfile": {
+      "name": "Demo Vessel One",
+      "reference": "DEMO-1",
+      "gt": 10000,
+      "serviceSpeedKn": 13.5
+    },
+    "selectedVesselId": "v1",
+    "selectedScenario": "deadlock",
+    "language": "zh",
+    "twin": {
+      "euaPrice": 100,
+      "jitSpeedDeltaKn": 0,
+      "biofuelBlendPct": 0,
+      "poolingSurplusTonnes": 0,
+      "fueleuTargetCut": 2,
+      "charterType": "voyage_gencon"
+    },
+    "settings": {
+      "year": 2026,
+      "euaPrice": 80,
+      "ukPrice": 60,
+      "speedDelta": 0,
+      "blendPct": 0,
+      "poolingTonnes": 0,
+      "poolAvailable": 400,
+      "poolPrice": 180,
+      "bunkerPrice": 550,
+      "blendPremium": 260,
+      "consecutiveDeficits": 1,
+      "etsOwnerPct": 85,
+      "fuelOwnerPct": 85,
+      "poolOwnerPct": 85,
+      "hoursSaved": 120,
+      "advisorSavings": 2000,
+      "internalCost": 0,
+      "distanceNm": 6000,
+      "maxExtraHours": 24,
+      "dailyTimeCost": 5000,
+      "maxBlendPct": 30,
+      "auxFuelPerDay": 2,
+      "auxCo2Factor": 3.114,
+      "auxCoveragePct": 100,
+      "operationsConfirmed": true,
+      "fuelConfirmed": true,
+      "poolConfirmed": true,
+      "operatingOwnerPct": 85
+    },
+    "vesselInputs": {},
+    "ledgerDocuments": {}
+  },
+  "cases": [],
+  "desk": {
+    "schema": "mareg-decision-desk-v1",
+    "fleet": [
+      {
+        "id": "F1",
+        "revision": 3,
+        "input": {
+          "vesselProfile": {
+            "name": "Demo Vessel One",
+            "reference": "DEMO-1",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 100,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        }
+      },
+      {
+        "id": "F2",
+        "revision": 1,
+        "input": {
+          "vesselProfile": {
+            "name": "Demo Vessel 2",
+            "reference": "DEMO-2",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 80,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        }
+      },
+      {
+        "id": "F3",
+        "revision": 1,
+        "input": {
+          "vesselProfile": {
+            "name": "Demo Vessel 3",
+            "reference": "DEMO-3",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 80,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        }
+      },
+      {
+        "id": "F4",
+        "revision": 1,
+        "input": {
+          "vesselProfile": {
+            "name": "Demo Vessel 4",
+            "reference": "DEMO-4",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 80,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        }
+      },
+      {
+        "id": "F5",
+        "revision": 1,
+        "input": {
+          "vesselProfile": {
+            "name": "Demo Vessel 5",
+            "reference": "DEMO-5",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 80,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        }
+      }
+    ],
+    "policies": [
+      {
+        "id": "P1",
+        "revision": 3,
+        "title": "6% planning condition",
+        "regime": "fuel",
+        "url": "https://eur-lex.europa.eu/eli/reg/2023/1805/oj/eng",
+        "publishedOn": "2023-09-22",
+        "checkedOn": "2026-10-21",
+        "effectiveOn": "",
+        "status": "planning",
+        "author": "Alice",
+        "before": "2% demonstration target",
+        "after": "6% fixed activity condition",
+        "uncertainty": "Demo only, scope unverified",
+        "allShips": true,
+        "shipIds": [],
+        "assumptions": {
+          "targetCut": 6,
+          "euaPrice": 100
+        },
+        "review": {
+          "reviewer": "Carol",
+          "reviewedOn": "2026-10-21",
+          "note": "Updated demo review",
+          "revision": 3
+        }
+      }
+    ],
+    "actions": [
+      {
+        "id": "A1",
+        "revision": 2,
+        "fleetId": "F1",
+        "fleetRevision": 3,
+        "title": "Review pooling",
+        "owner": "Alice",
+        "dueOn": "2026-11-01",
+        "trigger": "Check conditions",
+        "risk": "Unverified model only",
+        "major": false,
+        "status": "implemented",
+        "review": {
+          "reviewer": "Bob",
+          "reviewedOn": "2026-10-21",
+          "note": "Hypothetical",
+          "revision": 2
+        },
+        "evidence": "CLASSROOM-DEMO-ONLY-001",
+        "outcome": "No transaction executed",
+        "events": [
+          {
+            "on": "2026-10-21",
+            "kind": "created",
+            "revision": 1,
+            "note": "Generated from stored inputs / 基于已存输入生成"
+          }
+        ],
+        "baseInput": {
+          "vesselProfile": {
+            "name": "Demo Vessel One",
+            "reference": "DEMO-1",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 100,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 0,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        },
+        "proposalInput": {
+          "vesselProfile": {
+            "name": "Demo Vessel One",
+            "reference": "DEMO-1",
+            "gt": 10000,
+            "serviceSpeedKn": 13.5
+          },
+          "selectedVesselId": "v1",
+          "selectedScenario": "deadlock",
+          "language": "zh",
+          "twin": {
+            "euaPrice": 100,
+            "jitSpeedDeltaKn": 0,
+            "biofuelBlendPct": 0,
+            "poolingSurplusTonnes": 400,
+            "fueleuTargetCut": 2,
+            "charterType": "voyage_gencon"
+          },
+          "settings": {
+            "year": 2026,
+            "euaPrice": 80,
+            "ukPrice": 60,
+            "speedDelta": 0,
+            "blendPct": 0,
+            "poolingTonnes": 0,
+            "poolAvailable": 400,
+            "poolPrice": 180,
+            "bunkerPrice": 550,
+            "blendPremium": 260,
+            "consecutiveDeficits": 1,
+            "etsOwnerPct": 85,
+            "fuelOwnerPct": 85,
+            "poolOwnerPct": 85,
+            "hoursSaved": 120,
+            "advisorSavings": 2000,
+            "internalCost": 0,
+            "distanceNm": 6000,
+            "maxExtraHours": 24,
+            "dailyTimeCost": 5000,
+            "maxBlendPct": 30,
+            "auxFuelPerDay": 2,
+            "auxCo2Factor": 3.114,
+            "auxCoveragePct": 100,
+            "operationsConfirmed": true,
+            "fuelConfirmed": true,
+            "poolConfirmed": true,
+            "operatingOwnerPct": 85
+          },
+          "vesselInputs": {},
+          "ledgerDocuments": {}
+        },
+        "policySnapshots": [
+          {
+            "id": "P1",
+            "revision": 2,
+            "title": "6% planning condition",
+            "regime": "fuel",
+            "url": "https://eur-lex.europa.eu/eli/reg/2023/1805/oj/eng",
+            "publishedOn": "2023-09-22",
+            "checkedOn": "2026-10-21",
+            "effectiveOn": "",
+            "status": "planning",
+            "author": "Alice",
+            "before": "2% demonstration target",
+            "after": "6% fixed activity condition",
+            "uncertainty": "Demo only, scope unverified",
+            "allShips": true,
+            "shipIds": [],
+            "assumptions": {
+              "targetCut": 6,
+              "euaPrice": 100
+            },
+            "review": {
+              "reviewer": "Bob",
+              "reviewedOn": "2026-10-21",
+              "note": "Hypothetical classroom review",
+              "revision": 2
+            }
+          }
+        ],
+        "createdOn": "2026-10-21"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Final375px label/value grouping fix only; synthetic fixture; floating overlay hidden only during panel captures",
+  "screens": [
+    "docs/verification/v4.6.0/fleetDesk-zh-375-final.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-zh-375-final.png",
+    "docs/verification/v4.6.0/actionDesk-zh-375-final.png",
+    "docs/verification/v4.6.0/fleetDesk-en-375-final.png",
+    "docs/verification/v4.6.0/policyEvidenceDesk-en-375-final.png",
+    "docs/verification/v4.6.0/actionDesk-en-375-final.png"
+  ],
+  "pageErrors": [],
+  "containmentAndValueGrouping": true
+}

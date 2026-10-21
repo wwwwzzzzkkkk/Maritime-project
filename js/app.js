@@ -1,13 +1,14 @@
-import { createWorkspaceUi } from './workspace-ui.mjs?v=4.5.2';
-import { compileLedger } from './ledger.mjs?v=4.5.2';
-import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.5.2';
-import { createAiExplain } from './ai-explain.mjs?v=4.5.2';
-import { escapeHtml } from './decision-report.mjs?v=4.5.2';
-import { createPlanningUi } from './planning-ui.mjs?v=4.5.2';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.5.2';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.5.2';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.5.2';
-/* MAREG light UI v4.5.2 — presentation fixes; calculation engine outputs remain frozen. */
+import {createDecisionUi} from './decision-ui.mjs?v=4.6.0';
+import { createWorkspaceUi } from './workspace-ui.mjs?v=4.6.0';
+import { compileLedger } from './ledger.mjs?v=4.6.0';
+import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.6.0';
+import { createAiExplain } from './ai-explain.mjs?v=4.6.0';
+import { escapeHtml } from './decision-report.mjs?v=4.6.0';
+import { createPlanningUi } from './planning-ui.mjs?v=4.6.0';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.6.0';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.6.0';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.6.0';
+/* MAREG light UI v4.6.0 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -59,7 +60,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   let planningSettings=defaultSettings();
   const vesselInputs={};
   let currentPlan;
-  let workspaceUi,liveAi;
+  let workspaceUi,liveAi,decisionUi;
+  let vesselProfile;
   const ledgerDocuments={},ledgerModels={};
   let renderFrame=0;
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -104,11 +106,11 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const twin=state.twinState;
     return structuredClone({selectedVesselId:state.selectedVesselId,selectedScenario:state.selectedScenario,language:state.lang,
       twin:{euaPrice:twin.euaPrice,fueleuTargetCut:twin.fueleuTargetCut,jitSpeedDeltaKn:twin.jitSpeedDeltaKn,biofuelBlendPct:twin.biofuelBlendPct,poolingSurplusTonnes:twin.poolingSurplusTonnes,charterType:twin.charterType},
-      settings:planningSettings,vesselInputs,ledgerDocuments});
+      settings:planningSettings,vesselInputs,ledgerDocuments,...(vesselProfile?{vesselProfile}:{})});
   }
   function restoreAnalysis(input) {
     const a=validateAnalysis(input);
-    planningSettings=a.settings;
+    planningSettings=a.settings;vesselProfile=a.vesselProfile;
     for(const key of Object.keys(vesselInputs))delete vesselInputs[key];
     Object.assign(vesselInputs,a.vesselInputs);
     for(const key of Object.keys(ledgerDocuments)){delete ledgerDocuments[key];delete ledgerModels[key];}
@@ -122,8 +124,9 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
   function computeComplianceMetrics() {
     const originalVessel=getActiveVessel(), twin=state.twinState,compiled=ledgerModels[originalVessel.id];
-    const vessel=compiled?{...originalVessel,gt:compiled.vessel.gt,nameZh:compiled.vessel.name,nameEn:compiled.vessel.name,imo:`USER-${originalVessel.id.toUpperCase()}`,fuelType:'User ledger / 未核验台账'}:originalVessel;
-    const modelVessel=compiled?compiled.vessel:{...modelVessels.find(v=>v.id===vessel.id),...vesselInputs[vessel.id]};
+    let vessel=compiled?{...originalVessel,gt:compiled.vessel.gt,nameZh:compiled.vessel.name,nameEn:compiled.vessel.name,imo:`USER-${originalVessel.id.toUpperCase()}`,fuelType:'User ledger / 未核验台账'}:originalVessel;
+    const modelVessel=compiled?{...compiled.vessel}:{...modelVessels.find(v=>v.id===vessel.id),...vesselInputs[vessel.id]};
+    if(vesselProfile){Object.assign(modelVessel,vesselProfile);vessel={...vessel,gt:vesselProfile.gt,nameZh:vesselProfile.name,nameEn:vesselProfile.name,imo:vesselProfile.reference};}
     const ownerSharePct={voyage_gencon:.85,time_nype_bimco:.18,split_blue_ga:.5}[twin.charterType];
     const settings={...defaultSettings(),...planningSettings,year:twin.fueleuTargetCut===6?2030:2026,
       euaPrice:twin.euaPrice,ukPrice:planningSettings.ukPrice,speedDelta:twin.jitSpeedDeltaKn,
@@ -676,7 +679,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       el.textContent = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
     });
     updateResponsiveNavigation();
-    setText('dataModeNotice',ledgerModels[state.selectedVesselId]?(lang==='zh'?'使用本机导入台账，尚未经外部核验；不是船载实时数据。':'Using a locally imported ledger, not externally verified or live shipboard data.'):(lang==='zh'?'使用预设示例船舶与价格；可按需载入本机台账。':'Preset demo vessels/prices; local ledgers can be loaded explicitly.'));
+    setText('dataModeNotice',ledgerModels[state.selectedVesselId]?(lang==='zh'?'使用本机导入台账，尚未经外部核验；不是船载实时数据。':'Using a locally imported ledger, not externally verified or live shipboard data.'):(vesselProfile?(lang==='zh'?'船队模板范围推演，数据及年度完整性未核验。':'Fleet template-scope what-if; data and annual completeness unverified.'):(lang==='zh'?'使用预设示例船舶与价格；可按需载入本机台账。':'Preset demo vessels/prices; local ledgers can be loaded explicitly.')));
     for(const button of document.querySelectorAll('.leg-filter-btn'))button.disabled=Boolean(ledgerModels[state.selectedVesselId])&&button.dataset.legFilter!=='all';
     const destination={v1:'DEHAM',v2:'BEANR',v3:'DEBRV'}[state.selectedVesselId];
     document.querySelector('[data-leg-filter="E1"]').textContent=`E1 · ${lang==='zh'?'欧盟外航段':'Extra-EU'} 50% (${state.selectedVesselId==='v3'?'MAPTM':'CNSHA'}→NLRTM)`;
@@ -696,15 +699,15 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     if (vesselSelect) {
       vesselSelect.innerHTML = state.vessels.map(v => `
         <option value="${v.id}" ${v.id === state.selectedVesselId ? 'selected' : ''}>
-          ${escapeHtml(ledgerDocuments[v.id]?.profile.name||(lang === 'zh' ? v.nameZh : v.nameEn))}
+          ${escapeHtml(vesselProfile&&v.id===state.selectedVesselId?vesselProfile.name+' · '+(lang==='zh'?'船队载入':'Fleet loaded'):ledgerDocuments[v.id]?.profile.name||(lang === 'zh' ? v.nameZh : v.nameEn))}
         </option>
       `).join('');
     }
 
     setHTML('vesselMetaPills', `
-      <span class="meta-pill">${m.vessel.imo}</span>
+      <span class="meta-pill">${escapeHtml(m.vessel.imo)}</span>
       <span class="meta-pill">${fmtNum(m.vessel.gt)} GT</span>
-      <span class="meta-pill">${m.vessel.fuelType}</span>
+      <span class="meta-pill">${escapeHtml(m.vessel.fuelType)}</span>
       <span class="badge ${m.vessel.ch4N2oVerified ? 'badge-in-force' : 'badge-pending'}">
         ${m.vessel.ch4N2oVerified
           ? (lang === 'zh' ? 'CH4/N2O 已核验' : 'CH4/N2O Verified')
@@ -816,7 +819,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const c=m.comparison;
     setHTML('optionDeltaSummary', `<div><strong>${lang==='zh'?'当前方案与同条件基准':'Active Option vs. Same-Condition Baseline'}</strong><span>${lang==='zh'?'范围内欧元净支出变化（含航时费）':'Scoped EUR net expenditure change'}: ${fmtEur(c.costDelta,2)} · ${lang==='zh'?'负值表示节省；不含英国费用，也不是完整航次成本。':'Negative means savings; excludes UK costs and is not the full voyage cost.'}</span></div>`);
     currentPlan=planningUi.render(m,lang,{...defaultSettings(),...(ledgerModels[m.vessel.id]?{distanceNm:ledgerModels[m.vessel.id].screened.distanceNm}:{}),euEnergyMJ:ledgerModels[m.vessel.id]?.vessel.euEnergyMJ??modelVessels.find(v=>v.id===m.vessel.id).euEnergyMJ,actualWtWIntensity:ledgerModels[m.vessel.id]?.vessel.actualWtWIntensity??modelVessels.find(v=>v.id===m.vessel.id).actualWtWIntensity});
-    workspaceUi.render(m,lang);liveAi.render(lang);
+    workspaceUi.render(m,lang);liveAi.render(lang);decisionUi.render(m,lang);
 
     const auditRows=m.computedLegs.map(l=>`<tr><td class="mono"><strong>${l.code}</strong></td><td>${lang==='zh'?l.routeZh:l.routeEn}</td><td><span class="formula-code">CO₂ × ${l.coveragePct*100}% × ${l.currency==='EUR'?'EUA':'UKA'}</span></td><td class="num">${fmtNum(l.adjRaw,2)} × ${l.coveragePct*100}% = ${fmtNum(l.adjCovered,2)} t</td><td class="num">${l.currency==='EUR'?fmtEur(l.cost,2):fmtGbp(l.cost,2)}</td><td>CO₂ only</td></tr>`);
     auditRows.push(`<tr><td>FuelEU · Active</td><td>${lang==='zh'?'当前目标与实际组池分配':'Current target and allocated pooling'}</td><td><span class="formula-code">max(−CB,0) / (${fmtNum(m.actualIntensity,4)} × 41,000) × €2,400</span></td><td class="num">${fmtNum(m.netBalanceGrams)} g · ${fmtNum(c.active.allocatedPoolTonnes,4)} tCB pool</td><td class="num">${fmtEur(m.fueleuPenaltyEur,2)}</td><td>${lang==='zh'?'单期简化估算':'Single-period model'}</td></tr>`);
@@ -912,7 +915,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   /**
-   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.5.2)
+   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.6.0)
    * - Never tilts the panel-card containing the interactive GIS map when hovering inside .map-stage
    */
   function initSpatial3DTiltEngine() {
@@ -941,7 +944,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
           card.style.setProperty('--mouse-x',`${x}px`);card.style.setProperty('--mouse-y',`${y}px`);
           // Intentional local exception: only the reading region is flat (sticky drift was ~2px).
           // Other titles retain tilt. Input/simulation and the four requested work/read panels stay flat, including nested controls.
-          if(dragging||card.closest('#quickAdjuster, #planningInputsPanel, #voyageSimulation, #liveAiPanel, #charterAllocationPanel, #officialSourcesPanel, #policyPlanningPanel')||card.querySelector('#realMaritimeMap')||(reading&&(card.contains(reading)||reading.contains(card)))){reset(card);return;}
+          if(dragging||card.closest('#quickAdjuster, #planningInputsPanel, #voyageSimulation, #liveAiPanel, #charterAllocationPanel, #officialSourcesPanel, #policyPlanningPanel, [data-flat-panel]')||card.querySelector('#realMaritimeMap')||(reading&&(card.contains(reading)||reading.contains(card)))){reset(card);return;}
           const nx=x/rect.width-.5,ny=y/rect.height-.5;
           card.style.setProperty('--specular-angle',`${Math.round(Math.atan2(y-rect.height/2,x-rect.width/2)*180/Math.PI+90)}deg`);
           const panel=card.matches('.panel-card,.modal-card'),control=card.matches('.control-group');
@@ -1029,7 +1032,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const vesselSelect = document.getElementById('vesselSelect');
     if (vesselSelect) {
       vesselSelect.addEventListener('change', (e) => {
-        state.selectedVesselId = e.target.value;
+        state.selectedVesselId = e.target.value;vesselProfile=undefined;
         planningUi.reset();
         planningSettings.operationsConfirmed=false;planningSettings.fuelConfirmed=false;planningSettings.poolConfirmed=false;
         updateVesselRoute();
@@ -1103,7 +1106,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
     const resetBtn = document.getElementById('resetTwinBtn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        planningSettings=defaultSettings();
+        planningSettings=defaultSettings();vesselProfile=undefined;
         for(const key of Object.keys(ledgerDocuments)){delete ledgerDocuments[key];delete ledgerModels[key];}
         workspaceUi.reset();
         for(const key of Object.keys(vesselInputs))delete vesselInputs[key];
@@ -1130,7 +1133,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.5.2',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.6.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',
@@ -1185,14 +1188,16 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
         renderApp();
       }
     });
-    workspaceUi=createWorkspaceUi({capture:captureAnalysis,restore:restoreAnalysis,
+    workspaceUi=createWorkspaceUi({capture:captureAnalysis,restore:restoreAnalysis,getDesk:()=>decisionUi.getState(),setDesk:data=>decisionUi.replaceState(data),markDeskSaved:()=>decisionUi.markSaved(),
       applyLedger(document) {
         const id=state.selectedVesselId,compiled=compileLedger(document,id);
         ledgerDocuments[id]=structuredClone(document);ledgerModels[id]=compiled;
+        if(vesselProfile)vesselProfile={...vesselProfile,name:document.profile.name,gt:document.profile.gt,serviceSpeedKn:document.profile.serviceSpeedKn};
         planningSettings.distanceNm=compiled.screened.distanceNm;clearConfirmations();planningUi.reset();state.selectedLegFilter='all';renderApp();
       },
       clearLedger(){delete ledgerDocuments[state.selectedVesselId];delete ledgerModels[state.selectedVesselId];planningSettings.distanceNm=defaultSettings().distanceNm;clearConfirmations();planningUi.reset();state.selectedLegFilter='all';renderApp();}
     });
+    decisionUi=createDecisionUi({capture:captureAnalysis,restore:restoreAnalysis,navigate:id=>document.querySelector('[data-tab="'+id+'"]').click(),openWorkspace:()=>document.getElementById('openAuditModalBtn').click()});
     liveAi=createAiExplain({capture:captureAnalysis,evaluate:evaluateAnalysis,getCases:()=>workspaceUi.getCases()});
     initRealMaritimeMap();
     updateVesselRoute();

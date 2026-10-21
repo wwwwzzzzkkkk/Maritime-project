@@ -1,0 +1,12 @@
+{
+  "scope": "Chrome only; external fonts/tiles blocked; no live AI request",
+  "checks": [
+    "Five uniquely referenced, independently stored vessels; confirmed default inputs",
+    "Profile edits and explicit snapshot update affect only selected vessel; active editing does not silently change fleet",
+    "Manual evidence and explicit 6%/EUA100 comparison; no automatic mutation of active single analysis; different-person review",
+    "Action generation; unreviewed planning blocked; planning succeeds after review; implementation requires evidence/outcome and remains self-reported",
+    "Source revision marks old actions stale without overwriting original inputs/evidence"
+  ],
+  "screens": [],
+  "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /已恢复/. Input:\n\n'已保存已应用输入、船队、政策及行动；未应用草稿不保存。'\n\n    at file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/decision-browser.mjs:64:165"
+}
