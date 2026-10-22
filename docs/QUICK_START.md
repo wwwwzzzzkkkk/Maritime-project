@@ -4,15 +4,23 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.7.0，2026-10-22 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.7.1，2026-10-22 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.7.0, documented on 22 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.7.1, documented on 22 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
 **v4.5.1 MAREG 助手：** 在“帮助与说明”点击“连接 AI” → 输入私下提供的课堂访问码 → 同意并提问。常用问题可直接填入，回答来源可展开。不要填写 DeepSeek API key。/ **Classroom AI:** Help & About → Connect AI → private classroom code → consent → ask. Suggestions fill the question; references expand below the answer. Never enter the API key. [说明 / Setup](AI_SETUP.md)
 
 **v4.4.0 新增：** 顶栏“分析与报告”可保存／恢复及导出可打印报告；“方案比较”可展开统一 CSV 台账；“未来情景”可保存并载入明确的规划条件；“帮助与说明”提供默认未连接的本机 AI 接口。[完整操作](WORKFLOWS.md) · [AI 配置](AI_SETUP.md)。台账只作普通范围初筛；数据未核验，非法律意见。
+
+### 官方资料自动获取与弹窗输入（v4.7.1）
+
+进入“未来情景”，系统自动读取已配置的EU ETS、FuelEU、UK ETS和IMO官方页面，不需要AI访问码。展开某项可看原文节选、来源、获取时间和原站提供的日期；点“更新官方资料”可重新请求，成功结果缓存最多15分钟。失败会明确显示，仍可打开官方原页。
+
+点击某项“用于成本比较”，会打开预填政策草稿。它默认是规划条件，尚未保存，也不自动填写价格、确认适用性或改变预算。可选择船舶和数值条件后保存；原站缺失的发布日期允许保持未知。随后可使用已有“比较影响”或“AI解释影响”。
+
+人工建档和录入统一从原页面的按钮进入二级弹窗：添加船舶、政策／复核、编辑输入与运营条件、导入台账、设置规划条件、生成／完善行动。Esc或“关闭”返回主页面；关闭保留尚未提交的草稿。有效保存／应用后关闭并更新结果。滑块仍直接显示，不需要弹窗。
 
 ### 用AI解释政策对船队的影响（v4.7.0）
 
@@ -62,7 +70,7 @@ For the default light edition v4.7.0, documented on 22 October 2026. No installa
 
 ### 3. 到“方案比较”比较方案
 
-先使用默认可见的五个快速输入：范围内燃油消耗（等效吨）、燃油价、低碳燃料溢价、组池报价、允许增加的航时。组池报价旁显示已应用可用量，点击“修改”进入高级区。EUA 继续在总览滑块调整。
+点击“编辑输入与运营条件”，在二级弹窗内使用五个快速输入：范围内燃油消耗（等效吨）、燃油价、低碳燃料溢价、组池报价、允许增加的航时。组池报价旁显示已应用可用量，点击“修改”进入高级区。EUA 继续在总览滑块调整。
 
 默认 4,000 等效吨 = 164,000,000 MJ；41,000 MJ/吨仅用于 VLSFO 等效换算，不适用于所有实际燃料。高级区可直接输入 MJ，两种单位同步，计算和快照只保存 MJ。
 
@@ -111,6 +119,14 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 地图没有加载时，先检查网络；数值和台账仍可查看。想了解一个数字怎么算，再展开下面附录即可。
 
 ## English quick start
+
+### Official pages and secondary entry dialogs (v4.7.1)
+
+Future Scenarios loads the four configured EU ETS/FuelEU/UK ETS/IMO pages without an AI code. Expand a source for the excerpt, original link, actual retrieval time and available publication/update dates. Refresh requests the service again; successful results can be cached for15 minutes. Failure stays visible, with an original-page link.
+
+Use for cost comparison opens a prefilled planning draft, without saving or applying prices/rules. Confirm vessel scope and any numeric conditions before saving. Missing source publication dates remain unknown. Continue with Compare impact or Explain impact with AI.
+
+Vessel profiles, policy/review, operating inputs, ledger import, planning conditions and action forms now open secondary dialogs. Escape/Close returns to the view while retaining a mounted draft; successful saves/applies close the form. Everyday sliders stay visible.
 
 ### Explain a policy's fleet impact with AI (v4.7.0)
 

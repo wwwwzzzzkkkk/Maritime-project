@@ -1,5 +1,15 @@
 # Change log
 
+## v4.7.1 · 2026-10-22
+
+- Baseline: `light-v4.7.0-baseline-2026-10-22` (c20b2c2).
+- 进入未来情景自动读取四个配置官方页：EU ETS、FuelEU、UK ETS和特定IMO会议资料；原文节选、实际获取时间、可用原站日期及失败分别显示，成功缓存15分钟。UK使用官方Content API；不接受任意URL抓取。
+- Use a source to prefill an unsaved planning draft, without inventing publication dates, prices, legal status or approval. Saved retrieval provenance survives workspaces/reports and is distinguished from applicability verification in AI context.
+- 船舶、政策／复核、运营输入、台账、规划条件、行动生成／说明八类人工表单改为原生二级弹窗；结果、已应用假设和日常滑块留在主页面。保留字段、范围、步长、确认门控与未提交草稿。
+- Existing glass/motion/flat exceptions remain. Native focus/Escape/close behavior, valid-save return and input-tag jumps are preserved. No new dependencies, build tools, hash or performance audit.
+- UI／缓存／报告／快照／知识4.7.1；五个受保护文件及六项基准不变，引擎light-4.2.0。
+- [Release](docs/releases/v4.7.1.md) · [实际验收 / Evidence](docs/verification/v4.7.1/README.md) · [Sources](docs/OFFICIAL_SOURCES.md)
+
 ## v4.7.0 · 2026-10-22
 
 - Baseline: `light-v4.6.0-baseline-2026-10-22` (0c21aa9).

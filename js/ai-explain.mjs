@@ -1,7 +1,7 @@
-import {buildPolicyExplanation} from './ai-policy-context.mjs?v=4.7.0';
-import { AI_SERVICE_URL } from './ai-config.mjs?v=4.7.0';
-import { sources as officialReferences } from './light-data.mjs?v=4.7.0';
-import { renderAiAnswer } from './ai-answer.mjs?v=4.7.0';
+import {buildPolicyExplanation} from './ai-policy-context.mjs?v=4.7.1';
+import { AI_SERVICE_URL } from './ai-config.mjs?v=4.7.1';
+import { sources as officialReferences } from './light-data.mjs?v=4.7.1';
+import { renderAiAnswer } from './ai-answer.mjs?v=4.7.1';
 const metricFields=['euEts','ukEts','fuelEu','poolCost','totalEur','energyMJ','actualIntensity','extraHours','physicalWtWTonnes','target','allocatedPoolTonnes','fuelSaving','blendCost','timeCost','rawBalanceGrams','netBalanceGrams','deficitTonnes','ownerEur','chartererEur','ownerScopedEur','chartererScopedEur','operatingDelta'];
 const assumptionFields=['euaPrice','ukPrice','speedDelta','blendPct','poolPrice','poolAvailable','year','poolingTonnes','bunkerPrice','blendPremium','distanceNm','maxExtraHours','dailyTimeCost','maxBlendPct','auxFuelPerDay','auxCo2Factor','auxCoveragePct','consecutiveDeficits','etsOwnerPct','fuelOwnerPct','poolOwnerPct','operatingOwnerPct','operationsConfirmed','fuelConfirmed','poolConfirmed'];
 

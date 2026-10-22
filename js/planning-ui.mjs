@@ -1,5 +1,6 @@
-import { planOptions } from './option-planner.mjs?v=4.7.0';
-import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.7.0';
+import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.1';
+import { planOptions } from './option-planner.mjs?v=4.7.1';
+import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.7.1';
 
 export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
   const form=document.getElementById('planningForm');
@@ -51,6 +52,7 @@ export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
       document.querySelector('[data-tab="tab-cockpit"]').click();
       const slider=document.querySelector('.sync-eua');slider.focus();slider.scrollIntoView({block:'center'});return;
     }
+    openFormDialog('baseInputsDialog');
     const field=document.getElementById(`input-${name}`);
     if(advanced.contains(field))advanced.open=true;
     field.focus();field.scrollIntoView({block:'center'});
@@ -81,7 +83,7 @@ export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
     const invalid=[tonnes,...fields].filter(field=>!validate(field));
     if(invalid.length){focusInput(invalid[0]===tonnes?'fuelTonnes':invalid[0].name);draftNote();return;}
     if(confirmAll)for(const key of confirmationKeys)draft[key]=true;
-    dirty=false;onApplyInputs({...draft});
+    dirty=false;onApplyInputs({...draft});closeFormDialog('baseInputsDialog');
   }
   form.addEventListener('input',event=>{
     const field=event.target;
@@ -105,7 +107,8 @@ export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
     field.value=name==='fuelTonnes'?mjToTonnes(defaults.euEnergyMJ):defaults[name];
     field.dispatchEvent(new Event('input',{bubbles:true}));field.focus();
   });
-  document.getElementById('planningInputsPanel').addEventListener('click',event=>{
+  document.addEventListener('click',event=>{
+    if(!event.target.closest('#planningInputsPanel,#baseInputsDialog'))return;
     const jump=event.target.closest('[data-jump]');if(jump)focusInput(jump.dataset.jump);
     const preset=event.target.closest('[data-preset]');if(preset)onPreset(preset.dataset.preset);
   });
@@ -118,7 +121,7 @@ export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
     const open=()=>{closeHelp();button.setAttribute('aria-expanded','true');document.getElementById(button.getAttribute('aria-controls')).hidden=false;};
     button.addEventListener('focus',open);button.addEventListener('click',open);
   }
-  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeHelp();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(form.querySelector('.input-help:not([hidden])'))event.preventDefault();closeHelp();}});
   document.addEventListener('click',event=>{if(!event.target.closest('.planning-field'))closeHelp();});
   apply.addEventListener('click',()=>onApplyOption(latest.recommendation));
   return {

@@ -1779,3 +1779,24 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
 .ai-policy-heading strong { font-size: 14px; }
 .ai-policy-context summary { cursor: pointer; color: var(--accent-text); padding-block: 10px; line-height: 1.6; }
 .ai-policy-context pre { max-height: 280px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.7; color: var(--text-secondary); }
+
+/* v4.7.1: manual entry is secondary; existing sliders, materials and motion stay intact. */
+.form-dialog .modal-card { max-width: 920px; margin: 0; overscroll-behavior: contain; }
+.form-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.form-dialog-heading .panel-title { font-size: 19px; line-height: 1.5; }
+.form-dialog .ghost-btn { min-height: 44px; white-space: normal; max-width: 100%; }
+.form-dialog button:focus-visible, .form-dialog summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.form-dialog-status:empty { display: none; }
+body:has(.form-dialog[open]) { overflow: hidden; }
+#baseInputsDialog .demo-presets .ghost-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.official-policy-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block: 18px; }
+.official-source-row { border-bottom: 1px solid var(--border-hairline); padding-block: 8px; font-size: 13px; line-height: 1.8; }
+.official-source-row summary { cursor: pointer; color: var(--accent-text); padding-block: 10px; }
+.official-source-row p { overflow-wrap: anywhere; }
+.official-source-row a { color: var(--accent-text); }
+@media (max-width: 680px) { .form-dialog { padding: 12px; } .form-dialog .modal-card { max-height: calc(100dvh - 24px); padding: 16px; } .form-dialog-heading { align-items: flex-start; } }
+
+[data-open-form][hidden] { display: none; }
+
+.panel-card > [data-open-form] { align-self: flex-start; }
+.form-dialog .model-note:empty { display: none; }

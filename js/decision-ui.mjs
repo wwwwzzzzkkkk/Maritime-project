@@ -1,10 +1,13 @@
-import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.0';
-import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.0';
-import {escapeHtml as esc} from './decision-report.mjs?v=4.7.0';
+import {createOfficialPolicyUi} from './official-policy-ui.mjs?v=4.7.1';
+import {OFFICIAL_POLICY_SOURCES} from './official-policy-catalog.mjs?v=4.7.1';
+import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.1';
+import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.1';
+import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.1';
+import {escapeHtml as esc} from './decision-report.mjs?v=4.7.1';
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
 export function createDecisionUi({capture,restore,navigate,openWorkspace,explainPolicy,onDeskChange}){
  const el=id=>document.getElementById(id),control=(f,k)=>f.elements.namedItem(k);
- let desk=emptyDesk(),lang='zh',dirty=false,policyId='',fleetEditId='',policyEditId='',actionId='',actionDirty=false,current;
+ let desk=emptyDesk(),lang='zh',dirty=false,policyId='',fleetEditId='',policyEditId='',actionId='',actionDirty=false,current,pendingRetrieval;
  const t=(z,e)=>lang==='zh'?z:e,money=(v,c='EUR')=>new Intl.NumberFormat(lang==='zh'?'zh-CN':'en-GB',{style:'currency',currency:c,maximumFractionDigits:2}).format(v),num=v=>new Intl.NumberFormat(lang==='zh'?'zh-CN':'en-GB',{maximumFractionDigits:2}).format(v);
  const legal=p=>({planning:t('规划假设','Planning assumption'),proposal:t('提案／草案','Proposal / draft'),'in-force':t('用户标注已生效','User-marked in force')})[p.status];
  const stateLabel=s=>({draft:t('待完善／复核','Draft / review needed'),planned:t('用户记录：计划中','User-recorded: planned'),implemented:t('用户自报：已实施','Self-reported: implemented'),deferred:t('已记录暂缓','Deferred')})[s];
@@ -14,7 +17,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
  const button=(key,id,label)=>'<button type="button" class="ghost-btn" data-'+key+'="'+esc(id)+'">'+esc(label)+'</button>';
  function table(heads,rows){return '<div class="table-wrap desk-table-wrap"><table class="telemetry-table desk-table"><thead><tr>'+heads.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map((v,i)=>'<td data-label="'+esc(heads[i])+'">'+'<div class="desk-cell-value">'+v+'</div></td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
  const metric=(title,value)=>'<div class="desk-metric"><span>'+esc(title)+'</span><strong>'+esc(value)+'</strong></div>';
- function run(status,fn){try{fn();}catch(error){msg(status,error.message);}}
+ function run(status,fn){try{fn();}catch(error){msg(status,error.message);for(const dialog of document.querySelectorAll('.form-dialog[open]'))dialog.querySelector('.form-dialog-status').textContent=error.message;}}
  function commit(next){desk=validateDesk(next,validateAnalysis);dirty=true;render();onDeskChange();}
  function addEvent(a,kind,note){a.events.push({on:today(),kind,revision:a.revision,note});}
  function selectOptions(select,items,emptyLabel,selected=select.value){
@@ -43,9 +46,9 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
  function renderPolicy(){
   if(!desk.policies.some(p=>p.id===policyId))policyId=desk.policies[0]?.id??'';
   selectOptions(el('policyImpactSelect'),desk.policies.map(p=>({id:p.id,label:p.title+' · v'+p.revision})),t('尚无政策证据','No policy evidence'),policyId);el('policyImpactSelect').value=policyId;
-  el('policyRecords').innerHTML=desk.policies.length?desk.policies.map(p=>'<article class="desk-record '+(p.id===policyId?'is-selected':'')+'"><h3><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(p.title)+'</a></h3><p><span class="badge">'+esc(legal(p))+'</span>v'+p.revision+' · '+esc(p.regime.toUpperCase())+' · '+esc(p.author)+'</p><p>'+t('发布','Published')+' '+p.publishedOn+' · '+t('核对','Checked')+' '+p.checkedOn+' · '+t('生效','Effective')+' '+(p.effectiveOn||t('未确定','Unknown'))+'</p><p>'+esc(p.review?t('自填复核：','Self-entered review: ')+p.review.reviewer+' · '+p.review.reviewedOn:t('尚无团队复核记录；来源官方性和适用范围待核。','No team review record; source authority and scope need checking.'))+'</p><details><summary>'+t('证据与条件','Evidence & conditions')+'</summary><p>'+t('原条件：','Previous: ')+esc(p.before)+'</p><p>'+t('变化：','Change: ')+esc(p.after)+'</p><p>'+t('待核：','Uncertainty: ')+esc(p.uncertainty)+'</p><p>'+esc(Object.entries(p.assumptions).map(([k,v])=>({euaPrice:'EUA €/t',ukPrice:'UKA £/t',targetCut:'FuelEU %',poolPrice:'€/tCB',poolAvailable:'tCB'})[k]+' = '+v).join(' · ')||t('尚未填写数值影响条件。','No numeric impact conditions.'))+'</p></details><div class="desk-toolbar">'+button('policy-compare',p.id,t('比较影响','Compare impact'))+button('policy-ai',p.id,t('AI解释影响','Explain impact with AI'))+button('policy-edit',p.id,t('编辑','Edit'))+button('policy-remove',p.id,t('移除','Remove'))+'</div></article>').join(''):'<p class="desk-empty">'+t('暂无记录。添加经核对的资料和明确条件后，才展示船队成本影响。','No records yet. Add reviewed evidence and explicit conditions to compare fleet impacts.')+'</p>';
+  el('policyRecords').innerHTML=desk.policies.length?desk.policies.map(p=>'<article class="desk-record '+(p.id===policyId?'is-selected':'')+'"><h3><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(p.title)+'</a></h3><p><span class="badge">'+esc(legal(p))+'</span>v'+p.revision+' · '+esc(p.regime.toUpperCase())+' · '+esc(p.author)+'</p><p>'+t('发布','Published')+' '+(p.publishedOn||t('未知','Unknown'))+' · '+t('核对／获取','Checked')+' '+p.checkedOn+' · '+t('生效','Effective')+' '+(p.effectiveOn||t('未确定','Unknown'))+'</p><p>'+(p.retrieval?esc(t('官方页面获取：','Official-page retrieval: ')+p.retrieval.retrievedAt+' · '+t('适用性待核','applicability unverified')):'')+'</p><p>'+esc(p.review?t('自填复核：','Self-entered review: ')+p.review.reviewer+' · '+p.review.reviewedOn:t('尚无团队复核记录；来源官方性和适用范围待核。','No team review record; source authority and scope need checking.'))+'</p><details><summary>'+t('证据与条件','Evidence & conditions')+'</summary><p>'+t('原条件：','Previous: ')+esc(p.before)+'</p><p>'+t('变化：','Change: ')+esc(p.after)+'</p><p>'+t('待核：','Uncertainty: ')+esc(p.uncertainty)+'</p><p>'+esc(Object.entries(p.assumptions).map(([k,v])=>({euaPrice:'EUA €/t',ukPrice:'UKA £/t',targetCut:'FuelEU %',poolPrice:'€/tCB',poolAvailable:'tCB'})[k]+' = '+v).join(' · ')||t('尚未填写数值影响条件。','No numeric impact conditions.'))+'</p></details><div class="desk-toolbar">'+button('policy-compare',p.id,t('比较影响','Compare impact'))+button('policy-ai',p.id,t('AI解释影响','Explain impact with AI'))+button('policy-edit',p.id,t('编辑','Edit'))+button('policy-remove',p.id,t('移除','Remove'))+'</div></article>').join(''):'<p class="desk-empty">'+t('暂无记录。添加经核对的资料和明确条件后，才展示船队成本影响。','No records yet. Add reviewed evidence and explicit conditions to compare fleet impacts.')+'</p>';
   const p=desk.policies.find(p=>p.id===policyId);
-  el('policyReviewEditor').hidden=!p;
+  el('openPolicyReview').hidden=!p;
   if(!p)el('policyImpact').innerHTML='';
   else if(!hasConditions(p))el('policyImpact').innerHTML='<p class="desk-empty">'+t('这是一项证据记录，尚无可计算条件；不能据此断言成本变化为零。','Evidence only: no numeric conditions. A zero cost impact has not been established.')+'</p>';
   else if(!desk.fleet.length)el('policyImpact').innerHTML='<p class="desk-empty">'+t('请先存入船队记录；政策条件未应用到当前单船预算。','Store fleet vessels first. Policy conditions have not changed the active single-vessel budget.')+'</p>';
@@ -95,29 +98,39 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
   let entry;
   if(fleetEditId){entry=next.fleet.find(v=>v.id===fleetEditId);entry.input.vesselProfile=profile;entry.input=validateAnalysis(entry.input);entry.revision++;}
   else{entry=createFleetEntry(capture(),profile,crypto.randomUUID());next.fleet.push(entry);}
-  const wasNew=!fleetEditId;commit(next);resetFleet();if(wasNew)restore(entry.input);
+  const wasNew=!fleetEditId;commit(next);resetFleet();if(wasNew)restore(entry.input);closeFormDialog('fleetEditor');
   msg('fleetStatus',t('船队记录已更新；请保存／导出项目。相关旧行动可能需要重新生成。','Fleet record updated. Save/export the project; old actions may require regeneration.'));
  });});
  el('fleetRows').addEventListener('click',event=>{
   for(const key of['load','update','edit','remove']){const btn=event.target.closest('[data-fleet-'+key+']');if(!btn)continue;run('fleetStatus',()=>{
    const id=btn.dataset['fleet'+key[0].toUpperCase()+key.slice(1)],entry=desk.fleet.find(v=>v.id===id);
    if(key==='load'){restore(entry.input);msg('fleetStatus',t('已载入此船分析。修改后点击本行“更新分析”才会改变船队快照。','Analysis loaded. Use this row’s Update snapshot after editing.'));}
-   if(key==='edit'){fleetEditId=id;const f=el('fleetForm');for(const k of['name','reference','gt','serviceSpeedKn'])control(f,k).value=entry.input.vesselProfile[k];f.dataset.edited='true';el('fleetEditor').open=true;render();el('fleetEditor').scrollIntoView({block:'center'});}
+   if(key==='edit'){fleetEditId=id;const f=el('fleetForm');for(const k of['name','reference','gt','serviceSpeedKn'])control(f,k).value=entry.input.vesselProfile[k];f.dataset.edited='true';openFormDialog('fleetEditor');render();}
    if(key==='update'){const input=capture();if(input.vesselProfile?.reference!==entry.input.vesselProfile.reference)throw new Error(t('请先载入该船，再更新分析。','Load this vessel before updating its snapshot.'));const next=structuredClone(desk),e=next.fleet.find(v=>v.id===id);e.input=validateAnalysis(input);e.revision++;commit(next);msg('fleetStatus',t('已更新输入快照；原行动保留并标为来源已更新。','Snapshot updated. Existing actions are retained and marked stale.'));}
    if(key==='remove'){if(desk.actions.some(a=>a.fleetId===id)||desk.policies.some(p=>p.shipIds.includes(id)))throw new Error(t('请先移除／修改关联行动和指定船舶政策，避免丢失依据。','Remove/relink actions and vessel-specific policies first.'));if(confirm(t('移除此船记录？已导出文件不受影响。','Remove this vessel record? Exported files are unaffected.'))){const next=structuredClone(desk);next.fleet=next.fleet.filter(v=>v.id!==id);commit(next);resetFleet();}}
   });break;}
  });
  const pf=el('policyEvidenceForm');
- function resetPolicy(){policyEditId='';pf.reset();control(pf,'checkedOn').value=today();picker([]);}
+ function resetPolicy(){policyEditId='';pendingRetrieval=undefined;pf.reset();control(pf,'publishedOn').required=true;control(pf,'checkedOn').value=today();el('policyRetrievalHint').textContent='';picker([]);}
  el('policyNew').addEventListener('click',resetPolicy);
+ const officialUi=createOfficialPolicyUi({getLanguage:()=>lang,onUse(snapshot){
+  resetPolicy();pendingRetrieval=snapshot;const source=OFFICIAL_POLICY_SOURCES.find(s=>s.id===snapshot.sourceId);
+  const values={title:snapshot.title.slice(0,120),url:snapshot.url,regime:source.regime,status:'planning',publishedOn:snapshot.publishedOn??'',checkedOn:snapshot.retrievedAt.slice(0,10),effectiveOn:'',author:'Official retrieval / 自动获取',before:t('已存船队的基准输入；未自动更改规则或预算。','Stored fleet baseline inputs; no rules or budgets changed automatically.'),after:t('官方原文节选：','Official excerpt: ')+snapshot.excerpt.slice(0,950),uncertainty:t('获取不等于法律核验；适用范围、日期及数值条件需确认，原文可能有未提取的例外。','Retrieval is not legal verification. Confirm applicability, dates and numeric conditions; the original may contain exceptions not extracted here.')};
+  for(const [key,value]of Object.entries(values))control(pf,key).value=value;
+  control(pf,'publishedOn').required=snapshot.publishedOn!==null;
+  el('policyRetrievalHint').textContent=t('已自动填入官方资料草稿，尚未保存或改变预算。原站缺失的发布日期保留为空；请选择适用船舶与成本比较条件。','Official-source draft filled; not saved and budgets unchanged. A missing publication date stays blank. Choose vessels and explicit cost conditions.');
+  openFormDialog('policyEditor');
+ }});
+
  control(pf,'allShips').addEventListener('change',()=>picker());
  pf.addEventListener('submit',event=>{event.preventDefault();run('policyEvidenceStatus',()=>{
   const next=structuredClone(desk),old=next.policies.find(p=>p.id===policyEditId),assumptions={};
   for(const k of['euaPrice','ukPrice','targetCut','poolPrice','poolAvailable'])if(control(pf,k).value!=='')assumptions[k]=Number(control(pf,k).value);
   const p={id:old?.id??crypto.randomUUID(),revision:(old?.revision??0)+1,review:null,assumptions,allShips:control(pf,'allShips').checked,shipIds:[...el('policyShipPicker').querySelectorAll('input:checked')].map(e=>e.value)};
   for(const k of['title','regime','url','status','publishedOn','checkedOn','effectiveOn','author','before','after','uncertainty'])p[k]=control(pf,k).value;
+  const source=old?.retrieval??pendingRetrieval;if(source&&source.url===p.url)p.retrieval=source;
   const valid=validatePolicy(p);if(old)next.policies[next.policies.findIndex(p=>p.id===old.id)]=valid;else next.policies.push(valid);
-  policyId=valid.id;commit(next);resetPolicy();el('policyEditor').open=false;msg('policyEvidenceStatus',t('证据已保存，预算未自动应用；请记录复核，并保存／导出项目。','Evidence saved; budgets unchanged. Record a review and save/export the project.'));
+  policyId=valid.id;commit(next);resetPolicy();closeFormDialog('policyEditor');msg('policyEvidenceStatus',t('证据已保存，预算未自动应用；请记录复核，并保存／导出项目。','Evidence saved; budgets unchanged. Record a review and save/export the project.'));
  });});
  el('policyImpactSelect').addEventListener('change',e=>{policyId=e.target.value;renderPolicy();});
  el('policyRecords').addEventListener('click',event=>{
@@ -125,24 +138,24 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
    const id=btn.dataset['policy'+key[0].toUpperCase()+key.slice(1)],p=desk.policies.find(p=>p.id===id);policyId=id;
    if(key==='ai')explainPolicy(p.id);
    if(key==='compare'){renderPolicy();el('policyImpact').scrollIntoView({block:'center'});}
-   if(key==='edit'){policyEditId=id;for(const k of['title','regime','url','status','publishedOn','checkedOn','effectiveOn','author','before','after','uncertainty'])control(pf,k).value=p[k];control(pf,'allShips').checked=p.allShips;for(const k of['euaPrice','ukPrice','targetCut','poolPrice','poolAvailable'])control(pf,k).value=p.assumptions[k]??'';picker(p.shipIds);el('policyEditor').open=true;renderPolicy();el('policyEditor').scrollIntoView({block:'center'});}
+   if(key==='edit'){policyEditId=id;pendingRetrieval=p.retrieval;control(pf,'publishedOn').required=!Boolean(p.retrieval&&p.retrieval.publishedOn===null);el('policyRetrievalHint').textContent=p.retrieval?t('保留获取时的资料版本；修改来源地址会移除原获取关联。','Retains the fetched source version; changing the URL removes its retrieval association.'):'';for(const k of['title','regime','url','status','publishedOn','checkedOn','effectiveOn','author','before','after','uncertainty'])control(pf,k).value=p[k];control(pf,'allShips').checked=p.allShips;for(const k of['euaPrice','ukPrice','targetCut','poolPrice','poolAvailable'])control(pf,k).value=p.assumptions[k]??'';picker(p.shipIds);openFormDialog('policyEditor');renderPolicy();}
    if(key==='remove'){if(desk.actions.some(a=>a.policySnapshots.some(p=>p.id===id)))throw new Error(t('请先保留导出记录，再移除关联行动；不能删除其引用依据。','Export records and remove linked actions first; their source cannot be deleted.'));if(confirm(t('移除此政策记录？','Remove this policy record?'))){const next=structuredClone(desk);next.policies=next.policies.filter(p=>p.id!==id);commit(next);resetPolicy();}}
   });break;}
  });
  el('policyReviewForm').addEventListener('submit',event=>{event.preventDefault();run('policyEvidenceStatus',()=>{
   const next=structuredClone(desk),p=next.policies.find(p=>p.id===policyId);if(!p)throw new Error(t('请选择资料记录。','Select an evidence record.'));
   p.revision++;p.review={reviewer:control(event.target,'reviewer').value,reviewedOn:today(),note:control(event.target,'note').value,revision:p.revision};commit(next);
-  event.target.reset();msg('policyEvidenceStatus',t('团队自填复核已记录；不验证身份，也不是外部批准。旧行动需重新生成。','Self-entered team review recorded; no identity verification or external approval. Regenerate old actions.'));
+  event.target.reset();closeFormDialog('policyReviewEditor');msg('policyEvidenceStatus',t('团队自填复核已记录；不验证身份，也不是外部批准。旧行动需重新生成。','Self-entered team review recorded; no identity verification or external approval. Regenerate old actions.'));
  });});
  control(el('actionGenerateForm'),'fleetId').addEventListener('change',refreshActionOptions);
  el('actionGenerateForm').addEventListener('submit',event=>{event.preventDefault();run('actionStatus',()=>{
   const f=event.target,next=structuredClone(desk),a=createAction(next,control(f,'fleetId').value,control(f,'kind').value,control(f,'policyId').value,crypto.randomUUID(),today());
   a.title=t('评估：','Review: ')+optionLabels()[control(f,'kind').value];a.trigger=t('先核对运营限制、燃料／组池条件和适用范围，再决定是否实施。','Check operating limits, fuel/pooling conditions and scope before implementation.');a.risk=t('有限搜索与简化模型；费用下降不等于实际减排。重大支出须另行专业复核。','Finite search and simplified models; lower costs are not verified reductions. Material spending needs separate professional review.');
-  next.actions.push(a);actionId=a.id;actionDirty=false;commit(next);el('actionEditor').open=true;fillAction();msg('actionStatus',t('已生成待复核草稿；原预算未改变。请填写负责人、日期及意见。','Draft created; active budgets unchanged. Complete owner, date and review.'));
+  next.actions.push(a);actionId=a.id;actionDirty=false;commit(next);closeFormDialog('actionGeneratorDialog');openFormDialog('actionEditor');fillAction();msg('actionStatus',t('已生成待复核草稿；原预算未改变。请填写负责人、日期及意见。','Draft created; active budgets unchanged. Complete owner, date and review.'));
  });});
  el('actionRecords').addEventListener('click',event=>{
   const select=event.target.closest('[data-action-select]'),remove=event.target.closest('[data-action-remove]');
-  if(select){if(actionDirty&&!confirm(t('放弃未保存的说明？','Discard unsaved details?')))return;actionId=select.dataset.actionSelect;actionDirty=false;renderActions();el('actionEditor').open=true;fillAction();}
+  if(select){if(actionDirty&&!confirm(t('放弃未保存的说明？','Discard unsaved details?')))return;actionId=select.dataset.actionSelect;actionDirty=false;renderActions();openFormDialog('actionEditor');fillAction();}
   if(remove&&confirm(t('移除此行动？已导出项目不受影响。','Remove this action? Exported projects are unaffected.')))run('actionStatus',()=>{const next=structuredClone(desk);next.actions=next.actions.filter(a=>a.id!==remove.dataset.actionRemove);actionDirty=false;commit(next);});
  });
  el('actionEditForm').addEventListener('input',()=>{actionDirty=true;for(const id of['actionPlan','actionImplement','actionDefer'])el(id).disabled=true;msg('actionStatus',t('说明有未保存修改；保存将清除旧复核，需重新记录。','Unsaved details. Saving changed details clears the previous review.'));});
@@ -155,7 +168,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
    if(actionAssessment(a,next).stale)throw new Error(t('来源已更新，请重新生成行动再复核。','Sources changed. Regenerate before reviewing.'));
    a.review={reviewer:control(f,'reviewer').value.trim(),reviewedOn:today(),note:control(f,'reviewNote').value.trim(),revision:a.revision};addEvent(a,'reviewed',a.review.reviewer+' · '+a.review.note);
   }
-  actionDirty=false;commit(next);msg('actionStatus',t('行动说明／自填复核已保存；请保存或导出整个项目。','Action details/self-entered review saved. Save or export the project.'));
+  actionDirty=false;commit(next);closeFormDialog('actionEditor');msg('actionStatus',t('行动说明／自填复核已保存；请保存或导出整个项目。','Action details/self-entered review saved. Save or export the project.'));
  });});
  for(const [id,status]of[['actionPlan','planned'],['actionImplement','implemented'],['actionDefer','deferred']])el(id).addEventListener('click',()=>run('actionStatus',()=>{
   const next=structuredClone(desk),a=next.actions.find(a=>a.id===actionId);if(status!=='deferred')assertCanAdvance(a,next,status);
@@ -163,7 +176,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
  }));
  el('actionLoad').addEventListener('click',()=>{const a=desk.actions.find(a=>a.id===actionId);restore(a.proposalInput);navigate('tab-sandbox');msg('actionStatus',t('已载入推演参数，不代表执行行动。','What-if parameters loaded; no action executed.'));});
  resetPolicy();
- return {render(m,language){if(lang!==language)for(const id of['fleetStatus','policyEvidenceStatus','actionStatus'])msg(id,'');lang=language;current={vessel:{...m.modelVessel,name:language==='zh'?m.vessel.nameZh:m.vessel.nameEn},settings:m.settings};render();},
+ return {render(m,language){if(lang!==language)for(const id of['fleetStatus','policyEvidenceStatus','actionStatus'])msg(id,'');lang=language;officialUi.render();current={vessel:{...m.modelVessel,name:language==='zh'?m.vessel.nameZh:m.vessel.nameEn},settings:m.settings};render();},
   getState(){return structuredClone(desk);},replaceState(value){desk=value;dirty=false;policyId='';actionId='';fleetEditId='';policyEditId='';actionDirty=false;el('fleetForm').reset();delete el('fleetForm').dataset.edited;resetPolicy();},
   markSaved(){dirty=false;render();}};
 }

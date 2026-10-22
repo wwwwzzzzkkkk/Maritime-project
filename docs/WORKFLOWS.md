@@ -1,4 +1,4 @@
-# MAREG v4.7.0：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.7.1：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 
@@ -127,3 +127,18 @@ English: choose Explain impact with AI on an existing record in Future Scenarios
 AI按照“影响／建议／待核”三段解释，以所选匿名金额为依据；建议仍须客户结合条件判断，不自动转为采购、执行、核验或申报。用户来源标注为未联网核验；已有官方参考资料保留原核对日期。没有数值条件时后金额和差额为null，不当作零；6%仍是固定活动量条件，不是真实2030账单。/ Answers use Impact / Options / Checks, supplied anonymous figures and visible evidence limits. They do not create transactions, implementation, verification or filings. User-entered sources are not retrieved/verified online; bundled references retain their dates. No numeric conditions means null impact, never zero.6% is a fixed-activity comparison, not a verified2030 bill.
 
 回答过期按已发送范围判断：更新已存船舶／政策或改换关联记录，会提示依据变化；仅改当前单船滑块不会使一个未变化的已存船队回答过期。原有单船问答请求仍支持。/ Staleness follows the sent scope: saved snapshot/source/context changes matter; changing only the active single-vessel sliders does not invalidate an unchanged saved-fleet answer. Original vessel Q&A remains supported.
+
+
+## v4.7.1：官方来源与二级录入 / Official pages and secondary entry
+
+- **自动获取**：进入未来情景时请求现有后端的`GET /api/policies`，读取四个固定官方页面。UK使用GOV.UK Content API，其余使用官方HTML。最多15分钟缓存；刷新不会伪装成绕过缓存。只收取公共网页，不发送客户资料或AI访问码，不调用付费模型。
+- **日期与失败**：实际获取时间与原站发布／更新日分开。未提取到原站日期时明确未知，不用今天冒充发布日期。某项失败单独显示，不用预置资料替换；此功能不是全站监控或完整法律检索。
+- **用于比较**：来源按钮填入一个未保存的草稿，保留节选与获取记录，默认planning、无数值条件、无复核。编辑及保存均在政策弹窗进行；不会自动更新原有记录、价格或引擎。允许带原获取记录的未知发布日期为空；纯手工记录仍须填写日期。改换来源URL会移除不匹配的原获取关联，并恢复手工日期要求。
+- **弹窗范围**：船舶资料、政策编辑／复核、运营输入、燃料台账、规划条件、行动生成／详情共八类表单。原字段、范围、步长和确认门控保留。原生dialog提供焦点约束与Esc；关闭返回入口并保留未提交字段，有效保存／应用才更新记录或预算。字段说明打开时Esc先关说明，再按Esc关表单。
+- **溯源**：工作区和报告保留短节选、原始链接、获取时间及可用原站日期；这是本机保存的获取记录，不是防篡改审计或恢复文件的独立鉴真。AI在用户同意后可以接收这一段所选记录，并区分获取事实与法律适用性。
+
+English: entering Future Scenarios calls the existing service's public`GET /api/policies` for four curated official pages. It sends no customer data or access code and makes no paid-model request. Successful results can be cached for15 minutes. Retrieval time is separate from source publication/update dates; unknown dates stay unknown, partial failures stay visible and bundled references never masquerade as fresh fetches. This is not comprehensive monitoring.
+
+Use for comparison opens an unsaved planning draft with the saved short excerpt/provenance, no numeric conditions and no approval. Confirm scope/conditions before saving; existing records/prices/rules are not automatically changed. Unknown publication dates are allowed only with their original retrieval record; changing the source URL removes mismatched provenance and requires the manual date. Eight entry forms are secondary native dialogs; ranges, confirmations and ordinary sliders remain. Escape/Close retains mounted drafts and returns focus, while valid save/apply updates and closes. The saved provenance is not tamper-proof or independently authenticated after workspace import. Report/workspace exports retain it; AI receives a selected record only after consent.
+
+[官方来源、接口与使用条款 / Source/API/reuse details](OFFICIAL_SOURCES.md)

@@ -108,3 +108,12 @@ Baseline `light-v4.6.0-baseline-2026-10-22` pins published `0c21aa9`. Keep basel
 AI云端需单独回退：Pages回退不回退Worker；从目标版本恢复相应后端、知识与模块规则，通过原私有Secrets重新部署。不得把key或课堂码加入Git。先创建标签和Release，再单独提交激活页脚链接。/ Worker rollback is separate from Pages; redeploy intended sources with private Secrets. No credentials in Git. Create the tag/Release before the separate footer activation commit.
 
 本轮Worker版本及健康结果见[实际部署记录](verification/v4.7.0/README.md)。/ See the evidence for the actual Worker version and health result.
+
+
+## v4.7.1 · 2026-10-22
+
+Baseline `light-v4.7.0-baseline-2026-10-22` pins `c20b2c2`. Keep tags immutable. Restore with a new revert/targeted recovery commit; do not rewrite main. Restore dialog markup/controllers, source modules, provenance validators, service/Worker routing/rules, knowledge and version/cache metadata together. Protected calculation/shared-data/Pro Max files are unchanged.
+
+回退前导出工作区。获取记录是可选新增字段；旧版不显示／保留它，保留4.7.1备份，不用旧版导出覆盖唯一文件。Git回退不删除本机资料。Worker和Cache API独立于Pages：恢复目标版本后端及规则并用私有Secrets重新部署，不把key／课堂码写进Git。旧缓存最多15分钟，不是法律版本依据。
+
+Export before rollback; older releases do not preserve/display the new retrieval field, so retain a4.7.1 backup. Local data and Worker are separate from Git/Pages rollback. Redeploy intended backend/module rules with private Secrets; do not commit credentials. Cache lifetime is not a legal-version guarantee. Create the tag/Release before the separate footer activation commit.

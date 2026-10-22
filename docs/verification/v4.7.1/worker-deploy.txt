@@ -1,0 +1,35 @@
+
+ ⛅️ wrangler 4.151.1 (update available 4.151.3)
+───────────────────────────────────────────────
+Attaching additional modules:
+┌────────────────────────────────┬──────┬───────────┐
+│ Name                           │ Type │ Size      │
+├────────────────────────────────┼──────┼───────────┤
+│ js/light-data.mjs              │ esm  │ 11.71 KiB │
+├────────────────────────────────┼──────┼───────────┤
+│ js/official-policy-catalog.mjs │ esm  │ 2.74 KiB  │
+├────────────────────────────────┼──────┼───────────┤
+│ js/policy-explanation-data.mjs │ esm  │ 3.51 KiB  │
+├────────────────────────────────┼──────┼───────────┤
+│ server/ai-handler.mjs          │ esm  │ 10.34 KiB │
+├────────────────────────────────┼──────┼───────────┤
+│ server/ai-knowledge.mjs        │ esm  │ 19.97 KiB │
+├────────────────────────────────┼──────┼───────────┤
+│ server/official-policies.mjs   │ esm  │ 5.87 KiB  │
+├────────────────────────────────┼──────┼───────────┤
+│ Total (6 modules)              │      │ 54.14 KiB │
+└────────────────────────────────┴──────┴───────────┘
+Total Upload: 54.50 KiB / gzip: 21.58 KiB
+Worker Startup Time: 2 ms
+Your Worker has access to the following bindings:
+Binding                                                                 Resource                  
+env.AI_PROVIDER ("deepseek")                                            Environment Variable      
+env.DEEPSEEK_MODEL ("deepseek-flash")                                   Environment Variable      
+env.ALLOWED_ORIGINS ("https://wwwwzzzzkkkk.github.io,http:/...")        Environment Variable      
+env.DEEPSEEK_API_KEY ("(hidden)")                                       Environment Variable      
+env.MAREG_ACCESS_CODE ("(hidden)")                                      Environment Variable      
+
+Uploaded mareg-ai (6.67 sec)
+Deployed mareg-ai triggers (2.30 sec)
+  https://mareg-ai.mareg-light-edition.workers.dev
+Current Version ID: 9837b3a8-a76c-4527-a28c-bba181aabb4d

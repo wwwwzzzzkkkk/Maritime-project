@@ -86,3 +86,10 @@ Deployment does not automatically update the frontend URL. If the host changes, 
 沿用现有Worker地址、DeepSeek Flash及课堂码，不需要在网页填写API key。后端新增政策摘要边界，仅允许最多20行匿名金额和一份政策资料；不转发未知额外字段，重算两币种合计，保留原单船请求。知识版本4.7.0，部署与只读健康检查见[验收](verification/v4.7.0/README.md)。本轮验证采用mock provider；健康检查不产生模型回答。
 
 Same Worker URL/model/classroom code; no provider key in the browser. The new explicit scope accepts one policy and at most20 anonymous vessel summaries, strips extra fields, reconstructs totals separately and retains the original request contract. Knowledge4.7.0; deployment/health evidence is recorded separately. Provider tests are mocked; health is not a paid answer test.
+
+
+## v4.7.1：公共官方资料接口 / Public official-source route
+
+同一Worker新增`GET /api/policies`，自动读取四个配置源，不要求课堂码、不会调用模型，也不接受外部URL参数；其他Origin仍按原白名单限制。成功结果缓存15分钟。`/api/explain`的课堂码、同意和密钥边界保留。手动资料和客户数据不发送到这个公共GET接口。新增模块在现有no_bundle配置中显式列出，没有引入构建工具或依赖。
+
+The same Worker adds a public four-source route, with no model/code/customer-data submission and no arbitrary URL parameters. Existing origin restrictions remain. Successes cache for15 minutes; the AI explanation route retains its code/key/consent gates. Module rules include the new own-source modules, without a build step or dependency. Local Node can use the OS certificate store (`node --use-system-ca server/explain.mjs`) where needed; no TLS bypass is used. Actual deployment/health evidence: [verification](verification/v4.7.1/README.md).

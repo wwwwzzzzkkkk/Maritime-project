@@ -1,12 +1,14 @@
+import {handleOfficialPolicyRequest,createMemoryPolicyCache} from './official-policies.mjs';
 import {createServer} from 'node:http';
 import {Readable} from 'node:stream';
 import {pathToFileURL} from 'node:url';
 import {handleAiRequest} from './ai-handler.mjs';
 export function createExplainServer({env=process.env,request=fetch}={}) {
+  const policyCache=createMemoryPolicyCache();
   return createServer(async(req,res)=>{
     const body=['GET','HEAD'].includes(req.method)?undefined:Readable.toWeb(req);
     const input=new Request(new URL(req.url,'http://127.0.0.1'),{method:req.method,headers:req.headers,body,duplex:'half'});
-    const output=await handleAiRequest(input,{env,request});
+    const output=new URL(input.url).pathname==='/api/policies'?await handleOfficialPolicyRequest(input,{env,request,cache:policyCache}):await handleAiRequest(input,{env,request});
     res.writeHead(output.status,Object.fromEntries(output.headers));res.end(Buffer.from(await output.arrayBuffer()));
   });
 }

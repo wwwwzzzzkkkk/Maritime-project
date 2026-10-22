@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.7.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.7.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.7.1** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.7.1) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.7.1 · 官方资料与二级输入 / Official sources and secondary forms:** “未来情景”自动读取四个已配置官方页面，显示原文节选、来源及真实获取时间；缺失日期保留未知，失败明确显示。船舶、政策／复核、运营输入、台账、规划条件及行动表单改为二级弹窗，主页面保留滑块和结果。
+> Retrieve four configured official pages on entering Future Scenarios; inspect excerpts, source dates and failures, then use a source to prefill a planning draft. Manual-entry forms now open secondary dialogs, while sliders/results stay visible. Retrieval does not verify applicability or change budgets automatically. [操作 / Guide](docs/WORKFLOWS.md) · [来源与范围 / Sources](docs/OFFICIAL_SOURCES.md) · [更新 / Release](docs/releases/v4.7.1.md)
 
 > **v4.7.0 · 政策—船队—AI联动 / Policy-to-fleet AI explanations:** 在已有政策记录点击“AI解释影响”，沿用原助手解释政策条件、匿名船队成本差异和经营选择。发送前可查看摘要并须重新同意；只发送所选记录的说明／来源及匿名金额，不附带完整工作区或台账。
 > Explain an existing policy record and its fleet-cost impact in the existing assistant. Review the selected text/source and anonymous figures before explicitly consenting. No automatic sending, online legal verification, budget changes or action execution. [操作 / Guide](docs/WORKFLOWS.md) · [更新 / Release](docs/releases/v4.7.0.md)

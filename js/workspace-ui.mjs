@@ -1,13 +1,14 @@
-import {emptyDesk} from './decision-data.mjs?v=4.7.0';
-import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.7.0';
-import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.7.0';
-import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.7.0';
+import {closeFormDialog} from './form-dialogs.mjs?v=4.7.1';
+import {emptyDesk} from './decision-data.mjs?v=4.7.1';
+import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.7.1';
+import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.7.1';
+import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.7.1';
 const KEY='mareg.saved-analyses.v1';
 export function createWorkspaceUi({capture,restore,applyLedger,clearLedger,getDesk,setDesk,markDeskSaved}) {
   let lang='zh',cases=[];
   const t=(z,e)=>lang==='zh'?z:e;
   const el=id=>document.getElementById(id);
-  function message(id,value){el(id).textContent=value;}
+  function message(id,value){el(id).textContent=value;if(id==='policyCaseStatus')el('planningCaseEditorStatus').textContent=value;}
   function download(name,body,type){const u=URL.createObjectURL(new Blob([body],{type})),link=document.createElement('a');link.href=u;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(u),0);}
   function workspace(){const desk=getDesk();return {...(desk.fleet.length||desk.policies.length||desk.actions.length?{desk}:{}),schema:WORKSPACE_SCHEMA,name:el('analysisName').value.trim()||t('我的分析','My analysis'),savedAt:new Date().toISOString(),input:capture(),cases:structuredClone(cases)};}
   function readLibrary(){const value=localStorage.getItem(KEY);const records=value?JSON.parse(value):[];if(!Array.isArray(records)||records.length>20)throw new Error(t('本机保存记录格式错误，请先导出备份。','Invalid local library. Export a backup first.'));return records.map(validateWorkspace);}
@@ -27,7 +28,7 @@ export function createWorkspaceUi({capture,restore,applyLedger,clearLedger,getDe
     return {document,s};}
   el('ledgerProfileForm').addEventListener('input',()=>{el('ledgerPreviewBody').replaceChildren();message('ledgerCheckResult',t('台账草稿已修改，请重新检查；已应用预算未改变。','Ledger draft changed. Screen again; applied budgets are unchanged.'));});
   el('ledgerProfileForm').addEventListener('submit',event=>{event.preventDefault();try{checkLedger();}catch(error){message('ledgerCheckResult',error.message);}});
-  el('applyLedgerBtn').addEventListener('click',()=>{try{const{document,s}=checkLedger();if(!s.canApply)return;applyLedger(document);message('ledgerCheckResult',t('已载入统一台账并重新计算；仅为 CO₂ 预算，全部确认已撤销。','Unified ledger loaded and recalculated; CO₂ budget only, confirmations cleared.'));}catch(error){message('ledgerCheckResult',error.message);}});
+  el('applyLedgerBtn').addEventListener('click',()=>{try{const{document,s}=checkLedger();if(!s.canApply)return;applyLedger(document);closeFormDialog('ledgerEditor');message('ledgerCheckResult',t('已载入统一台账并重新计算；仅为 CO₂ 预算，全部确认已撤销。','Unified ledger loaded and recalculated; CO₂ budget only, confirmations cleared.'));}catch(error){message('ledgerCheckResult',error.message);}});
   el('clearLedgerBtn').addEventListener('click',()=>{clearLedger();message('ledgerCheckResult',t('已返回独立演示输入；台账编辑草稿仍保留。','Returned to independent demo inputs; ledger draft retained.'));});
   el('ledgerTemplateBtn').addEventListener('click',()=>download('MAREG-ledger-template.csv',LEDGER_TEMPLATE,'text/csv;charset=utf-8'));
   el('ledgerExampleBtn').addEventListener('click',()=>{el('ledgerPreviewBody').replaceChildren();el('ledgerCsv').value=LEDGER_TEMPLATE;el('ledgerProfileForm').elements.scopeStatus.value='ordinary';message('ledgerCheckResult',t('已填入统一台账示例，尚未应用；这组示例与默认 A3 算例不同。','Unified demo ledger filled but not applied; it differs from the default A3 benchmark.'));});
@@ -39,7 +40,7 @@ export function createWorkspaceUi({capture,restore,applyLedger,clearLedger,getDe
     input.settings.ukPrice=Number(f.elements.ukPrice.value);input.settings.poolPrice=Number(f.elements.poolPrice.value);input.settings.poolAvailable=Number(f.elements.poolAvailable.value);
     input.settings.operationsConfirmed=false;input.settings.fuelConfirmed=false;input.settings.poolConfirmed=false;
     const name=f.elements.caseName.value.trim();if(!name)throw new Error(t('请填写情景名称。','Enter a case name.'));
-    cases.push({name,input:validateAnalysis(input)});renderCases();message('policyCaseStatus',t('已保存规划情景。当前预算未改变；载入后才更新。','Planning case saved. Current budget is unchanged until you load it.'));
+    cases.push({name,input:validateAnalysis(input)});renderCases();closeFormDialog('planningCaseEditor');message('policyCaseStatus',t('已保存规划情景。当前预算未改变；载入后才更新。','Planning case saved. Current budget is unchanged until you load it.'));
   }catch(error){message('policyCaseStatus',error.message);}});
   function renderCases(){el('policyCaseBody').innerHTML=cases.map((item,i)=>{const m=evaluateAnalysis(item.input),a=m.comparison.active;return `<tr><td>${esc(item.name)}<br>${esc(m.vessel.name)}</td><td>€${a.totalEur.toFixed(2)}</td><td>£${a.ukEts.toFixed(2)}</td><td>${a.extraHours.toFixed(2)} h</td><td><button type="button" class="ghost-btn" data-load-case="${i}">${t('载入','Load')}</button> <button type="button" class="ghost-btn" data-remove-case="${i}">${t('移除','Remove')}</button></td></tr>`;}).join('');}
   el('policyCaseBody').addEventListener('click',event=>{const load=event.target.closest('[data-load-case]'),remove=event.target.closest('[data-remove-case]');if(load){restore(validateAnalysis(cases[Number(load.dataset.loadCase)].input));message('policyCaseStatus',t('已载入保存时的船舶、台账与条件；假设未确认。','Loaded the saved vessel, ledger and conditions; assumptions are unconfirmed.'));}if(remove){cases.splice(Number(remove.dataset.removeCase),1);renderCases();}});

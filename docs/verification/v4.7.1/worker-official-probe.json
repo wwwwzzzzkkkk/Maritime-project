@@ -1,0 +1,51 @@
+{
+  "protocol": "mareg-official-policies-v1",
+  "cacheSeconds": 900,
+  "scope": "Actual deployed Worker GET; public pages only, no customer data or model request",
+  "results": [
+    {
+      "id": "eu-ets",
+      "status": "ok",
+      "cached": false,
+      "title": "Reducing emissions from the shipping sector - Climate Action",
+      "url": "https://climate.ec.europa.eu/areas-action/transport-decarbonisation/reducing-emissions-shipping-sector_en",
+      "retrievedAt": "2026-10-22T03:15:42.739Z",
+      "publishedOn": null,
+      "updatedAt": null,
+      "excerptCharacters": 1100
+    },
+    {
+      "id": "fueleu",
+      "status": "ok",
+      "cached": false,
+      "title": "Decarbonising maritime transport – FuelEU Maritime - Mobility and Transport",
+      "url": "https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime_en",
+      "retrievedAt": "2026-10-22T03:15:42.433Z",
+      "publishedOn": null,
+      "updatedAt": null,
+      "excerptCharacters": 1100
+    },
+    {
+      "id": "uk-ets",
+      "status": "ok",
+      "cached": false,
+      "title": "UK Emissions Trading Scheme for maritime: how to comply",
+      "url": "https://www.gov.uk/guidance/uk-emissions-trading-scheme-for-maritime-how-to-comply",
+      "retrievedAt": "2026-10-22T03:15:41.142Z",
+      "publishedOn": "2026-06-22",
+      "updatedAt": "2026-06-22T11:00:00.000Z",
+      "excerptCharacters": 1100
+    },
+    {
+      "id": "imo-iswg22",
+      "status": "ok",
+      "cached": false,
+      "title": "Intersessional Working Group on Reduction of GHG Emissions from Ships (ISWG-GHG 22), 1-4 September 2026",
+      "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/iswg-ghg-22.aspx",
+      "retrievedAt": "2026-10-22T03:15:41.986Z",
+      "publishedOn": null,
+      "updatedAt": null,
+      "excerptCharacters": 1099
+    }
+  ]
+}

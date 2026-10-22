@@ -1,3 +1,4 @@
+import {validateOfficialSnapshot} from '../js/official-policy-catalog.mjs';
 import {validatePolicyExplanation} from '../js/policy-explanation-data.mjs';
 import {sources,checkedAt} from '../js/light-data.mjs';
 import {buildAiInstructions,KNOWLEDGE_VERSION,KNOWLEDGE_UPDATED_AT} from './ai-knowledge.mjs';
@@ -30,7 +31,7 @@ export async function handleAiRequest(req,{env={},request=fetch,requireAccessCod
     if(!data||typeof data!=='object'||Array.isArray(data)||!['zh','en'].includes(data.language)||typeof data.question!=='string'||!data.question.trim()||data.question.length>2000||!data.context||!['as_is','amended','deadlock'].includes(data.context.policyPath))return respond(400,{error:'Invalid explanation request'});
     let modelContext,policyComparison;
     if(data.context.policyComparison!==undefined){
-      try{policyComparison=validatePolicyExplanation(data.context.policyComparison);}catch{return respond(400,{error:'Invalid policy comparison summary'});}
+      try{policyComparison=validatePolicyExplanation(data.context.policyComparison,validateOfficialSnapshot);}catch{return respond(400,{error:'Invalid policy comparison summary'});}
       modelContext={analysisScope:'fleet-policy',policyPath:data.context.policyPath,policyComparison};
     }else{
     const fields=['euEts','ukEts','fuelEu','poolCost','totalEur','energyMJ','actualIntensity','extraHours','physicalWtWTonnes','target','allocatedPoolTonnes','fuelSaving','blendCost','timeCost'];
@@ -56,7 +57,7 @@ export async function handleAiRequest(req,{env={},request=fetch,requireAccessCod
     modelContext={analysisScope:'single-vessel',metrics,metricUnits,assumptionUnits,assumptions:Object.fromEntries([...assumptionFields,...confirmations].map(k=>[k,assumptions[k]])),vessel,vesselUnits:{baseEnergyMJ:'MJ before speed/blend changes',baseIntensity:'gCO2e/MJ (WtW)',serviceSpeedKn:'kn'},charterType,cases:cases.map(c=>({name:c.name,policyPath:c.policyPath,eur:c.eur,gbp:c.gbp,extraHours:c.extraHours})),policyPath:data.context.policyPath,ledgerMode:data.context.ledgerMode===true};
     }
     const references=sources.map(s=>({id:s.id,title:data.language==='zh'?s.zh:s.en,url:s.url,summary:data.language==='zh'?s.summaryZh:s.summaryEn,clause:s.clause,checkedAt}));
-    if(policyComparison){const p=policyComparison.policy;references.push({id:'userpolicy',title:(data.language==='zh'?'用户录入政策（未联网核验）：':'User-entered policy (not retrieved/verified): ')+p.title,url:p.url,checkedAt:p.checkedOn,clause:'User-entered evidence and explicit conditions; no online verification',summary:'Status, review and conditions are user-entered, not expert approval.'});}
+    if(policyComparison){const p=policyComparison.policy;references.push({id:'userpolicy',title:(p.retrieval?(data.language==='zh'?'官方页面获取记录（适用性待核）：':'Saved official-page retrieval (applicability unverified): '):(data.language==='zh'?'用户录入政策（未联网核验）：':'User-entered policy (not retrieved/verified): '))+p.title,url:p.url,checkedAt:p.checkedOn,clause:p.retrieval?'Saved public-page excerpt, fetched '+p.retrieval.retrievedAt+'; applicability unverified':'User-entered evidence and explicit conditions; no online verification',summary:'Status, review and cost conditions need confirmation; retrieval is not expert approval or legal verification.'});}
     const instructions=buildAiInstructions(data.language);
     try{
       const input=JSON.stringify({question:data.question,context:modelContext,knowledge:{version:KNOWLEDGE_VERSION,updatedAt:KNOWLEDGE_UPDATED_AT},references});

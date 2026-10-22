@@ -1,3 +1,4 @@
+import {validateOfficialSnapshot} from './official-policy-catalog.mjs?v=4.7.1';
 // Validation only at project-file and user-form boundaries.
 export const DESK_SCHEMA='mareg-decision-desk-v1';
 export const emptyDesk=()=>({schema:DESK_SCHEMA,fleet:[],policies:[],actions:[]});
@@ -25,7 +26,9 @@ export function validatePolicy(v){
  if(!v||typeof v!=='object')fail('政策记录无效 / Invalid policy record');
  let url;try{url=new URL(v.url);}catch{fail('来源须为完整HTTPS地址 / Use a full HTTPS source URL');}
  if(url.protocol!=='https:'||url.username||url.password||url.href.length>2000)fail('来源须为无凭据的HTTPS地址 / Use HTTPS without credentials');
- const r=revision(v.revision),author=txt(v.author,'整理人',80),publishedOn=day(v.publishedOn),checkedOn=day(v.checkedOn);
+ const retrieval=v.retrieval===undefined?undefined:validateOfficialSnapshot(v.retrieval);
+ if(retrieval&&retrieval.url!==url.href)fail('获取记录与来源地址不符 / Retrieval URL mismatch');
+ const r=revision(v.revision),author=txt(v.author,'整理人',80),publishedOn=day(v.publishedOn,Boolean(retrieval&&retrieval.publishedOn===null)),checkedOn=day(v.checkedOn);
  if(checkedOn<publishedOn)fail('核对日期不得早于发布日期 / Check date precedes publication');
  const status=choice(v.status,['in-force','proposal','planning']),effectiveOn=day(v.effectiveOn,status!=='in-force');
  if(!Array.isArray(v.shipIds)||v.shipIds.length>20||new Set(v.shipIds).size!==v.shipIds.length)fail('适用船舶无效 / Invalid vessel selection');
@@ -39,7 +42,7 @@ export function validatePolicy(v){
   if(k==='targetCut'?![2,6].includes(n):Math.abs((n-min)/step-Math.round((n-min)/step))>1e-7)fail('参数不符合现有步长 / Use supported parameter steps');
   assumptions[k]=n;
  }
- return {id:id(v.id),revision:r,title:txt(v.title,'政策标题',120),regime:choice(v.regime,['eu','uk','fuel','imo']),url:url.href,publishedOn,checkedOn,effectiveOn,status,author,
+ return {...(retrieval?{retrieval}:{}),id:id(v.id),revision:r,title:txt(v.title,'政策标题',120),regime:choice(v.regime,['eu','uk','fuel','imo']),url:url.href,publishedOn,checkedOn,effectiveOn,status,author,
  before:txt(v.before,'原条件',1000),after:txt(v.after,'变化条件',1000),uncertainty:txt(v.uncertainty,'不确定性与待核事项',1000),allShips:v.allShips,shipIds:v.shipIds.map(id),assumptions,review:review(v.review,r,author)};
 }
 export function validateDesk(value,validateAnalysis){

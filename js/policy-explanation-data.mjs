@@ -8,7 +8,7 @@ export function policyExplanationTotals(rows,hasConditions){
   return {vessels:rows.length,affected:rows.filter(r=>r.affected).length,beforeEur,beforeGbp,afterEur,afterGbp,
     deltaEur:hasConditions?afterEur-beforeEur:null,deltaGbp:hasConditions?afterGbp-beforeGbp:null};
 }
-export function validatePolicyExplanation(value){
+export function validatePolicyExplanation(value,validateRetrieval){
   const fail=()=>{throw new Error('Invalid policy comparison summary');};
   const text=(s,max,blank=false)=>{if(typeof s!=='string'||s.length>max||(!blank&&!s.trim()))fail();return s.trim();};
   const finite=n=>{if(!Number.isFinite(n)||Math.abs(n)>1e15)fail();return n;};
@@ -24,9 +24,11 @@ export function validatePolicyExplanation(value){
     if(!Object.hasOwn(limits,key))fail();const n=finite(p.assumptions[key]),[min,max,step]=limits[key];
     if(n<min||n>max||(key==='targetCut'?![2,6].includes(n):Math.abs((n-min)/step-Math.round((n-min)/step))>1e-7))fail();assumptions[key]=n;
   }
+  const retrieval=p.retrieval===undefined?undefined:validateRetrieval(p.retrieval);
+  if(retrieval&&retrieval.url!==url.href)fail();
   const hasConditions=Object.keys(assumptions).length>0;
-  const policy={title:text(p.title,120),url:url.href,regime:p.regime,status:p.status,revision:p.revision,
-    publishedOn:date(p.publishedOn),checkedOn:date(p.checkedOn),effectiveOn:date(p.effectiveOn,p.status!=='in-force'),
+  const policy={...(retrieval?{retrieval}:{}),title:text(p.title,120),url:url.href,regime:p.regime,status:p.status,revision:p.revision,
+    publishedOn:date(p.publishedOn,Boolean(retrieval&&retrieval.publishedOn===null)),checkedOn:date(p.checkedOn),effectiveOn:date(p.effectiveOn,p.status!=='in-force'),
     before:text(p.before,1000),after:text(p.after,1000),uncertainty:text(p.uncertainty,1000),coverage:p.coverage,reviewed:p.reviewed,assumptions};
   if(policy.checkedOn<policy.publishedOn)fail();
   const vessels=value.vessels.map((r,i)=>{

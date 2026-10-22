@@ -1,0 +1,7 @@
+{
+  "scope": "Focused spacing/label correction only; no broad workflow rerun",
+  "screens": [
+    "docs/verification/v4.7.1/policy-dialog-zh-1440-final.png",
+    "docs/verification/v4.7.1/policy-dialog-zh-375-final.png"
+  ]
+}

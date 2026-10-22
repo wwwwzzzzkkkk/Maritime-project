@@ -1,0 +1,17 @@
+{
+  "allowedOrigin": "https://wwwwzzzzkkkk.github.io",
+  "corsPassed": true,
+  "cachedSources": 4,
+  "sourceIds": [
+    "eu-ets",
+    "fueleu",
+    "uk-ets",
+    "imo-iswg22"
+  ],
+  "retrievalTimestampsRetained": [
+    "2026-10-22T03:15:42.739Z",
+    "2026-10-22T03:15:42.433Z",
+    "2026-10-22T03:15:41.142Z",
+    "2026-10-22T03:15:41.986Z"
+  ]
+}

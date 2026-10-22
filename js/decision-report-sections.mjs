@@ -1,4 +1,4 @@
-import {fleetSummary,actionAssessment} from './decision-desk.mjs?v=4.7.0';
+import {fleetSummary,actionAssessment} from './decision-desk.mjs?v=4.7.1';
 export function decisionSections(desk,language,h){
  const zh=language==='zh',t=(z,e)=>zh?z:e,{esc,section,table,items,eur,gbp,n}=h;
  if(!desk.fleet.length&&!desk.policies.length&&!desk.actions.length)return '';
@@ -13,8 +13,8 @@ export function decisionSections(desk,language,h){
   desk.policies.map(p=>{
    const impact=fleetSummary(desk,p),quantified=Object.keys(p.assumptions).length>0;
    return '<article><h3>'+esc(p.title)+' · v'+p.revision+'</h3><p><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(p.url)+'</a></p>'+
-   items([legal(p),t('发布／核对／生效：','Published / checked / effective: ')+p.publishedOn+' / '+p.checkedOn+' / '+(p.effectiveOn||t('未知','Unknown')),
-    t('整理人：','Prepared by: ')+esc(p.author),t('原条件：','Previous: ')+esc(p.before),t('变化：','Change: ')+esc(p.after),t('不确定性：','Uncertainty: ')+esc(p.uncertainty),
+   items([legal(p),t('发布／核对／生效：','Published / checked / effective: ')+(p.publishedOn||t('未知','Unknown'))+' / '+p.checkedOn+' / '+(p.effectiveOn||t('未知','Unknown')),
+    t('整理人：','Prepared by: ')+esc(p.author),...(p.retrieval?[t('官方页面获取记录：','Official-page retrieval record: ')+esc(p.retrieval.retrievedAt)+' · '+t('原站更新时间：','Page updated: ')+esc(p.retrieval.updatedAt||t('未提供','Not supplied')),t('获取时原文节选：','Excerpt at retrieval: ')+esc(p.retrieval.excerpt)]:[]),t('原条件：','Previous: ')+esc(p.before),t('变化：','Change: ')+esc(p.after),t('不确定性：','Uncertainty: ')+esc(p.uncertainty),
     p.review?t('自填复核：','Self-entered review: ')+esc(p.review.reviewer)+' · '+p.review.reviewedOn+' · '+esc(p.review.note):t('尚无团队复核记录','No team review record')])+
    '<p>'+t('用户数值条件：','User numeric conditions: ')+esc(Object.entries(p.assumptions).map(([k,v])=>({euaPrice:'EUA €/t',ukPrice:'UKA £/t',targetCut:'FuelEU %',poolPrice:'€/tCB',poolAvailable:'tCB'})[k]+'='+v).join('; ')||t('未定义，不能认定成本影响为零','Not defined; zero impact not established'))+'</p>'+
    (quantified?table([t('船舶','Vessel'),t('条件EUR','Conditional EUR'),t('EUR差额','EUR change'),t('GBP差额','GBP change')],impact.rows.filter(r=>r.affected).map(r=>[esc(r.entry.input.vesselProfile.name),eur(r.eur),eur(r.deltaEur),gbp(r.deltaGbp)])):'')+'</article>';

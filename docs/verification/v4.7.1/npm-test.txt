@@ -1,0 +1,60 @@
+
+> mareg-light-edition@4.7.1 test
+> node --test tests/*.test.mjs
+
+✔ AI display turns common Markdown/HTML wrappers into paragraphs and real step lists (10.321292ms)
+✔ formatting preserves monetary signs, units and legitimate comparison symbols (3.110833ms)
+✔ untrusted model HTML becomes text content, while official reference markers stay out of answer copy (3.819042ms)
+✔ unconfigured local AI service reports disabled without contacting a provider (92.989833ms)
+✔ configured AI contract keeps keys server-side, limits context, disables storage and returns dated citations (mock provider) (31.5395ms)
+✔ AI service rejects other origins and nonfinite or malformed external input (39.366375ms)
+✔ DeepSeek uses the documented Flash model/chat endpoint and returns only final cited text (mock provider) (15.722709ms)
+✔ DeepSeek never falls back to another provider when its key is missing (14.617458ms)
+✔ public Worker requires a classroom code before provider calls and supports the browser preflight (mock provider) (6.277167ms)
+✔ both AI adapters receive project knowledge and sanitized current values, not a fixed default scenario (9.688042ms)
+✔ one fuel ledger derives scoped energy, CO2, intensity and distance for the unchanged engine (9.767583ms)
+✔ scope screening distinguishes 5000 GT, UK commencement, special calls and Norway/Iceland review (5.212875ms)
+✔ CSV import supports BOM, CRLF and quoted commas; rejects missing factors, duplicate IDs and invalid dates (2.847708ms)
+✔ workspaces preserve calculation inputs and recompute values rather than trusting outputs (24.5245ms)
+✔ standalone report escapes imported text, separates currencies and retains formula/disclaimer evidence (70.492209ms)
+✔ explicit planning cases change conditional costs without changing regional law or base inputs (0.608792ms)
+✔ five and twenty independent vessels aggregate currencies separately; profiles survive a workspace round trip (15.870375ms)
+✔ policy scope and explicit conditions do not mutate baseline inputs or invent zero impact for evidence-only records (6.773ms)
+✔ team review is self-entered, distinct from the author, and bound to the source revision (2.518417ms)
+✔ action snapshots preserve pooling physical estimates and expose input/policy changes as stale (6.945584ms)
+✔ planning and self-reported implementation require fresh review, confirmed inputs, evidence and outcomes (10.252375ms)
+✔ extended reports retain fleet currencies, policy evidence, frozen action sources and escaped user text (42.987167ms)
+✔ A3 subtotals and single-period FuelEU examples reproduce the benchmark (6.665292ms)
+✔ surplus vessel has no penalty, fictitious savings or unnecessary pooling purchase (1.12675ms)
+✔ same-price baseline follows market inputs without changing physical emissions (1.205583ms)
+✔ pooling is capped by available surplus and leaves the correct residual penalty (0.242ms)
+✔ pure pooling changes costs without changing the vessel physical estimate (0.459667ms)
+✔ repeated deficits escalate, while surplus never becomes a penalty (0.537583ms)
+✔ all supported vessels, years and sensitivity prices obey accounting identities (9.334291ms)
+✔ speed affects sailing energy and sailing legs, with port activity held constant (0.739667ms)
+✔ client and venture economics keep negative cases visible (1.314625ms)
+✔ 4000 VLSFO-equivalent tonnes and 164000000 MJ convert in both directions (0.797208ms)
+✔ conversion covers zero, original energy limits, and fractional equivalent tonnes (0.172708ms)
+✔ converted energy reproduces real engine benchmarks without engine edits (3.756375ms)
+✔ official HTML/API extraction records real retrieval metadata and leaves missing source dates unknown (48.912292ms)
+✔ official retrieval rejects off-site redirects, challenge pages and oversized external responses (4.733208ms)
+✔ the public source endpoint uses only four configured URLs, caches successful fetches and exposes partial failure (28.501292ms)
+✔ retrieved evidence can retain an unknown publication date and survive workspace recovery without approving conditions (10.595375ms)
+✔ AI receives saved retrieval provenance distinctly from legal verification, without fetching arbitrary policy URLs (3.213833ms)
+✔ extra time, auxiliary energy/emissions and party amounts reconcile independently (1.542208ms)
+✔ zero delay and fuel allowance exclude slower/blended candidates; current violation stays visible (3.628375ms)
+✔ uncertain supply cannot displace a user-confirmed candidate (4.534084ms)
+✔ expensive pooling stays unpurchased and positive-balance vessel is not sold fictitious savings (2.952792ms)
+✔ an exact non-grid fuel limit is considered; objective remains scoped EUR with separate UK ledger (5.202083ms)
+✔ selected policy projects anonymous scoped costs without changing fleet inputs or copying profiles/review identities (7.525708ms)
+✔ evidence without numeric conditions stays unknown; external summary validation rebuilds totals and limits the boundary (2.944542ms)
+✔ both providers receive only policy-linked summaries and dated user-entered sources; supplied total overrides are discarded (35.159541ms)
+✔ linked requests retain access-code gates and reject invalid summary amounts before any provider request (5.679458ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 641.837

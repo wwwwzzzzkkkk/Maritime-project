@@ -1,0 +1,48 @@
+PASS manual forms
+PASS source workflow
+PASS {
+  "scope": "Chrome only; mocked official API for interaction checks, independent live-upstream probe recorded separately; no paid AI",
+  "checks": [
+    "Eight manual forms are secondary dialogs; unchanged fields/ranges, unique IDs, native focus/Escape, draft retention, invalid input blocking, apply-close, chip jump and ledger apply passed",
+    "Official sources load without an AI code; partial failure is explicit; official draft preserves unknown publication date and planning status; review/action/planning dialogs save; workspace/report retain retrieval provenance"
+  ],
+  "screens": [
+    "docs/verification/v4.7.1/policy-zh-1440.png",
+    "docs/verification/v4.7.1/policy-dialog-zh-1440.png",
+    "docs/verification/v4.7.1/policy-zh-768.png",
+    "docs/verification/v4.7.1/policy-dialog-zh-768.png",
+    "docs/verification/v4.7.1/policy-zh-375.png",
+    "docs/verification/v4.7.1/policy-dialog-zh-375.png",
+    "docs/verification/v4.7.1/policy-en-1440.png",
+    "docs/verification/v4.7.1/policy-dialog-en-1440.png",
+    "docs/verification/v4.7.1/policy-en-768.png",
+    "docs/verification/v4.7.1/policy-dialog-en-768.png",
+    "docs/verification/v4.7.1/policy-en-375.png",
+    "docs/verification/v4.7.1/policy-dialog-en-375.png"
+  ],
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "localLeafletSubstitution": true
+  },
+  "officialRequests": 1
+}
