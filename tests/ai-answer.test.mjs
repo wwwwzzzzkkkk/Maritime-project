@@ -11,7 +11,7 @@ test('formatting preserves monetary signs, units and legitimate comparison symbo
  assert.ok(text.includes('−€12,000'));assert.ok(text.includes('-€25.50'));assert.ok(text.includes('£13,200'));assert.ok(text.includes('< 91.16'));assert.ok(text.includes('164,000,000 MJ'));assert.equal(text.includes('[eu]'),false);assert.ok(text.includes('请核验。'));
 });
 test('untrusted model HTML becomes text content, while official reference markers stay out of answer copy',()=>{
- const blocks=aiAnswerBlocks('<p>预算<br>请核对[1][fuel]</p><img src=x onerror=alert(1)>\n[官方资料](https://example.invalid)');
+ const blocks=aiAnswerBlocks('<p>预算<br>请核对[1][fuel][userpolicy]</p><img src=x onerror=alert(1)>\n[官方资料](https://example.invalid)');
  assert.deepEqual(blocks,[{type:'paragraph',text:'预算 请核对'},{type:'paragraph',text:'官方资料'}]);
  assert.equal(JSON.stringify(blocks).includes('onerror'),false);
 });

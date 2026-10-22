@@ -1,6 +1,9 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台 | Multi-Regime Maritime Compliance & Digital Twin Platform
 
-> **Current website / 当前网页：v4.6.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.6.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.7.0** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.7.0) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+
+> **v4.7.0 · 政策—船队—AI联动 / Policy-to-fleet AI explanations:** 在已有政策记录点击“AI解释影响”，沿用原助手解释政策条件、匿名船队成本差异和经营选择。发送前可查看摘要并须重新同意；只发送所选记录的说明／来源及匿名金额，不附带完整工作区或台账。
+> Explain an existing policy record and its fleet-cost impact in the existing assistant. Review the selected text/source and anonymous figures before explicitly consenting. No automatic sending, online legal verification, budget changes or action execution. [操作 / Guide](docs/WORKFLOWS.md) · [更新 / Release](docs/releases/v4.7.0.md)
 
 > **v4.6.0 · 政策—船队—行动 / Evidence, fleet and actions:** 逐船快照与欧元／英镑分列汇总；带来源和人工复核的政策条件比较；保留依据版本的行动、复核与实施自报，并纳入工作区及报告。新增表单按需展开，手机表格转为易读卡片，延续玻璃风格。
 > Independent vessel snapshots, separate-currency fleet totals, sourced policy-condition comparisons and traceable action/review/outcome records. Included in workspaces and reports; expandable forms and mobile cards retain the glass design. Local records and self-entered reviews are not cloud collaboration, authenticated approval or statutory verification. [操作 / Guide](docs/WORKFLOWS.md) · [更新 / Release](docs/releases/v4.6.0.md)

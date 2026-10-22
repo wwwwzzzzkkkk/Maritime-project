@@ -8,7 +8,7 @@
   "find_additional_modules": true,
   "base_dir": ".",
   "rules": [
-    {"type":"ESModule","globs":["server/ai-handler.mjs","server/ai-knowledge.mjs","js/light-data.mjs"],"fallthrough":false},
+    {"type":"ESModule","globs":["server/ai-handler.mjs","server/ai-knowledge.mjs","js/light-data.mjs","js/policy-explanation-data.mjs"],"fallthrough":false},
     {"type":"Text","globs":[],"fallthrough":false},
     {"type":"Data","globs":[],"fallthrough":false},
     {"type":"CompiledWasm","globs":[],"fallthrough":false}

@@ -1,6 +1,6 @@
-import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.6.0';
-import {planOptions,assessOption} from './option-planner.mjs?v=4.6.0';
-export {emptyDesk,validateDesk,validatePolicy,validateVesselProfile} from './decision-data.mjs?v=4.6.0';
+import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.0';
+import {planOptions,assessOption} from './option-planner.mjs?v=4.7.0';
+export {emptyDesk,validateDesk,validatePolicy,validateVesselProfile} from './decision-data.mjs?v=4.7.0';
 export const appliesTo=(policy,fleetId)=>policy.allShips||policy.shipIds.includes(fleetId);
 export const hasConditions=policy=>Object.keys(policy.assumptions).length>0;
 export function withPolicy(input,policy){

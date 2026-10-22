@@ -1,7 +1,7 @@
-import {decisionSections} from './decision-report-sections.mjs?v=4.6.0';
-import { planOptions } from './option-planner.mjs?v=4.6.0';
-import { evaluateAnalysis } from './analysis-state.mjs?v=4.6.0';
-import { sources,checkedAt } from './light-data.mjs?v=4.6.0';
+import {decisionSections} from './decision-report-sections.mjs?v=4.7.0';
+import { planOptions } from './option-planner.mjs?v=4.7.0';
+import { evaluateAnalysis } from './analysis-state.mjs?v=4.7.0';
+import { sources,checkedAt } from './light-data.mjs?v=4.7.0';
 export const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function buildDecisionReport(workspace) {
   const a=workspace.input,{vessel,settings,comparison:c}=evaluateAnalysis(a),x=c.active;
@@ -21,7 +21,7 @@ export function buildDecisionReport(workspace) {
   const details=ledger?table(['ID',t('日期／活动','Date / activity'),t('港口','Ports'),t('耗油（吨）','Fuel tonnes'),t('热值 MJ/kg','LHV MJ/kg'),t('CO₂ 因子','CO₂ factor'),t('生命周期强度','WtW intensity'),t('原始来源','Original source')],ledger.rows.map(r=>[esc(r.id),esc(r.date)+' / '+esc(r.activity),esc(r.from)+' → '+esc(r.to),n(r.fuelTonnes,6),n(r.lhvMJPerKg,6),n(r.co2Factor,6),n(r.wtwIntensity,6),esc(r.source)])):
     `<p>${t('当前为独立教学台账，FuelEU 能源与 ETS 排放未完成物理对账。','Independent demo inputs: FuelEU energy and ETS emissions are not physically reconciled.')}</p>`;
   const status=Object.values({operations:settings.operationsConfirmed,fuel:settings.fuelConfirmed,pool:settings.poolConfirmed}).every(Boolean)?t('用户已确认假设；不代表专家批准或核验。','User-confirmed assumptions; not expert approval or verification.'):t('仍有假设未确认，候选须进一步核对。','Some assumptions remain unconfirmed; review candidates before use.');
-  let body=`<header><p>MAREG · v4.6.0 · ${new Date().toISOString()}</p><h1>${esc(workspace.name)}</h1><p>${t('合规预算与决策比较报告','Compliance Budget & Decision Comparison')}</p><p>${esc(vessel.name)} · ${n(vessel.gt,0)} GT · 2026</p></header>`+
+  let body=`<header><p>MAREG · v4.7.0 · ${new Date().toISOString()}</p><h1>${esc(workspace.name)}</h1><p>${t('合规预算与决策比较报告','Compliance Budget & Decision Comparison')}</p><p>${esc(vessel.name)} · ${n(vessel.gt,0)} GT · 2026</p></header>`+
     section(t('1. 结论与使用边界','1. Summary and boundaries'),`<p>${t('当前欧元比较值','Current EUR comparison')}: <strong>${eur(x.totalEur)}</strong>；${t('相对同条件基准','vs same-condition baseline')}: ${eur(c.costDelta)}。UK ${gbp(x.ukEts)} ${t('单列，不混加。','is separate, without FX conversion.')}</p>`+items([status,t('演示／用户输入，未经外部核验，非法律意见，不用于自动申报。','Demo/user inputs, no external verification, not legal advice or automatic filing.'),t('ETS 只含 CO₂，缺失 CH₄/N₂O 不等于零；EUR 与 GBP 严格分列。','ETS is CO₂-only; missing CH₄/N₂O is not zero. EUR and GBP stay separate.'),t('费用比较不含共有基准燃油及全部航次成本；负值不代表退款或利润。','Comparisons omit common baseline fuel and full voyage costs; negative values are not refunds or profit.'),t('组池、燃料供给及认证待核；费用下降不等于真实减排。','Pool/fuel supply and certification need checking; lower cost does not establish physical reductions.'),t('85/15、18/82、50/50 为示例比例，不是标准租约默认条款。','85/15, 18/82 and 50/50 are illustrations, not standard charter defaults.')]))+
     section(t('2. 当前预算','2. Current budget'),table([t('项目','Item'),t('金额','Amount')],rows))+
     section(t('3. 方案比较与条件','3. Options and conditions'),table([t('方案','Option'),t('参数','Inputs'),'EUR','GBP',t('新增航时','Extra hours'),t('条件','Conditions')],optionRows)+`<p>${t('候选仅在既定搜索范围内比较欧元模型成本，不含英国费用或完整航次成本，不保证执行可行或全局最优。','Candidates compare scoped EUR model costs within a finite search; UK costs and full voyage costs are excluded. Executability and global optimality are not established.')}</p>`)+

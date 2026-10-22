@@ -1,0 +1,6 @@
+{
+  "scope": "Chrome only; synthetic fixture; mock AI responses, no paid model calls",
+  "checks": [],
+  "screens": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/policy-ai-browser.mjs:37:259"
+}

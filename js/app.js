@@ -1,14 +1,14 @@
-import {createDecisionUi} from './decision-ui.mjs?v=4.6.0';
-import { createWorkspaceUi } from './workspace-ui.mjs?v=4.6.0';
-import { compileLedger } from './ledger.mjs?v=4.6.0';
-import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.6.0';
-import { createAiExplain } from './ai-explain.mjs?v=4.6.0';
-import { escapeHtml } from './decision-report.mjs?v=4.6.0';
-import { createPlanningUi } from './planning-ui.mjs?v=4.6.0';
-import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.6.0';
-import { createMobileBudget } from './mobile-budget.mjs?v=4.6.0';
-import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.6.0';
-/* MAREG light UI v4.6.0 — presentation fixes; calculation engine outputs remain frozen. */
+import {createDecisionUi} from './decision-ui.mjs?v=4.7.0';
+import { createWorkspaceUi } from './workspace-ui.mjs?v=4.7.0';
+import { compileLedger } from './ledger.mjs?v=4.7.0';
+import { validateAnalysis, evaluateAnalysis } from './analysis-state.mjs?v=4.7.0';
+import { createAiExplain } from './ai-explain.mjs?v=4.7.0';
+import { escapeHtml } from './decision-report.mjs?v=4.7.0';
+import { createPlanningUi } from './planning-ui.mjs?v=4.7.0';
+import { MODEL_VERSION, ASSUMPTIONS, defaultSettings, computeScenario, compareOptions } from './compliance-engine.mjs?v=4.7.0';
+import { createMobileBudget } from './mobile-budget.mjs?v=4.7.0';
+import { vessels as modelVessels, ports as modelPorts, sources as officialSources, scenarios as ventureScenarios, checkedAt } from './light-data.mjs?v=4.7.0';
+/* MAREG light UI v4.7.0 — presentation fixes; calculation engine outputs remain frozen. */
 
 (function () {
   const state = window.MAREG_DATA;
@@ -915,7 +915,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
   }
 
   /**
-   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.6.0)
+   * Delegated Spatial 3D Tilt & Multi-Plane Parallax (v4.7.0)
    * - Never tilts the panel-card containing the interactive GIS map when hovering inside .map-stage
    */
   function initSpatial3DTiltEngine() {
@@ -1133,7 +1133,7 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
 
     openModalBtn.addEventListener('click',()=>{
       const m=computeComplianceMetrics();
-      snapshot={uiVersion:'4.6.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
+      snapshot={uiVersion:'4.7.0',modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),vesselId:m.vessel.id,
         evidenceStatus:'teaching-demo-not-verified',etsEmissionYear:2026,ukActivityPeriod:'2026-07/2026-12',
         fuelEUTargetYear:m.settings.year,settings:m.settings,assumptions:ASSUMPTIONS,
         etsComplete:false,externalVerification:'not-performed',humanApproval:'not-performed',
@@ -1197,8 +1197,8 @@ import { vessels as modelVessels, ports as modelPorts, sources as officialSource
       },
       clearLedger(){delete ledgerDocuments[state.selectedVesselId];delete ledgerModels[state.selectedVesselId];planningSettings.distanceNm=defaultSettings().distanceNm;clearConfirmations();planningUi.reset();state.selectedLegFilter='all';renderApp();}
     });
-    decisionUi=createDecisionUi({capture:captureAnalysis,restore:restoreAnalysis,navigate:id=>document.querySelector('[data-tab="'+id+'"]').click(),openWorkspace:()=>document.getElementById('openAuditModalBtn').click()});
-    liveAi=createAiExplain({capture:captureAnalysis,evaluate:evaluateAnalysis,getCases:()=>workspaceUi.getCases()});
+    decisionUi=createDecisionUi({capture:captureAnalysis,restore:restoreAnalysis,navigate:id=>document.querySelector('[data-tab="'+id+'"]').click(),openWorkspace:()=>document.getElementById('openAuditModalBtn').click(),onDeskChange:()=>liveAi.render(state.lang),explainPolicy:id=>{if(liveAi.explainPolicy(id)){document.querySelector('[data-tab="tab-ai-esg"]').click();document.getElementById('aiQuestion').focus();}}});
+    liveAi=createAiExplain({capture:captureAnalysis,evaluate:evaluateAnalysis,getCases:()=>workspaceUi.getCases(),getDesk:()=>decisionUi.getState()});
     initRealMaritimeMap();
     updateVesselRoute();
     bindEvents();

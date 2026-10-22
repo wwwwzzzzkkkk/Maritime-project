@@ -1,0 +1,274 @@
+PASS linked workflow
+PASS {
+  "scope": "Chrome only; synthetic fixture; mock AI responses, no paid model calls",
+  "checks": [
+    "Existing policy record opens the existing assistant; no automatic send; fresh consent, keyboard preview, anonymous body, user-source citation and unchanged budget passed",
+    "Editing the active single vessel alone does not invalidate a saved-fleet answer; explicit fleet update marks the previous answer stale",
+    "Evidence-only cost impact stays null; deleting a linked source blocks sending; returning to vessel Q&A clears consent/question and preserves the original request contract"
+  ],
+  "screens": [
+    "docs/verification/v4.7.0/policy-ai-zh-1440.png",
+    "docs/verification/v4.7.0/policy-ai-zh-768.png",
+    "docs/verification/v4.7.0/policy-ai-zh-375.png",
+    "docs/verification/v4.7.0/policy-ai-en-1440.png",
+    "docs/verification/v4.7.0/policy-ai-en-768.png",
+    "docs/verification/v4.7.0/policy-ai-en-375.png"
+  ],
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "localLeafletSubstitution": true
+  },
+  "requests": [
+    {
+      "language": "zh",
+      "question": "请解释这项政策条件对船队费用的影响，指出优先关注的船舶，并给出经营建议、前提和风险。",
+      "context": {
+        "policyPath": "deadlock",
+        "policyComparison": {
+          "schema": "mareg-policy-explanation-v1",
+          "modelVersion": "light-4.2.0",
+          "policy": {
+            "title": "6% planning condition",
+            "url": "https://eur-lex.europa.eu/eli/reg/2023/1805/oj/eng",
+            "regime": "fuel",
+            "status": "planning",
+            "revision": 3,
+            "publishedOn": "2023-09-22",
+            "checkedOn": "2026-10-21",
+            "effectiveOn": "",
+            "before": "2% demonstration target",
+            "after": "6% fixed activity condition",
+            "uncertainty": "Demo only, scope unverified",
+            "coverage": "all",
+            "reviewed": true,
+            "assumptions": {
+              "targetCut": 6,
+              "euaPrice": 100
+            }
+          },
+          "vessels": [
+            {
+              "label": "Vessel 1",
+              "affected": true,
+              "beforeEur": 347191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": 729346.7248908295,
+              "afterGbp": 13200
+            },
+            {
+              "label": "Vessel 2",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": 729346.7248908295,
+              "afterGbp": 13200
+            },
+            {
+              "label": "Vessel 3",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": 729346.7248908295,
+              "afterGbp": 13200
+            },
+            {
+              "label": "Vessel 4",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": 729346.7248908295,
+              "afterGbp": 13200
+            },
+            {
+              "label": "Vessel 5",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": 729346.7248908295,
+              "afterGbp": 13200
+            }
+          ],
+          "totals": {
+            "vessels": 5,
+            "affected": 5,
+            "beforeEur": 1647956.3318777282,
+            "beforeGbp": 66000,
+            "afterEur": 3646733.6244541476,
+            "afterGbp": 66000,
+            "deltaEur": 1998777.2925764194,
+            "deltaGbp": 0
+          }
+        }
+      }
+    },
+    {
+      "language": "zh",
+      "question": "请解释这项政策条件对船队费用的影响，指出优先关注的船舶，并给出经营建议、前提和风险。",
+      "context": {
+        "policyPath": "deadlock",
+        "policyComparison": {
+          "schema": "mareg-policy-explanation-v1",
+          "modelVersion": "light-4.2.0",
+          "policy": {
+            "title": "6% planning condition",
+            "url": "https://eur-lex.europa.eu/eli/reg/2023/1805/oj/eng",
+            "regime": "fuel",
+            "status": "planning",
+            "revision": 3,
+            "publishedOn": "2023-09-22",
+            "checkedOn": "2026-10-21",
+            "effectiveOn": "",
+            "before": "2% demonstration target",
+            "after": "6% fixed activity condition",
+            "uncertainty": "Demo only, scope unverified",
+            "coverage": "all",
+            "reviewed": false,
+            "assumptions": {}
+          },
+          "vessels": [
+            {
+              "label": "Vessel 1",
+              "affected": true,
+              "beforeEur": 347191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": null,
+              "afterGbp": null
+            },
+            {
+              "label": "Vessel 2",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": null,
+              "afterGbp": null
+            },
+            {
+              "label": "Vessel 3",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": null,
+              "afterGbp": null
+            },
+            {
+              "label": "Vessel 4",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": null,
+              "afterGbp": null
+            },
+            {
+              "label": "Vessel 5",
+              "affected": true,
+              "beforeEur": 325191.26637554565,
+              "beforeGbp": 13200,
+              "afterEur": null,
+              "afterGbp": null
+            }
+          ],
+          "totals": {
+            "vessels": 5,
+            "affected": 5,
+            "beforeEur": 1647956.3318777282,
+            "beforeGbp": 66000,
+            "afterEur": null,
+            "afterGbp": null,
+            "deltaEur": null,
+            "deltaGbp": null
+          }
+        }
+      }
+    },
+    {
+      "language": "zh",
+      "question": "解释当前单船预算",
+      "context": {
+        "metrics": {
+          "euEts": 110000,
+          "ukEts": 13200,
+          "fuelEu": 237191.26637554567,
+          "poolCost": 0,
+          "totalEur": 347191.26637554565,
+          "energyMJ": 164000000,
+          "actualIntensity": 91.6,
+          "extraHours": 0,
+          "physicalWtWTonnes": 15022.4,
+          "target": 89.3368,
+          "allocatedPoolTonnes": 0,
+          "fuelSaving": 0,
+          "blendCost": 0,
+          "timeCost": 0,
+          "rawBalanceGrams": -371164799.99999964,
+          "netBalanceGrams": -371164799.99999964,
+          "deficitTonnes": 371.1647999999996,
+          "ownerEur": 295112.5764192138,
+          "chartererEur": 52078.68995633186,
+          "ownerScopedEur": 295112.5764192138,
+          "chartererScopedEur": 52078.68995633186,
+          "operatingDelta": 0,
+          "baselineEur": 347191.26637554565,
+          "costDelta": 0,
+          "costDeltaPct": 0,
+          "physicalDeltaPct": 0
+        },
+        "assumptions": {
+          "euaPrice": 100,
+          "ukPrice": 60,
+          "speedDelta": 0,
+          "blendPct": 0,
+          "poolPrice": 180,
+          "poolAvailable": 400,
+          "year": 2026,
+          "poolingTonnes": 0,
+          "bunkerPrice": 550,
+          "blendPremium": 260,
+          "distanceNm": 6000,
+          "maxExtraHours": 24,
+          "dailyTimeCost": 5000,
+          "maxBlendPct": 30,
+          "auxFuelPerDay": 2,
+          "auxCo2Factor": 3.114,
+          "auxCoveragePct": 100,
+          "consecutiveDeficits": 1,
+          "etsOwnerPct": 85,
+          "fuelOwnerPct": 85,
+          "poolOwnerPct": 85,
+          "operatingOwnerPct": 85,
+          "operationsConfirmed": true,
+          "fuelConfirmed": true,
+          "poolConfirmed": true
+        },
+        "vessel": {
+          "baseEnergyMJ": 164000000,
+          "baseIntensity": 91.6,
+          "serviceSpeedKn": 13.5
+        },
+        "charterType": "voyage_gencon",
+        "cases": [],
+        "policyPath": "deadlock",
+        "ledgerMode": false
+      }
+    }
+  ]
+}

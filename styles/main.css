@@ -1771,3 +1771,11 @@ body:not([data-active-tab="tab-cockpit"]) .context-bar { display: none; }
  .desk-record { padding: 12px; }
  .venture-panel .workflow-field input, .venture-panel .workflow-field select, .venture-panel .workflow-field textarea { font-size: 16px; }
 }
+
+/* v4.7: selected policy context uses the existing assistant, without another workspace panel. */
+.ai-policy-context { margin-block: 18px; padding: 16px; border: 1px solid var(--accent-muted); border-radius: var(--radius-md); background: var(--bg-glass-pill); }
+.ai-policy-context[hidden] { display: none; }
+.ai-policy-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ai-policy-heading strong { font-size: 14px; }
+.ai-policy-context summary { cursor: pointer; color: var(--accent-text); padding-block: 10px; line-height: 1.6; }
+.ai-policy-context pre { max-height: 280px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.7; color: var(--text-secondary); }

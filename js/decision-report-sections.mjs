@@ -1,4 +1,4 @@
-import {fleetSummary,actionAssessment} from './decision-desk.mjs?v=4.6.0';
+import {fleetSummary,actionAssessment} from './decision-desk.mjs?v=4.7.0';
 export function decisionSections(desk,language,h){
  const zh=language==='zh',t=(z,e)=>zh?z:e,{esc,section,table,items,eur,gbp,n}=h;
  if(!desk.fleet.length&&!desk.policies.length&&!desk.actions.length)return '';

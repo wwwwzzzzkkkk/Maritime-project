@@ -1,3 +1,4 @@
+import {validatePolicyExplanation} from '../js/policy-explanation-data.mjs';
 import {sources,checkedAt} from '../js/light-data.mjs';
 import {buildAiInstructions,KNOWLEDGE_VERSION,KNOWLEDGE_UPDATED_AT} from './ai-knowledge.mjs';
 
@@ -27,6 +28,11 @@ export async function handleAiRequest(req,{env={},request=fetch,requireAccessCod
     let data;
     try{let size=0;const chunks=[],reader=req.body.getReader();while(true){const{done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>128000){await reader.cancel();return respond(413,{error:'Request too large'});}chunks.push(value);}const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}data=JSON.parse(new TextDecoder().decode(bytes));}catch{return respond(400,{error:'Invalid JSON request'});}
     if(!data||typeof data!=='object'||Array.isArray(data)||!['zh','en'].includes(data.language)||typeof data.question!=='string'||!data.question.trim()||data.question.length>2000||!data.context||!['as_is','amended','deadlock'].includes(data.context.policyPath))return respond(400,{error:'Invalid explanation request'});
+    let modelContext,policyComparison;
+    if(data.context.policyComparison!==undefined){
+      try{policyComparison=validatePolicyExplanation(data.context.policyComparison);}catch{return respond(400,{error:'Invalid policy comparison summary'});}
+      modelContext={analysisScope:'fleet-policy',policyPath:data.context.policyPath,policyComparison};
+    }else{
     const fields=['euEts','ukEts','fuelEu','poolCost','totalEur','energyMJ','actualIntensity','extraHours','physicalWtWTonnes','target','allocatedPoolTonnes','fuelSaving','blendCost','timeCost'];
     if(!fields.every(k=>Number.isFinite(data.context.metrics?.[k])))return respond(400,{error:'Missing finite calculated metrics'});
     const extraFields=['rawBalanceGrams','netBalanceGrams','deficitTonnes','ownerEur','chartererEur','ownerScopedEur','chartererScopedEur','operatingDelta','baselineEur','costDelta','costDeltaPct','physicalDeltaPct'];
@@ -47,10 +53,13 @@ export async function handleAiRequest(req,{env={},request=fetch,requireAccessCod
     }
     const charterType=data.context.charterType;
     if(charterType!==undefined&&!['voyage_gencon','time_nype_bimco','split_blue_ga'].includes(charterType))return respond(400,{error:'Invalid charter example'});
+    modelContext={analysisScope:'single-vessel',metrics,metricUnits,assumptionUnits,assumptions:Object.fromEntries([...assumptionFields,...confirmations].map(k=>[k,assumptions[k]])),vessel,vesselUnits:{baseEnergyMJ:'MJ before speed/blend changes',baseIntensity:'gCO2e/MJ (WtW)',serviceSpeedKn:'kn'},charterType,cases:cases.map(c=>({name:c.name,policyPath:c.policyPath,eur:c.eur,gbp:c.gbp,extraHours:c.extraHours})),policyPath:data.context.policyPath,ledgerMode:data.context.ledgerMode===true};
+    }
     const references=sources.map(s=>({id:s.id,title:data.language==='zh'?s.zh:s.en,url:s.url,summary:data.language==='zh'?s.summaryZh:s.summaryEn,clause:s.clause,checkedAt}));
+    if(policyComparison){const p=policyComparison.policy;references.push({id:'userpolicy',title:(data.language==='zh'?'用户录入政策（未联网核验）：':'User-entered policy (not retrieved/verified): ')+p.title,url:p.url,checkedAt:p.checkedOn,clause:'User-entered evidence and explicit conditions; no online verification',summary:'Status, review and conditions are user-entered, not expert approval.'});}
     const instructions=buildAiInstructions(data.language);
     try{
-      const input=JSON.stringify({question:data.question,context:{metrics,metricUnits,assumptionUnits,assumptions:Object.fromEntries([...assumptionFields,...confirmations].map(k=>[k,assumptions[k]])),vessel,vesselUnits:{baseEnergyMJ:'MJ before speed/blend changes',baseIntensity:'gCO2e/MJ (WtW)',serviceSpeedKn:'kn'},charterType,cases:cases.map(c=>({name:c.name,policyPath:c.policyPath,eur:c.eur,gbp:c.gbp,extraHours:c.extraHours})),policyPath:data.context.policyPath,ledgerMode:data.context.ledgerMode===true},knowledge:{version:KNOWLEDGE_VERSION,updatedAt:KNOWLEDGE_UPDATED_AT},references});
+      const input=JSON.stringify({question:data.question,context:modelContext,knowledge:{version:KNOWLEDGE_VERSION,updatedAt:KNOWLEDGE_UPDATED_AT},references});
       const payload=provider==='deepseek'
         ?{model,messages:[{role:'system',content:instructions},{role:'user',content:input}],thinking:{type:'disabled'},stream:false,max_tokens:1400}
         :{model,store:false,instructions,input,max_output_tokens:1400};

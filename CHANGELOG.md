@@ -1,5 +1,15 @@
 # Change log
 
+## v4.7.0 · 2026-10-22
+
+- Baseline: `light-v4.6.0-baseline-2026-10-22` (0c21aa9).
+- 已有政策记录新增“AI解释影响”，进入同一个助手，连接“政策条件→船队成本→经营建议”；没有增加网页模块。
+- Selected-policy text/source plus anonymous stored-fleet amounts can be previewed and sent only after fresh explicit consent. No whole-workspace/raw-ledger/profile/reviewer-identity attachment; no automatic request, policy retrieval, budget change or action execution.
+- 服务端校验边界、剔除额外字段并重算EUR／GBP独立合计；无数值条件保留null，不能当作零。用户来源标注未联网核验，建议按影响／建议／待核组织，不编造数字和实施效果。
+- Answer staleness follows saved policy/fleet inputs; removing linked records blocks sending. Returning to vessel Q&A clears context/question/consent; original contracts remain supported.
+- UI／缓存／快照／报告／知识4.7.0，引擎light-4.2.0；五个受保护文件及六项基准保留。玻璃、动效、既有平面例外保留。No dependency/build/hash/performance work.
+- [Release](docs/releases/v4.7.0.md) · [实际验收 / Evidence](docs/verification/v4.7.0/README.md)
+
 ## v4.6.0 · 2026-10-21
 
 - Baseline: `light-v4.5.2-baseline-2026-10-21` (4b6e937).

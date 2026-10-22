@@ -1,4 +1,4 @@
-# MAREG v4.6.0：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.7.0：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 
@@ -110,3 +110,20 @@ Official-reference text bundled for AI retains its own 2026-10-15 review date; t
 船队EUR = 每艘已存分析的EUR比较值之和；该值沿用引擎的EU ETS CO₂＋FuelEU罚款＋组池费用＋燃料净增量＋航时费用。GBP只累加UK ETS CO₂部分，不换汇。政策差额 = 同船条件副本 − 原已存分析；行动差额 = 同条件候选 − 原方案。不存在把船东承担再加一次的步骤。WtW变化仍为模型估算，组池本身不减少本船物理排放。
 
 Fleet EUR sums the existing per-vessel comparison value (EU ETS CO₂ + FuelEU penalty + pool fee + net fuel delta + time cost). GBP sums UK ETS CO₂ separately, without FX conversion. Policy impact subtracts the original snapshot from its conditional copy; action impact subtracts the original option from the candidate under identical conditions. Owner allocation is not added again. WtW changes remain model estimates; pooling does not reduce this vessel's physical estimate.
+
+
+## v4.7.0：政策影响接入已有AI / Policy impact in the existing assistant
+
+中文：在“未来情景”的已有政策记录点击“AI解释影响”。先存入船队，才能解释其成本影响。助手显示所选记录、版本、涉及船数和两币种差额；可展开检查全部准备发送的摘要。点击入口不会连接或发送，且会取消之前的同意；连接与课堂码照旧，勾选新范围的同意后才能发送。政策或船队被移除时禁止发送该关联，不会静默切成单船问题；可主动“返回单船问答”。
+
+English: choose Explain impact with AI on an existing record in Future Scenarios. Store fleet vessels first. The same assistant shows the selected record/revision, coverage and separate currency deltas, with a preview of the outbound summary. Opening does not connect/send and clears previous consent. Connection/code gates remain. Removed sources/fleet records block the linked send, rather than silently changing scope; Return to vessel Q&A is explicit.
+
+发送内容 / Outbound fields:
+
+- 所选政策：标题、HTTPS来源、发布日期／核对日／生效日、用户标注状态、版本、前后说明、待核点、明确数值条件及是否有团队复核（只含布尔值）。手填内容可能包含敏感信息，发送前自行检查。/ Selected policy title, source, dates, user-entered status/revision, before/after/uncertainty text, explicit conditions and review-exists boolean. Review free text for sensitive information.
+- 匿名船队：按列表顺序的Vessel1…编号、是否在本记录范围、原／条件EUR及GBP金额。服务端重算摘要合计与差额，EUR／GBP分列。/ Anonymous ordered labels, scope flags and original/conditional per-currency figures; server reconstructs totals/deltas separately.
+- 不附带专门的船舶资料、船名／客户编号字段、原始CSV、作者／复核姓名、行动历史或完整工作区，也不附带用户报告附件。只读JSON预览不保存访问码。/ No dedicated vessel-profile/name/customer-reference fields, raw CSV, author/reviewer names, action history, entire workspace or original report attachment. Preview contains no access code.
+
+AI按照“影响／建议／待核”三段解释，以所选匿名金额为依据；建议仍须客户结合条件判断，不自动转为采购、执行、核验或申报。用户来源标注为未联网核验；已有官方参考资料保留原核对日期。没有数值条件时后金额和差额为null，不当作零；6%仍是固定活动量条件，不是真实2030账单。/ Answers use Impact / Options / Checks, supplied anonymous figures and visible evidence limits. They do not create transactions, implementation, verification or filings. User-entered sources are not retrieved/verified online; bundled references retain their dates. No numeric conditions means null impact, never zero.6% is a fixed-activity comparison, not a verified2030 bill.
+
+回答过期按已发送范围判断：更新已存船舶／政策或改换关联记录，会提示依据变化；仅改当前单船滑块不会使一个未变化的已存船队回答过期。原有单船问答请求仍支持。/ Staleness follows the sent scope: saved snapshot/source/context changes matter; changing only the active single-vessel sliders does not invalidate an unchanged saved-fleet answer. Original vessel Q&A remains supported.

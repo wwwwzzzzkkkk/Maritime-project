@@ -1,8 +1,8 @@
-import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.6.0';
-import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.6.0';
-import {escapeHtml as esc} from './decision-report.mjs?v=4.6.0';
+import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.0';
+import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.0';
+import {escapeHtml as esc} from './decision-report.mjs?v=4.7.0';
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
-export function createDecisionUi({capture,restore,navigate,openWorkspace}){
+export function createDecisionUi({capture,restore,navigate,openWorkspace,explainPolicy,onDeskChange}){
  const el=id=>document.getElementById(id),control=(f,k)=>f.elements.namedItem(k);
  let desk=emptyDesk(),lang='zh',dirty=false,policyId='',fleetEditId='',policyEditId='',actionId='',actionDirty=false,current;
  const t=(z,e)=>lang==='zh'?z:e,money=(v,c='EUR')=>new Intl.NumberFormat(lang==='zh'?'zh-CN':'en-GB',{style:'currency',currency:c,maximumFractionDigits:2}).format(v),num=v=>new Intl.NumberFormat(lang==='zh'?'zh-CN':'en-GB',{maximumFractionDigits:2}).format(v);
@@ -15,7 +15,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace}){
  function table(heads,rows){return '<div class="table-wrap desk-table-wrap"><table class="telemetry-table desk-table"><thead><tr>'+heads.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map((v,i)=>'<td data-label="'+esc(heads[i])+'">'+'<div class="desk-cell-value">'+v+'</div></td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
  const metric=(title,value)=>'<div class="desk-metric"><span>'+esc(title)+'</span><strong>'+esc(value)+'</strong></div>';
  function run(status,fn){try{fn();}catch(error){msg(status,error.message);}}
- function commit(next){desk=validateDesk(next,validateAnalysis);dirty=true;render();}
+ function commit(next){desk=validateDesk(next,validateAnalysis);dirty=true;render();onDeskChange();}
  function addEvent(a,kind,note){a.events.push({on:today(),kind,revision:a.revision,note});}
  function selectOptions(select,items,emptyLabel,selected=select.value){
   select.innerHTML='<option value="">'+esc(emptyLabel)+'</option>'+items.map(i=>'<option value="'+esc(i.id)+'">'+esc(i.label)+'</option>').join('');
@@ -43,7 +43,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace}){
  function renderPolicy(){
   if(!desk.policies.some(p=>p.id===policyId))policyId=desk.policies[0]?.id??'';
   selectOptions(el('policyImpactSelect'),desk.policies.map(p=>({id:p.id,label:p.title+' · v'+p.revision})),t('尚无政策证据','No policy evidence'),policyId);el('policyImpactSelect').value=policyId;
-  el('policyRecords').innerHTML=desk.policies.length?desk.policies.map(p=>'<article class="desk-record '+(p.id===policyId?'is-selected':'')+'"><h3><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(p.title)+'</a></h3><p><span class="badge">'+esc(legal(p))+'</span>v'+p.revision+' · '+esc(p.regime.toUpperCase())+' · '+esc(p.author)+'</p><p>'+t('发布','Published')+' '+p.publishedOn+' · '+t('核对','Checked')+' '+p.checkedOn+' · '+t('生效','Effective')+' '+(p.effectiveOn||t('未确定','Unknown'))+'</p><p>'+esc(p.review?t('自填复核：','Self-entered review: ')+p.review.reviewer+' · '+p.review.reviewedOn:t('尚无团队复核记录；来源官方性和适用范围待核。','No team review record; source authority and scope need checking.'))+'</p><details><summary>'+t('证据与条件','Evidence & conditions')+'</summary><p>'+t('原条件：','Previous: ')+esc(p.before)+'</p><p>'+t('变化：','Change: ')+esc(p.after)+'</p><p>'+t('待核：','Uncertainty: ')+esc(p.uncertainty)+'</p><p>'+esc(Object.entries(p.assumptions).map(([k,v])=>({euaPrice:'EUA €/t',ukPrice:'UKA £/t',targetCut:'FuelEU %',poolPrice:'€/tCB',poolAvailable:'tCB'})[k]+' = '+v).join(' · ')||t('尚未填写数值影响条件。','No numeric impact conditions.'))+'</p></details><div class="desk-toolbar">'+button('policy-compare',p.id,t('比较影响','Compare impact'))+button('policy-edit',p.id,t('编辑','Edit'))+button('policy-remove',p.id,t('移除','Remove'))+'</div></article>').join(''):'<p class="desk-empty">'+t('暂无记录。添加经核对的资料和明确条件后，才展示船队成本影响。','No records yet. Add reviewed evidence and explicit conditions to compare fleet impacts.')+'</p>';
+  el('policyRecords').innerHTML=desk.policies.length?desk.policies.map(p=>'<article class="desk-record '+(p.id===policyId?'is-selected':'')+'"><h3><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(p.title)+'</a></h3><p><span class="badge">'+esc(legal(p))+'</span>v'+p.revision+' · '+esc(p.regime.toUpperCase())+' · '+esc(p.author)+'</p><p>'+t('发布','Published')+' '+p.publishedOn+' · '+t('核对','Checked')+' '+p.checkedOn+' · '+t('生效','Effective')+' '+(p.effectiveOn||t('未确定','Unknown'))+'</p><p>'+esc(p.review?t('自填复核：','Self-entered review: ')+p.review.reviewer+' · '+p.review.reviewedOn:t('尚无团队复核记录；来源官方性和适用范围待核。','No team review record; source authority and scope need checking.'))+'</p><details><summary>'+t('证据与条件','Evidence & conditions')+'</summary><p>'+t('原条件：','Previous: ')+esc(p.before)+'</p><p>'+t('变化：','Change: ')+esc(p.after)+'</p><p>'+t('待核：','Uncertainty: ')+esc(p.uncertainty)+'</p><p>'+esc(Object.entries(p.assumptions).map(([k,v])=>({euaPrice:'EUA €/t',ukPrice:'UKA £/t',targetCut:'FuelEU %',poolPrice:'€/tCB',poolAvailable:'tCB'})[k]+' = '+v).join(' · ')||t('尚未填写数值影响条件。','No numeric impact conditions.'))+'</p></details><div class="desk-toolbar">'+button('policy-compare',p.id,t('比较影响','Compare impact'))+button('policy-ai',p.id,t('AI解释影响','Explain impact with AI'))+button('policy-edit',p.id,t('编辑','Edit'))+button('policy-remove',p.id,t('移除','Remove'))+'</div></article>').join(''):'<p class="desk-empty">'+t('暂无记录。添加经核对的资料和明确条件后，才展示船队成本影响。','No records yet. Add reviewed evidence and explicit conditions to compare fleet impacts.')+'</p>';
   const p=desk.policies.find(p=>p.id===policyId);
   el('policyReviewEditor').hidden=!p;
   if(!p)el('policyImpact').innerHTML='';
@@ -121,8 +121,9 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace}){
  });});
  el('policyImpactSelect').addEventListener('change',e=>{policyId=e.target.value;renderPolicy();});
  el('policyRecords').addEventListener('click',event=>{
-  for(const key of['compare','edit','remove']){const btn=event.target.closest('[data-policy-'+key+']');if(!btn)continue;run('policyEvidenceStatus',()=>{
+  for(const key of['compare','ai','edit','remove']){const btn=event.target.closest('[data-policy-'+key+']');if(!btn)continue;run('policyEvidenceStatus',()=>{
    const id=btn.dataset['policy'+key[0].toUpperCase()+key.slice(1)],p=desk.policies.find(p=>p.id===id);policyId=id;
+   if(key==='ai')explainPolicy(p.id);
    if(key==='compare'){renderPolicy();el('policyImpact').scrollIntoView({block:'center'});}
    if(key==='edit'){policyEditId=id;for(const k of['title','regime','url','status','publishedOn','checkedOn','effectiveOn','author','before','after','uncertainty'])control(pf,k).value=p[k];control(pf,'allShips').checked=p.allShips;for(const k of['euaPrice','ukPrice','targetCut','poolPrice','poolAvailable'])control(pf,k).value=p.assumptions[k]??'';picker(p.shipIds);el('policyEditor').open=true;renderPolicy();el('policyEditor').scrollIntoView({block:'center'});}
    if(key==='remove'){if(desk.actions.some(a=>a.policySnapshots.some(p=>p.id===id)))throw new Error(t('请先保留导出记录，再移除关联行动；不能删除其引用依据。','Export records and remove linked actions first; their source cannot be deleted.'));if(confirm(t('移除此政策记录？','Remove this policy record?'))){const next=structuredClone(desk);next.policies=next.policies.filter(p=>p.id!==id);commit(next);resetPolicy();}}

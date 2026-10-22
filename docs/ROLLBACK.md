@@ -99,3 +99,12 @@ Baseline `light-v4.5.2-baseline-2026-10-21` pins `4b6e937`, the published v4.5.2
 AI后端单独部署知识4.6.0，Worker version `6e1b7d51-adee-4f26-8431-a5b5f0995070`。Pages回退不会回退Worker；需从目标版本取回后端及知识文件，通过现有私有Secrets重新部署。不要把密钥或课堂码写进Git。/ Pages rollback does not revert the Worker. Redeploy intended sources separately using private Secrets. No credentials belong in Git.
 
 先发布实现、标签与Release，再独立提交激活页脚Release链接；标签不移动。/ Publish implementation/tag/Release before the separate footer-link activation commit.
+
+
+## v4.7.0 · 2026-10-22
+
+Baseline `light-v4.6.0-baseline-2026-10-22` pins published `0c21aa9`. Keep baseline and Release tags immutable. Restore light UI/AI integration, summary modules, handler/knowledge, Worker module rules and cache metadata together with a new commit. Do not rewrite history or move tags. Workspaces are unchanged and local data is not removed by Git rollback.
+
+AI云端需单独回退：Pages回退不回退Worker；从目标版本恢复相应后端、知识与模块规则，通过原私有Secrets重新部署。不得把key或课堂码加入Git。先创建标签和Release，再单独提交激活页脚链接。/ Worker rollback is separate from Pages; redeploy intended sources with private Secrets. No credentials in Git. Create the tag/Release before the separate footer activation commit.
+
+本轮Worker版本及健康结果见[实际部署记录](verification/v4.7.0/README.md)。/ See the evidence for the actual Worker version and health result.

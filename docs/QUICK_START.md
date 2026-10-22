@@ -4,15 +4,21 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.6.0，2026-10-21 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.7.0，2026-10-22 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.6.0, documented on 21 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.7.0, documented on 22 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
 **v4.5.1 MAREG 助手：** 在“帮助与说明”点击“连接 AI” → 输入私下提供的课堂访问码 → 同意并提问。常用问题可直接填入，回答来源可展开。不要填写 DeepSeek API key。/ **Classroom AI:** Help & About → Connect AI → private classroom code → consent → ask. Suggestions fill the question; references expand below the answer. Never enter the API key. [说明 / Setup](AI_SETUP.md)
 
 **v4.4.0 新增：** 顶栏“分析与报告”可保存／恢复及导出可打印报告；“方案比较”可展开统一 CSV 台账；“未来情景”可保存并载入明确的规划条件；“帮助与说明”提供默认未连接的本机 AI 接口。[完整操作](WORKFLOWS.md) · [AI 配置](AI_SETUP.md)。台账只作普通范围初筛；数据未核验，非法律意见。
+
+### 用AI解释政策对船队的影响（v4.7.0）
+
+先保存船队，再在“未来情景”录入政策资料和明确条件。点击该记录的 **“AI解释影响”**，会进入原有助手，并填好问题；不会自动发送。连接AI并输入课堂访问码，展开“查看将发送的摘要”，检查政策说明与匿名金额，重新勾选同意后发送。
+
+回答说明影响、经营选择与待核事项；数字来自已有计算，不由AI创造。匿名编号按船队列表顺序对应；专门的船名／客户编号、原始台账及复核姓名不会附带，但手填说明请勿含敏感信息。没有数值条件时，影响是“无法量化”，不是零。单船滑块不会自动改变已存船队；明确更新快照／政策后，旧回答提示依据改变。“返回单船问答”清除关联和同意，重新填写问题即可。
 
 ### 新增：从单船走向船队决策（v4.6.0）
 
@@ -105,6 +111,12 @@ GENCON、NYPE、50:50 按钮用于选择**示例分摊比例**，不是标准合
 地图没有加载时，先检查网络；数值和台账仍可查看。想了解一个数字怎么算，再展开下面附录即可。
 
 ## English quick start
+
+### Explain a policy's fleet impact with AI (v4.7.0)
+
+Store your fleet and an existing policy-evidence record. Choose **Explain impact with AI** on that record to open the existing assistant with a suggested question. Nothing sends automatically. Connect, enter the private classroom code, review the selected text/source and anonymous amounts, then consent and send. Dedicated profile/identity fields and raw ledgers are excluded; keep sensitive content out of free-text notes. Anonymous numbers follow fleet-list order.
+
+Answers cover impact, business options and checks. Figures come from the model; evidence without numeric conditions has unknown impact, not zero. Updating a saved fleet snapshot or source marks prior answers stale. Editing an unsaved single-vessel analysis does not silently update the fleet. Return to vessel Q&A clears the linked context, question and consent.
 
 ### New in v4.6.0: vessel → evidence → action
 
