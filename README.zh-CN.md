@@ -1,6 +1,6 @@
 # MAREG — 海事多法规合规成本分析与数字孪生决策平台（中文文档）
 
-> **Current website / 当前网页：v4.7.3（本地待验收，尚未发布）** · [Release notes / 更新说明](docs/releases/v4.7.3.md) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.7.3（已部署 / deployed；浏览器专项验证待完成 / browser validation pending）** · [Release notes / 更新说明](docs/releases/v4.7.3.md) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
 
 > **v4.7.3 · 可靠的弹窗动画与紧凑布局 / Reliable dialog motion and denser layout:** Web Animations API keeps native forms visible while they fade out; policy sources use compact expandable cards. Browser validation is pending in this environment. No calculations or data sources changed. [验收 / Verification](docs/verification/v4.7.3/README.md)
 > Dialog enter/exit no longer depends on discrete `display`/`overlay` transitions. The evidence view uses a responsive source grid, side-by-side actions and tighter record spacing. Browser-level verification is still pending; no calculation or policy data changed. [Project status](docs/PROJECT_STATUS.md) · [Release notes](docs/releases/v4.7.3.md)
