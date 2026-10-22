@@ -1,5 +1,14 @@
 # Change log
 
+## v4.7.2 · 2026-10-22
+
+- Baseline: `light-v4.7.1-baseline-2026-10-22` (b999492).
+- 二级弹窗打开220ms淡入＋轻移／缩放，关闭150ms淡出；原生display／overlay过渡保留退出画面，按钮、遮罩、Esc与程序关闭一致。
+- Reduced-motion is immediate. Closing forms are inert, drafts remain mounted, reset waits for opacity exit, and interrupted reopen cannot execute a stale reset. Focus returns without scrolling the page.
+- 更新项目完成度说明：核心演示链路已实现，完整气体／年度核验、全面政策变更、真实方案可行性／结果和商用保障仍需推进；不新增界面板块。
+- Preserve glass, other card effects, protected sources and six benchmarks. UI/cache/snapshot/report4.7.2; backend/knowledge4.7.1 and engine light-4.2.0 unchanged. No backend deployment, dependency/build/hash/performance audit.
+- [Release](docs/releases/v4.7.2.md) · [完成度 / Status](docs/PROJECT_STATUS.md) · [实际验收 / Evidence](docs/verification/v4.7.2/README.md)
+
 ## v4.7.1 · 2026-10-22
 
 - Baseline: `light-v4.7.0-baseline-2026-10-22` (c20b2c2).

@@ -1,0 +1,7 @@
+{
+  "scope": "Chrome desktop/mobile; controlled animation frames, not performance profiling; no live AI or official-source request",
+  "checks": [],
+  "frames": [],
+  "screens": [],
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(f.opacity>0&&f.opacity<1)\n\n    at open (file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/dialog-motion-browser.mjs:14:143)\n    at async file:///Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/dialog-motion-browser.mjs:16:2"
+}

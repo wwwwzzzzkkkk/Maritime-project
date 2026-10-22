@@ -1,0 +1,163 @@
+{
+  "scope": "Chrome desktop/mobile; controlled animation frames, not performance profiling; no live AI or official-source request",
+  "checks": [
+    "220ms enter/150ms exit, retained display, inert exit, focus return and reset deferred until fade passed",
+    "Reopening reverses from current opacity without stale-close reset; Escape shares the exit transition",
+    "Programmatic action-generator to action-editor handoff and close-button exit passed",
+    "375px English form containment and backdrop exit passed",
+    "Reduced-motion opens/closes immediately with no opacity transition"
+  ],
+  "frames": [
+    {
+      "id": "fleetEditor",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "id": "fleetEditor",
+      "phase": "exit20%",
+      "open": false,
+      "modal": false,
+      "inert": true,
+      "opacity": 0.318131,
+      "display": "flex",
+      "transform": "matrix(0.989772, 0, 0, 0.989772, 0, 4.09121)",
+      "animations": [
+        {
+          "property": "display",
+          "duration": 150
+        },
+        {
+          "property": "opacity",
+          "duration": 150
+        },
+        {
+          "property": "overlay",
+          "duration": 150
+        },
+        {
+          "property": "transform",
+          "duration": 150
+        }
+      ]
+    },
+    {
+      "id": "fleetEditor",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "phase": "interrupted-close/reopen",
+      "before": 0.156989,
+      "after": 0.156989,
+      "oldCloseCompleted": false,
+      "open": true,
+      "inert": false
+    },
+    {
+      "id": "actionGeneratorDialog",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "id": "baseInputsDialog",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    }
+  ],
+  "screens": [
+    "docs/verification/v4.7.2/desktop-enter-20pct.png",
+    "docs/verification/v4.7.2/desktop-exit-20pct.png",
+    "docs/verification/v4.7.2/mobile-enter-20pct.png",
+    "docs/verification/v4.7.2/mobile-backdrop-exit-30pct.png"
+  ],
+  "reducedMotion": {
+    "open": true,
+    "opacity": 1,
+    "animations": 0
+  },
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "localLeafletSubstitution": true
+  }
+}

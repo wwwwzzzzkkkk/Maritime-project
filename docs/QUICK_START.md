@@ -4,9 +4,9 @@
 
 [中文操作](#中文快速上手) · [English instructions](#english-quick-start) · [公式与来源 / Formulas and sources](#附录--appendices) · [返回 README / Back to README](../README.md)
 
-适用：默认浅色版 v4.7.1，2026-10-22 文档。无需安装或登录。正文介绍操作；附录按需展开。
+适用：默认浅色版 v4.7.2，2026-10-22 文档。无需安装或登录。正文介绍操作；附录按需展开。
 
-For the default light edition v4.7.1, documented on 22 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
+For the default light edition v4.7.2, documented on 22 October 2026. No installation or login is needed. Follow the steps first; expand the appendices when you need the formulas.
 
 ## 中文快速上手
 
@@ -20,7 +20,7 @@ For the default light edition v4.7.1, documented on 22 October 2026. No installa
 
 点击某项“用于成本比较”，会打开预填政策草稿。它默认是规划条件，尚未保存，也不自动填写价格、确认适用性或改变预算。可选择船舶和数值条件后保存；原站缺失的发布日期允许保持未知。随后可使用已有“比较影响”或“AI解释影响”。
 
-人工建档和录入统一从原页面的按钮进入二级弹窗：添加船舶、政策／复核、编辑输入与运营条件、导入台账、设置规划条件、生成／完善行动。Esc或“关闭”返回主页面；关闭保留尚未提交的草稿。有效保存／应用后关闭并更新结果。滑块仍直接显示，不需要弹窗。
+人工建档和录入统一从原页面的按钮进入二级弹窗：添加船舶、政策／复核、编辑输入与运营条件、导入台账、设置规划条件、生成／完善行动。弹窗打开约220ms、关闭约150ms，Esc／遮罩／关闭按钮均有衔接；系统减少动态效果时即时切换。关闭保留尚未提交的草稿。有效保存／应用后关闭并更新结果。滑块仍直接显示，不需要弹窗。
 
 ### 用AI解释政策对船队的影响（v4.7.0）
 
@@ -126,7 +126,7 @@ Future Scenarios loads the four configured EU ETS/FuelEU/UK ETS/IMO pages withou
 
 Use for cost comparison opens a prefilled planning draft, without saving or applying prices/rules. Confirm vessel scope and any numeric conditions before saving. Missing source publication dates remain unknown. Continue with Compare impact or Explain impact with AI.
 
-Vessel profiles, policy/review, operating inputs, ledger import, planning conditions and action forms now open secondary dialogs. Escape/Close returns to the view while retaining a mounted draft; successful saves/applies close the form. Everyday sliders stay visible.
+Vessel profiles, policy/review, operating inputs, ledger import, planning conditions and action forms now open secondary dialogs. Entry takes about220ms and exit150ms, including Escape/backdrop/Close; reduced motion is immediate. Closing retains a mounted draft; successful saves/applies close the form. Everyday sliders stay visible.
 
 ### Explain a policy's fleet impact with AI (v4.7.0)
 

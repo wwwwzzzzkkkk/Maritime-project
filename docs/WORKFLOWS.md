@@ -1,4 +1,4 @@
-# MAREG v4.7.1：分析、台账与规划 / Analysis, Ledgers & Planning
+# MAREG v4.7.2：分析、台账与规划 / Analysis, Ledgers & Planning
 
 [打开网页 / Open site](https://wwwwzzzzkkkk.github.io/Maritime-project/) · [AI 配置 / AI setup](AI_SETUP.md)
 
@@ -142,3 +142,10 @@ English: entering Future Scenarios calls the existing service's public`GET /api/
 Use for comparison opens an unsaved planning draft with the saved short excerpt/provenance, no numeric conditions and no approval. Confirm scope/conditions before saving; existing records/prices/rules are not automatically changed. Unknown publication dates are allowed only with their original retrieval record; changing the source URL removes mismatched provenance and requires the manual date. Eight entry forms are secondary native dialogs; ranges, confirmations and ordinary sliders remain. Escape/Close retains mounted drafts and returns focus, while valid save/apply updates and closes. The saved provenance is not tamper-proof or independently authenticated after workspace import. Report/workspace exports retain it; AI receives a selected record only after consent.
 
 [官方来源、接口与使用条款 / Source/API/reuse details](OFFICIAL_SOURCES.md)
+
+
+## v4.7.2：弹窗衔接 / Dialog lifecycle
+
+二级表单使用约220ms淡入、10px轻移及轻微缩放，约150ms淡出；原生display／overlay离散过渡保留关闭画面。关闭按钮、遮罩、Esc及保存后的关闭均走同一生命周期。关闭期间表单不可交互；已提交字段等不可见后再复位，避免先变空表单。快速重开会中断旧关闭，不清除新草稿；表单间切换保持衔接。开启prefers-reduced-motion时无过渡。其他卡片效果、材质与计算不变，后端不重新部署。
+
+Secondary forms enter in about220ms with a subtle10px/scale/fade transition and exit in150ms. Native discrete display/overlay transitions retain the exit frame. Buttons, backdrop, Escape and save-close use the same lifecycle. Closing forms are inert; submitted fields reset only after fading. Reopening invalidates an old close so it cannot clear the new draft. Reduced motion is immediate. Other motion/materials/calculations and the backend stay unchanged.

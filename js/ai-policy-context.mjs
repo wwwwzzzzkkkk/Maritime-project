@@ -1,6 +1,6 @@
-import {MODEL_VERSION} from './compliance-engine.mjs?v=4.7.1';
-import {fleetSummary,hasConditions} from './decision-desk.mjs?v=4.7.1';
-import {POLICY_EXPLANATION_SCHEMA,policyExplanationTotals} from './policy-explanation-data.mjs?v=4.7.1';
+import {MODEL_VERSION} from './compliance-engine.mjs?v=4.7.2';
+import {fleetSummary,hasConditions} from './decision-desk.mjs?v=4.7.2';
+import {POLICY_EXPLANATION_SCHEMA,policyExplanationTotals} from './policy-explanation-data.mjs?v=4.7.2';
 
 // Never copies names, customer references, raw ledgers, authors, reviewers or action history.
 export function buildPolicyExplanation(desk,policy){

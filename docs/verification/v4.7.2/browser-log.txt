@@ -1,0 +1,192 @@
+PASS open and save-close
+PASS {
+  "scope": "Chrome desktop/mobile; controlled animation frames, not performance profiling; no live AI or official-source request",
+  "checks": [
+    "220ms enter/150ms exit, retained display, inert exit, focus return and reset deferred until fade passed",
+    "Reopening reverses from current opacity without stale-close reset; Escape shares the exit transition",
+    "Programmatic action-generator to action-editor handoff and close-button exit passed",
+    "375px English form containment and backdrop exit passed",
+    "Reduced-motion opens/closes immediately with no opacity transition"
+  ],
+  "frames": [
+    {
+      "id": "fleetEditor",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "id": "fleetEditor",
+      "phase": "exit20%",
+      "open": false,
+      "modal": false,
+      "inert": true,
+      "opacity": 0.318131,
+      "display": "flex",
+      "transform": "matrix(0.989772, 0, 0, 0.989772, 0, 4.09121)",
+      "animations": [
+        {
+          "property": "display",
+          "duration": 150
+        },
+        {
+          "property": "opacity",
+          "duration": 150
+        },
+        {
+          "property": "overlay",
+          "duration": 150
+        },
+        {
+          "property": "transform",
+          "duration": 150
+        }
+      ]
+    },
+    {
+      "id": "fleetEditor",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "phase": "interrupted-close/reopen",
+      "before": 0.156989,
+      "after": 0.156989,
+      "oldCloseCompleted": false,
+      "open": true,
+      "inert": false
+    },
+    {
+      "id": "actionGeneratorDialog",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    },
+    {
+      "id": "baseInputsDialog",
+      "phase": "enter20%",
+      "open": true,
+      "modal": true,
+      "inert": false,
+      "opacity": 0.681869,
+      "display": "flex",
+      "transform": "matrix(0.992047, 0, 0, 0.992047, 0, 3.18131)",
+      "animations": [
+        {
+          "property": "opacity",
+          "duration": 220
+        },
+        {
+          "property": "transform",
+          "duration": 220
+        }
+      ]
+    }
+  ],
+  "screens": [
+    "docs/verification/v4.7.2/desktop-enter-20pct.png",
+    "docs/verification/v4.7.2/desktop-exit-20pct.png",
+    "docs/verification/v4.7.2/mobile-enter-20pct.png",
+    "docs/verification/v4.7.2/mobile-backdrop-exit-30pct.png"
+  ],
+  "reducedMotion": {
+    "open": true,
+    "opacity": 1,
+    "animations": 0
+  },
+  "benchmarks": {
+    "before": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    },
+    "after": {
+      "eu": 88000,
+      "uk": 13200,
+      "fuel": 237191.26637554567,
+      "fuel6": 619346.7248908295,
+      "owner": 276412.5764192138,
+      "charterer": 48778.68995633186
+    }
+  },
+  "pageErrors": [],
+  "proMax": {
+    "loaded": true,
+    "pageErrors": [],
+    "localLeafletSubstitution": true
+  }
+}
+ PHONE_REGISTRATION_ERROR
+[pid=9699][err] [9699:238098:1022/114204.049538:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[pid=9699][err] [9699:238098:1022/114204.049643:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[pid=9699][err] [9699:238098:1022/114204.075843:ERROR:google_apis/gcm/engine/mcs_client.cc:702]   Error code: 401  Error message: Authentication Failed: wrong_secret
+[pid=9699][err] [9699:238098:1022/114204.076261:ERROR:google_apis/gcm/engine/mcs_client.cc:704] Failed to log in to GCM, resetting connection.
+[pid=9699][err] [9699:238098:1022/114227.183529:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=9699][err] [9709:238260:1022/114252.055070:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114252.056253:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238260:1022/114252.068470:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114252.068600:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238260:1022/114252.069862:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114252.069921:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238260:1022/114252.070171:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114252.070222:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238260:1022/114252.071162:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114252.071230:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9699:238098:1022/114320.334316:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=9699][err] [9709:238260:1022/114328.995519:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699][err] [9709:238299:1022/114328.997255:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=9699] <gracefully close start>
+Call log:
+[2m  - waiting for locator('body')[22m
+
+    at /Users/zhekuan/Documents/Codex/2026-10-15/referenced-chatgpt-conversation-this-is-an-2/work/Maritime-project/tests/dialog-motion-browser.mjs:28:465 {
+  log: [ "  - waiting for locator('body')" ]
+}
+
+Node.js v23.11.0

@@ -1,9 +1,9 @@
-import {createOfficialPolicyUi} from './official-policy-ui.mjs?v=4.7.1';
-import {OFFICIAL_POLICY_SOURCES} from './official-policy-catalog.mjs?v=4.7.1';
-import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.1';
-import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.1';
-import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.1';
-import {escapeHtml as esc} from './decision-report.mjs?v=4.7.1';
+import {createOfficialPolicyUi} from './official-policy-ui.mjs?v=4.7.2';
+import {OFFICIAL_POLICY_SOURCES} from './official-policy-catalog.mjs?v=4.7.2';
+import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.2';
+import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.2';
+import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.2';
+import {escapeHtml as esc} from './decision-report.mjs?v=4.7.2';
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
 export function createDecisionUi({capture,restore,navigate,openWorkspace,explainPolicy,onDeskChange}){
  const el=id=>document.getElementById(id),control=(f,k)=>f.elements.namedItem(k);
@@ -98,7 +98,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
   let entry;
   if(fleetEditId){entry=next.fleet.find(v=>v.id===fleetEditId);entry.input.vesselProfile=profile;entry.input=validateAnalysis(entry.input);entry.revision++;}
   else{entry=createFleetEntry(capture(),profile,crypto.randomUUID());next.fleet.push(entry);}
-  const wasNew=!fleetEditId;commit(next);resetFleet();if(wasNew)restore(entry.input);closeFormDialog('fleetEditor');
+  const wasNew=!fleetEditId;commit(next);closeFormDialog('fleetEditor').then(closed=>{if(closed)resetFleet();});if(wasNew)restore(entry.input);
   msg('fleetStatus',t('船队记录已更新；请保存／导出项目。相关旧行动可能需要重新生成。','Fleet record updated. Save/export the project; old actions may require regeneration.'));
  });});
  el('fleetRows').addEventListener('click',event=>{
@@ -130,7 +130,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
   for(const k of['title','regime','url','status','publishedOn','checkedOn','effectiveOn','author','before','after','uncertainty'])p[k]=control(pf,k).value;
   const source=old?.retrieval??pendingRetrieval;if(source&&source.url===p.url)p.retrieval=source;
   const valid=validatePolicy(p);if(old)next.policies[next.policies.findIndex(p=>p.id===old.id)]=valid;else next.policies.push(valid);
-  policyId=valid.id;commit(next);resetPolicy();closeFormDialog('policyEditor');msg('policyEvidenceStatus',t('证据已保存，预算未自动应用；请记录复核，并保存／导出项目。','Evidence saved; budgets unchanged. Record a review and save/export the project.'));
+  policyId=valid.id;commit(next);closeFormDialog('policyEditor').then(closed=>{if(closed)resetPolicy();});msg('policyEvidenceStatus',t('证据已保存，预算未自动应用；请记录复核，并保存／导出项目。','Evidence saved; budgets unchanged. Record a review and save/export the project.'));
  });});
  el('policyImpactSelect').addEventListener('change',e=>{policyId=e.target.value;renderPolicy();});
  el('policyRecords').addEventListener('click',event=>{
@@ -145,7 +145,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
  el('policyReviewForm').addEventListener('submit',event=>{event.preventDefault();run('policyEvidenceStatus',()=>{
   const next=structuredClone(desk),p=next.policies.find(p=>p.id===policyId);if(!p)throw new Error(t('请选择资料记录。','Select an evidence record.'));
   p.revision++;p.review={reviewer:control(event.target,'reviewer').value,reviewedOn:today(),note:control(event.target,'note').value,revision:p.revision};commit(next);
-  event.target.reset();closeFormDialog('policyReviewEditor');msg('policyEvidenceStatus',t('团队自填复核已记录；不验证身份，也不是外部批准。旧行动需重新生成。','Self-entered team review recorded; no identity verification or external approval. Regenerate old actions.'));
+  closeFormDialog('policyReviewEditor').then(closed=>{if(closed)event.target.reset();});msg('policyEvidenceStatus',t('团队自填复核已记录；不验证身份，也不是外部批准。旧行动需重新生成。','Self-entered team review recorded; no identity verification or external approval. Regenerate old actions.'));
  });});
  control(el('actionGenerateForm'),'fleetId').addEventListener('change',refreshActionOptions);
  el('actionGenerateForm').addEventListener('submit',event=>{event.preventDefault();run('actionStatus',()=>{

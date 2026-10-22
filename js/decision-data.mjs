@@ -1,4 +1,4 @@
-import {validateOfficialSnapshot} from './official-policy-catalog.mjs?v=4.7.1';
+import {validateOfficialSnapshot} from './official-policy-catalog.mjs?v=4.7.2';
 // Validation only at project-file and user-form boundaries.
 export const DESK_SCHEMA='mareg-decision-desk-v1';
 export const emptyDesk=()=>({schema:DESK_SCHEMA,fleet:[],policies:[],actions:[]});

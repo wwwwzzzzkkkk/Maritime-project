@@ -117,3 +117,10 @@ Baseline `light-v4.7.0-baseline-2026-10-22` pins `c20b2c2`. Keep tags immutable.
 回退前导出工作区。获取记录是可选新增字段；旧版不显示／保留它，保留4.7.1备份，不用旧版导出覆盖唯一文件。Git回退不删除本机资料。Worker和Cache API独立于Pages：恢复目标版本后端及规则并用私有Secrets重新部署，不把key／课堂码写进Git。旧缓存最多15分钟，不是法律版本依据。
 
 Export before rollback; older releases do not preserve/display the new retrieval field, so retain a4.7.1 backup. Local data and Worker are separate from Git/Pages rollback. Redeploy intended backend/module rules with private Secrets; do not commit credentials. Cache lifetime is not a legal-version guarantee. Create the tag/Release before the separate footer activation commit.
+
+
+## v4.7.2 · 2026-10-22
+
+Baseline `light-v4.7.1-baseline-2026-10-22` pins `b999492`. Restore with new commits, never force-push or move tags. Restore scoped dialog CSS, lifecycle helper, deferred form resets and UI/cache/report metadata together; otherwise entry/exit/reset timing can diverge. Protected source files and workspace format remain unchanged. No Worker/secret/config update is part of this patch; cloud/knowledge remains4.7.1. Create the Release before the separate footer activation commit.
+
+回退不删除本机资料；保留导出备份。恢复界面文件和版本引用时保留后续无关改动，不改写历史。/ Rollback does not remove local records; keep exported backups and retain unrelated later changes.

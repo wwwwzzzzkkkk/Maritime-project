@@ -1800,3 +1800,27 @@ body:has(.form-dialog[open]) { overflow: hidden; }
 
 .panel-card > [data-open-form] { align-self: flex-start; }
 .form-dialog .model-note:empty { display: none; }
+
+/* v4.7.2: native display/overlay retention lets close() finish visually before removal.
+   Only opacity and the form card's 2D transform interpolate; materials and other card motion stay unchanged. */
+.form-dialog {
+  --form-enter: 220ms;
+  --form-exit: 150ms;
+  --form-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0;
+  transition: opacity var(--form-exit) var(--form-ease), display var(--form-exit) allow-discrete, overlay var(--form-exit) allow-discrete;
+}
+.form-dialog[open] { opacity: 1; transition-duration: var(--form-enter); }
+.form-dialog .modal-card {
+  transform: translateY(6px) scale(.985);
+  transition: transform var(--form-exit) var(--form-ease), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1), background var(--duration) var(--ease-out);
+  transform-origin: center;
+}
+.form-dialog[open] .modal-card { transform: translateY(0) scale(1); transition-duration: var(--form-enter), 420ms, var(--duration); }
+@starting-style {
+  .form-dialog[open] { opacity: 0; }
+  .form-dialog[open] .modal-card { transform: translateY(10px) scale(.975); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-dialog, .form-dialog .modal-card { transition: none; }
+}
