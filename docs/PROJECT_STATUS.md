@@ -1,6 +1,6 @@
 # 项目完成度 / Project Status
 
-2026-10-22 · UI v4.7.2 · Cloud/knowledge4.7.1 · Engine light-4.2.0
+2026-10-22 · UI v4.7.3 · Cloud/knowledge4.7.1 · Engine light-4.2.0 (browser validation pending)
 
 目前是**业务主线可演示、可受控试用的原型**。不以主观百分比表示完成度，也不把界面存在等同于正式合规或实际收益。
 
@@ -14,7 +14,7 @@ The core business workflow is demonstrable and available for controlled trials. 
 | 政策资料 / Evidence | 四个配置官方页自动读取，来源、时间、短节选和导入 / Four curated official pages and provenance | 非全站监控／修订发现；成本条件及法律适用仍须确认 / No comprehensive change detection or legal determination |
 | AI与行动 / AI and actions | 明确同意后的政策／匿名船队解释；冻结来源版本、复核与实施自报 / Consented explanations and traceable action records | 非身份认证的专家签批；实施、凭证和结果仍为用户记录 / No authenticated approval or assured outcomes |
 | 保存与报告 / Recovery and reports | 本机保存恢复、工作区与可读报告导出 / Local recovery and exports | 不跨设备自动同步，敏感数据管理和生产恢复保障未认证 / No cloud synchronization/production assurance |
-| 使用体验 / Interaction | 中英文、移动布局、预算浮窗、二级表单及开关衔接 / Bilingual responsive views and dialogs | 仅完成记录中的Chrome检查，非全面兼容性认证 / Chrome-scoped verification |
+| 使用体验 / Interaction | 中英文、移动布局、预算浮窗、二级表单及紧凑资料列表 / Bilingual responsive views, dialogs and compact evidence lists | 仅完成记录中的Chrome检查，非全面兼容性认证 / Chrome-scoped verification |
 
 ## 下一步优先顺序 / Next priorities
 

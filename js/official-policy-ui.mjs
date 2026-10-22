@@ -1,5 +1,5 @@
-import {OFFICIAL_POLICY_SOURCES,validateOfficialSnapshot} from './official-policy-catalog.mjs?v=4.7.2';
-import {escapeHtml as esc} from './decision-report.mjs?v=4.7.2';
+import {OFFICIAL_POLICY_SOURCES,validateOfficialSnapshot} from './official-policy-catalog.mjs?v=4.7.3';
+import {escapeHtml as esc} from './decision-report.mjs?v=4.7.3';
 export function createOfficialPolicyUi({getLanguage,onUse}){
  const el=id=>document.getElementById(id),button=el('refreshOfficialPolicies');let items=[],loading=false,loaded=false,expires=0,error=false;
  const t=(z,e)=>getLanguage()==='zh'?z:e;

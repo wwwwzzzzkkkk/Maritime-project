@@ -1,9 +1,9 @@
 # MAREG — Multi-Regime Maritime Compliance & Digital Twin Platform (English Documentation)
 
-> **Current website / 当前网页：v4.7.2** · [Release notes / 更新说明](https://github.com/wwwwzzzzkkkk/Maritime-project/releases/tag/v4.7.2) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
+> **Current website / 当前网页：v4.7.3（本地待验收，尚未发布）** · [Release notes / 更新说明](docs/releases/v4.7.3.md) · [Project plans / 项目计划](docs/PROJECT_PLANNING.md) · [Course map / 课程映射](docs/COURSE_MAPPING.md)
 
-> **v4.7.2 · 弹窗衔接 / Dialog transitions:** 二级表单打开约220ms淡入并轻缩放，关闭约150ms淡出；Esc、遮罩和按钮统一处理，减少动态效果时即时切换。保存后等淡出再清空已提交字段，快速重开保留草稿。
-> Smooth native-dialog entry/exit with retained drafts, focus and interrupted reopen handling. Other glass/card effects and calculations remain unchanged. UI/cache/report4.7.2; cloud knowledge remains4.7.1. [项目完成度 / Project status](docs/PROJECT_STATUS.md) · [更新 / Release](docs/releases/v4.7.2.md)
+> **v4.7.3 · 可靠的弹窗动画与紧凑布局 / Reliable dialog motion and denser layout:** Web Animations API keeps native forms visible while they fade out; policy sources use compact expandable cards. Browser validation is pending in this environment. No calculations or data sources changed. [验收 / Verification](docs/verification/v4.7.3/README.md)
+> Dialog enter/exit no longer depends on discrete `display`/`overlay` transitions. The evidence view uses a responsive source grid, side-by-side actions and tighter record spacing. Browser-level verification is still pending; no calculation or policy data changed. [Project status](docs/PROJECT_STATUS.md) · [Release notes](docs/releases/v4.7.3.md)
 
 > **v4.7.1 · 官方资料与二级输入 / Official sources and secondary forms:** “未来情景”自动读取四个已配置官方页面，显示原文节选、来源及真实获取时间；缺失日期保留未知，失败明确显示。船舶、政策／复核、运营输入、台账、规划条件及行动表单改为二级弹窗，主页面保留滑块和结果。
 > Retrieve four configured official pages on entering Future Scenarios; inspect excerpts, source dates and failures, then use a source to prefill a planning draft. Manual-entry forms now open secondary dialogs, while sliders/results stay visible. Retrieval does not verify applicability or change budgets automatically. [操作 / Guide](docs/WORKFLOWS.md) · [来源与范围 / Sources](docs/OFFICIAL_SOURCES.md) · [更新 / Release](docs/releases/v4.7.1.md)

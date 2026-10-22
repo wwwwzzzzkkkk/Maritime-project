@@ -1,9 +1,9 @@
-import {createOfficialPolicyUi} from './official-policy-ui.mjs?v=4.7.2';
-import {OFFICIAL_POLICY_SOURCES} from './official-policy-catalog.mjs?v=4.7.2';
-import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.2';
-import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.2';
-import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.2';
-import {escapeHtml as esc} from './decision-report.mjs?v=4.7.2';
+import {createOfficialPolicyUi} from './official-policy-ui.mjs?v=4.7.3';
+import {OFFICIAL_POLICY_SOURCES} from './official-policy-catalog.mjs?v=4.7.3';
+import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.3';
+import {validateAnalysis,evaluateAnalysis} from './analysis-state.mjs?v=4.7.3';
+import {emptyDesk,validateDesk,validatePolicy,createFleetEntry,createAction,fleetSummary,actionAssessment,assertCanAdvance,appliesTo,hasConditions} from './decision-desk.mjs?v=4.7.3';
+import {escapeHtml as esc} from './decision-report.mjs?v=4.7.3';
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
 export function createDecisionUi({capture,restore,navigate,openWorkspace,explainPolicy,onDeskChange}){
  const el=id=>document.getElementById(id),control=(f,k)=>f.elements.namedItem(k);
@@ -151,7 +151,7 @@ export function createDecisionUi({capture,restore,navigate,openWorkspace,explain
  el('actionGenerateForm').addEventListener('submit',event=>{event.preventDefault();run('actionStatus',()=>{
   const f=event.target,next=structuredClone(desk),a=createAction(next,control(f,'fleetId').value,control(f,'kind').value,control(f,'policyId').value,crypto.randomUUID(),today());
   a.title=t('评估：','Review: ')+optionLabels()[control(f,'kind').value];a.trigger=t('先核对运营限制、燃料／组池条件和适用范围，再决定是否实施。','Check operating limits, fuel/pooling conditions and scope before implementation.');a.risk=t('有限搜索与简化模型；费用下降不等于实际减排。重大支出须另行专业复核。','Finite search and simplified models; lower costs are not verified reductions. Material spending needs separate professional review.');
-  next.actions.push(a);actionId=a.id;actionDirty=false;commit(next);closeFormDialog('actionGeneratorDialog');openFormDialog('actionEditor');fillAction();msg('actionStatus',t('已生成待复核草稿；原预算未改变。请填写负责人、日期及意见。','Draft created; active budgets unchanged. Complete owner, date and review.'));
+  next.actions.push(a);actionId=a.id;actionDirty=false;commit(next);closeFormDialog('actionGeneratorDialog').then(closed=>{if(closed){openFormDialog('actionEditor');fillAction();}});msg('actionStatus',t('已生成待复核草稿；原预算未改变。请填写负责人、日期及意见。','Draft created; active budgets unchanged. Complete owner, date and review.'));
  });});
  el('actionRecords').addEventListener('click',event=>{
   const select=event.target.closest('[data-action-select]'),remove=event.target.closest('[data-action-remove]');

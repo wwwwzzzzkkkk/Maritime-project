@@ -1,8 +1,8 @@
-import {closeFormDialog} from './form-dialogs.mjs?v=4.7.2';
-import {emptyDesk} from './decision-data.mjs?v=4.7.2';
-import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.7.2';
-import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.7.2';
-import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.7.2';
+import {closeFormDialog} from './form-dialogs.mjs?v=4.7.3';
+import {emptyDesk} from './decision-data.mjs?v=4.7.3';
+import { WORKSPACE_SCHEMA,validateWorkspace,validateAnalysis,evaluateAnalysis } from './analysis-state.mjs?v=4.7.3';
+import { LEDGER_TEMPLATE,parseLedgerCSV,screenLedger,serializeLedgerCSV } from './ledger.mjs?v=4.7.3';
+import { buildDecisionReport,escapeHtml as esc } from './decision-report.mjs?v=4.7.3';
 const KEY='mareg.saved-analyses.v1';
 export function createWorkspaceUi({capture,restore,applyLedger,clearLedger,getDesk,setDesk,markDeskSaved}) {
   let lang='zh',cases=[];

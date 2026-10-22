@@ -47,7 +47,7 @@ try{
  for(const language of['zh','en']){
   await page.locator('[data-lang="'+language+'"]').click();
   for(const width of[1440,768,375]){
-   await page.setViewportSize({width,height:1000});await page.locator('#policyEvidenceDesk').scrollIntoViewIfNeeded();await page.mouse.move(0,0);await page.waitForTimeout(300);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   await page.setViewportSize({width,height:1000});await page.locator('#policyEvidenceDesk').scrollIntoViewIfNeeded();await page.mouse.move(0,0);await page.waitForTimeout(300);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));const sourceColumns=await page.locator('#officialPolicyList').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length);assert.equal(sourceColumns,width<=680?1:2);assert.equal(await page.locator('.policy-evidence-actions button').count(),2);
    const path=out+'/policy-'+language+'-'+width+'.png';await page.locator('#policyEvidenceDesk').screenshot({path,style:'#mobileBudget {visibility:hidden}'});result.screens.push(path);
    await launch('policyEditor');await page.waitForTimeout(150);const dimensions=await page.locator('#policyEditor .modal-card').evaluate(e=>({width:e.getBoundingClientRect().width,scroll:e.scrollWidth,client:e.clientWidth,height:e.getBoundingClientRect().height}));assert.ok(dimensions.scroll<=dimensions.client+1);assert.ok(dimensions.height<=1000);const formPath=out+'/policy-dialog-'+language+'-'+width+'.png';await page.locator('#policyEditor .modal-card').screenshot({path:formPath});result.screens.push(formPath);await close('policyEditor');
   }

@@ -1,6 +1,6 @@
-import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.2';
-import { planOptions } from './option-planner.mjs?v=4.7.2';
-import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.7.2';
+import {openFormDialog,closeFormDialog} from './form-dialogs.mjs?v=4.7.3';
+import { planOptions } from './option-planner.mjs?v=4.7.3';
+import { tonnesToMJ, mjToTonnes } from './inputs-adapter.mjs?v=4.7.3';
 
 export function createPlanningUi({onApplyInputs,onApplyOption,onPreset}) {
   const form=document.getElementById('planningForm');
